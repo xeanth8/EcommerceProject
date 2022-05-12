@@ -4,7 +4,7 @@ Ini adalah proyek *website e-commerce* dengan OpenCart.
 Dibuat untuk tugas UAS mata kuliah [SII04] Designing E-Commerce.
 
 ## Kontributor
-**Kelompok 15:**\
+**Kelompok 6:**\
 31190038 - Fendyanto\
 31190042 - Johanes Shane\
 31190050 - Kosasi
