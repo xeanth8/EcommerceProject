@@ -6,10 +6,10 @@ define('HTTP_SERVER', 'http://localhost/EcommerceProject/');
 define('HTTPS_SERVER', 'http://localhost/EcommerceProject/');
 
 // DIR
-define('DIR_APPLICATION', 'D:/Program/xampp/htdocs/EcommerceProject/catalog/');
-define('DIR_SYSTEM', 'D:/Program/xampp/htdocs/EcommerceProject/system/');
-define('DIR_IMAGE', 'D:/Program/xampp/htdocs/EcommerceProject/image/');
-define('DIR_STORAGE', 'D:/Program/xampp/storage/');
+define('DIR_APPLICATION', $_SERVER['DOCUMENT_ROOT'].'/EcommerceProject/catalog/');
+define('DIR_SYSTEM', $_SERVER['DOCUMENT_ROOT'].'/EcommerceProject/system/');
+define('DIR_IMAGE', $_SERVER['DOCUMENT_ROOT'].'/EcommerceProject/image/');
+define('DIR_STORAGE', $_SERVER['DOCUMENT_ROOT'].'/EcommerceProject/system/storage/');
 define('DIR_LANGUAGE', DIR_APPLICATION . 'language/');
 define('DIR_TEMPLATE', DIR_APPLICATION . 'view/theme/');
 define('DIR_CONFIG', DIR_SYSTEM . 'config/');
