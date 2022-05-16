@@ -1,5 +1,8 @@
 <?php
 namespace DB;
+
+error_reporting(0);
+
 class MySQLi {
 	private $connection;
 
