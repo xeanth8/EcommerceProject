@@ -73,7 +73,12 @@ To receive developer notifications about release information, sign up to the new
 
 ## How to install
 
-Please read the installation instructions included in the repository or download file.
+Read the instructions below to install the application.
+
+ 1. Clone the project to your local directory.
+ 2. Make sure you have the XAMPP application or similar applications. Then activate the server service (Apache) and database service (MySQL).
+ 3. Import ecommerce_project SQL file into MySQL
+ 4. Run the application on the web browser using the url "localhost/EcommerceProject/"
 
 ## License
 
