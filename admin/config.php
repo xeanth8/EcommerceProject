@@ -8,11 +8,11 @@ define('HTTPS_SERVER', 'http://localhost/EcommerceProject/admin/');
 define('HTTPS_CATALOG', 'http://localhost/EcommerceProject/');
 
 // DIR
-define('DIR_APPLICATION', 'D:/Program/xampp/htdocs/EcommerceProject/admin/');
-define('DIR_SYSTEM', 'D:/Program/xampp/htdocs/EcommerceProject/system/');
-define('DIR_IMAGE', 'D:/Program/xampp/htdocs/EcommerceProject/image/');
-define('DIR_STORAGE', 'D:/Program/xampp/storage/');
-define('DIR_CATALOG', 'D:/Program/xampp/htdocs/EcommerceProject/catalog/');
+define('DIR_APPLICATION',  __DIR__.'/admin/');
+define('DIR_SYSTEM',  __DIR__.'/system/');
+define('DIR_IMAGE',  __DIR__.'/image/');
+define('DIR_STORAGE',  __DIR__.'/../system/storage/');
+define('DIR_CATALOG',  __DIR__.'/catalog/');
 define('DIR_LANGUAGE', DIR_APPLICATION . 'language/');
 define('DIR_TEMPLATE', DIR_APPLICATION . 'view/template/');
 define('DIR_CONFIG', DIR_SYSTEM . 'config/');
