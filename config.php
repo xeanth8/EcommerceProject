@@ -1,9 +1,9 @@
 <?php
 // HTTP
-define('HTTP_SERVER', 'http://localhost/EcommerceProject/');
+define('HTTP_SERVER', 'http://localhost/DaisoEcommerce/EcommerceProject/');
 
 // HTTPS
-define('HTTPS_SERVER', 'http://localhost/EcommerceProject/');
+define('HTTPS_SERVER', 'http://localhost/DaisoEcommerce/EcommerceProject/');
 
 // DIR
 define('DIR_APPLICATION', __DIR__.'/catalog/');
