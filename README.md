@@ -3,6 +3,14 @@ Ini adalah proyek *website e-commerce* dengan OpenCart.
 
 Dibuat untuk tugas UAS mata kuliah [SII04] Designing E-Commerce.
 
+## How to install
+Read the instructions below to install the application.
+
+ 1. Clone the project to your local directory.
+ 2. Make sure you have the XAMPP application or similar applications. Then activate the server service (Apache) and database service (MySQL).
+ 3. Import `ecommerce_project` SQL file into MySQL
+ 4. Run the application on the web browser using the url localhost/EcommerceProject/"
+
 ## Kontributor
 **Kelompok 6:**\
 31190038 - Fendyanto\
@@ -70,15 +78,6 @@ Developer release source code will not change once tagged.
 If a bug is found in an announced developer release that is significant (such as a major feature is broken) then the release will be pulled. A patch version will be issued to replace it, depending on the severity of the patch an extended testing period may be announced. If the developer release version was never made public then the preceding patch version tag will be removed.
 
 To receive developer notifications about release information, sign up to the newsletter on the [OpenCart website](http://www.opencart.com) - located in the footer. Then choose the developer news option.
-
-## How to install
-
-Read the instructions below to install the application.
-
- 1. Clone the project to your local directory.
- 2. Make sure you have the XAMPP application or similar applications. Then activate the server service (Apache) and database service (MySQL).
- 3. Import ecommerce_project SQL file into MySQL
- 4. Run the application on the web browser using the url "localhost/EcommerceProject/"
 
 ## License
 
