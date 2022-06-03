@@ -1,8 +1,10 @@
 <?php
-class ControllerExtensionModuleCategory extends Controller {
+class ControllerExtensionModuleCategory extends Controller
+{
 	private $error = array();
 
-	public function index() {
+	public function index()
+	{
 		$this->load->language('extension/module/category');
 
 		$this->document->setTitle($this->language->get('heading_title'));
@@ -57,7 +59,8 @@ class ControllerExtensionModuleCategory extends Controller {
 		$this->response->setOutput($this->load->view('extension/module/category', $data));
 	}
 
-	protected function validate() {
+	protected function validate()
+	{
 		if (!$this->user->hasPermission('modify', 'extension/module/category')) {
 			$this->error['warning'] = $this->language->get('error_permission');
 		}

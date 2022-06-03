@@ -6,7 +6,8 @@ $_['heading_title']    = 'Keranjang Belanja';
 $_['text_success']     = 'Sukses: Anda telah menambah <a href="%s">%s</a> ke <a href="%s">keranjang belanja anda</a>!';
 $_['text_remove']      = 'Berhasil: Anda telah mengubah keranjang belanja anda!';
 $_['text_login']       = 'Perhatian: Anda harus <a href="%s">login</a> atau <a href="%s">membuat account</a> untuk melihat harga!';
-$_['text_items']       = '%s item(s) - %s';
+// $_['text_items']       = '%s item(s) - %s';
+$_['text_items']       = '%s item(s)id';
 $_['text_points']      = 'Poin Reward: %s';
 $_['text_next']        = 'Apa yang ingin anda lakukan selanjutnya?';
 $_['text_next_choice'] = 'Pilih jika Anda memiliki diskon kode atau poin reward yang ingin digunakan atau ingin untuk memperkirakan biaya pengiriman anda.';
@@ -19,11 +20,11 @@ $_['text_year']        = 'year';
 $_['text_trial']       = '%s setiap %s %s untuk %s Pembayaran kemudian ';
 $_['text_recurring']   = '%s setiap %s %s';
 $_['text_length']      = ' untuk pembayaran %s';
-$_['text_until_cancelled']   	= 'hingga dibatalkan';
-$_['text_recurring_item']    	              = 'Item Berkala';
+$_['text_until_cancelled']       = 'hingga dibatalkan';
+$_['text_recurring_item']                      = 'Item Berkala';
 $_['text_payment_recurring']                    = 'Profil Pembayaran';
-$_['text_trial_description'] 	              = '%s setiap %d %s(s) untuk %d pembayaran(s) kemudian';
-$_['text_payment_description'] 	              = '%s setiap %d %s(s) untuk pembayaran(s) %d';
+$_['text_trial_description']                   = '%s setiap %d %s(s) untuk %d pembayaran(s) kemudian';
+$_['text_payment_description']                   = '%s setiap %d %s(s) untuk pembayaran(s) %d';
 $_['text_payment_until_canceled_description'] = '%s setiap %d %s(s) sampai dibatalkan';
 
 // Column
