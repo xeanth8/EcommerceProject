@@ -4,6 +4,12 @@
  * www.harnishdesign.net
  */
 
+
+:root {
+    --daiso-primary: #f2157f;
+    --daiso-highlight: #ff58b5;
+}
+
 body {
     font-family: 'Open Sans', sans-serif;
     font-weight: 400;
@@ -54,12 +60,12 @@ h6 {
 }
 
 a {
-    color: #007acc;
+    color: var(--daiso-primary);
 }
 
 a:hover {
     text-decoration: none;
-    color: #000;
+    color: var(--daiso-highlight);
 }
 
 legend {
@@ -126,7 +132,7 @@ div.required .control-label:before {
 /* Gradent to all drop down menus */
 .dropdown-menu li>a:hover {
     text-decoration: none;
-    color: #007acc;
+    color: var(--daiso-primary);
     background-color: #eee;
 }
 
@@ -140,7 +146,7 @@ div.required .control-label:before {
 
 /* top */
 #top {
-    background-color: #f2157f;
+    background-color: var(--daiso-primary);
     padding: 0;
     margin: 0 0 25px 0;
     min-height: 36px;
@@ -162,7 +168,7 @@ div.required .control-label:before {
 #top #form-language .language-select:hover {
     text-shadow: none;
     text-decoration: none;
-    color: #007acc;
+    color: var(--daiso-primary);
     background-color: #eee;
 }
 
@@ -211,7 +217,7 @@ div.required .control-label:before {
     height: 40px;
     line-height: 20px;
     padding: 0 10px;
-    border: 1px solid #f2157f;
+    border: 1px solid var(--daiso-primary);
     box-shadow: none;
     border-right: none;
     border-radius: 0;
@@ -225,7 +231,7 @@ div.required .control-label:before {
     text-shadow: none;
     box-shadow: none;
     background: none;
-    border: 1px solid #f2157f;
+    border: 1px solid var(--daiso-primary);
     border-left: none;
     border-radius: 0;
 }
@@ -239,7 +245,7 @@ div.required .control-label:before {
 #cart>.btn {
     font-size: 14px;
     line-height: 18px;
-    color: #f2157f;
+    color: var(--daiso-primary);
     background: none;
     border: none;
     text-shadow: none;
@@ -252,11 +258,11 @@ div.required .control-label:before {
 
 #cart.open>.btn {
     background-image: none;
-    color: #007acc;
+    color: var(--daiso-primary);
 }
 
 #cart.open>.btn:hover {
-    color: #007acc;
+    color: var(--daiso-primary);
 }
 
 #cart .dropdown-menu {
@@ -332,7 +338,7 @@ div.required .control-label:before {
 
 #menu .nav>li:hover>a,
 #menu .nav>li.open>a {
-    background-color: #007acc;
+    background-color: var(--daiso-primary);
     color: #fff;
     border-radius: 3px;
 }
@@ -360,7 +366,7 @@ div.required .control-label:before {
 }
 
 #menu .dropdown-inner li a:hover {
-    color: #007acc;
+    color: var(--daiso-primary);
 }
 
 #menu .see-all {
@@ -378,7 +384,7 @@ div.required .control-label:before {
 #menu .see-all:focus {
     text-decoration: none;
     color: #ffffff;
-    background-color: #007acc;
+    background-color: var(--daiso-primary);
 }
 
 #menu #category {
@@ -395,7 +401,7 @@ div.required .control-label:before {
     color: #FFF;
     padding: 2px 18px;
     float: right;
-    background-color: #007acc;
+    background-color: var(--daiso-primary);
 }
 
 #menu .btn-navbar:hover,
@@ -458,7 +464,7 @@ div.required .control-label:before {
     }
 
     #menu .see-all:hover {
-        color: #007acc;
+        color: var(--daiso-primary);
     }
 }
 
@@ -472,27 +478,27 @@ footer {
     margin-top: 30px;
     padding-top: 15px;
     background-color: #fff;
-    color: #f2157f;
+    color: var(--daiso-primary);
 }
 
 footer hr {
     border-top: none;
-    border-bottom: 1px solid #f2157f;
+    border-bottom: 1px solid var(--daiso-primary);
 }
 
 footer a {
-    color: #f2157f;
+    color: var(--daiso-primary);
 }
 
 footer a:hover {
-    color: #ff58b5;
+    color: var(--daiso-highlight);
     text-decoration: underline;
 }
 
 footer h5 {
     font-family: 'Open Sans', sans-serif;
     font-size: 15px;
-    color: #f2157f;
+    color: var(--daiso-primary);
     font-weight: bold;
     margin-bottom: 15px;
 }
@@ -504,7 +510,7 @@ footer li {
 footer li a {
     position: relative;
     padding-left: 12px;
-    color: #f2157f;
+    color: var(--daiso-primary);
 }
 
 footer li a:after {
@@ -523,7 +529,7 @@ footer li a:after {
 }
 
 footer li a:hover {
-    color: #ff58b5;
+    color: var(--daiso-highlight);
     text-decoration: underline;
 }
 
@@ -559,7 +565,7 @@ footer li a:hover {
 }
 
 .breadcrumb>li a:hover {
-    color: #007acc
+    color: var(--daiso-primary)
 }
 
 .breadcrumb>li+li:before {
@@ -637,7 +643,7 @@ footer li a:hover {
 
 .btn-primary {
     color: #ffffff;
-    background-color: #007acc;
+    background-color: var(--daiso-primary);
 }
 
 .btn-primary:hover,
@@ -711,7 +717,7 @@ footer li a:hover {
 .btn-link {
     border-color: rgba(0, 0, 0, 0);
     cursor: pointer;
-    color: #23A1D1;
+    color: var(--daiso-primary);
     border-radius: 0;
 }
 
@@ -747,7 +753,7 @@ footer li a:hover {
 .list-group a.active,
 .list-group a.active:hover,
 .list-group a:hover {
-    color: #007acc;
+    color: var(--daiso-primary);
     background: #eeeeee;
     border: 1px solid #DDDDDD;
 }
@@ -901,7 +907,7 @@ h2.price {
 }
 
 .product-thumb .button-group button {
-    width: 60%;
+    width: 80%;
     border: none;
     display: inline-block;
     float: left;
@@ -920,7 +926,7 @@ h2.price {
 
 .product-thumb .button-group button:hover {
     color: #fff;
-    background-color: #007acc;
+    background-color: var(--daiso-primary);
     text-decoration: none;
     cursor: pointer;
 }

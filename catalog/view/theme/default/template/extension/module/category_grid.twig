@@ -1,4 +1,5 @@
-<div class="justify-content-center row text-center d-flex">
+<h3>{{ heading_title }}</h3>
+<div class="category-grid row">
   {% for category in categories %}
     {# {% if category.category_id == category_id %} 
     <a href="{{ category.href }}" class="list-group-item active">{{ category.name }}</a> 
@@ -13,49 +14,47 @@
       {% endif %}
     {% else %}  #}
     {# <a class="product-thumb" href="{{ category.href }}">{{ category.name }}<img src="{{category.img}}" alt=""></a> #}
-   
-   
+    {# {% endif %} #}
    
     <!-- Card -->
     
-        <div class="category-card col-sm-6 col-md-3">
-          <a href="{{ category.href }}">
-            <div class="card rounded-0">
-              <img src="{{category.img}}" alt="" class="card-img rounded-0">
-              <div class="card-img-overlay">
-                <h4 class="card-title mb-0">
-                  {{ category.name }}
-                </h4>
-              </div>
-            </div>
-          </a>
-        </div>
-        
-
-    {# <div class="offer-card">
-        <a href="{{ category.href }}">
-            <div class="card border-0 bg-transparent text-white">
-                <img src="{{category.img}}" class="card-img-top" alt="...">
-                <div class="card-body my-2 p-0">
-                    <div class="card-title">
-                    <h5>{{ category.name }}</h5>
-                    </div>
-                </div>
-            </div>
-        </a>
-    </div> #}
-
-
-    {# {% endif %} #}
+  <div class="category-card">
+    <a href="{{ category.href }}">
+      <div class="card rounded-0">
+        <img src="{{category.img}}" alt="" class="card-img rounded-0">
+        <h4 class="card-title mb-0">{{ category.name }}</h4>
+      </div>
+    </a>
+  </div>
     
   {% endfor %}
 </div>
 
 <style>
+  .category-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .card {
+    position: relative;
+    text-align: center;
+    color: white;
+  }
+
+  .card-title {
+    position: absolute;
+    top: 80%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
   .category-card .card-img {
     width: 16em;
     height: 16em;
     object-fit: cover;
+    border: 1px solid #f2157f;
   }
 
   .category-card .card-img-overlay {
@@ -70,7 +69,7 @@
   }
 
   .category-card {
-    margin: 1em 4em;
+    margin: 1.5em 3em;
     width: 16em;
   }
 
@@ -80,16 +79,12 @@
   }
 
   @media (max-width: 768px) {
+    .card-title {
+      top: 75%;
+    }
     .category-card .card-img {
       height: 12em;
-    }
-  }
-
-
-  @media (max-width: 576px) {
-    .category-card .card-img {
-      width: 6em;
-      height: 6em;
+      width: 12em;
     }
   }
 </style>
