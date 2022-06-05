@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 17, 2022 at 05:26 AM
--- Server version: 10.4.13-MariaDB
--- PHP Version: 7.4.7
+-- Generation Time: Jun 05, 2022 at 01:02 PM
+-- Server version: 10.4.14-MariaDB
+-- PHP Version: 7.4.9
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -46,6 +46,11 @@ CREATE TABLE IF NOT EXISTS `oc_address` (
   KEY `customer_id` (`customer_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
+--
+-- Truncate table before insert `oc_address`
+--
+
+TRUNCATE TABLE `oc_address`;
 -- --------------------------------------------------------
 
 --
@@ -63,10 +68,15 @@ CREATE TABLE IF NOT EXISTS `oc_api` (
 ) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
 --
+-- Truncate table before insert `oc_api`
+--
+
+TRUNCATE TABLE `oc_api`;
+--
 -- Dumping data for table `oc_api`
 --
 
-INSERT INTO `oc_api` (`api_id`, `username`, `key`, `status`, `date_added`, `date_modified`) VALUES
+INSERT IGNORE INTO `oc_api` (`api_id`, `username`, `key`, `status`, `date_added`, `date_modified`) VALUES
 (1, 'Default', 'InTzV6vZFbokebcrb5LUS8KnYkStyAe5h6DAF6BdUwtEyBdQV1aC4co7Ct9AX148UEWknubaP4rgZC3QIhjsQGOzdORbbmzeblpAdJMhx990loGFgE98DJsj0NinepLXkzPHVlgBCyDgXMirEnFlDSbUJ688yDg0BJa5USx8Yuiz7Pts1vleOiBfcobXA9Egxik0uj6rDZWM3IAeWDWTKmnMm1FFb7Ahj8uATjPNlmsKNxkhFUYVhFfZ0TAjofxQ', 1, '2022-05-16 14:19:53', '2022-05-16 14:19:53');
 
 -- --------------------------------------------------------
@@ -80,7 +90,19 @@ CREATE TABLE IF NOT EXISTS `oc_api_ip` (
   `api_id` int(11) NOT NULL,
   `ip` varchar(40) NOT NULL,
   PRIMARY KEY (`api_ip_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+
+--
+-- Truncate table before insert `oc_api_ip`
+--
+
+TRUNCATE TABLE `oc_api_ip`;
+--
+-- Dumping data for table `oc_api_ip`
+--
+
+INSERT IGNORE INTO `oc_api_ip` (`api_ip_id`, `api_id`, `ip`) VALUES
+(1, 1, '::1');
 
 -- --------------------------------------------------------
 
@@ -96,7 +118,20 @@ CREATE TABLE IF NOT EXISTS `oc_api_session` (
   `date_added` datetime NOT NULL,
   `date_modified` datetime NOT NULL,
   PRIMARY KEY (`api_session_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+
+--
+-- Truncate table before insert `oc_api_session`
+--
+
+TRUNCATE TABLE `oc_api_session`;
+--
+-- Dumping data for table `oc_api_session`
+--
+
+INSERT IGNORE INTO `oc_api_session` (`api_session_id`, `api_id`, `session_id`, `ip`, `date_added`, `date_modified`) VALUES
+(1, 1, '4c0392b188f01d1150d28d3620', '::1', '2022-05-28 04:48:18', '2022-05-28 04:48:18'),
+(2, 1, '8a13ef390f0db6d329b58360c8', '::1', '2022-06-02 05:10:45', '2022-06-02 05:10:45');
 
 -- --------------------------------------------------------
 
@@ -112,10 +147,15 @@ CREATE TABLE IF NOT EXISTS `oc_attribute` (
 ) ENGINE=MyISAM AUTO_INCREMENT=12 DEFAULT CHARSET=utf8;
 
 --
+-- Truncate table before insert `oc_attribute`
+--
+
+TRUNCATE TABLE `oc_attribute`;
+--
 -- Dumping data for table `oc_attribute`
 --
 
-INSERT INTO `oc_attribute` (`attribute_id`, `attribute_group_id`, `sort_order`) VALUES
+INSERT IGNORE INTO `oc_attribute` (`attribute_id`, `attribute_group_id`, `sort_order`) VALUES
 (1, 6, 1),
 (2, 6, 5),
 (3, 6, 3),
@@ -142,10 +182,15 @@ CREATE TABLE IF NOT EXISTS `oc_attribute_description` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
+-- Truncate table before insert `oc_attribute_description`
+--
+
+TRUNCATE TABLE `oc_attribute_description`;
+--
 -- Dumping data for table `oc_attribute_description`
 --
 
-INSERT INTO `oc_attribute_description` (`attribute_id`, `language_id`, `name`) VALUES
+INSERT IGNORE INTO `oc_attribute_description` (`attribute_id`, `language_id`, `name`) VALUES
 (1, 1, 'Description'),
 (2, 1, 'No. of Cores'),
 (4, 1, 'test 1'),
@@ -156,7 +201,18 @@ INSERT INTO `oc_attribute_description` (`attribute_id`, `language_id`, `name`) V
 (9, 1, 'test 6'),
 (10, 1, 'test 7'),
 (11, 1, 'test 8'),
-(3, 1, 'Clockspeed');
+(3, 1, 'Clockspeed'),
+(1, 2, 'Description'),
+(2, 2, 'No. of Cores'),
+(4, 2, 'test 1'),
+(5, 2, 'test 2'),
+(6, 2, 'test 3'),
+(7, 2, 'test 4'),
+(8, 2, 'test 5'),
+(9, 2, 'test 6'),
+(10, 2, 'test 7'),
+(11, 2, 'test 8'),
+(3, 2, 'Clockspeed');
 
 -- --------------------------------------------------------
 
@@ -171,10 +227,15 @@ CREATE TABLE IF NOT EXISTS `oc_attribute_group` (
 ) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 
 --
+-- Truncate table before insert `oc_attribute_group`
+--
+
+TRUNCATE TABLE `oc_attribute_group`;
+--
 -- Dumping data for table `oc_attribute_group`
 --
 
-INSERT INTO `oc_attribute_group` (`attribute_group_id`, `sort_order`) VALUES
+INSERT IGNORE INTO `oc_attribute_group` (`attribute_group_id`, `sort_order`) VALUES
 (3, 2),
 (4, 1),
 (5, 3),
@@ -194,14 +255,23 @@ CREATE TABLE IF NOT EXISTS `oc_attribute_group_description` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
+-- Truncate table before insert `oc_attribute_group_description`
+--
+
+TRUNCATE TABLE `oc_attribute_group_description`;
+--
 -- Dumping data for table `oc_attribute_group_description`
 --
 
-INSERT INTO `oc_attribute_group_description` (`attribute_group_id`, `language_id`, `name`) VALUES
+INSERT IGNORE INTO `oc_attribute_group_description` (`attribute_group_id`, `language_id`, `name`) VALUES
 (3, 1, 'Memory'),
 (4, 1, 'Technical'),
 (5, 1, 'Motherboard'),
-(6, 1, 'Processor');
+(6, 1, 'Processor'),
+(3, 2, 'Memory'),
+(4, 2, 'Technical'),
+(5, 2, 'Motherboard'),
+(6, 2, 'Processor');
 
 -- --------------------------------------------------------
 
@@ -214,16 +284,20 @@ CREATE TABLE IF NOT EXISTS `oc_banner` (
   `name` varchar(64) NOT NULL,
   `status` tinyint(1) NOT NULL,
   PRIMARY KEY (`banner_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=12 DEFAULT CHARSET=utf8;
 
+--
+-- Truncate table before insert `oc_banner`
+--
+
+TRUNCATE TABLE `oc_banner`;
 --
 -- Dumping data for table `oc_banner`
 --
 
-INSERT INTO `oc_banner` (`banner_id`, `name`, `status`) VALUES
-(6, 'HP Products', 1),
-(7, 'Home Page Slideshow', 1),
-(8, 'Manufacturers', 1);
+INSERT IGNORE INTO `oc_banner` (`banner_id`, `name`, `status`) VALUES
+(11, 'New products', 1),
+(10, 'Promo banner', 1);
 
 -- --------------------------------------------------------
 
@@ -240,27 +314,21 @@ CREATE TABLE IF NOT EXISTS `oc_banner_image` (
   `image` varchar(255) NOT NULL,
   `sort_order` int(3) NOT NULL DEFAULT 0,
   PRIMARY KEY (`banner_image_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=101 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=123 DEFAULT CHARSET=utf8;
 
+--
+-- Truncate table before insert `oc_banner_image`
+--
+
+TRUNCATE TABLE `oc_banner_image`;
 --
 -- Dumping data for table `oc_banner_image`
 --
 
-INSERT INTO `oc_banner_image` (`banner_image_id`, `banner_id`, `language_id`, `title`, `link`, `image`, `sort_order`) VALUES
-(79, 7, 1, 'iPhone 6', 'index.php?route=product/product&amp;path=57&amp;product_id=49', 'catalog/demo/banners/iPhone6.jpg', 0),
-(87, 6, 1, 'HP Banner', 'index.php?route=product/manufacturer/info&amp;manufacturer_id=7', 'catalog/demo/compaq_presario.jpg', 0),
-(94, 8, 1, 'NFL', '', 'catalog/demo/manufacturer/nfl.png', 0),
-(95, 8, 1, 'RedBull', '', 'catalog/demo/manufacturer/redbull.png', 0),
-(96, 8, 1, 'Sony', '', 'catalog/demo/manufacturer/sony.png', 0),
-(91, 8, 1, 'Coca Cola', '', 'catalog/demo/manufacturer/cocacola.png', 0),
-(92, 8, 1, 'Burger King', '', 'catalog/demo/manufacturer/burgerking.png', 0),
-(93, 8, 1, 'Canon', '', 'catalog/demo/manufacturer/canon.png', 0),
-(88, 8, 1, 'Harley Davidson', '', 'catalog/demo/manufacturer/harley.png', 0),
-(89, 8, 1, 'Dell', '', 'catalog/demo/manufacturer/dell.png', 0),
-(90, 8, 1, 'Disney', '', 'catalog/demo/manufacturer/disney.png', 0),
-(80, 7, 1, 'MacBookAir', '', 'catalog/demo/banners/MacBookAir.jpg', 0),
-(97, 8, 1, 'Starbucks', '', 'catalog/demo/manufacturer/starbucks.png', 0),
-(98, 8, 1, 'Nintendo', '', 'catalog/demo/manufacturer/nintendo.png', 0);
+INSERT IGNORE INTO `oc_banner_image` (`banner_image_id`, `banner_id`, `language_id`, `title`, `link`, `image`, `sort_order`) VALUES
+(120, 11, 1, 'Sanrio-new', 'index.php?route=product/category&amp;path=67', 'catalog/banners/Sanrio_small.png', 0),
+(122, 10, 1, 'Sanrio', 'index.php?route=product/category&amp;path=67', 'catalog/banners/Sanrio_5_EC_GAR-01_1060x.png', 1),
+(121, 10, 1, 'Hiring', 'index.php?route=information/information&amp;information_id=8', 'catalog/banners/NOW_970x.png', 0);
 
 -- --------------------------------------------------------
 
@@ -280,8 +348,13 @@ CREATE TABLE IF NOT EXISTS `oc_cart` (
   `date_added` datetime NOT NULL,
   PRIMARY KEY (`cart_id`),
   KEY `cart_id` (`api_id`,`customer_id`,`session_id`,`product_id`,`recurring_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8;
 
+--
+-- Truncate table before insert `oc_cart`
+--
+
+TRUNCATE TABLE `oc_cart`;
 -- --------------------------------------------------------
 
 --
@@ -300,51 +373,29 @@ CREATE TABLE IF NOT EXISTS `oc_category` (
   `date_modified` datetime NOT NULL,
   PRIMARY KEY (`category_id`),
   KEY `parent_id` (`parent_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=59 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=70 DEFAULT CHARSET=utf8;
 
+--
+-- Truncate table before insert `oc_category`
+--
+
+TRUNCATE TABLE `oc_category`;
 --
 -- Dumping data for table `oc_category`
 --
 
-INSERT INTO `oc_category` (`category_id`, `image`, `parent_id`, `top`, `column`, `sort_order`, `status`, `date_added`, `date_modified`) VALUES
-(25, '', 0, 1, 1, 3, 1, '2009-01-31 01:04:25', '2011-05-30 12:14:55'),
-(27, '', 20, 0, 0, 2, 1, '2009-01-31 01:55:34', '2010-08-22 06:32:15'),
-(20, 'catalog/demo/compaq_presario.jpg', 0, 1, 1, 1, 1, '2009-01-05 21:49:43', '2011-07-16 02:14:42'),
-(24, '', 0, 1, 1, 5, 1, '2009-01-20 02:36:26', '2011-05-30 12:15:18'),
-(18, 'catalog/demo/hp_2.jpg', 0, 1, 0, 2, 1, '2009-01-05 21:49:15', '2011-05-30 12:13:55'),
-(17, '', 0, 1, 1, 4, 1, '2009-01-03 21:08:57', '2011-05-30 12:15:11'),
-(28, '', 25, 0, 0, 1, 1, '2009-02-02 13:11:12', '2010-08-22 06:32:46'),
-(26, '', 20, 0, 0, 1, 1, '2009-01-31 01:55:14', '2010-08-22 06:31:45'),
-(29, '', 25, 0, 0, 1, 1, '2009-02-02 13:11:37', '2010-08-22 06:32:39'),
-(30, '', 25, 0, 0, 1, 1, '2009-02-02 13:11:59', '2010-08-22 06:33:00'),
-(31, '', 25, 0, 0, 1, 1, '2009-02-03 14:17:24', '2010-08-22 06:33:06'),
-(32, '', 25, 0, 0, 1, 1, '2009-02-03 14:17:34', '2010-08-22 06:33:12'),
-(33, '', 0, 1, 1, 6, 1, '2009-02-03 14:17:55', '2011-05-30 12:15:25'),
-(34, 'catalog/demo/ipod_touch_4.jpg', 0, 1, 4, 7, 1, '2009-02-03 14:18:11', '2011-05-30 12:15:31'),
-(35, '', 28, 0, 0, 0, 1, '2010-09-17 10:06:48', '2010-09-18 14:02:42'),
-(36, '', 28, 0, 0, 0, 1, '2010-09-17 10:07:13', '2010-09-18 14:02:55'),
-(37, '', 34, 0, 0, 0, 1, '2010-09-18 14:03:39', '2011-04-22 01:55:08'),
-(38, '', 34, 0, 0, 0, 1, '2010-09-18 14:03:51', '2010-09-18 14:03:51'),
-(39, '', 34, 0, 0, 0, 1, '2010-09-18 14:04:17', '2011-04-22 01:55:20'),
-(40, '', 34, 0, 0, 0, 1, '2010-09-18 14:05:36', '2010-09-18 14:05:36'),
-(41, '', 34, 0, 0, 0, 1, '2010-09-18 14:05:49', '2011-04-22 01:55:30'),
-(42, '', 34, 0, 0, 0, 1, '2010-09-18 14:06:34', '2010-11-07 20:31:04'),
-(43, '', 34, 0, 0, 0, 1, '2010-09-18 14:06:49', '2011-04-22 01:55:40'),
-(44, '', 34, 0, 0, 0, 1, '2010-09-21 15:39:21', '2010-11-07 20:30:55'),
-(45, '', 18, 0, 0, 0, 1, '2010-09-24 18:29:16', '2011-04-26 08:52:11'),
-(46, '', 18, 0, 0, 0, 1, '2010-09-24 18:29:31', '2011-04-26 08:52:23'),
-(47, '', 34, 0, 0, 0, 1, '2010-11-07 11:13:16', '2010-11-07 11:13:16'),
-(48, '', 34, 0, 0, 0, 1, '2010-11-07 11:13:33', '2010-11-07 11:13:33'),
-(49, '', 34, 0, 0, 0, 1, '2010-11-07 11:14:04', '2010-11-07 11:14:04'),
-(50, '', 34, 0, 0, 0, 1, '2010-11-07 11:14:23', '2011-04-22 01:16:01'),
-(51, '', 34, 0, 0, 0, 1, '2010-11-07 11:14:38', '2011-04-22 01:16:13'),
-(52, '', 34, 0, 0, 0, 1, '2010-11-07 11:16:09', '2011-04-22 01:54:57'),
-(53, '', 34, 0, 0, 0, 1, '2010-11-07 11:28:53', '2011-04-22 01:14:36'),
-(54, '', 34, 0, 0, 0, 1, '2010-11-07 11:29:16', '2011-04-22 01:16:50'),
-(55, '', 34, 0, 0, 0, 1, '2010-11-08 10:31:32', '2010-11-08 10:31:32'),
-(56, '', 34, 0, 0, 0, 1, '2010-11-08 10:31:50', '2011-04-22 01:16:37'),
-(57, '', 0, 1, 1, 3, 1, '2011-04-26 08:53:16', '2011-05-30 12:15:05'),
-(58, '', 52, 0, 0, 0, 1, '2011-05-08 13:44:16', '2011-05-08 13:44:16');
+INSERT IGNORE INTO `oc_category` (`category_id`, `image`, `parent_id`, `top`, `column`, `sort_order`, `status`, `date_added`, `date_modified`) VALUES
+(63, 'catalog/category_thumbs/clothing_thumb.png', 0, 1, 1, 0, 1, '2022-06-05 08:41:05', '2022-06-05 08:41:05'),
+(62, 'catalog/category_thumbs/car_thumb.png', 0, 1, 1, 0, 1, '2022-06-05 08:36:22', '2022-06-05 09:00:41'),
+(64, 'catalog/category_thumbs/cleaning_thumb.png', 0, 1, 1, 0, 1, '2022-06-05 08:46:53', '2022-06-05 09:00:47'),
+(65, 'catalog/category_thumbs/electronics-thumb.png', 0, 1, 1, 0, 1, '2022-06-05 08:50:56', '2022-06-05 08:50:56'),
+(69, 'catalog/category_thumbs/stationery-thumb.png', 0, 1, 1, 0, 1, '2022-06-05 09:09:40', '2022-06-05 09:09:40'),
+(68, 'catalog/category_thumbs/personal-care-thumb.png', 0, 1, 1, 0, 1, '2022-06-05 09:07:24', '2022-06-05 09:07:36'),
+(67, 'catalog/category_thumbs/sanrio-thumb.jpg', 0, 0, 1, 0, 1, '2022-06-05 09:04:15', '2022-06-05 09:10:55'),
+(66, 'catalog/category_thumbs/kitchen-thumb.png', 0, 1, 1, 0, 1, '2022-06-05 08:54:22', '2022-06-05 08:57:14'),
+(60, 'catalog/category_thumbs/bath-thumb.png', 0, 1, 1, 0, 1, '2022-06-05 08:27:35', '2022-06-05 09:00:32'),
+(61, 'catalog/category_thumbs/beauty-thumb.png', 0, 1, 1, 0, 1, '2022-06-05 08:33:00', '2022-06-05 09:00:36'),
+(59, 'catalog/category_thumbs/arts-crafts-thumb.png', 0, 1, 1, 0, 1, '2022-06-05 07:53:29', '2022-06-05 09:00:28');
 
 -- --------------------------------------------------------
 
@@ -365,48 +416,37 @@ CREATE TABLE IF NOT EXISTS `oc_category_description` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
+-- Truncate table before insert `oc_category_description`
+--
+
+TRUNCATE TABLE `oc_category_description`;
+--
 -- Dumping data for table `oc_category_description`
 --
 
-INSERT INTO `oc_category_description` (`category_id`, `language_id`, `name`, `description`, `meta_title`, `meta_description`, `meta_keyword`) VALUES
-(28, 1, 'Monitors', '', 'Monitors', '', ''),
-(33, 1, 'Cameras', '', 'Cameras', '', ''),
-(32, 1, 'Web Cameras', '', 'Web Cameras', '', ''),
-(31, 1, 'Scanners', '', 'Scanners', '', ''),
-(30, 1, 'Printers', '', 'Printers', '', ''),
-(29, 1, 'Mice and Trackballs', '', 'Mice and Trackballs', '', ''),
-(27, 1, 'Mac', '', 'Mac', '', ''),
-(26, 1, 'PC', '', 'PC', '', ''),
-(17, 1, 'Software', '', 'Software', '', ''),
-(25, 1, 'Components', '', 'Components', '', ''),
-(24, 1, 'Phones &amp; PDAs', '', 'Phones &amp; PDAs', '', ''),
-(20, 1, 'Desktops', '&lt;p&gt;\r\n	Example of category description text&lt;/p&gt;\r\n', 'Desktops', 'Example of category description', ''),
-(35, 1, 'test 1', '', 'test 1', '', ''),
-(36, 1, 'test 2', '', 'test 2', '', ''),
-(37, 1, 'test 5', '', 'test 5', '', ''),
-(38, 1, 'test 4', '', 'test 4', '', ''),
-(39, 1, 'test 6', '', 'test 6', '', ''),
-(40, 1, 'test 7', '', 'test 7', '', ''),
-(41, 1, 'test 8', '', 'test 8', '', ''),
-(42, 1, 'test 9', '', 'test 9', '', ''),
-(43, 1, 'test 11', '', 'test 11', '', ''),
-(34, 1, 'MP3 Players', '&lt;p&gt;\r\n	Shop Laptop feature only the best laptop deals on the market. By comparing laptop deals from the likes of PC World, Comet, Dixons, The Link and Carphone Warehouse, Shop Laptop has the most comprehensive selection of laptops on the internet. At Shop Laptop, we pride ourselves on offering customers the very best laptop deals. From refurbished laptops to netbooks, Shop Laptop ensures that every laptop - in every colour, style, size and technical spec - is featured on the site at the lowest possible price.&lt;/p&gt;\r\n', 'MP3 Players', '', ''),
-(18, 1, 'Laptops &amp; Notebooks', '&lt;p&gt;\r\n	Shop Laptop feature only the best laptop deals on the market. By comparing laptop deals from the likes of PC World, Comet, Dixons, The Link and Carphone Warehouse, Shop Laptop has the most comprehensive selection of laptops on the internet. At Shop Laptop, we pride ourselves on offering customers the very best laptop deals. From refurbished laptops to netbooks, Shop Laptop ensures that every laptop - in every colour, style, size and technical spec - is featured on the site at the lowest possible price.&lt;/p&gt;\r\n', 'Laptops &amp; Notebooks', '', ''),
-(44, 1, 'test 12', '', 'test 12', '', ''),
-(45, 1, 'Windows', '', 'Windows', '', ''),
-(46, 1, 'Macs', '', 'Macs', '', ''),
-(47, 1, 'test 15', '', 'test 15', '', ''),
-(48, 1, 'test 16', '', 'test 16', '', ''),
-(49, 1, 'test 17', '', 'test 17', '', ''),
-(50, 1, 'test 18', '', 'test 18', '', ''),
-(51, 1, 'test 19', '', 'test 19', '', ''),
-(52, 1, 'test 20', '', 'test 20', '', ''),
-(53, 1, 'test 21', '', 'test 21', '', ''),
-(54, 1, 'test 22', '', 'test 22', '', ''),
-(55, 1, 'test 23', '', 'test 23', '', ''),
-(56, 1, 'test 24', '', 'test 24', '', ''),
-(57, 1, 'Tablets', '', 'Tablets', '', ''),
-(58, 1, 'test 25', '', 'test 25', '', '');
+INSERT IGNORE INTO `oc_category_description` (`category_id`, `language_id`, `name`, `description`, `meta_title`, `meta_description`, `meta_keyword`) VALUES
+(59, 1, 'Arts and Crafts', '', 'Arts and Crafts', '', ''),
+(59, 2, 'Kerajinan Tangan', '', 'Kerajinan Tangan', '', ''),
+(60, 1, 'Bath', '', 'Bath', '', ''),
+(60, 2, 'Kamar Mandi', '', 'Kamar Mandi', '', ''),
+(61, 2, 'Kecantikan', '', 'Kecantikan', '', ''),
+(61, 1, 'Beauty', '', 'Beauty', '', ''),
+(62, 2, 'Aksesoris Mobil', '', 'Aksesoris Mobil', '', ''),
+(62, 1, 'Car', '', 'Car', '', ''),
+(63, 1, 'Clothing', '', 'Clothing', '', ''),
+(63, 2, 'Pakaian', '', 'Pakaian', '', ''),
+(64, 2, 'Kebersihan', '', 'Kebersihan', '', ''),
+(64, 1, 'Cleaning', '', 'Cleaning', '', ''),
+(65, 1, 'Electronics', '', 'Electronics', '', ''),
+(65, 2, 'Elektronik', '', 'Elektronik', '', ''),
+(66, 1, 'Kitchen', '', 'Kitchen', '', ''),
+(66, 2, 'Dapur', '', 'Dapur', '', ''),
+(67, 1, 'Sanrio', '', 'Sanrio', '', ''),
+(67, 2, 'Sanrio', '', 'Sanrio', '', ''),
+(68, 1, 'Personal Care', '', 'Personal Care', '', ''),
+(68, 2, 'Perawatan Diri', '', 'Perawatan Diri', '', ''),
+(69, 1, 'Stationery', '', 'Stationery', '', ''),
+(69, 2, 'Alat Tulis', '', 'Alat Tulis', '', '');
 
 -- --------------------------------------------------------
 
@@ -420,6 +460,11 @@ CREATE TABLE IF NOT EXISTS `oc_category_filter` (
   PRIMARY KEY (`category_id`,`filter_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
+--
+-- Truncate table before insert `oc_category_filter`
+--
+
+TRUNCATE TABLE `oc_category_filter`;
 -- --------------------------------------------------------
 
 --
@@ -434,81 +479,26 @@ CREATE TABLE IF NOT EXISTS `oc_category_path` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
+-- Truncate table before insert `oc_category_path`
+--
+
+TRUNCATE TABLE `oc_category_path`;
+--
 -- Dumping data for table `oc_category_path`
 --
 
-INSERT INTO `oc_category_path` (`category_id`, `path_id`, `level`) VALUES
-(25, 25, 0),
-(28, 25, 0),
-(28, 28, 1),
-(35, 25, 0),
-(35, 28, 1),
-(35, 35, 2),
-(36, 25, 0),
-(36, 28, 1),
-(36, 36, 2),
-(29, 25, 0),
-(29, 29, 1),
-(30, 25, 0),
-(30, 30, 1),
-(31, 25, 0),
-(31, 31, 1),
-(32, 25, 0),
-(32, 32, 1),
-(20, 20, 0),
-(27, 20, 0),
-(27, 27, 1),
-(26, 20, 0),
-(26, 26, 1),
-(24, 24, 0),
-(18, 18, 0),
-(45, 18, 0),
-(45, 45, 1),
-(46, 18, 0),
-(46, 46, 1),
-(17, 17, 0),
-(33, 33, 0),
-(34, 34, 0),
-(37, 34, 0),
-(37, 37, 1),
-(38, 34, 0),
-(38, 38, 1),
-(39, 34, 0),
-(39, 39, 1),
-(40, 34, 0),
-(40, 40, 1),
-(41, 34, 0),
-(41, 41, 1),
-(42, 34, 0),
-(42, 42, 1),
-(43, 34, 0),
-(43, 43, 1),
-(44, 34, 0),
-(44, 44, 1),
-(47, 34, 0),
-(47, 47, 1),
-(48, 34, 0),
-(48, 48, 1),
-(49, 34, 0),
-(49, 49, 1),
-(50, 34, 0),
-(50, 50, 1),
-(51, 34, 0),
-(51, 51, 1),
-(52, 34, 0),
-(52, 52, 1),
-(58, 34, 0),
-(58, 52, 1),
-(58, 58, 2),
-(53, 34, 0),
-(53, 53, 1),
-(54, 34, 0),
-(54, 54, 1),
-(55, 34, 0),
-(55, 55, 1),
-(56, 34, 0),
-(56, 56, 1),
-(57, 57, 0);
+INSERT IGNORE INTO `oc_category_path` (`category_id`, `path_id`, `level`) VALUES
+(61, 61, 0),
+(60, 60, 0),
+(69, 69, 0),
+(68, 68, 0),
+(67, 67, 0),
+(66, 66, 0),
+(65, 65, 0),
+(64, 64, 0),
+(63, 63, 0),
+(62, 62, 0),
+(59, 59, 0);
 
 -- --------------------------------------------------------
 
@@ -523,6 +513,28 @@ CREATE TABLE IF NOT EXISTS `oc_category_to_layout` (
   PRIMARY KEY (`category_id`,`store_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
+--
+-- Truncate table before insert `oc_category_to_layout`
+--
+
+TRUNCATE TABLE `oc_category_to_layout`;
+--
+-- Dumping data for table `oc_category_to_layout`
+--
+
+INSERT IGNORE INTO `oc_category_to_layout` (`category_id`, `store_id`, `layout_id`) VALUES
+(63, 0, 0),
+(62, 0, 0),
+(61, 0, 0),
+(60, 0, 0),
+(59, 0, 0),
+(64, 0, 0),
+(65, 0, 0),
+(66, 0, 0),
+(67, 0, 0),
+(68, 0, 0),
+(69, 0, 0);
+
 -- --------------------------------------------------------
 
 --
@@ -536,48 +548,26 @@ CREATE TABLE IF NOT EXISTS `oc_category_to_store` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
+-- Truncate table before insert `oc_category_to_store`
+--
+
+TRUNCATE TABLE `oc_category_to_store`;
+--
 -- Dumping data for table `oc_category_to_store`
 --
 
-INSERT INTO `oc_category_to_store` (`category_id`, `store_id`) VALUES
-(17, 0),
-(18, 0),
-(20, 0),
-(24, 0),
-(25, 0),
-(26, 0),
-(27, 0),
-(28, 0),
-(29, 0),
-(30, 0),
-(31, 0),
-(32, 0),
-(33, 0),
-(34, 0),
-(35, 0),
-(36, 0),
-(37, 0),
-(38, 0),
-(39, 0),
-(40, 0),
-(41, 0),
-(42, 0),
-(43, 0),
-(44, 0),
-(45, 0),
-(46, 0),
-(47, 0),
-(48, 0),
-(49, 0),
-(50, 0),
-(51, 0),
-(52, 0),
-(53, 0),
-(54, 0),
-(55, 0),
-(56, 0),
-(57, 0),
-(58, 0);
+INSERT IGNORE INTO `oc_category_to_store` (`category_id`, `store_id`) VALUES
+(59, 0),
+(60, 0),
+(61, 0),
+(62, 0),
+(63, 0),
+(64, 0),
+(65, 0),
+(66, 0),
+(67, 0),
+(68, 0),
+(69, 0);
 
 -- --------------------------------------------------------
 
@@ -597,10 +587,15 @@ CREATE TABLE IF NOT EXISTS `oc_country` (
 ) ENGINE=MyISAM AUTO_INCREMENT=258 DEFAULT CHARSET=utf8;
 
 --
+-- Truncate table before insert `oc_country`
+--
+
+TRUNCATE TABLE `oc_country`;
+--
 -- Dumping data for table `oc_country`
 --
 
-INSERT INTO `oc_country` (`country_id`, `name`, `iso_code_2`, `iso_code_3`, `address_format`, `postcode_required`, `status`) VALUES
+INSERT IGNORE INTO `oc_country` (`country_id`, `name`, `iso_code_2`, `iso_code_3`, `address_format`, `postcode_required`, `status`) VALUES
 (1, 'Afghanistan', 'AF', 'AFG', '', 0, 1),
 (2, 'Albania', 'AL', 'ALB', '', 0, 1),
 (3, 'Algeria', 'DZ', 'DZA', '', 0, 1),
@@ -880,10 +875,15 @@ CREATE TABLE IF NOT EXISTS `oc_coupon` (
 ) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 
 --
+-- Truncate table before insert `oc_coupon`
+--
+
+TRUNCATE TABLE `oc_coupon`;
+--
 -- Dumping data for table `oc_coupon`
 --
 
-INSERT INTO `oc_coupon` (`coupon_id`, `name`, `code`, `type`, `discount`, `logged`, `shipping`, `total`, `date_start`, `date_end`, `uses_total`, `uses_customer`, `status`, `date_added`) VALUES
+INSERT IGNORE INTO `oc_coupon` (`coupon_id`, `name`, `code`, `type`, `discount`, `logged`, `shipping`, `total`, `date_start`, `date_end`, `uses_total`, `uses_customer`, `status`, `date_added`) VALUES
 (4, '-10% Discount', '2222', 'P', '10.0000', 0, 0, '0.0000', '2014-01-01', '2020-01-01', 10, '10', 0, '2009-01-27 13:55:03'),
 (5, 'Free Shipping', '3333', 'P', '0.0000', 0, 1, '100.0000', '2014-01-01', '2014-02-01', 10, '10', 0, '2009-03-14 21:13:53'),
 (6, '-10.00 Discount', '1111', 'F', '10.0000', 0, 0, '10.0000', '2014-01-01', '2020-01-01', 100000, '10000', 0, '2009-03-14 21:15:18');
@@ -900,6 +900,11 @@ CREATE TABLE IF NOT EXISTS `oc_coupon_category` (
   PRIMARY KEY (`coupon_id`,`category_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
+--
+-- Truncate table before insert `oc_coupon_category`
+--
+
+TRUNCATE TABLE `oc_coupon_category`;
 -- --------------------------------------------------------
 
 --
@@ -916,6 +921,11 @@ CREATE TABLE IF NOT EXISTS `oc_coupon_history` (
   PRIMARY KEY (`coupon_history_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
+--
+-- Truncate table before insert `oc_coupon_history`
+--
+
+TRUNCATE TABLE `oc_coupon_history`;
 -- --------------------------------------------------------
 
 --
@@ -929,6 +939,11 @@ CREATE TABLE IF NOT EXISTS `oc_coupon_product` (
   PRIMARY KEY (`coupon_product_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
+--
+-- Truncate table before insert `oc_coupon_product`
+--
+
+TRUNCATE TABLE `oc_coupon_product`;
 -- --------------------------------------------------------
 
 --
@@ -949,13 +964,16 @@ CREATE TABLE IF NOT EXISTS `oc_currency` (
 ) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
 --
+-- Truncate table before insert `oc_currency`
+--
+
+TRUNCATE TABLE `oc_currency`;
+--
 -- Dumping data for table `oc_currency`
 --
 
-INSERT INTO `oc_currency` (`currency_id`, `title`, `code`, `symbol_left`, `symbol_right`, `decimal_place`, `value`, `status`, `date_modified`) VALUES
-(1, 'Pound Sterling', 'GBP', '£', '', '2', 0.61250001, 1, '2014-09-25 14:40:00'),
-(2, 'US Dollar', 'USD', '$', '', '2', 1.00000000, 1, '2022-05-17 03:24:35'),
-(3, 'Euro', 'EUR', '', '€', '2', 0.78460002, 1, '2014-09-25 14:40:00');
+INSERT IGNORE INTO `oc_currency` (`currency_id`, `title`, `code`, `symbol_left`, `symbol_right`, `decimal_place`, `value`, `status`, `date_modified`) VALUES
+(2, 'Rupiah', 'IDR', 'Rp ', '', '0', 1.00000000, 1, '2022-06-05 11:01:04');
 
 -- --------------------------------------------------------
 
@@ -987,7 +1005,19 @@ CREATE TABLE IF NOT EXISTS `oc_customer` (
   `code` varchar(40) NOT NULL,
   `date_added` datetime NOT NULL,
   PRIMARY KEY (`customer_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+
+--
+-- Truncate table before insert `oc_customer`
+--
+
+TRUNCATE TABLE `oc_customer`;
+--
+-- Dumping data for table `oc_customer`
+--
+
+INSERT IGNORE INTO `oc_customer` (`customer_id`, `customer_group_id`, `store_id`, `language_id`, `firstname`, `lastname`, `email`, `telephone`, `fax`, `password`, `salt`, `cart`, `wishlist`, `newsletter`, `address_id`, `custom_field`, `ip`, `status`, `safe`, `token`, `code`, `date_added`) VALUES
+(1, 1, 0, 1, 'aaaa', 'aaaa', 'aaaa@aaa.a', '1111', '', '602891fccbf2df9738f9137cff538a211f59cb75', 'lbb2PV8ni', NULL, NULL, 0, 0, '', '::1', 1, 0, '', '', '2022-05-28 07:14:36');
 
 -- --------------------------------------------------------
 
@@ -1005,6 +1035,11 @@ CREATE TABLE IF NOT EXISTS `oc_customer_activity` (
   PRIMARY KEY (`customer_activity_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
+--
+-- Truncate table before insert `oc_customer_activity`
+--
+
+TRUNCATE TABLE `oc_customer_activity`;
 -- --------------------------------------------------------
 
 --
@@ -1032,6 +1067,11 @@ CREATE TABLE IF NOT EXISTS `oc_customer_affiliate` (
   PRIMARY KEY (`customer_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
+--
+-- Truncate table before insert `oc_customer_affiliate`
+--
+
+TRUNCATE TABLE `oc_customer_affiliate`;
 -- --------------------------------------------------------
 
 --
@@ -1046,6 +1086,11 @@ CREATE TABLE IF NOT EXISTS `oc_customer_approval` (
   PRIMARY KEY (`customer_approval_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
+--
+-- Truncate table before insert `oc_customer_approval`
+--
+
+TRUNCATE TABLE `oc_customer_approval`;
 -- --------------------------------------------------------
 
 --
@@ -1060,10 +1105,15 @@ CREATE TABLE IF NOT EXISTS `oc_customer_group` (
 ) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
 --
+-- Truncate table before insert `oc_customer_group`
+--
+
+TRUNCATE TABLE `oc_customer_group`;
+--
 -- Dumping data for table `oc_customer_group`
 --
 
-INSERT INTO `oc_customer_group` (`customer_group_id`, `approval`, `sort_order`) VALUES
+INSERT IGNORE INTO `oc_customer_group` (`customer_group_id`, `approval`, `sort_order`) VALUES
 (1, 0, 1);
 
 -- --------------------------------------------------------
@@ -1081,11 +1131,17 @@ CREATE TABLE IF NOT EXISTS `oc_customer_group_description` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
+-- Truncate table before insert `oc_customer_group_description`
+--
+
+TRUNCATE TABLE `oc_customer_group_description`;
+--
 -- Dumping data for table `oc_customer_group_description`
 --
 
-INSERT INTO `oc_customer_group_description` (`customer_group_id`, `language_id`, `name`, `description`) VALUES
-(1, 1, 'Default', 'test');
+INSERT IGNORE INTO `oc_customer_group_description` (`customer_group_id`, `language_id`, `name`, `description`) VALUES
+(1, 1, 'Default', 'test'),
+(1, 2, 'Default', 'test');
 
 -- --------------------------------------------------------
 
@@ -1101,6 +1157,11 @@ CREATE TABLE IF NOT EXISTS `oc_customer_history` (
   PRIMARY KEY (`customer_history_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
+--
+-- Truncate table before insert `oc_customer_history`
+--
+
+TRUNCATE TABLE `oc_customer_history`;
 -- --------------------------------------------------------
 
 --
@@ -1114,7 +1175,19 @@ CREATE TABLE IF NOT EXISTS `oc_customer_ip` (
   `date_added` datetime NOT NULL,
   PRIMARY KEY (`customer_ip_id`),
   KEY `ip` (`ip`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+
+--
+-- Truncate table before insert `oc_customer_ip`
+--
+
+TRUNCATE TABLE `oc_customer_ip`;
+--
+-- Dumping data for table `oc_customer_ip`
+--
+
+INSERT IGNORE INTO `oc_customer_ip` (`customer_ip_id`, `customer_id`, `ip`, `date_added`) VALUES
+(1, 1, '::1', '2022-05-28 07:14:38');
 
 -- --------------------------------------------------------
 
@@ -1134,6 +1207,11 @@ CREATE TABLE IF NOT EXISTS `oc_customer_login` (
   KEY `ip` (`ip`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
+--
+-- Truncate table before insert `oc_customer_login`
+--
+
+TRUNCATE TABLE `oc_customer_login`;
 -- --------------------------------------------------------
 
 --
@@ -1149,6 +1227,11 @@ CREATE TABLE IF NOT EXISTS `oc_customer_online` (
   PRIMARY KEY (`ip`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
+--
+-- Truncate table before insert `oc_customer_online`
+--
+
+TRUNCATE TABLE `oc_customer_online`;
 -- --------------------------------------------------------
 
 --
@@ -1165,6 +1248,11 @@ CREATE TABLE IF NOT EXISTS `oc_customer_reward` (
   PRIMARY KEY (`customer_reward_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
+--
+-- Truncate table before insert `oc_customer_reward`
+--
+
+TRUNCATE TABLE `oc_customer_reward`;
 -- --------------------------------------------------------
 
 --
@@ -1186,6 +1274,11 @@ CREATE TABLE IF NOT EXISTS `oc_customer_search` (
   PRIMARY KEY (`customer_search_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
+--
+-- Truncate table before insert `oc_customer_search`
+--
+
+TRUNCATE TABLE `oc_customer_search`;
 -- --------------------------------------------------------
 
 --
@@ -1202,6 +1295,11 @@ CREATE TABLE IF NOT EXISTS `oc_customer_transaction` (
   PRIMARY KEY (`customer_transaction_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
+--
+-- Truncate table before insert `oc_customer_transaction`
+--
+
+TRUNCATE TABLE `oc_customer_transaction`;
 -- --------------------------------------------------------
 
 --
@@ -1215,6 +1313,11 @@ CREATE TABLE IF NOT EXISTS `oc_customer_wishlist` (
   PRIMARY KEY (`customer_id`,`product_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
+--
+-- Truncate table before insert `oc_customer_wishlist`
+--
+
+TRUNCATE TABLE `oc_customer_wishlist`;
 -- --------------------------------------------------------
 
 --
@@ -1232,6 +1335,11 @@ CREATE TABLE IF NOT EXISTS `oc_custom_field` (
   PRIMARY KEY (`custom_field_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
+--
+-- Truncate table before insert `oc_custom_field`
+--
+
+TRUNCATE TABLE `oc_custom_field`;
 -- --------------------------------------------------------
 
 --
@@ -1245,6 +1353,11 @@ CREATE TABLE IF NOT EXISTS `oc_custom_field_customer_group` (
   PRIMARY KEY (`custom_field_id`,`customer_group_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
+--
+-- Truncate table before insert `oc_custom_field_customer_group`
+--
+
+TRUNCATE TABLE `oc_custom_field_customer_group`;
 -- --------------------------------------------------------
 
 --
@@ -1258,6 +1371,11 @@ CREATE TABLE IF NOT EXISTS `oc_custom_field_description` (
   PRIMARY KEY (`custom_field_id`,`language_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
+--
+-- Truncate table before insert `oc_custom_field_description`
+--
+
+TRUNCATE TABLE `oc_custom_field_description`;
 -- --------------------------------------------------------
 
 --
@@ -1271,6 +1389,11 @@ CREATE TABLE IF NOT EXISTS `oc_custom_field_value` (
   PRIMARY KEY (`custom_field_value_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
+--
+-- Truncate table before insert `oc_custom_field_value`
+--
+
+TRUNCATE TABLE `oc_custom_field_value`;
 -- --------------------------------------------------------
 
 --
@@ -1285,6 +1408,11 @@ CREATE TABLE IF NOT EXISTS `oc_custom_field_value_description` (
   PRIMARY KEY (`custom_field_value_id`,`language_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
+--
+-- Truncate table before insert `oc_custom_field_value_description`
+--
+
+TRUNCATE TABLE `oc_custom_field_value_description`;
 -- --------------------------------------------------------
 
 --
@@ -1299,6 +1427,11 @@ CREATE TABLE IF NOT EXISTS `oc_download` (
   PRIMARY KEY (`download_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
+--
+-- Truncate table before insert `oc_download`
+--
+
+TRUNCATE TABLE `oc_download`;
 -- --------------------------------------------------------
 
 --
@@ -1312,6 +1445,11 @@ CREATE TABLE IF NOT EXISTS `oc_download_description` (
   PRIMARY KEY (`download_id`,`language_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
+--
+-- Truncate table before insert `oc_download_description`
+--
+
+TRUNCATE TABLE `oc_download_description`;
 -- --------------------------------------------------------
 
 --
@@ -1329,10 +1467,15 @@ CREATE TABLE IF NOT EXISTS `oc_event` (
 ) ENGINE=MyISAM AUTO_INCREMENT=46 DEFAULT CHARSET=utf8;
 
 --
+-- Truncate table before insert `oc_event`
+--
+
+TRUNCATE TABLE `oc_event`;
+--
 -- Dumping data for table `oc_event`
 --
 
-INSERT INTO `oc_event` (`event_id`, `code`, `trigger`, `action`, `status`, `sort_order`) VALUES
+INSERT IGNORE INTO `oc_event` (`event_id`, `code`, `trigger`, `action`, `status`, `sort_order`) VALUES
 (1, 'activity_customer_add', 'catalog/model/account/customer/addCustomer/after', 'event/activity/addCustomer', 1, 0),
 (2, 'activity_customer_edit', 'catalog/model/account/customer/editCustomer/after', 'event/activity/editCustomer', 1, 0),
 (3, 'activity_customer_password', 'catalog/model/account/customer/editPassword/after', 'event/activity/editPassword', 1, 0),
@@ -1390,13 +1533,18 @@ CREATE TABLE IF NOT EXISTS `oc_extension` (
   `type` varchar(32) NOT NULL,
   `code` varchar(32) NOT NULL,
   PRIMARY KEY (`extension_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=43 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=52 DEFAULT CHARSET=utf8;
 
+--
+-- Truncate table before insert `oc_extension`
+--
+
+TRUNCATE TABLE `oc_extension`;
 --
 -- Dumping data for table `oc_extension`
 --
 
-INSERT INTO `oc_extension` (`extension_id`, `type`, `code`) VALUES
+INSERT IGNORE INTO `oc_extension` (`extension_id`, `type`, `code`) VALUES
 (1, 'payment', 'cod'),
 (2, 'total', 'shipping'),
 (3, 'total', 'sub_total'),
@@ -1415,6 +1563,7 @@ INSERT INTO `oc_extension` (`extension_id`, `type`, `code`) VALUES
 (16, 'total', 'voucher'),
 (17, 'payment', 'free_checkout'),
 (18, 'module', 'featured'),
+(43, 'module', 'information'),
 (20, 'theme', 'default'),
 (21, 'dashboard', 'activity'),
 (22, 'dashboard', 'sale'),
@@ -1436,7 +1585,8 @@ INSERT INTO `oc_extension` (`extension_id`, `type`, `code`) VALUES
 (39, 'report', 'customer_activity'),
 (40, 'report', 'customer_order'),
 (41, 'report', 'customer_reward'),
-(42, 'advertise', 'google');
+(42, 'advertise', 'google'),
+(51, 'module', 'category_grid');
 
 -- --------------------------------------------------------
 
@@ -1450,15 +1600,13 @@ CREATE TABLE IF NOT EXISTS `oc_extension_install` (
   `filename` varchar(255) NOT NULL,
   `date_added` datetime NOT NULL,
   PRIMARY KEY (`extension_install_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `oc_extension_install`
+-- Truncate table before insert `oc_extension_install`
 --
 
-INSERT INTO `oc_extension_install` (`extension_install_id`, `extension_download_id`, `filename`, `date_added`) VALUES
-(4, 0, 'upload.ocmod.zip', '2022-05-16 09:10:38');
-
+TRUNCATE TABLE `oc_extension_install`;
 -- --------------------------------------------------------
 
 --
@@ -1471,440 +1619,13 @@ CREATE TABLE IF NOT EXISTS `oc_extension_path` (
   `path` varchar(255) NOT NULL,
   `date_added` datetime NOT NULL,
   PRIMARY KEY (`extension_path_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=427 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `oc_extension_path`
+-- Truncate table before insert `oc_extension_path`
 --
 
-INSERT INTO `oc_extension_path` (`extension_path_id`, `extension_install_id`, `path`, `date_added`) VALUES
-(1, 4, 'admin/language/id-id', '2022-05-16 09:10:54'),
-(2, 4, 'catalog/language/id-id', '2022-05-16 09:10:54'),
-(3, 4, 'admin/language/id-id/catalog', '2022-05-16 09:10:54'),
-(4, 4, 'admin/language/id-id/common', '2022-05-16 09:10:54'),
-(5, 4, 'admin/language/id-id/dashboard', '2022-05-16 09:10:54'),
-(6, 4, 'admin/language/id-id/design', '2022-05-16 09:10:55'),
-(7, 4, 'admin/language/id-id/error', '2022-05-16 09:10:55'),
-(8, 4, 'admin/language/id-id/extension', '2022-05-16 09:10:55'),
-(9, 4, 'admin/language/id-id/feed', '2022-05-16 09:10:55'),
-(10, 4, 'admin/language/id-id/id-id.php', '2022-05-16 09:10:55'),
-(11, 4, 'admin/language/id-id/id-id.png', '2022-05-16 09:10:55'),
-(12, 4, 'admin/language/id-id/localisation', '2022-05-16 09:10:55'),
-(13, 4, 'admin/language/id-id/mail', '2022-05-16 09:10:55'),
-(14, 4, 'admin/language/id-id/marketing', '2022-05-16 09:10:56'),
-(15, 4, 'admin/language/id-id/module', '2022-05-16 09:10:56'),
-(16, 4, 'admin/language/id-id/openbay', '2022-05-16 09:10:56'),
-(17, 4, 'admin/language/id-id/report', '2022-05-16 09:10:56'),
-(18, 4, 'admin/language/id-id/sale', '2022-05-16 09:10:56'),
-(19, 4, 'admin/language/id-id/setting', '2022-05-16 09:10:56'),
-(20, 4, 'admin/language/id-id/tool', '2022-05-16 09:10:56'),
-(21, 4, 'admin/language/id-id/user', '2022-05-16 09:10:56'),
-(22, 4, 'catalog/language/id-id/account', '2022-05-16 09:10:56'),
-(23, 4, 'catalog/language/id-id/affiliate', '2022-05-16 09:10:56'),
-(24, 4, 'catalog/language/id-id/api', '2022-05-16 09:10:56'),
-(25, 4, 'catalog/language/id-id/checkout', '2022-05-16 09:10:56'),
-(26, 4, 'catalog/language/id-id/common', '2022-05-16 09:10:56'),
-(27, 4, 'catalog/language/id-id/error', '2022-05-16 09:10:57'),
-(28, 4, 'catalog/language/id-id/extension', '2022-05-16 09:10:57'),
-(29, 4, 'catalog/language/id-id/id-id.php', '2022-05-16 09:10:57'),
-(30, 4, 'catalog/language/id-id/id-id.png', '2022-05-16 09:10:57'),
-(31, 4, 'catalog/language/id-id/information', '2022-05-16 09:10:57'),
-(32, 4, 'catalog/language/id-id/mail', '2022-05-16 09:10:57'),
-(33, 4, 'catalog/language/id-id/openbay', '2022-05-16 09:10:57'),
-(34, 4, 'catalog/language/id-id/product', '2022-05-16 09:10:57'),
-(35, 4, 'catalog/language/id-id/tool', '2022-05-16 09:10:57'),
-(36, 4, 'admin/language/id-id/catalog/attribute.php', '2022-05-16 09:10:57'),
-(37, 4, 'admin/language/id-id/catalog/attribute_group.php', '2022-05-16 09:10:57'),
-(38, 4, 'admin/language/id-id/catalog/category.php', '2022-05-16 09:10:57'),
-(39, 4, 'admin/language/id-id/catalog/download.php', '2022-05-16 09:10:57'),
-(40, 4, 'admin/language/id-id/catalog/filter.php', '2022-05-16 09:10:58'),
-(41, 4, 'admin/language/id-id/catalog/information.php', '2022-05-16 09:10:58'),
-(42, 4, 'admin/language/id-id/catalog/manufacturer.php', '2022-05-16 09:10:58'),
-(43, 4, 'admin/language/id-id/catalog/option.php', '2022-05-16 09:10:58'),
-(44, 4, 'admin/language/id-id/catalog/product.php', '2022-05-16 09:10:58'),
-(45, 4, 'admin/language/id-id/catalog/recurring.php', '2022-05-16 09:10:58'),
-(46, 4, 'admin/language/id-id/catalog/review.php', '2022-05-16 09:10:58'),
-(47, 4, 'admin/language/id-id/common/column_left.php', '2022-05-16 09:10:58'),
-(48, 4, 'admin/language/id-id/common/dashboard.php', '2022-05-16 09:10:58'),
-(49, 4, 'admin/language/id-id/common/filemanager.php', '2022-05-16 09:10:58'),
-(50, 4, 'admin/language/id-id/common/footer.php', '2022-05-16 09:10:58'),
-(51, 4, 'admin/language/id-id/common/forgotten.php', '2022-05-16 09:10:58'),
-(52, 4, 'admin/language/id-id/common/header.php', '2022-05-16 09:10:59'),
-(53, 4, 'admin/language/id-id/common/login.php', '2022-05-16 09:10:59'),
-(54, 4, 'admin/language/id-id/common/reset.php', '2022-05-16 09:10:59'),
-(55, 4, 'admin/language/id-id/common/stats.php', '2022-05-16 09:10:59'),
-(56, 4, 'admin/language/id-id/dashboard/activity.php', '2022-05-16 09:10:59'),
-(57, 4, 'admin/language/id-id/dashboard/chart.php', '2022-05-16 09:10:59'),
-(58, 4, 'admin/language/id-id/dashboard/customer.php', '2022-05-16 09:10:59'),
-(59, 4, 'admin/language/id-id/dashboard/map.php', '2022-05-16 09:10:59'),
-(60, 4, 'admin/language/id-id/dashboard/online.php', '2022-05-16 09:10:59'),
-(61, 4, 'admin/language/id-id/dashboard/order.php', '2022-05-16 09:10:59'),
-(62, 4, 'admin/language/id-id/dashboard/recent.php', '2022-05-16 09:10:59'),
-(63, 4, 'admin/language/id-id/dashboard/sale.php', '2022-05-16 09:10:59'),
-(64, 4, 'admin/language/id-id/design/banner.php', '2022-05-16 09:10:59'),
-(65, 4, 'admin/language/id-id/design/layout.php', '2022-05-16 09:10:59'),
-(66, 4, 'admin/language/id-id/error/not_found.php', '2022-05-16 09:11:00'),
-(67, 4, 'admin/language/id-id/error/permission.php', '2022-05-16 09:11:00'),
-(68, 4, 'admin/language/id-id/extension/feed.php', '2022-05-16 09:11:00'),
-(69, 4, 'admin/language/id-id/extension/installer.php', '2022-05-16 09:11:00'),
-(70, 4, 'admin/language/id-id/extension/modification.php', '2022-05-16 09:11:00'),
-(71, 4, 'admin/language/id-id/extension/module', '2022-05-16 09:11:00'),
-(72, 4, 'admin/language/id-id/extension/module.php', '2022-05-16 09:11:00'),
-(73, 4, 'admin/language/id-id/extension/openbay.php', '2022-05-16 09:11:00'),
-(74, 4, 'admin/language/id-id/extension/payment', '2022-05-16 09:11:00'),
-(75, 4, 'admin/language/id-id/extension/payment.php', '2022-05-16 09:11:00'),
-(76, 4, 'admin/language/id-id/extension/shipping', '2022-05-16 09:11:00'),
-(77, 4, 'admin/language/id-id/extension/shipping.php', '2022-05-16 09:11:00'),
-(78, 4, 'admin/language/id-id/extension/total', '2022-05-16 09:11:01'),
-(79, 4, 'admin/language/id-id/extension/total.php', '2022-05-16 09:11:01'),
-(80, 4, 'admin/language/id-id/feed/google_base.php', '2022-05-16 09:11:01'),
-(81, 4, 'admin/language/id-id/feed/google_sitemap.php', '2022-05-16 09:11:01'),
-(82, 4, 'admin/language/id-id/feed/openbaypro.php', '2022-05-16 09:11:01'),
-(83, 4, 'admin/language/id-id/localisation/country.php', '2022-05-16 09:11:01'),
-(84, 4, 'admin/language/id-id/localisation/currency.php', '2022-05-16 09:11:01'),
-(85, 4, 'admin/language/id-id/localisation/geo_zone.php', '2022-05-16 09:11:01'),
-(86, 4, 'admin/language/id-id/localisation/language.php', '2022-05-16 09:11:01'),
-(87, 4, 'admin/language/id-id/localisation/length_class.php', '2022-05-16 09:11:01'),
-(88, 4, 'admin/language/id-id/localisation/location.php', '2022-05-16 09:11:01'),
-(89, 4, 'admin/language/id-id/localisation/order_status.php', '2022-05-16 09:11:01'),
-(90, 4, 'admin/language/id-id/localisation/return_action.php', '2022-05-16 09:11:02'),
-(91, 4, 'admin/language/id-id/localisation/return_reason.php', '2022-05-16 09:11:02'),
-(92, 4, 'admin/language/id-id/localisation/return_status.php', '2022-05-16 09:11:03'),
-(93, 4, 'admin/language/id-id/localisation/stock_status.php', '2022-05-16 09:11:03'),
-(94, 4, 'admin/language/id-id/localisation/tax_class.php', '2022-05-16 09:11:03'),
-(95, 4, 'admin/language/id-id/localisation/tax_rate.php', '2022-05-16 09:11:03'),
-(96, 4, 'admin/language/id-id/localisation/weight_class.php', '2022-05-16 09:11:04'),
-(97, 4, 'admin/language/id-id/localisation/zone.php', '2022-05-16 09:11:04'),
-(98, 4, 'admin/language/id-id/mail/affiliate.php', '2022-05-16 09:11:04'),
-(99, 4, 'admin/language/id-id/mail/customer.php', '2022-05-16 09:11:04'),
-(100, 4, 'admin/language/id-id/mail/forgotten.php', '2022-05-16 09:11:04'),
-(101, 4, 'admin/language/id-id/mail/return.php', '2022-05-16 09:11:04'),
-(102, 4, 'admin/language/id-id/mail/voucher.php', '2022-05-16 09:11:05'),
-(103, 4, 'admin/language/id-id/marketing/affiliate.php', '2022-05-16 09:11:05'),
-(104, 4, 'admin/language/id-id/marketing/contact.php', '2022-05-16 09:11:05'),
-(105, 4, 'admin/language/id-id/marketing/coupon.php', '2022-05-16 09:11:05'),
-(106, 4, 'admin/language/id-id/marketing/marketing.php', '2022-05-16 09:11:05'),
-(107, 4, 'admin/language/id-id/module/account.php', '2022-05-16 09:11:05'),
-(108, 4, 'admin/language/id-id/module/affiliate.php', '2022-05-16 09:11:05'),
-(109, 4, 'admin/language/id-id/module/amazon_button.php', '2022-05-16 09:11:05'),
-(110, 4, 'admin/language/id-id/module/banner.php', '2022-05-16 09:11:05'),
-(111, 4, 'admin/language/id-id/module/bestseller.php', '2022-05-16 09:11:05'),
-(112, 4, 'admin/language/id-id/module/carousel.php', '2022-05-16 09:11:05'),
-(113, 4, 'admin/language/id-id/module/category.php', '2022-05-16 09:11:05'),
-(114, 4, 'admin/language/id-id/module/ebay_listing.php', '2022-05-16 09:11:05'),
-(115, 4, 'admin/language/id-id/module/featured.php', '2022-05-16 09:11:05'),
-(116, 4, 'admin/language/id-id/module/filter.php', '2022-05-16 09:11:06'),
-(117, 4, 'admin/language/id-id/module/google_hangouts.php', '2022-05-16 09:11:06'),
-(118, 4, 'admin/language/id-id/module/html.php', '2022-05-16 09:11:06'),
-(119, 4, 'admin/language/id-id/module/information.php', '2022-05-16 09:11:06'),
-(120, 4, 'admin/language/id-id/module/latest.php', '2022-05-16 09:11:06'),
-(121, 4, 'admin/language/id-id/module/pp_button.php', '2022-05-16 09:11:06'),
-(122, 4, 'admin/language/id-id/module/pp_login.php', '2022-05-16 09:11:06'),
-(123, 4, 'admin/language/id-id/module/slideshow.php', '2022-05-16 09:11:06'),
-(124, 4, 'admin/language/id-id/module/special.php', '2022-05-16 09:11:06'),
-(125, 4, 'admin/language/id-id/module/store.php', '2022-05-16 09:11:06'),
-(126, 4, 'admin/language/id-id/openbay/amazon.php', '2022-05-16 09:11:06'),
-(127, 4, 'admin/language/id-id/openbay/amazon_bulk_linking.php', '2022-05-16 09:11:06'),
-(128, 4, 'admin/language/id-id/openbay/amazon_bulk_listing.php', '2022-05-16 09:11:06'),
-(129, 4, 'admin/language/id-id/openbay/amazon_links.php', '2022-05-16 09:11:06'),
-(130, 4, 'admin/language/id-id/openbay/amazon_listing.php', '2022-05-16 09:11:06'),
-(131, 4, 'admin/language/id-id/openbay/amazon_listingsaved.php', '2022-05-16 09:11:06'),
-(132, 4, 'admin/language/id-id/openbay/amazon_settings.php', '2022-05-16 09:11:07'),
-(133, 4, 'admin/language/id-id/openbay/amazon_stockupdates.php', '2022-05-16 09:11:07'),
-(134, 4, 'admin/language/id-id/openbay/amazon_subscription.php', '2022-05-16 09:11:07'),
-(135, 4, 'admin/language/id-id/openbay/amazonus.php', '2022-05-16 09:11:07'),
-(136, 4, 'admin/language/id-id/openbay/amazonus_bulk_linking.php', '2022-05-16 09:11:07'),
-(137, 4, 'admin/language/id-id/openbay/amazonus_bulk_listing.php', '2022-05-16 09:11:07'),
-(138, 4, 'admin/language/id-id/openbay/amazonus_links.php', '2022-05-16 09:11:07'),
-(139, 4, 'admin/language/id-id/openbay/amazonus_listing.php', '2022-05-16 09:11:07'),
-(140, 4, 'admin/language/id-id/openbay/amazonus_listingsaved.php', '2022-05-16 09:11:07'),
-(141, 4, 'admin/language/id-id/openbay/amazonus_settings.php', '2022-05-16 09:11:07'),
-(142, 4, 'admin/language/id-id/openbay/amazonus_stockupdates.php', '2022-05-16 09:11:07'),
-(143, 4, 'admin/language/id-id/openbay/amazonus_subscription.php', '2022-05-16 09:11:07'),
-(144, 4, 'admin/language/id-id/openbay/ebay.php', '2022-05-16 09:11:07'),
-(145, 4, 'admin/language/id-id/openbay/ebay_edit.php', '2022-05-16 09:11:07'),
-(146, 4, 'admin/language/id-id/openbay/ebay_import.php', '2022-05-16 09:11:07'),
-(147, 4, 'admin/language/id-id/openbay/ebay_links.php', '2022-05-16 09:11:07'),
-(148, 4, 'admin/language/id-id/openbay/ebay_new.php', '2022-05-16 09:11:07'),
-(149, 4, 'admin/language/id-id/openbay/ebay_newbulk.php', '2022-05-16 09:11:07'),
-(150, 4, 'admin/language/id-id/openbay/ebay_orders.php', '2022-05-16 09:11:07'),
-(151, 4, 'admin/language/id-id/openbay/ebay_profile.php', '2022-05-16 09:11:07'),
-(152, 4, 'admin/language/id-id/openbay/ebay_settings.php', '2022-05-16 09:11:07'),
-(153, 4, 'admin/language/id-id/openbay/ebay_subscription.php', '2022-05-16 09:11:07'),
-(154, 4, 'admin/language/id-id/openbay/ebay_summary.php', '2022-05-16 09:11:07'),
-(155, 4, 'admin/language/id-id/openbay/ebay_syncronise.php', '2022-05-16 09:11:07'),
-(156, 4, 'admin/language/id-id/openbay/ebay_template.php', '2022-05-16 09:11:08'),
-(157, 4, 'admin/language/id-id/openbay/ebay_usage.php', '2022-05-16 09:11:08'),
-(158, 4, 'admin/language/id-id/openbay/etsy.php', '2022-05-16 09:11:08'),
-(159, 4, 'admin/language/id-id/openbay/etsy_create.php', '2022-05-16 09:11:08'),
-(160, 4, 'admin/language/id-id/openbay/etsy_edit.php', '2022-05-16 09:11:08'),
-(161, 4, 'admin/language/id-id/openbay/etsy_links.php', '2022-05-16 09:11:08'),
-(162, 4, 'admin/language/id-id/openbay/etsy_listings.php', '2022-05-16 09:11:08'),
-(163, 4, 'admin/language/id-id/openbay/etsy_settings.php', '2022-05-16 09:11:08'),
-(164, 4, 'admin/language/id-id/openbay/openbay_itemlist.php', '2022-05-16 09:11:08'),
-(165, 4, 'admin/language/id-id/openbay/openbay_order.php', '2022-05-16 09:11:08'),
-(166, 4, 'admin/language/id-id/report/affiliate.php', '2022-05-16 09:11:08'),
-(167, 4, 'admin/language/id-id/report/affiliate_activity.php', '2022-05-16 09:11:09'),
-(168, 4, 'admin/language/id-id/report/customer_activity.php', '2022-05-16 09:11:09'),
-(169, 4, 'admin/language/id-id/report/customer_credit.php', '2022-05-16 09:11:09'),
-(170, 4, 'admin/language/id-id/report/customer_online.php', '2022-05-16 09:11:09'),
-(171, 4, 'admin/language/id-id/report/customer_order.php', '2022-05-16 09:11:09'),
-(172, 4, 'admin/language/id-id/report/customer_reward.php', '2022-05-16 09:11:09'),
-(173, 4, 'admin/language/id-id/report/marketing.php', '2022-05-16 09:11:09'),
-(174, 4, 'admin/language/id-id/report/product_purchased.php', '2022-05-16 09:11:09'),
-(175, 4, 'admin/language/id-id/report/product_viewed.php', '2022-05-16 09:11:09'),
-(176, 4, 'admin/language/id-id/report/sale_coupon.php', '2022-05-16 09:11:09'),
-(177, 4, 'admin/language/id-id/report/sale_order.php', '2022-05-16 09:11:10'),
-(178, 4, 'admin/language/id-id/report/sale_return.php', '2022-05-16 09:11:10'),
-(179, 4, 'admin/language/id-id/report/sale_shipping.php', '2022-05-16 09:11:10'),
-(180, 4, 'admin/language/id-id/report/sale_tax.php', '2022-05-16 09:11:10'),
-(181, 4, 'admin/language/id-id/sale/custom_field.php', '2022-05-16 09:11:10'),
-(182, 4, 'admin/language/id-id/sale/customer.php', '2022-05-16 09:11:10'),
-(183, 4, 'admin/language/id-id/sale/customer_ban_ip.php', '2022-05-16 09:11:10'),
-(184, 4, 'admin/language/id-id/sale/customer_group.php', '2022-05-16 09:11:10'),
-(185, 4, 'admin/language/id-id/sale/order.php', '2022-05-16 09:11:10'),
-(186, 4, 'admin/language/id-id/sale/recurring.php', '2022-05-16 09:11:10'),
-(187, 4, 'admin/language/id-id/sale/return.php', '2022-05-16 09:11:10'),
-(188, 4, 'admin/language/id-id/sale/voucher.php', '2022-05-16 09:11:10'),
-(189, 4, 'admin/language/id-id/sale/voucher_theme.php', '2022-05-16 09:11:10'),
-(190, 4, 'admin/language/id-id/setting/setting.php', '2022-05-16 09:11:10'),
-(191, 4, 'admin/language/id-id/setting/store.php', '2022-05-16 09:11:10'),
-(192, 4, 'admin/language/id-id/tool/backup.php', '2022-05-16 09:11:10'),
-(193, 4, 'admin/language/id-id/tool/error_log.php', '2022-05-16 09:11:11'),
-(194, 4, 'admin/language/id-id/tool/upload.php', '2022-05-16 09:11:11'),
-(195, 4, 'admin/language/id-id/user/api.php', '2022-05-16 09:11:11'),
-(196, 4, 'admin/language/id-id/user/user.php', '2022-05-16 09:11:11'),
-(197, 4, 'admin/language/id-id/user/user_group.php', '2022-05-16 09:11:11'),
-(198, 4, 'catalog/language/id-id/account/account.php', '2022-05-16 09:11:11'),
-(199, 4, 'catalog/language/id-id/account/address.php', '2022-05-16 09:11:11'),
-(200, 4, 'catalog/language/id-id/account/download.php', '2022-05-16 09:11:11'),
-(201, 4, 'catalog/language/id-id/account/edit.php', '2022-05-16 09:11:11'),
-(202, 4, 'catalog/language/id-id/account/forgotten.php', '2022-05-16 09:11:11'),
-(203, 4, 'catalog/language/id-id/account/login.php', '2022-05-16 09:11:11'),
-(204, 4, 'catalog/language/id-id/account/logout.php', '2022-05-16 09:11:11'),
-(205, 4, 'catalog/language/id-id/account/newsletter.php', '2022-05-16 09:11:11'),
-(206, 4, 'catalog/language/id-id/account/order.php', '2022-05-16 09:11:11'),
-(207, 4, 'catalog/language/id-id/account/password.php', '2022-05-16 09:11:11'),
-(208, 4, 'catalog/language/id-id/account/recurring.php', '2022-05-16 09:11:11'),
-(209, 4, 'catalog/language/id-id/account/register.php', '2022-05-16 09:11:11'),
-(210, 4, 'catalog/language/id-id/account/return.php', '2022-05-16 09:11:11'),
-(211, 4, 'catalog/language/id-id/account/reward.php', '2022-05-16 09:11:11'),
-(212, 4, 'catalog/language/id-id/account/success.php', '2022-05-16 09:11:11'),
-(213, 4, 'catalog/language/id-id/account/transaction.php', '2022-05-16 09:11:11'),
-(214, 4, 'catalog/language/id-id/account/voucher.php', '2022-05-16 09:11:11'),
-(215, 4, 'catalog/language/id-id/account/wishlist.php', '2022-05-16 09:11:11'),
-(216, 4, 'catalog/language/id-id/affiliate/account.php', '2022-05-16 09:11:11'),
-(217, 4, 'catalog/language/id-id/affiliate/edit.php', '2022-05-16 09:11:11'),
-(218, 4, 'catalog/language/id-id/affiliate/forgotten.php', '2022-05-16 09:11:11'),
-(219, 4, 'catalog/language/id-id/affiliate/login.php', '2022-05-16 09:11:11'),
-(220, 4, 'catalog/language/id-id/affiliate/logout.php', '2022-05-16 09:11:11'),
-(221, 4, 'catalog/language/id-id/affiliate/password.php', '2022-05-16 09:11:11'),
-(222, 4, 'catalog/language/id-id/affiliate/payment.php', '2022-05-16 09:11:11'),
-(223, 4, 'catalog/language/id-id/affiliate/register.php', '2022-05-16 09:11:11'),
-(224, 4, 'catalog/language/id-id/affiliate/success.php', '2022-05-16 09:11:11'),
-(225, 4, 'catalog/language/id-id/affiliate/tracking.php', '2022-05-16 09:11:11'),
-(226, 4, 'catalog/language/id-id/affiliate/transaction.php', '2022-05-16 09:11:11'),
-(227, 4, 'catalog/language/id-id/api/cart.php', '2022-05-16 09:11:11'),
-(228, 4, 'catalog/language/id-id/api/coupon.php', '2022-05-16 09:11:11'),
-(229, 4, 'catalog/language/id-id/api/customer.php', '2022-05-16 09:11:11'),
-(230, 4, 'catalog/language/id-id/api/login.php', '2022-05-16 09:11:11'),
-(231, 4, 'catalog/language/id-id/api/order.php', '2022-05-16 09:11:11'),
-(232, 4, 'catalog/language/id-id/api/payment.php', '2022-05-16 09:11:11'),
-(233, 4, 'catalog/language/id-id/api/reward.php', '2022-05-16 09:11:11'),
-(234, 4, 'catalog/language/id-id/api/shipping.php', '2022-05-16 09:11:12'),
-(235, 4, 'catalog/language/id-id/api/voucher.php', '2022-05-16 09:11:12'),
-(236, 4, 'catalog/language/id-id/checkout/cart.php', '2022-05-16 09:11:12'),
-(237, 4, 'catalog/language/id-id/checkout/checkout.php', '2022-05-16 09:11:12'),
-(238, 4, 'catalog/language/id-id/checkout/coupon.php', '2022-05-16 09:11:12'),
-(239, 4, 'catalog/language/id-id/checkout/failure.php', '2022-05-16 09:11:12'),
-(240, 4, 'catalog/language/id-id/checkout/reward.php', '2022-05-16 09:11:12'),
-(241, 4, 'catalog/language/id-id/checkout/success.php', '2022-05-16 09:11:12'),
-(242, 4, 'catalog/language/id-id/checkout/voucher.php', '2022-05-16 09:11:12'),
-(243, 4, 'catalog/language/id-id/common/cart.php', '2022-05-16 09:11:12'),
-(244, 4, 'catalog/language/id-id/common/currency.php', '2022-05-16 09:11:12'),
-(245, 4, 'catalog/language/id-id/common/footer.php', '2022-05-16 09:11:12'),
-(246, 4, 'catalog/language/id-id/common/header.php', '2022-05-16 09:11:12'),
-(247, 4, 'catalog/language/id-id/common/language.php', '2022-05-16 09:11:12'),
-(248, 4, 'catalog/language/id-id/common/maintenance.php', '2022-05-16 09:11:12'),
-(249, 4, 'catalog/language/id-id/common/search.php', '2022-05-16 09:11:12'),
-(250, 4, 'catalog/language/id-id/error/not_found.php', '2022-05-16 09:11:12'),
-(251, 4, 'catalog/language/id-id/extension/module', '2022-05-16 09:11:12'),
-(252, 4, 'catalog/language/id-id/extension/payment', '2022-05-16 09:11:12'),
-(253, 4, 'catalog/language/id-id/extension/shipping', '2022-05-16 09:11:12'),
-(254, 4, 'catalog/language/id-id/extension/total', '2022-05-16 09:11:12'),
-(255, 4, 'catalog/language/id-id/information/contact.php', '2022-05-16 09:11:12'),
-(256, 4, 'catalog/language/id-id/information/information.php', '2022-05-16 09:11:12'),
-(257, 4, 'catalog/language/id-id/information/sitemap.php', '2022-05-16 09:11:12'),
-(258, 4, 'catalog/language/id-id/mail/affiliate.php', '2022-05-16 09:11:12'),
-(259, 4, 'catalog/language/id-id/mail/customer.php', '2022-05-16 09:11:13'),
-(260, 4, 'catalog/language/id-id/mail/forgotten.php', '2022-05-16 09:11:13'),
-(261, 4, 'catalog/language/id-id/mail/order.php', '2022-05-16 09:11:13'),
-(262, 4, 'catalog/language/id-id/mail/review.php', '2022-05-16 09:11:13'),
-(263, 4, 'catalog/language/id-id/mail/voucher.php', '2022-05-16 09:11:13'),
-(264, 4, 'catalog/language/id-id/openbay/amazon_order.php', '2022-05-16 09:11:13'),
-(265, 4, 'catalog/language/id-id/openbay/amazonus_order.php', '2022-05-16 09:11:13'),
-(266, 4, 'catalog/language/id-id/openbay/ebay_order.php', '2022-05-16 09:11:13'),
-(267, 4, 'catalog/language/id-id/openbay/etsy_order.php', '2022-05-16 09:11:13'),
-(268, 4, 'catalog/language/id-id/product/category.php', '2022-05-16 09:11:13'),
-(269, 4, 'catalog/language/id-id/product/compare.php', '2022-05-16 09:11:13'),
-(270, 4, 'catalog/language/id-id/product/manufacturer.php', '2022-05-16 09:11:13'),
-(271, 4, 'catalog/language/id-id/product/product.php', '2022-05-16 09:11:13'),
-(272, 4, 'catalog/language/id-id/product/search.php', '2022-05-16 09:11:13'),
-(273, 4, 'catalog/language/id-id/product/special.php', '2022-05-16 09:11:13'),
-(274, 4, 'catalog/language/id-id/tool/upload.php', '2022-05-16 09:11:14'),
-(275, 4, 'admin/language/id-id/extension/module/account.php', '2022-05-16 09:11:14'),
-(276, 4, 'admin/language/id-id/extension/module/affiliate.php', '2022-05-16 09:11:14'),
-(277, 4, 'admin/language/id-id/extension/module/amazon_button.php', '2022-05-16 09:11:14'),
-(278, 4, 'admin/language/id-id/extension/module/banner.php', '2022-05-16 09:11:14'),
-(279, 4, 'admin/language/id-id/extension/module/bestseller.php', '2022-05-16 09:11:14'),
-(280, 4, 'admin/language/id-id/extension/module/carousel.php', '2022-05-16 09:11:14'),
-(281, 4, 'admin/language/id-id/extension/module/category.php', '2022-05-16 09:11:14'),
-(282, 4, 'admin/language/id-id/extension/module/ebay_listing.php', '2022-05-16 09:11:14'),
-(283, 4, 'admin/language/id-id/extension/module/featured.php', '2022-05-16 09:11:14'),
-(284, 4, 'admin/language/id-id/extension/module/filter.php', '2022-05-16 09:11:14'),
-(285, 4, 'admin/language/id-id/extension/module/google_hangouts.php', '2022-05-16 09:11:14'),
-(286, 4, 'admin/language/id-id/extension/module/html.php', '2022-05-16 09:11:14'),
-(287, 4, 'admin/language/id-id/extension/module/information.php', '2022-05-16 09:11:14'),
-(288, 4, 'admin/language/id-id/extension/module/latest.php', '2022-05-16 09:11:14'),
-(289, 4, 'admin/language/id-id/extension/module/pp_button.php', '2022-05-16 09:11:15'),
-(290, 4, 'admin/language/id-id/extension/module/pp_login.php', '2022-05-16 09:11:15'),
-(291, 4, 'admin/language/id-id/extension/module/slideshow.php', '2022-05-16 09:11:15'),
-(292, 4, 'admin/language/id-id/extension/module/special.php', '2022-05-16 09:11:15'),
-(293, 4, 'admin/language/id-id/extension/module/store.php', '2022-05-16 09:11:15'),
-(294, 4, 'admin/language/id-id/extension/payment/amazon_checkout.php', '2022-05-16 09:11:15'),
-(295, 4, 'admin/language/id-id/extension/payment/authorizenet_aim.php', '2022-05-16 09:11:15'),
-(296, 4, 'admin/language/id-id/extension/payment/authorizenet_sim.php', '2022-05-16 09:11:15'),
-(297, 4, 'admin/language/id-id/extension/payment/bank_transfer.php', '2022-05-16 09:11:15'),
-(298, 4, 'admin/language/id-id/extension/payment/bluepay_hosted.php', '2022-05-16 09:11:15'),
-(299, 4, 'admin/language/id-id/extension/payment/bluepay_redirect.php', '2022-05-16 09:11:15'),
-(300, 4, 'admin/language/id-id/extension/payment/cheque.php', '2022-05-16 09:11:15'),
-(301, 4, 'admin/language/id-id/extension/payment/cod.php', '2022-05-16 09:11:15'),
-(302, 4, 'admin/language/id-id/extension/payment/firstdata.php', '2022-05-16 09:11:15'),
-(303, 4, 'admin/language/id-id/extension/payment/firstdata_remote.php', '2022-05-16 09:11:15'),
-(304, 4, 'admin/language/id-id/extension/payment/free_checkout.php', '2022-05-16 09:11:15'),
-(305, 4, 'admin/language/id-id/extension/payment/klarna_account.php', '2022-05-16 09:11:15'),
-(306, 4, 'admin/language/id-id/extension/payment/klarna_invoice.php', '2022-05-16 09:11:16'),
-(307, 4, 'admin/language/id-id/extension/payment/liqpay.php', '2022-05-16 09:11:16'),
-(308, 4, 'admin/language/id-id/extension/payment/nochex.php', '2022-05-16 09:11:16'),
-(309, 4, 'admin/language/id-id/extension/payment/paymate.php', '2022-05-16 09:11:16'),
-(310, 4, 'admin/language/id-id/extension/payment/paypoint.php', '2022-05-16 09:11:16'),
-(311, 4, 'admin/language/id-id/extension/payment/payza.php', '2022-05-16 09:11:16'),
-(312, 4, 'admin/language/id-id/extension/payment/perpetual_payments.php', '2022-05-16 09:11:16'),
-(313, 4, 'admin/language/id-id/extension/payment/pp_express.php', '2022-05-16 09:11:16'),
-(314, 4, 'admin/language/id-id/extension/payment/pp_express_order.php', '2022-05-16 09:11:16'),
-(315, 4, 'admin/language/id-id/extension/payment/pp_express_refund.php', '2022-05-16 09:11:16'),
-(316, 4, 'admin/language/id-id/extension/payment/pp_express_search.php', '2022-05-16 09:11:16'),
-(317, 4, 'admin/language/id-id/extension/payment/pp_express_view.php', '2022-05-16 09:11:16'),
-(318, 4, 'admin/language/id-id/extension/payment/pp_payflow.php', '2022-05-16 09:11:16'),
-(319, 4, 'admin/language/id-id/extension/payment/pp_payflow_iframe.php', '2022-05-16 09:11:16'),
-(320, 4, 'admin/language/id-id/extension/payment/pp_pro.php', '2022-05-16 09:11:16'),
-(321, 4, 'admin/language/id-id/extension/payment/pp_pro_iframe.php', '2022-05-16 09:11:16'),
-(322, 4, 'admin/language/id-id/extension/payment/pp_standard.php', '2022-05-16 09:11:16'),
-(323, 4, 'admin/language/id-id/extension/payment/realex.php', '2022-05-16 09:11:16'),
-(324, 4, 'admin/language/id-id/extension/payment/realex_remote.php', '2022-05-16 09:11:16'),
-(325, 4, 'admin/language/id-id/extension/payment/sagepay_direct.php', '2022-05-16 09:11:16'),
-(326, 4, 'admin/language/id-id/extension/payment/sagepay_server.php', '2022-05-16 09:11:16'),
-(327, 4, 'admin/language/id-id/extension/payment/sagepay_us.php', '2022-05-16 09:11:16'),
-(328, 4, 'admin/language/id-id/extension/payment/securetrading_pp.php', '2022-05-16 09:11:16'),
-(329, 4, 'admin/language/id-id/extension/payment/securetrading_ws.php', '2022-05-16 09:11:16'),
-(330, 4, 'admin/language/id-id/extension/payment/skrill.php', '2022-05-16 09:11:16'),
-(331, 4, 'admin/language/id-id/extension/payment/twocheckout.php', '2022-05-16 09:11:16'),
-(332, 4, 'admin/language/id-id/extension/payment/web_payment_software.php', '2022-05-16 09:11:16'),
-(333, 4, 'admin/language/id-id/extension/payment/worldpay.php', '2022-05-16 09:11:16'),
-(334, 4, 'admin/language/id-id/extension/shipping/auspost.php', '2022-05-16 09:11:16'),
-(335, 4, 'admin/language/id-id/extension/shipping/citylink.php', '2022-05-16 09:11:16'),
-(336, 4, 'admin/language/id-id/extension/shipping/fedex.php', '2022-05-16 09:11:16'),
-(337, 4, 'admin/language/id-id/extension/shipping/flat.php', '2022-05-16 09:11:17'),
-(338, 4, 'admin/language/id-id/extension/shipping/free.php', '2022-05-16 09:11:17'),
-(339, 4, 'admin/language/id-id/extension/shipping/item.php', '2022-05-16 09:11:17'),
-(340, 4, 'admin/language/id-id/extension/shipping/parcelforce_48.php', '2022-05-16 09:11:17'),
-(341, 4, 'admin/language/id-id/extension/shipping/pickup.php', '2022-05-16 09:11:17'),
-(342, 4, 'admin/language/id-id/extension/shipping/royal_mail.php', '2022-05-16 09:11:17'),
-(343, 4, 'admin/language/id-id/extension/shipping/ups.php', '2022-05-16 09:11:17'),
-(344, 4, 'admin/language/id-id/extension/shipping/usps.php', '2022-05-16 09:11:17'),
-(345, 4, 'admin/language/id-id/extension/shipping/weight.php', '2022-05-16 09:11:17'),
-(346, 4, 'admin/language/id-id/extension/total/coupon.php', '2022-05-16 09:11:17'),
-(347, 4, 'admin/language/id-id/extension/total/credit.php', '2022-05-16 09:11:17'),
-(348, 4, 'admin/language/id-id/extension/total/handling.php', '2022-05-16 09:11:17'),
-(349, 4, 'admin/language/id-id/extension/total/klarna_fee.php', '2022-05-16 09:11:17'),
-(350, 4, 'admin/language/id-id/extension/total/low_order_fee.php', '2022-05-16 09:11:17'),
-(351, 4, 'admin/language/id-id/extension/total/reward.php', '2022-05-16 09:11:17'),
-(352, 4, 'admin/language/id-id/extension/total/shipping.php', '2022-05-16 09:11:17'),
-(353, 4, 'admin/language/id-id/extension/total/sub_total.php', '2022-05-16 09:11:17'),
-(354, 4, 'admin/language/id-id/extension/total/tax.php', '2022-05-16 09:11:17'),
-(355, 4, 'admin/language/id-id/extension/total/total.php', '2022-05-16 09:11:17'),
-(356, 4, 'admin/language/id-id/extension/total/voucher.php', '2022-05-16 09:11:18'),
-(357, 4, 'catalog/language/id-id/extension/module/account.php', '2022-05-16 09:11:18'),
-(358, 4, 'catalog/language/id-id/extension/module/affiliate.php', '2022-05-16 09:11:18'),
-(359, 4, 'catalog/language/id-id/extension/module/bestseller.php', '2022-05-16 09:11:18'),
-(360, 4, 'catalog/language/id-id/extension/module/category.php', '2022-05-16 09:11:18'),
-(361, 4, 'catalog/language/id-id/extension/module/ebaydisplay.php', '2022-05-16 09:11:18'),
-(362, 4, 'catalog/language/id-id/extension/module/featured.php', '2022-05-16 09:11:18'),
-(363, 4, 'catalog/language/id-id/extension/module/filter.php', '2022-05-16 09:11:18'),
-(364, 4, 'catalog/language/id-id/extension/module/google_hangouts.php', '2022-05-16 09:11:18'),
-(365, 4, 'catalog/language/id-id/extension/module/information.php', '2022-05-16 09:11:18'),
-(366, 4, 'catalog/language/id-id/extension/module/latest.php', '2022-05-16 09:11:18'),
-(367, 4, 'catalog/language/id-id/extension/module/special.php', '2022-05-16 09:11:18'),
-(368, 4, 'catalog/language/id-id/extension/module/store.php', '2022-05-16 09:11:18'),
-(369, 4, 'catalog/language/id-id/extension/payment/amazon_checkout.php', '2022-05-16 09:11:18'),
-(370, 4, 'catalog/language/id-id/extension/payment/authorizenet_aim.php', '2022-05-16 09:11:18'),
-(371, 4, 'catalog/language/id-id/extension/payment/authorizenet_sim.php', '2022-05-16 09:11:18'),
-(372, 4, 'catalog/language/id-id/extension/payment/bank_transfer.php', '2022-05-16 09:11:18'),
-(373, 4, 'catalog/language/id-id/extension/payment/bluepay_hosted.php', '2022-05-16 09:11:18'),
-(374, 4, 'catalog/language/id-id/extension/payment/bluepay_redirect.php', '2022-05-16 09:11:18'),
-(375, 4, 'catalog/language/id-id/extension/payment/cheque.php', '2022-05-16 09:11:18'),
-(376, 4, 'catalog/language/id-id/extension/payment/cod.php', '2022-05-16 09:11:18'),
-(377, 4, 'catalog/language/id-id/extension/payment/firstdata.php', '2022-05-16 09:11:18'),
-(378, 4, 'catalog/language/id-id/extension/payment/firstdata_remote.php', '2022-05-16 09:11:19'),
-(379, 4, 'catalog/language/id-id/extension/payment/free_checkout.php', '2022-05-16 09:11:19'),
-(380, 4, 'catalog/language/id-id/extension/payment/klarna_account.php', '2022-05-16 09:11:19'),
-(381, 4, 'catalog/language/id-id/extension/payment/klarna_invoice.php', '2022-05-16 09:11:19'),
-(382, 4, 'catalog/language/id-id/extension/payment/liqpay.php', '2022-05-16 09:11:19'),
-(383, 4, 'catalog/language/id-id/extension/payment/nochex.php', '2022-05-16 09:11:19'),
-(384, 4, 'catalog/language/id-id/extension/payment/paymate.php', '2022-05-16 09:11:19'),
-(385, 4, 'catalog/language/id-id/extension/payment/paypoint.php', '2022-05-16 09:11:19'),
-(386, 4, 'catalog/language/id-id/extension/payment/payza.php', '2022-05-16 09:11:19'),
-(387, 4, 'catalog/language/id-id/extension/payment/perpetual_payments.php', '2022-05-16 09:11:20'),
-(388, 4, 'catalog/language/id-id/extension/payment/pp_express.php', '2022-05-16 09:11:20'),
-(389, 4, 'catalog/language/id-id/extension/payment/pp_payflow.php', '2022-05-16 09:11:20'),
-(390, 4, 'catalog/language/id-id/extension/payment/pp_payflow_iframe.php', '2022-05-16 09:11:20'),
-(391, 4, 'catalog/language/id-id/extension/payment/pp_pro.php', '2022-05-16 09:11:20'),
-(392, 4, 'catalog/language/id-id/extension/payment/pp_pro_iframe.php', '2022-05-16 09:11:20'),
-(393, 4, 'catalog/language/id-id/extension/payment/pp_standard.php', '2022-05-16 09:11:20'),
-(394, 4, 'catalog/language/id-id/extension/payment/realex.php', '2022-05-16 09:11:20'),
-(395, 4, 'catalog/language/id-id/extension/payment/realex_remote.php', '2022-05-16 09:11:20'),
-(396, 4, 'catalog/language/id-id/extension/payment/sagepay_direct.php', '2022-05-16 09:11:20'),
-(397, 4, 'catalog/language/id-id/extension/payment/sagepay_server.php', '2022-05-16 09:11:20'),
-(398, 4, 'catalog/language/id-id/extension/payment/sagepay_us.php', '2022-05-16 09:11:20'),
-(399, 4, 'catalog/language/id-id/extension/payment/securetrading_pp.php', '2022-05-16 09:11:20'),
-(400, 4, 'catalog/language/id-id/extension/payment/securetrading_ws.php', '2022-05-16 09:11:20'),
-(401, 4, 'catalog/language/id-id/extension/payment/skrill.php', '2022-05-16 09:11:20'),
-(402, 4, 'catalog/language/id-id/extension/payment/twocheckout.php', '2022-05-16 09:11:20'),
-(403, 4, 'catalog/language/id-id/extension/payment/web_payment_software.php', '2022-05-16 09:11:20'),
-(404, 4, 'catalog/language/id-id/extension/payment/worldpay.php', '2022-05-16 09:11:20'),
-(405, 4, 'catalog/language/id-id/extension/shipping/auspost.php', '2022-05-16 09:11:20'),
-(406, 4, 'catalog/language/id-id/extension/shipping/citylink.php', '2022-05-16 09:11:21'),
-(407, 4, 'catalog/language/id-id/extension/shipping/fedex.php', '2022-05-16 09:11:21'),
-(408, 4, 'catalog/language/id-id/extension/shipping/flat.php', '2022-05-16 09:11:21'),
-(409, 4, 'catalog/language/id-id/extension/shipping/free.php', '2022-05-16 09:11:21'),
-(410, 4, 'catalog/language/id-id/extension/shipping/item.php', '2022-05-16 09:11:21'),
-(411, 4, 'catalog/language/id-id/extension/shipping/parcelforce_48.php', '2022-05-16 09:11:21'),
-(412, 4, 'catalog/language/id-id/extension/shipping/pickup.php', '2022-05-16 09:11:21'),
-(413, 4, 'catalog/language/id-id/extension/shipping/royal_mail.php', '2022-05-16 09:11:21'),
-(414, 4, 'catalog/language/id-id/extension/shipping/ups.php', '2022-05-16 09:11:21'),
-(415, 4, 'catalog/language/id-id/extension/shipping/usps.php', '2022-05-16 09:11:21'),
-(416, 4, 'catalog/language/id-id/extension/shipping/weight.php', '2022-05-16 09:11:22'),
-(417, 4, 'catalog/language/id-id/extension/total/coupon.php', '2022-05-16 09:11:22'),
-(418, 4, 'catalog/language/id-id/extension/total/credit.php', '2022-05-16 09:11:22'),
-(419, 4, 'catalog/language/id-id/extension/total/handling.php', '2022-05-16 09:11:22'),
-(420, 4, 'catalog/language/id-id/extension/total/klarna_fee.php', '2022-05-16 09:11:22'),
-(421, 4, 'catalog/language/id-id/extension/total/low_order_fee.php', '2022-05-16 09:11:22'),
-(422, 4, 'catalog/language/id-id/extension/total/reward.php', '2022-05-16 09:11:22'),
-(423, 4, 'catalog/language/id-id/extension/total/shipping.php', '2022-05-16 09:11:22'),
-(424, 4, 'catalog/language/id-id/extension/total/sub_total.php', '2022-05-16 09:11:23'),
-(425, 4, 'catalog/language/id-id/extension/total/total.php', '2022-05-16 09:11:23'),
-(426, 4, 'catalog/language/id-id/extension/total/voucher.php', '2022-05-16 09:11:23');
-
+TRUNCATE TABLE `oc_extension_path`;
 -- --------------------------------------------------------
 
 --
@@ -1918,6 +1639,11 @@ CREATE TABLE IF NOT EXISTS `oc_filter` (
   PRIMARY KEY (`filter_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
+--
+-- Truncate table before insert `oc_filter`
+--
+
+TRUNCATE TABLE `oc_filter`;
 -- --------------------------------------------------------
 
 --
@@ -1932,6 +1658,11 @@ CREATE TABLE IF NOT EXISTS `oc_filter_description` (
   PRIMARY KEY (`filter_id`,`language_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
+--
+-- Truncate table before insert `oc_filter_description`
+--
+
+TRUNCATE TABLE `oc_filter_description`;
 -- --------------------------------------------------------
 
 --
@@ -1944,6 +1675,11 @@ CREATE TABLE IF NOT EXISTS `oc_filter_group` (
   PRIMARY KEY (`filter_group_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
+--
+-- Truncate table before insert `oc_filter_group`
+--
+
+TRUNCATE TABLE `oc_filter_group`;
 -- --------------------------------------------------------
 
 --
@@ -1957,6 +1693,11 @@ CREATE TABLE IF NOT EXISTS `oc_filter_group_description` (
   PRIMARY KEY (`filter_group_id`,`language_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
+--
+-- Truncate table before insert `oc_filter_group_description`
+--
+
+TRUNCATE TABLE `oc_filter_group_description`;
 -- --------------------------------------------------------
 
 --
@@ -1970,15 +1711,21 @@ CREATE TABLE IF NOT EXISTS `oc_geo_zone` (
   `date_added` datetime NOT NULL,
   `date_modified` datetime NOT NULL,
   PRIMARY KEY (`geo_zone_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 
+--
+-- Truncate table before insert `oc_geo_zone`
+--
+
+TRUNCATE TABLE `oc_geo_zone`;
 --
 -- Dumping data for table `oc_geo_zone`
 --
 
-INSERT INTO `oc_geo_zone` (`geo_zone_id`, `name`, `description`, `date_added`, `date_modified`) VALUES
+INSERT IGNORE INTO `oc_geo_zone` (`geo_zone_id`, `name`, `description`, `date_added`, `date_modified`) VALUES
 (3, 'UK VAT Zone', 'UK VAT', '2009-01-06 23:26:25', '2010-02-26 22:33:24'),
-(4, 'UK Shipping', 'UK Shipping Zones', '2009-06-23 01:14:53', '2010-12-15 15:18:13');
+(4, 'UK Shipping', 'UK Shipping Zones', '2009-06-23 01:14:53', '2010-12-15 15:18:13'),
+(5, 'Indonesia', 'Indonesia', '2022-06-05 10:08:15', '0000-00-00 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -1994,6 +1741,11 @@ CREATE TABLE IF NOT EXISTS `oc_googleshopping_category` (
   KEY `category_id_store_id` (`category_id`,`store_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
+--
+-- Truncate table before insert `oc_googleshopping_category`
+--
+
+TRUNCATE TABLE `oc_googleshopping_category`;
 -- --------------------------------------------------------
 
 --
@@ -2025,7 +1777,47 @@ CREATE TABLE IF NOT EXISTS `oc_googleshopping_product` (
   `is_modified` tinyint(1) NOT NULL DEFAULT 0,
   PRIMARY KEY (`product_advertise_google_id`),
   UNIQUE KEY `product_id_store_id` (`product_id`,`store_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=30 DEFAULT CHARSET=utf8;
+
+--
+-- Truncate table before insert `oc_googleshopping_product`
+--
+
+TRUNCATE TABLE `oc_googleshopping_product`;
+--
+-- Dumping data for table `oc_googleshopping_product`
+--
+
+INSERT IGNORE INTO `oc_googleshopping_product` (`product_advertise_google_id`, `product_id`, `store_id`, `has_issues`, `destination_status`, `impressions`, `clicks`, `conversions`, `cost`, `conversion_value`, `google_product_category`, `condition`, `adult`, `multipack`, `is_bundle`, `age_group`, `color`, `gender`, `size_type`, `size_system`, `size`, `is_modified`) VALUES
+(1, 50, 0, NULL, 'pending', 0, 0, 0, '0.0000', '0.0000', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0),
+(2, 51, 0, NULL, 'pending', 0, 0, 0, '0.0000', '0.0000', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0),
+(3, 52, 0, NULL, 'pending', 0, 0, 0, '0.0000', '0.0000', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0),
+(4, 53, 0, NULL, 'pending', 0, 0, 0, '0.0000', '0.0000', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0),
+(5, 54, 0, NULL, 'pending', 0, 0, 0, '0.0000', '0.0000', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0),
+(6, 55, 0, NULL, 'pending', 0, 0, 0, '0.0000', '0.0000', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0),
+(7, 56, 0, NULL, 'pending', 0, 0, 0, '0.0000', '0.0000', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0),
+(8, 57, 0, NULL, 'pending', 0, 0, 0, '0.0000', '0.0000', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0),
+(9, 58, 0, NULL, 'pending', 0, 0, 0, '0.0000', '0.0000', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0),
+(10, 59, 0, NULL, 'pending', 0, 0, 0, '0.0000', '0.0000', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0),
+(11, 60, 0, NULL, 'pending', 0, 0, 0, '0.0000', '0.0000', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0),
+(12, 61, 0, NULL, 'pending', 0, 0, 0, '0.0000', '0.0000', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0),
+(13, 62, 0, NULL, 'pending', 0, 0, 0, '0.0000', '0.0000', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0),
+(14, 63, 0, NULL, 'pending', 0, 0, 0, '0.0000', '0.0000', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0),
+(15, 64, 0, NULL, 'pending', 0, 0, 0, '0.0000', '0.0000', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0),
+(16, 65, 0, NULL, 'pending', 0, 0, 0, '0.0000', '0.0000', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0),
+(17, 66, 0, NULL, 'pending', 0, 0, 0, '0.0000', '0.0000', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0),
+(18, 67, 0, NULL, 'pending', 0, 0, 0, '0.0000', '0.0000', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0),
+(19, 68, 0, NULL, 'pending', 0, 0, 0, '0.0000', '0.0000', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0),
+(20, 69, 0, NULL, 'pending', 0, 0, 0, '0.0000', '0.0000', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0),
+(21, 70, 0, NULL, 'pending', 0, 0, 0, '0.0000', '0.0000', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0),
+(22, 71, 0, NULL, 'pending', 0, 0, 0, '0.0000', '0.0000', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0),
+(23, 72, 0, NULL, 'pending', 0, 0, 0, '0.0000', '0.0000', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0),
+(24, 73, 0, NULL, 'pending', 0, 0, 0, '0.0000', '0.0000', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0),
+(25, 74, 0, NULL, 'pending', 0, 0, 0, '0.0000', '0.0000', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0),
+(26, 75, 0, NULL, 'pending', 0, 0, 0, '0.0000', '0.0000', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0),
+(27, 76, 0, NULL, 'pending', 0, 0, 0, '0.0000', '0.0000', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0),
+(28, 77, 0, NULL, 'pending', 0, 0, 0, '0.0000', '0.0000', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0),
+(29, 78, 0, NULL, 'pending', 0, 0, 0, '0.0000', '0.0000', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0);
 
 -- --------------------------------------------------------
 
@@ -2044,6 +1836,11 @@ CREATE TABLE IF NOT EXISTS `oc_googleshopping_product_status` (
   PRIMARY KEY (`product_id`,`store_id`,`product_variation_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
+--
+-- Truncate table before insert `oc_googleshopping_product_status`
+--
+
+TRUNCATE TABLE `oc_googleshopping_product_status`;
 -- --------------------------------------------------------
 
 --
@@ -2057,6 +1854,11 @@ CREATE TABLE IF NOT EXISTS `oc_googleshopping_product_target` (
   PRIMARY KEY (`product_id`,`advertise_google_target_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
+--
+-- Truncate table before insert `oc_googleshopping_product_target`
+--
+
+TRUNCATE TABLE `oc_googleshopping_product_target`;
 -- --------------------------------------------------------
 
 --
@@ -2077,6 +1879,11 @@ CREATE TABLE IF NOT EXISTS `oc_googleshopping_target` (
   KEY `store_id` (`store_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
+--
+-- Truncate table before insert `oc_googleshopping_target`
+--
+
+TRUNCATE TABLE `oc_googleshopping_target`;
 -- --------------------------------------------------------
 
 --
@@ -2089,17 +1896,23 @@ CREATE TABLE IF NOT EXISTS `oc_information` (
   `sort_order` int(3) NOT NULL DEFAULT 0,
   `status` tinyint(1) NOT NULL DEFAULT 1,
   PRIMARY KEY (`information_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
 
+--
+-- Truncate table before insert `oc_information`
+--
+
+TRUNCATE TABLE `oc_information`;
 --
 -- Dumping data for table `oc_information`
 --
 
-INSERT INTO `oc_information` (`information_id`, `bottom`, `sort_order`, `status`) VALUES
+INSERT IGNORE INTO `oc_information` (`information_id`, `bottom`, `sort_order`, `status`) VALUES
 (3, 1, 3, 1),
 (4, 1, 1, 1),
 (5, 1, 4, 1),
-(6, 1, 2, 1);
+(6, 1, 2, 1),
+(8, 1, 0, 1);
 
 -- --------------------------------------------------------
 
@@ -2119,14 +1932,25 @@ CREATE TABLE IF NOT EXISTS `oc_information_description` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
+-- Truncate table before insert `oc_information_description`
+--
+
+TRUNCATE TABLE `oc_information_description`;
+--
 -- Dumping data for table `oc_information_description`
 --
 
-INSERT INTO `oc_information_description` (`information_id`, `language_id`, `title`, `description`, `meta_title`, `meta_description`, `meta_keyword`) VALUES
+INSERT IGNORE INTO `oc_information_description` (`information_id`, `language_id`, `title`, `description`, `meta_title`, `meta_description`, `meta_keyword`) VALUES
 (4, 1, 'About Us', '&lt;p&gt;\r\n	About Us&lt;/p&gt;\r\n', 'About Us', '', ''),
 (5, 1, 'Terms &amp; Conditions', '&lt;p&gt;\r\n	Terms &amp;amp; Conditions&lt;/p&gt;\r\n', 'Terms &amp; Conditions', '', ''),
 (3, 1, 'Privacy Policy', '&lt;p&gt;\r\n	Privacy Policy&lt;/p&gt;\r\n', 'Privacy Policy', '', ''),
-(6, 1, 'Delivery Information', '&lt;p&gt;\r\n	Delivery Information&lt;/p&gt;\r\n', 'Delivery Information', '', '');
+(6, 1, 'Delivery Information', '&lt;p&gt;\r\n	Delivery Information&lt;/p&gt;\r\n', 'Delivery Information', '', ''),
+(4, 2, 'About Us', '&lt;p&gt;\r\n	About Us&lt;/p&gt;\r\n', 'About Us', '', ''),
+(5, 2, 'Terms &amp; Conditions', '&lt;p&gt;\r\n	Terms &amp;amp; Conditions&lt;/p&gt;\r\n', 'Terms &amp; Conditions', '', ''),
+(3, 2, 'Privacy Policy', '&lt;p&gt;\r\n	Privacy Policy&lt;/p&gt;\r\n', 'Privacy Policy', '', ''),
+(6, 2, 'Delivery Information', '&lt;p&gt;\r\n	Delivery Information&lt;/p&gt;\r\n', 'Delivery Information', '', ''),
+(8, 2, 'Recruitment', '&lt;p&gt;&lt;span style=&quot;color: rgb(255, 0, 141); font-family: Helvetica, &amp;quot;Helvetica Neue&amp;quot;, Arial, &amp;quot;Lucida Grande&amp;quot;, sans-serif; font-size: 15px;&quot;&gt;We are hiring for Store Sales Associates at the following locations. Please send your resume by email to hiring@daiso-usa.com with the listed subject line! Thank you for considering Daiso for your employment opportunities!&lt;/span&gt;&lt;br style=&quot;color: rgb(255, 0, 141); font-family: Helvetica, &amp;quot;Helvetica Neue&amp;quot;, Arial, &amp;quot;Lucida Grande&amp;quot;, sans-serif; font-size: 15px;&quot;&gt;&lt;span style=&quot;color: rgb(255, 0, 141); font-family: Helvetica, &amp;quot;Helvetica Neue&amp;quot;, Arial, &amp;quot;Lucida Grande&amp;quot;, sans-serif; font-size: 15px;&quot;&gt;Sales Associate Job Description&lt;/span&gt;&lt;br&gt;&lt;/p&gt;', 'Recruitment', '', ''),
+(8, 1, 'Recruitment', '&lt;p&gt;&lt;font color=&quot;#ff008d&quot; face=&quot;Helvetica, Helvetica Neue, Arial, Lucida Grande, sans-serif&quot;&gt;&lt;span style=&quot;font-size: 15px;&quot;&gt;We are hiring for Store Sales Associates at the following locations. Please send your resume by email to daiso-project@notreal.com&amp;nbsp;with the listed subject line! Thank you for considering Daiso for your employment opportunities!&lt;/span&gt;&lt;/font&gt;&lt;br style=&quot;color: rgb(255, 0, 141); font-family: Helvetica, &amp;quot;Helvetica Neue&amp;quot;, Arial, &amp;quot;Lucida Grande&amp;quot;, sans-serif; font-size: 15px;&quot;&gt;&lt;span style=&quot;color: rgb(255, 0, 141); font-family: Helvetica, &amp;quot;Helvetica Neue&amp;quot;, Arial, &amp;quot;Lucida Grande&amp;quot;, sans-serif; font-size: 15px;&quot;&gt;Sales Associate Job Description&lt;/span&gt;&lt;br&gt;&lt;/p&gt;', 'Recruitment', '', '');
 
 -- --------------------------------------------------------
 
@@ -2141,6 +1965,18 @@ CREATE TABLE IF NOT EXISTS `oc_information_to_layout` (
   PRIMARY KEY (`information_id`,`store_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
+--
+-- Truncate table before insert `oc_information_to_layout`
+--
+
+TRUNCATE TABLE `oc_information_to_layout`;
+--
+-- Dumping data for table `oc_information_to_layout`
+--
+
+INSERT IGNORE INTO `oc_information_to_layout` (`information_id`, `store_id`, `layout_id`) VALUES
+(8, 0, 0);
+
 -- --------------------------------------------------------
 
 --
@@ -2154,14 +1990,20 @@ CREATE TABLE IF NOT EXISTS `oc_information_to_store` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
+-- Truncate table before insert `oc_information_to_store`
+--
+
+TRUNCATE TABLE `oc_information_to_store`;
+--
 -- Dumping data for table `oc_information_to_store`
 --
 
-INSERT INTO `oc_information_to_store` (`information_id`, `store_id`) VALUES
+INSERT IGNORE INTO `oc_information_to_store` (`information_id`, `store_id`) VALUES
 (3, 0),
 (4, 0),
 (5, 0),
-(6, 0);
+(6, 0),
+(8, 0);
 
 -- --------------------------------------------------------
 
@@ -2180,14 +2022,20 @@ CREATE TABLE IF NOT EXISTS `oc_language` (
   `status` tinyint(1) NOT NULL,
   PRIMARY KEY (`language_id`),
   KEY `name` (`name`)
-) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
+--
+-- Truncate table before insert `oc_language`
+--
+
+TRUNCATE TABLE `oc_language`;
 --
 -- Dumping data for table `oc_language`
 --
 
-INSERT INTO `oc_language` (`language_id`, `name`, `code`, `locale`, `image`, `directory`, `sort_order`, `status`) VALUES
-(1, 'English', 'en-gb', 'en-US,en_US.UTF-8,en_US,en-gb,english', 'gb.png', 'english', 1, 1);
+INSERT IGNORE INTO `oc_language` (`language_id`, `name`, `code`, `locale`, `image`, `directory`, `sort_order`, `status`) VALUES
+(1, 'English', 'en-gb', 'en-US,en_US.UTF-8,en_US,en-gb,english', 'gb.png', 'english', 1, 1),
+(2, 'Bahasa Indonesia', 'id-id', 'id-ID', '', '', 2, 0);
 
 -- --------------------------------------------------------
 
@@ -2202,10 +2050,15 @@ CREATE TABLE IF NOT EXISTS `oc_layout` (
 ) ENGINE=MyISAM AUTO_INCREMENT=14 DEFAULT CHARSET=utf8;
 
 --
+-- Truncate table before insert `oc_layout`
+--
+
+TRUNCATE TABLE `oc_layout`;
+--
 -- Dumping data for table `oc_layout`
 --
 
-INSERT INTO `oc_layout` (`layout_id`, `name`) VALUES
+INSERT IGNORE INTO `oc_layout` (`layout_id`, `name`) VALUES
 (1, 'Home'),
 (2, 'Product'),
 (3, 'Category'),
@@ -2233,22 +2086,28 @@ CREATE TABLE IF NOT EXISTS `oc_layout_module` (
   `position` varchar(14) NOT NULL,
   `sort_order` int(3) NOT NULL,
   PRIMARY KEY (`layout_module_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=74 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=146 DEFAULT CHARSET=utf8;
 
+--
+-- Truncate table before insert `oc_layout_module`
+--
+
+TRUNCATE TABLE `oc_layout_module`;
 --
 -- Dumping data for table `oc_layout_module`
 --
 
-INSERT INTO `oc_layout_module` (`layout_module_id`, `layout_id`, `code`, `position`, `sort_order`) VALUES
+INSERT IGNORE INTO `oc_layout_module` (`layout_module_id`, `layout_id`, `code`, `position`, `sort_order`) VALUES
 (2, 4, '0', 'content_top', 0),
 (3, 4, '0', 'content_top', 1),
 (20, 5, '0', 'column_left', 2),
 (69, 10, 'account', 'column_right', 1),
 (68, 6, 'account', 'column_right', 1),
-(67, 1, 'carousel.29', 'content_top', 3),
-(65, 1, 'featured.28', 'content_top', 2),
-(72, 3, 'category', 'column_left', 1),
-(73, 3, 'banner.30', 'column_left', 2);
+(145, 1, 'featured.28', 'content_bottom', 0),
+(144, 1, 'category_grid', 'content_top', 2),
+(125, 3, 'category', 'column_left', 1),
+(143, 1, 'banner.31', 'content_top', 1),
+(142, 1, 'banner.34', 'content_top', 0);
 
 -- --------------------------------------------------------
 
@@ -2262,17 +2121,22 @@ CREATE TABLE IF NOT EXISTS `oc_layout_route` (
   `store_id` int(11) NOT NULL,
   `route` varchar(64) NOT NULL,
   PRIMARY KEY (`layout_route_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=54 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=76 DEFAULT CHARSET=utf8;
 
+--
+-- Truncate table before insert `oc_layout_route`
+--
+
+TRUNCATE TABLE `oc_layout_route`;
 --
 -- Dumping data for table `oc_layout_route`
 --
 
-INSERT INTO `oc_layout_route` (`layout_route_id`, `layout_id`, `store_id`, `route`) VALUES
+INSERT IGNORE INTO `oc_layout_route` (`layout_route_id`, `layout_id`, `store_id`, `route`) VALUES
 (38, 6, 0, 'account/%'),
 (17, 10, 0, 'affiliate/%'),
-(44, 3, 0, 'product/category'),
-(42, 1, 0, 'common/home'),
+(70, 3, 0, 'product/category'),
+(75, 1, 0, 'common/home'),
 (20, 2, 0, 'product/product'),
 (24, 11, 0, 'information/information'),
 (23, 7, 0, 'checkout/%'),
@@ -2296,10 +2160,15 @@ CREATE TABLE IF NOT EXISTS `oc_length_class` (
 ) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
 --
+-- Truncate table before insert `oc_length_class`
+--
+
+TRUNCATE TABLE `oc_length_class`;
+--
 -- Dumping data for table `oc_length_class`
 --
 
-INSERT INTO `oc_length_class` (`length_class_id`, `value`) VALUES
+INSERT IGNORE INTO `oc_length_class` (`length_class_id`, `value`) VALUES
 (1, '1.00000000'),
 (2, '10.00000000'),
 (3, '0.39370000');
@@ -2319,13 +2188,21 @@ CREATE TABLE IF NOT EXISTS `oc_length_class_description` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
+-- Truncate table before insert `oc_length_class_description`
+--
+
+TRUNCATE TABLE `oc_length_class_description`;
+--
 -- Dumping data for table `oc_length_class_description`
 --
 
-INSERT INTO `oc_length_class_description` (`length_class_id`, `language_id`, `title`, `unit`) VALUES
+INSERT IGNORE INTO `oc_length_class_description` (`length_class_id`, `language_id`, `title`, `unit`) VALUES
 (1, 1, 'Centimeter', 'cm'),
 (2, 1, 'Millimeter', 'mm'),
-(3, 1, 'Inch', 'in');
+(3, 1, 'Inch', 'in'),
+(1, 2, 'Centimeter', 'cm'),
+(2, 2, 'Millimeter', 'mm'),
+(3, 2, 'Inch', 'in');
 
 -- --------------------------------------------------------
 
@@ -2347,6 +2224,11 @@ CREATE TABLE IF NOT EXISTS `oc_location` (
   KEY `name` (`name`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
+--
+-- Truncate table before insert `oc_location`
+--
+
+TRUNCATE TABLE `oc_location`;
 -- --------------------------------------------------------
 
 --
@@ -2362,17 +2244,10 @@ CREATE TABLE IF NOT EXISTS `oc_manufacturer` (
 ) ENGINE=MyISAM AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `oc_manufacturer`
+-- Truncate table before insert `oc_manufacturer`
 --
 
-INSERT INTO `oc_manufacturer` (`manufacturer_id`, `name`, `image`, `sort_order`) VALUES
-(5, 'HTC', 'catalog/demo/htc_logo.jpg', 0),
-(6, 'Palm', 'catalog/demo/palm_logo.jpg', 0),
-(7, 'Hewlett-Packard', 'catalog/demo/hp_logo.jpg', 0),
-(8, 'Apple', 'catalog/demo/apple_logo.jpg', 0),
-(9, 'Canon', 'catalog/demo/canon_logo.jpg', 0),
-(10, 'Sony', 'catalog/demo/sony_logo.jpg', 0);
-
+TRUNCATE TABLE `oc_manufacturer`;
 -- --------------------------------------------------------
 
 --
@@ -2386,17 +2261,10 @@ CREATE TABLE IF NOT EXISTS `oc_manufacturer_to_store` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `oc_manufacturer_to_store`
+-- Truncate table before insert `oc_manufacturer_to_store`
 --
 
-INSERT INTO `oc_manufacturer_to_store` (`manufacturer_id`, `store_id`) VALUES
-(5, 0),
-(6, 0),
-(7, 0),
-(8, 0),
-(9, 0),
-(10, 0);
-
+TRUNCATE TABLE `oc_manufacturer_to_store`;
 -- --------------------------------------------------------
 
 --
@@ -2413,6 +2281,11 @@ CREATE TABLE IF NOT EXISTS `oc_marketing` (
   PRIMARY KEY (`marketing_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
+--
+-- Truncate table before insert `oc_marketing`
+--
+
+TRUNCATE TABLE `oc_marketing`;
 -- --------------------------------------------------------
 
 --
@@ -2433,6 +2306,11 @@ CREATE TABLE IF NOT EXISTS `oc_modification` (
   PRIMARY KEY (`modification_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
+--
+-- Truncate table before insert `oc_modification`
+--
+
+TRUNCATE TABLE `oc_modification`;
 -- --------------------------------------------------------
 
 --
@@ -2445,17 +2323,23 @@ CREATE TABLE IF NOT EXISTS `oc_module` (
   `code` varchar(32) NOT NULL,
   `setting` text NOT NULL,
   PRIMARY KEY (`module_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=33 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=35 DEFAULT CHARSET=utf8;
 
+--
+-- Truncate table before insert `oc_module`
+--
+
+TRUNCATE TABLE `oc_module`;
 --
 -- Dumping data for table `oc_module`
 --
 
-INSERT INTO `oc_module` (`module_id`, `name`, `code`, `setting`) VALUES
+INSERT IGNORE INTO `oc_module` (`module_id`, `name`, `code`, `setting`) VALUES
 (30, 'Category', 'banner', '{\"name\":\"Category\",\"banner_id\":\"6\",\"width\":\"182\",\"height\":\"182\",\"status\":\"1\"}'),
 (29, 'Home Page', 'carousel', '{\"name\":\"Home Page\",\"banner_id\":\"8\",\"width\":\"130\",\"height\":\"100\",\"status\":\"1\"}'),
-(28, 'Home Page', 'featured', '{\"name\":\"Home Page\",\"product\":[\"43\",\"40\",\"42\",\"30\"],\"limit\":\"4\",\"width\":\"200\",\"height\":\"200\",\"status\":\"1\"}'),
-(31, 'Banner 1', 'banner', '{\"name\":\"Banner 1\",\"banner_id\":\"6\",\"width\":\"182\",\"height\":\"182\",\"status\":\"1\"}');
+(28, 'Home Page', 'featured', '{\"name\":\"Home Page\",\"product_name\":\"\",\"product\":[\"55\",\"75\",\"60\",\"56\"],\"limit\":\"4\",\"width\":\"200\",\"height\":\"200\",\"status\":\"1\"}'),
+(31, 'New products', 'banner', '{\"name\":\"New products\",\"banner_id\":\"11\",\"width\":\"1140\",\"height\":\"182\",\"status\":\"1\"}'),
+(34, 'Promo banner', 'banner', '{\"name\":\"Promo banner\",\"banner_id\":\"10\",\"width\":\"1140\",\"height\":\"380\",\"status\":\"1\"}');
 
 -- --------------------------------------------------------
 
@@ -2471,22 +2355,10 @@ CREATE TABLE IF NOT EXISTS `oc_option` (
 ) ENGINE=MyISAM AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `oc_option`
+-- Truncate table before insert `oc_option`
 --
 
-INSERT INTO `oc_option` (`option_id`, `type`, `sort_order`) VALUES
-(1, 'radio', 1),
-(2, 'checkbox', 2),
-(4, 'text', 3),
-(5, 'select', 4),
-(6, 'textarea', 5),
-(7, 'file', 6),
-(8, 'date', 7),
-(9, 'time', 8),
-(10, 'datetime', 9),
-(11, 'select', 10),
-(12, 'date', 11);
-
+TRUNCATE TABLE `oc_option`;
 -- --------------------------------------------------------
 
 --
@@ -2501,22 +2373,10 @@ CREATE TABLE IF NOT EXISTS `oc_option_description` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `oc_option_description`
+-- Truncate table before insert `oc_option_description`
 --
 
-INSERT INTO `oc_option_description` (`option_id`, `language_id`, `name`) VALUES
-(1, 1, 'Radio'),
-(2, 1, 'Checkbox'),
-(4, 1, 'Text'),
-(6, 1, 'Textarea'),
-(8, 1, 'Date'),
-(7, 1, 'File'),
-(5, 1, 'Select'),
-(9, 1, 'Time'),
-(10, 1, 'Date &amp; Time'),
-(12, 1, 'Delivery Date'),
-(11, 1, 'Size');
-
+TRUNCATE TABLE `oc_option_description`;
 -- --------------------------------------------------------
 
 --
@@ -2532,25 +2392,10 @@ CREATE TABLE IF NOT EXISTS `oc_option_value` (
 ) ENGINE=MyISAM AUTO_INCREMENT=49 DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `oc_option_value`
+-- Truncate table before insert `oc_option_value`
 --
 
-INSERT INTO `oc_option_value` (`option_value_id`, `option_id`, `image`, `sort_order`) VALUES
-(43, 1, '', 3),
-(32, 1, '', 1),
-(45, 2, '', 4),
-(44, 2, '', 3),
-(42, 5, '', 4),
-(41, 5, '', 3),
-(39, 5, '', 1),
-(40, 5, '', 2),
-(31, 1, '', 2),
-(23, 2, '', 1),
-(24, 2, '', 2),
-(46, 11, '', 1),
-(47, 11, '', 2),
-(48, 11, '', 3);
-
+TRUNCATE TABLE `oc_option_value`;
 -- --------------------------------------------------------
 
 --
@@ -2566,25 +2411,10 @@ CREATE TABLE IF NOT EXISTS `oc_option_value_description` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `oc_option_value_description`
+-- Truncate table before insert `oc_option_value_description`
 --
 
-INSERT INTO `oc_option_value_description` (`option_value_id`, `language_id`, `option_id`, `name`) VALUES
-(43, 1, 1, 'Large'),
-(32, 1, 1, 'Small'),
-(45, 1, 2, 'Checkbox 4'),
-(44, 1, 2, 'Checkbox 3'),
-(31, 1, 1, 'Medium'),
-(42, 1, 5, 'Yellow'),
-(41, 1, 5, 'Green'),
-(39, 1, 5, 'Red'),
-(40, 1, 5, 'Blue'),
-(23, 1, 2, 'Checkbox 1'),
-(24, 1, 2, 'Checkbox 2'),
-(48, 1, 11, 'Large'),
-(47, 1, 11, 'Medium'),
-(46, 1, 11, 'Small');
-
+TRUNCATE TABLE `oc_option_value_description`;
 -- --------------------------------------------------------
 
 --
@@ -2656,6 +2486,11 @@ CREATE TABLE IF NOT EXISTS `oc_order` (
   PRIMARY KEY (`order_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
+--
+-- Truncate table before insert `oc_order`
+--
+
+TRUNCATE TABLE `oc_order`;
 -- --------------------------------------------------------
 
 --
@@ -2672,6 +2507,11 @@ CREATE TABLE IF NOT EXISTS `oc_order_history` (
   PRIMARY KEY (`order_history_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
+--
+-- Truncate table before insert `oc_order_history`
+--
+
+TRUNCATE TABLE `oc_order_history`;
 -- --------------------------------------------------------
 
 --
@@ -2690,6 +2530,11 @@ CREATE TABLE IF NOT EXISTS `oc_order_option` (
   PRIMARY KEY (`order_option_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
+--
+-- Truncate table before insert `oc_order_option`
+--
+
+TRUNCATE TABLE `oc_order_option`;
 -- --------------------------------------------------------
 
 --
@@ -2711,6 +2556,11 @@ CREATE TABLE IF NOT EXISTS `oc_order_product` (
   KEY `order_id` (`order_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
+--
+-- Truncate table before insert `oc_order_product`
+--
+
+TRUNCATE TABLE `oc_order_product`;
 -- --------------------------------------------------------
 
 --
@@ -2741,6 +2591,11 @@ CREATE TABLE IF NOT EXISTS `oc_order_recurring` (
   PRIMARY KEY (`order_recurring_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
+--
+-- Truncate table before insert `oc_order_recurring`
+--
+
+TRUNCATE TABLE `oc_order_recurring`;
 -- --------------------------------------------------------
 
 --
@@ -2757,6 +2612,11 @@ CREATE TABLE IF NOT EXISTS `oc_order_recurring_transaction` (
   PRIMARY KEY (`order_recurring_transaction_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
+--
+-- Truncate table before insert `oc_order_recurring_transaction`
+--
+
+TRUNCATE TABLE `oc_order_recurring_transaction`;
 -- --------------------------------------------------------
 
 --
@@ -2772,6 +2632,11 @@ CREATE TABLE IF NOT EXISTS `oc_order_shipment` (
   PRIMARY KEY (`order_shipment_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
+--
+-- Truncate table before insert `oc_order_shipment`
+--
+
+TRUNCATE TABLE `oc_order_shipment`;
 -- --------------------------------------------------------
 
 --
@@ -2786,10 +2651,15 @@ CREATE TABLE IF NOT EXISTS `oc_order_status` (
 ) ENGINE=MyISAM AUTO_INCREMENT=17 DEFAULT CHARSET=utf8;
 
 --
+-- Truncate table before insert `oc_order_status`
+--
+
+TRUNCATE TABLE `oc_order_status`;
+--
 -- Dumping data for table `oc_order_status`
 --
 
-INSERT INTO `oc_order_status` (`order_status_id`, `language_id`, `name`) VALUES
+INSERT IGNORE INTO `oc_order_status` (`order_status_id`, `language_id`, `name`) VALUES
 (2, 1, 'Processing'),
 (3, 1, 'Shipped'),
 (7, 1, 'Canceled'),
@@ -2803,7 +2673,21 @@ INSERT INTO `oc_order_status` (`order_status_id`, `language_id`, `name`) VALUES
 (1, 1, 'Pending'),
 (16, 1, 'Voided'),
 (15, 1, 'Processed'),
-(14, 1, 'Expired');
+(14, 1, 'Expired'),
+(2, 2, 'Processing'),
+(3, 2, 'Shipped'),
+(7, 2, 'Canceled'),
+(5, 2, 'Complete'),
+(8, 2, 'Denied'),
+(9, 2, 'Canceled Reversal'),
+(10, 2, 'Failed'),
+(11, 2, 'Refunded'),
+(12, 2, 'Reversed'),
+(13, 2, 'Chargeback'),
+(1, 2, 'Pending'),
+(16, 2, 'Voided'),
+(15, 2, 'Processed'),
+(14, 2, 'Expired');
 
 -- --------------------------------------------------------
 
@@ -2822,6 +2706,11 @@ CREATE TABLE IF NOT EXISTS `oc_order_total` (
   KEY `order_id` (`order_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
+--
+-- Truncate table before insert `oc_order_total`
+--
+
+TRUNCATE TABLE `oc_order_total`;
 -- --------------------------------------------------------
 
 --
@@ -2844,6 +2733,11 @@ CREATE TABLE IF NOT EXISTS `oc_order_voucher` (
   PRIMARY KEY (`order_voucher_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
+--
+-- Truncate table before insert `oc_order_voucher`
+--
+
+TRUNCATE TABLE `oc_order_voucher`;
 -- --------------------------------------------------------
 
 --
@@ -2883,32 +2777,47 @@ CREATE TABLE IF NOT EXISTS `oc_product` (
   `date_added` datetime NOT NULL,
   `date_modified` datetime NOT NULL,
   PRIMARY KEY (`product_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=50 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=79 DEFAULT CHARSET=utf8;
 
+--
+-- Truncate table before insert `oc_product`
+--
+
+TRUNCATE TABLE `oc_product`;
 --
 -- Dumping data for table `oc_product`
 --
 
-INSERT INTO `oc_product` (`product_id`, `model`, `sku`, `upc`, `ean`, `jan`, `isbn`, `mpn`, `location`, `quantity`, `stock_status_id`, `image`, `manufacturer_id`, `shipping`, `price`, `points`, `tax_class_id`, `date_available`, `weight`, `weight_class_id`, `length`, `width`, `height`, `length_class_id`, `subtract`, `minimum`, `sort_order`, `status`, `viewed`, `date_added`, `date_modified`) VALUES
-(28, 'Product 1', '', '', '', '', '', '', '', 939, 7, 'catalog/demo/htc_touch_hd_1.jpg', 5, 1, '100.0000', 200, 9, '2009-02-03', '146.40000000', 2, '0.00000000', '0.00000000', '0.00000000', 1, 1, 1, 0, 1, 0, '2009-02-03 16:06:50', '2011-09-30 01:05:39'),
-(29, 'Product 2', '', '', '', '', '', '', '', 999, 6, 'catalog/demo/palm_treo_pro_1.jpg', 6, 1, '279.9900', 0, 9, '2009-02-03', '133.00000000', 2, '0.00000000', '0.00000000', '0.00000000', 3, 1, 1, 0, 1, 0, '2009-02-03 16:42:17', '2011-09-30 01:06:08'),
-(30, 'Product 3', '', '', '', '', '', '', '', 7, 6, 'catalog/demo/canon_eos_5d_1.jpg', 9, 1, '100.0000', 0, 9, '2009-02-03', '0.00000000', 1, '0.00000000', '0.00000000', '0.00000000', 1, 1, 1, 0, 1, 0, '2009-02-03 16:59:00', '2011-09-30 01:05:23'),
-(31, 'Product 4', '', '', '', '', '', '', '', 1000, 6, 'catalog/demo/nikon_d300_1.jpg', 0, 1, '80.0000', 0, 9, '2009-02-03', '0.00000000', 1, '0.00000000', '0.00000000', '0.00000000', 3, 1, 1, 0, 1, 0, '2009-02-03 17:00:10', '2011-09-30 01:06:00'),
-(32, 'Product 5', '', '', '', '', '', '', '', 999, 6, 'catalog/demo/ipod_touch_1.jpg', 8, 1, '100.0000', 0, 9, '2009-02-03', '5.00000000', 1, '0.00000000', '0.00000000', '0.00000000', 1, 1, 1, 0, 1, 0, '2009-02-03 17:07:26', '2011-09-30 01:07:22'),
-(33, 'Product 6', '', '', '', '', '', '', '', 1000, 6, 'catalog/demo/samsung_syncmaster_941bw.jpg', 0, 1, '200.0000', 0, 9, '2009-02-03', '5.00000000', 1, '0.00000000', '0.00000000', '0.00000000', 2, 1, 1, 0, 1, 0, '2009-02-03 17:08:31', '2011-09-30 01:06:29'),
-(34, 'Product 7', '', '', '', '', '', '', '', 1000, 6, 'catalog/demo/ipod_shuffle_1.jpg', 8, 1, '100.0000', 0, 9, '2009-02-03', '5.00000000', 1, '0.00000000', '0.00000000', '0.00000000', 2, 1, 1, 0, 1, 0, '2009-02-03 18:07:54', '2011-09-30 01:07:17'),
-(35, 'Product 8', '', '', '', '', '', '', '', 1000, 5, '', 0, 0, '100.0000', 0, 9, '2009-02-03', '5.00000000', 1, '0.00000000', '0.00000000', '0.00000000', 1, 1, 1, 0, 1, 0, '2009-02-03 18:08:31', '2011-09-30 01:06:17'),
-(36, 'Product 9', '', '', '', '', '', '', '', 994, 6, 'catalog/demo/ipod_nano_1.jpg', 8, 0, '100.0000', 100, 9, '2009-02-03', '5.00000000', 1, '0.00000000', '0.00000000', '0.00000000', 2, 1, 1, 0, 1, 0, '2009-02-03 18:09:19', '2011-09-30 01:07:12'),
-(40, 'product 11', '', '', '', '', '', '', '', 970, 5, 'catalog/demo/iphone_1.jpg', 8, 1, '101.0000', 0, 9, '2009-02-03', '10.00000000', 1, '0.00000000', '0.00000000', '0.00000000', 1, 1, 1, 0, 1, 0, '2009-02-03 21:07:12', '2011-09-30 01:06:53'),
-(41, 'Product 14', '', '', '', '', '', '', '', 977, 5, 'catalog/demo/imac_1.jpg', 8, 1, '100.0000', 0, 9, '2009-02-03', '5.00000000', 1, '0.00000000', '0.00000000', '0.00000000', 1, 1, 1, 0, 1, 0, '2009-02-03 21:07:26', '2011-09-30 01:06:44'),
-(42, 'Product 15', '', '', '', '', '', '', '', 990, 5, 'catalog/demo/apple_cinema_30.jpg', 8, 1, '100.0000', 400, 9, '2009-02-04', '12.50000000', 1, '1.00000000', '2.00000000', '3.00000000', 1, 1, 2, 0, 1, 0, '2009-02-03 21:07:37', '2011-09-30 00:46:19'),
-(43, 'Product 16', '', '', '', '', '', '', '', 929, 5, 'catalog/demo/macbook_1.jpg', 8, 0, '500.0000', 0, 9, '2009-02-03', '0.00000000', 1, '0.00000000', '0.00000000', '0.00000000', 2, 1, 1, 0, 1, 0, '2009-02-03 21:07:49', '2011-09-30 01:05:46'),
-(44, 'Product 17', '', '', '', '', '', '', '', 1000, 5, 'catalog/demo/macbook_air_1.jpg', 8, 1, '1000.0000', 0, 9, '2009-02-03', '0.00000000', 1, '0.00000000', '0.00000000', '0.00000000', 2, 1, 1, 0, 1, 0, '2009-02-03 21:08:00', '2011-09-30 01:05:53'),
-(45, 'Product 18', '', '', '', '', '', '', '', 998, 5, 'catalog/demo/macbook_pro_1.jpg', 8, 1, '2000.0000', 0, 100, '2009-02-03', '0.00000000', 1, '0.00000000', '0.00000000', '0.00000000', 2, 1, 1, 0, 1, 0, '2009-02-03 21:08:17', '2011-09-15 22:22:01'),
-(46, 'Product 19', '', '', '', '', '', '', '', 1000, 5, 'catalog/demo/sony_vaio_1.jpg', 10, 1, '1000.0000', 0, 9, '2009-02-03', '0.00000000', 1, '0.00000000', '0.00000000', '0.00000000', 2, 1, 1, 0, 1, 0, '2009-02-03 21:08:29', '2011-09-30 01:06:39'),
-(47, 'Product 21', '', '', '', '', '', '', '', 1000, 5, 'catalog/demo/hp_1.jpg', 7, 1, '100.0000', 400, 9, '2009-02-03', '1.00000000', 1, '0.00000000', '0.00000000', '0.00000000', 1, 0, 1, 0, 1, 0, '2009-02-03 21:08:40', '2011-09-30 01:05:28'),
-(48, 'product 20', 'test 1', '', '', '', '', '', 'test 2', 995, 5, 'catalog/demo/ipod_classic_1.jpg', 8, 1, '100.0000', 0, 9, '2009-02-08', '1.00000000', 1, '0.00000000', '0.00000000', '0.00000000', 2, 1, 1, 0, 1, 0, '2009-02-08 17:21:51', '2011-09-30 01:07:06'),
-(49, 'SAM1', '', '', '', '', '', '', '', 0, 8, 'catalog/demo/samsung_tab_1.jpg', 0, 1, '199.9900', 0, 9, '2011-04-25', '0.00000000', 1, '0.00000000', '0.00000000', '0.00000000', 1, 1, 1, 1, 1, 4, '2011-04-26 08:57:34', '2011-09-30 01:06:23');
+INSERT IGNORE INTO `oc_product` (`product_id`, `model`, `sku`, `upc`, `ean`, `jan`, `isbn`, `mpn`, `location`, `quantity`, `stock_status_id`, `image`, `manufacturer_id`, `shipping`, `price`, `points`, `tax_class_id`, `date_available`, `weight`, `weight_class_id`, `length`, `width`, `height`, `length_class_id`, `subtract`, `minimum`, `sort_order`, `status`, `viewed`, `date_added`, `date_modified`) VALUES
+(65, '4549131361780', '', '', '', '', '', '', '', 99, 6, 'catalog/products/4549131361780_1024x1024.png', 0, 1, '62000.0000', 0, 9, '2022-06-05', '0.00000000', 1, '0.00000000', '0.00000000', '0.00000000', 1, 1, 1, 1, 1, 0, '2022-06-05 10:32:20', '2022-06-05 10:32:20'),
+(62, '4549131486940', '', '', '', '', '', '', '', 99, 6, 'catalog/products/4549131486940_1024x1024.png', 0, 1, '25000.0000', 0, 9, '2022-06-05', '0.00000000', 1, '0.00000000', '0.00000000', '0.00000000', 1, 1, 1, 1, 1, 0, '2022-06-05 10:29:41', '2022-06-05 10:29:41'),
+(63, '4549131400274', '', '', '', '', '', '', '', 99, 6, 'catalog/products/4549131400274_d5eb2616-ba09-4c48.png', 0, 1, '25000.0000', 0, 9, '2022-06-05', '0.00000000', 1, '0.00000000', '0.00000000', '0.00000000', 1, 1, 1, 1, 1, 0, '2022-06-05 10:30:20', '2022-06-05 10:30:20'),
+(64, '4549131874198', '', '', '', '', '', '', '', 99, 6, 'catalog/products/4549131874198_1024x1024.png', 0, 1, '25000.0000', 0, 9, '2022-06-05', '0.00000000', 1, '0.00000000', '0.00000000', '0.00000000', 1, 1, 1, 1, 1, 0, '2022-06-05 10:31:10', '2022-06-05 10:33:38'),
+(56, '4573135588416', '', '', '', '', '', '', '', 99, 6, 'catalog/products/4573135588416_1024x1024.png', 0, 1, '25000.0000', 0, 9, '2022-06-05', '0.00000000', 1, '0.00000000', '0.00000000', '0.00000000', 1, 1, 1, 1, 1, 0, '2022-06-05 10:04:02', '2022-06-05 10:45:20'),
+(54, '4580190583379', '', '', '', '', '', '', '', 99, 6, 'catalog/products/4580190583379_3178ff2a-d12c-4d83.png', 0, 1, '25000.0000', 0, 9, '2022-06-05', '0.00000000', 1, '0.00000000', '0.00000000', '0.00000000', 1, 1, 1, 1, 1, 0, '2022-06-05 09:55:28', '2022-06-05 10:03:18'),
+(55, '4573135588423', '', '', '', '', '', '', '', 99, 6, 'catalog/products/4573135588423_1024x1024.png', 0, 1, '25000.0000', 0, 9, '2022-06-05', '0.00000000', 1, '0.00000000', '0.00000000', '0.00000000', 1, 1, 1, 1, 1, 3, '2022-06-05 10:01:58', '2022-06-05 10:02:33'),
+(57, '4573135575072', '', '', '', '', '', '', '', 99, 6, 'catalog/products/4573135575072_1024x1024.png', 0, 1, '25000.0000', 0, 9, '2022-06-05', '0.00000000', 1, '0.00000000', '0.00000000', '0.00000000', 1, 1, 1, 1, 1, 0, '2022-06-05 10:21:24', '2022-06-05 10:21:24'),
+(58, '0843074195018', '', '', '', '', '', '', '', 99, 6, 'catalog/products/0843074195018_1024x1024-min.png', 0, 1, '25000.0000', 0, 9, '2022-06-05', '0.00000000', 1, '0.00000000', '0.00000000', '0.00000000', 1, 1, 1, 1, 1, 3, '2022-06-05 10:23:01', '2022-06-05 10:24:08'),
+(59, '4573135575058', '', '', '', '', '', '', '', 99, 6, 'catalog/products/4573135575058_1024x1024.png', 0, 1, '25000.0000', 0, 9, '2022-06-05', '0.00000000', 1, '0.00000000', '0.00000000', '0.00000000', 1, 1, 1, 1, 1, 0, '2022-06-05 10:25:36', '2022-06-05 10:45:01'),
+(60, '4573135593083', '', '', '', '', '', '', '', 99, 6, 'catalog/products/4573135593083_1024x1024.png', 0, 1, '25000.0000', 0, 9, '2022-06-05', '0.00000000', 1, '0.00000000', '0.00000000', '0.00000000', 1, 1, 1, 1, 1, 0, '2022-06-05 10:26:49', '2022-06-05 10:44:55'),
+(61, '4549131486957', '', '', '', '', '', '', '', 99, 6, 'catalog/products/4549131486957-2_1024x1024-min.png', 0, 1, '25000.0000', 0, 9, '2022-06-05', '0.00000000', 1, '0.00000000', '0.00000000', '0.00000000', 1, 1, 1, 1, 1, 0, '2022-06-05 10:28:06', '2022-06-05 10:28:06'),
+(50, '4549892192593', '', '', '', '', '', '', '', 99, 6, 'catalog/products/4549892192593_bc98bf68-ed87-43b7.png', 0, 1, '25000.0000', 0, 9, '2022-06-05', '0.00000000', 1, '0.00000000', '0.00000000', '0.00000000', 1, 1, 1, 1, 1, 1, '2022-06-05 09:47:42', '2022-06-05 10:02:47'),
+(51, '4984343272644', '', '', '', '', '', '', '', 99, 6, 'catalog/products/4984343272644_1024x1024.png', 0, 1, '25000.0000', 0, 9, '2022-06-05', '0.00000000', 1, '0.00000000', '0.00000000', '0.00000000', 1, 1, 1, 1, 1, 0, '2022-06-05 09:51:21', '2022-06-05 10:02:54'),
+(52, '4549131596250', '', '', '', '', '', '', '', 99, 6, 'catalog/products/4549131596250_078da67e-7c0c-492f.png', 0, 1, '25000.0000', 0, 9, '2022-06-05', '0.00000000', 1, '0.00000000', '0.00000000', '0.00000000', 1, 1, 1, 1, 1, 9, '2022-06-05 09:52:48', '2022-06-05 10:15:40'),
+(53, '4973430404006', '', '', '', '', '', '', '', 99, 6, 'catalog/products/4973430404006_1024x1024.png', 0, 1, '25000.0000', 0, 9, '2022-06-05', '0.00000000', 1, '0.00000000', '0.00000000', '0.00000000', 1, 1, 1, 1, 1, 1, '2022-06-05 09:54:13', '2022-06-05 10:03:11'),
+(66, '4549131767476', '', '', '', '', '', '', '', 99, 6, 'catalog/products/4549131767476_66e4bf48-ac38-4ab4.png', 0, 1, '25000.0000', 0, 9, '2022-06-05', '0.00000000', 1, '0.00000000', '0.00000000', '0.00000000', 1, 1, 1, 1, 1, 0, '2022-06-05 10:34:29', '2022-06-05 10:34:29'),
+(67, '4573135576871', '', '', '', '', '', '', '', 99, 6, 'catalog/products/4573135576871_1024x1024.png', 0, 1, '25000.0000', 0, 9, '2022-06-05', '0.00000000', 1, '0.00000000', '0.00000000', '0.00000000', 1, 1, 1, 1, 1, 0, '2022-06-05 10:35:16', '2022-06-05 10:45:12'),
+(68, '4573135591348', '', '', '', '', '', '', '', 99, 6, 'catalog/products/4573135591348_1024x1024.png', 0, 1, '25000.0000', 0, 9, '2022-06-05', '0.00000000', 1, '0.00000000', '0.00000000', '0.00000000', 1, 1, 1, 1, 1, 0, '2022-06-05 10:36:19', '2022-06-05 10:36:19'),
+(69, '4549131758030', '', '', '', '', '', '', '', 99, 6, 'catalog/products/4549131758030_1e36fde1-4203-4689.png', 0, 1, '25000.0000', 0, 9, '2022-06-05', '0.00000000', 1, '0.00000000', '0.00000000', '0.00000000', 1, 1, 1, 1, 1, 0, '2022-06-05 10:37:09', '2022-06-05 10:42:56'),
+(70, '4573135591324', '', '', '', '', '', '', '', 99, 6, 'catalog/products/4573135591324_1024x1024.png', 0, 1, '25000.0000', 0, 9, '2022-06-05', '0.00000000', 1, '0.00000000', '0.00000000', '0.00000000', 1, 1, 1, 1, 1, 0, '2022-06-05 10:37:54', '2022-06-05 10:37:54'),
+(71, '4549131874815', '', '', '', '', '', '', '', 99, 6, 'catalog/products/4549131874815_e151793f-44b7-46eb.png', 0, 1, '25000.0000', 0, 9, '2022-06-05', '0.00000000', 1, '0.00000000', '0.00000000', '0.00000000', 1, 1, 1, 1, 1, 0, '2022-06-05 10:39:11', '2022-06-05 10:39:11'),
+(72, '4549131685961', '', '', '', '', '', '', '', 99, 6, 'catalog/products/4549131685961_1024x1024.png', 0, 1, '25000.0000', 0, 9, '2022-06-05', '0.00000000', 1, '0.00000000', '0.00000000', '0.00000000', 1, 1, 1, 1, 1, 0, '2022-06-05 10:39:56', '2022-06-05 10:39:56'),
+(73, '4549131214567', '', '', '', '', '', '', '', 99, 6, 'catalog/products/4549131214567_e096c9b7-11cd-4fd5.png', 0, 1, '25000.0000', 0, 9, '2022-06-05', '0.00000000', 1, '0.00000000', '0.00000000', '0.00000000', 1, 1, 1, 1, 1, 0, '2022-06-05 10:40:43', '2022-06-05 10:40:43'),
+(74, '4573135588041', '', '', '', '', '', '', '', 99, 6, 'catalog/products/4573135588041_1024x1024.png', 0, 1, '25000.0000', 0, 9, '2022-06-05', '0.00000000', 1, '0.00000000', '0.00000000', '0.00000000', 1, 1, 1, 1, 1, 0, '2022-06-05 10:41:43', '2022-06-05 10:41:43'),
+(75, '4573135592703', '', '', '', '', '', '', '', 99, 6, 'catalog/products/4573135592703_1024x1024.png', 0, 1, '25000.0000', 0, 9, '2022-06-05', '0.00000000', 1, '0.00000000', '0.00000000', '0.00000000', 1, 1, 1, 1, 1, 0, '2022-06-05 10:42:39', '2022-06-05 10:42:39'),
+(76, '4549131625264', '', '', '', '', '', '', '', 99, 6, 'catalog/products/4549131625264-2_1024x1024.png', 0, 1, '25000.0000', 0, 9, '2022-06-05', '0.00000000', 1, '0.00000000', '0.00000000', '0.00000000', 1, 1, 1, 1, 1, 0, '2022-06-05 10:43:38', '2022-06-05 10:43:38'),
+(77, '4573135583312', '', '', '', '', '', '', '', 99, 6, 'catalog/products/4573135583312_1024x1024.png', 0, 1, '25000.0000', 0, 9, '2022-06-05', '0.00000000', 1, '0.00000000', '0.00000000', '0.00000000', 1, 1, 1, 1, 1, 0, '2022-06-05 10:47:28', '2022-06-05 10:47:28'),
+(78, '4549131701418', '', '', '', '', '', '', '', 99, 6, 'catalog/products/4549131701418_1024x1024.png', 0, 1, '25000.0000', 0, 9, '2022-06-05', '0.00000000', 1, '0.00000000', '0.00000000', '0.00000000', 1, 1, 1, 1, 1, 0, '2022-06-05 10:48:02', '2022-06-05 10:48:02');
 
 -- --------------------------------------------------------
 
@@ -2925,16 +2834,10 @@ CREATE TABLE IF NOT EXISTS `oc_product_attribute` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `oc_product_attribute`
+-- Truncate table before insert `oc_product_attribute`
 --
 
-INSERT INTO `oc_product_attribute` (`product_id`, `attribute_id`, `language_id`, `text`) VALUES
-(43, 2, 1, '1'),
-(47, 4, 1, '16GB'),
-(43, 4, 1, '8gb'),
-(42, 3, 1, '100mhz'),
-(47, 2, 1, '4');
-
+TRUNCATE TABLE `oc_product_attribute`;
 -- --------------------------------------------------------
 
 --
@@ -2955,29 +2858,75 @@ CREATE TABLE IF NOT EXISTS `oc_product_description` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
+-- Truncate table before insert `oc_product_description`
+--
+
+TRUNCATE TABLE `oc_product_description`;
+--
 -- Dumping data for table `oc_product_description`
 --
 
-INSERT INTO `oc_product_description` (`product_id`, `language_id`, `name`, `description`, `tag`, `meta_title`, `meta_description`, `meta_keyword`) VALUES
-(35, 1, 'Product 8', '&lt;p&gt;\r\n	Product 8&lt;/p&gt;\r\n', '', 'Product 8', '', ''),
-(48, 1, 'iPod Classic', '&lt;div class=&quot;cpt_product_description &quot;&gt;\r\n	&lt;div&gt;\r\n		&lt;p&gt;\r\n			&lt;strong&gt;More room to move.&lt;/strong&gt;&lt;/p&gt;\r\n		&lt;p&gt;\r\n			With 80GB or 160GB of storage and up to 40 hours of battery life, the new iPod classic lets you enjoy up to 40,000 songs or up to 200 hours of video or any combination wherever you go.&lt;/p&gt;\r\n		&lt;p&gt;\r\n			&lt;strong&gt;Cover Flow.&lt;/strong&gt;&lt;/p&gt;\r\n		&lt;p&gt;\r\n			Browse through your music collection by flipping through album art. Select an album to turn it over and see the track list.&lt;/p&gt;\r\n		&lt;p&gt;\r\n			&lt;strong&gt;Enhanced interface.&lt;/strong&gt;&lt;/p&gt;\r\n		&lt;p&gt;\r\n			Experience a whole new way to browse and view your music and video.&lt;/p&gt;\r\n		&lt;p&gt;\r\n			&lt;strong&gt;Sleeker design.&lt;/strong&gt;&lt;/p&gt;\r\n		&lt;p&gt;\r\n			Beautiful, durable, and sleeker than ever, iPod classic now features an anodized aluminum and polished stainless steel enclosure with rounded edges.&lt;/p&gt;\r\n	&lt;/div&gt;\r\n&lt;/div&gt;\r\n&lt;!-- cpt_container_end --&gt;', '', 'iPod Classic', '', ''),
-(40, 1, 'iPhone', '&lt;p class=&quot;intro&quot;&gt;\r\n	iPhone is a revolutionary new mobile phone that allows you to make a call by simply tapping a name or number in your address book, a favorites list, or a call log. It also automatically syncs all your contacts from a PC, Mac, or Internet service. And it lets you select and listen to voicemail messages in whatever order you want just like email.&lt;/p&gt;\r\n', '', 'iPhone', '', ''),
-(28, 1, 'HTC Touch HD', '&lt;p&gt;\r\n	HTC Touch - in High Definition. Watch music videos and streaming content in awe-inspiring high definition clarity for a mobile experience you never thought possible. Seductively sleek, the HTC Touch HD provides the next generation of mobile functionality, all at a simple touch. Fully integrated with Windows Mobile Professional 6.1, ultrafast 3.5G, GPS, 5MP camera, plus lots more - all delivered on a breathtakingly crisp 3.8&amp;quot; WVGA touchscreen - you can take control of your mobile world with the HTC Touch HD.&lt;/p&gt;\r\n&lt;p&gt;\r\n	&lt;strong&gt;Features&lt;/strong&gt;&lt;/p&gt;\r\n&lt;ul&gt;\r\n	&lt;li&gt;\r\n		Processor Qualcomm&amp;reg; MSM 7201A&amp;trade; 528 MHz&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Windows Mobile&amp;reg; 6.1 Professional Operating System&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Memory: 512 MB ROM, 288 MB RAM&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Dimensions: 115 mm x 62.8 mm x 12 mm / 146.4 grams&lt;/li&gt;\r\n	&lt;li&gt;\r\n		3.8-inch TFT-LCD flat touch-sensitive screen with 480 x 800 WVGA resolution&lt;/li&gt;\r\n	&lt;li&gt;\r\n		HSDPA/WCDMA: Europe/Asia: 900/2100 MHz; Up to 2 Mbps up-link and 7.2 Mbps down-link speeds&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Quad-band GSM/GPRS/EDGE: Europe/Asia: 850/900/1800/1900 MHz (Band frequency, HSUPA availability, and data speed are operator dependent.)&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Device Control via HTC TouchFLO&amp;trade; 3D &amp;amp; Touch-sensitive front panel buttons&lt;/li&gt;\r\n	&lt;li&gt;\r\n		GPS and A-GPS ready&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Bluetooth&amp;reg; 2.0 with Enhanced Data Rate and A2DP for wireless stereo headsets&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Wi-Fi&amp;reg;: IEEE 802.11 b/g&lt;/li&gt;\r\n	&lt;li&gt;\r\n		HTC ExtUSB&amp;trade; (11-pin mini-USB 2.0)&lt;/li&gt;\r\n	&lt;li&gt;\r\n		5 megapixel color camera with auto focus&lt;/li&gt;\r\n	&lt;li&gt;\r\n		VGA CMOS color camera&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Built-in 3.5 mm audio jack, microphone, speaker, and FM radio&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Ring tone formats: AAC, AAC+, eAAC+, AMR-NB, AMR-WB, QCP, MP3, WMA, WAV&lt;/li&gt;\r\n	&lt;li&gt;\r\n		40 polyphonic and standard MIDI format 0 and 1 (SMF)/SP MIDI&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Rechargeable Lithium-ion or Lithium-ion polymer 1350 mAh battery&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Expansion Slot: microSD&amp;trade; memory card (SD 2.0 compatible)&lt;/li&gt;\r\n	&lt;li&gt;\r\n		AC Adapter Voltage range/frequency: 100 ~ 240V AC, 50/60 Hz DC output: 5V and 1A&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Special Features: FM Radio, G-Sensor&lt;/li&gt;\r\n&lt;/ul&gt;\r\n', '', '	 HTC Touch HD', '', ''),
-(44, 1, 'MacBook Air', '&lt;div&gt;\r\n	MacBook Air is ultrathin, ultraportable, and ultra unlike anything else. But you don&amp;rsquo;t lose inches and pounds overnight. It&amp;rsquo;s the result of rethinking conventions. Of multiple wireless innovations. And of breakthrough design. With MacBook Air, mobile computing suddenly has a new standard.&lt;/div&gt;\r\n', '', 'MacBook Air', '', ''),
-(45, 1, 'MacBook Pro', '&lt;div class=&quot;cpt_product_description &quot;&gt;\r\n	&lt;div&gt;\r\n		&lt;p&gt;\r\n			&lt;b&gt;Latest Intel mobile architecture&lt;/b&gt;&lt;/p&gt;\r\n		&lt;p&gt;\r\n			Powered by the most advanced mobile processors from Intel, the new Core 2 Duo MacBook Pro is over 50% faster than the original Core Duo MacBook Pro and now supports up to 4GB of RAM.&lt;/p&gt;\r\n		&lt;p&gt;\r\n			&lt;b&gt;Leading-edge graphics&lt;/b&gt;&lt;/p&gt;\r\n		&lt;p&gt;\r\n			The NVIDIA GeForce 8600M GT delivers exceptional graphics processing power. For the ultimate creative canvas, you can even configure the 17-inch model with a 1920-by-1200 resolution display.&lt;/p&gt;\r\n		&lt;p&gt;\r\n			&lt;b&gt;Designed for life on the road&lt;/b&gt;&lt;/p&gt;\r\n		&lt;p&gt;\r\n			Innovations such as a magnetic power connection and an illuminated keyboard with ambient light sensor put the MacBook Pro in a class by itself.&lt;/p&gt;\r\n		&lt;p&gt;\r\n			&lt;b&gt;Connect. Create. Communicate.&lt;/b&gt;&lt;/p&gt;\r\n		&lt;p&gt;\r\n			Quickly set up a video conference with the built-in iSight camera. Control presentations and media from up to 30 feet away with the included Apple Remote. Connect to high-bandwidth peripherals with FireWire 800 and DVI.&lt;/p&gt;\r\n		&lt;p&gt;\r\n			&lt;b&gt;Next-generation wireless&lt;/b&gt;&lt;/p&gt;\r\n		&lt;p&gt;\r\n			Featuring 802.11n wireless technology, the MacBook Pro delivers up to five times the performance and up to twice the range of previous-generation technologies.&lt;/p&gt;\r\n	&lt;/div&gt;\r\n&lt;/div&gt;\r\n&lt;!-- cpt_container_end --&gt;', '', 'MacBook Pro', '', ''),
-(29, 1, 'Palm Treo Pro', '&lt;p&gt;\r\n	Redefine your workday with the Palm Treo Pro smartphone. Perfectly balanced, you can respond to business and personal email, stay on top of appointments and contacts, and use Wi-Fi or GPS when you&amp;rsquo;re out and about. Then watch a video on YouTube, catch up with news and sports on the web, or listen to a few songs. Balance your work and play the way you like it, with the Palm Treo Pro.&lt;/p&gt;\r\n&lt;p&gt;\r\n	&lt;strong&gt;Features&lt;/strong&gt;&lt;/p&gt;\r\n&lt;ul&gt;\r\n	&lt;li&gt;\r\n		Windows Mobile&amp;reg; 6.1 Professional Edition&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Qualcomm&amp;reg; MSM7201 400MHz Processor&lt;/li&gt;\r\n	&lt;li&gt;\r\n		320x320 transflective colour TFT touchscreen&lt;/li&gt;\r\n	&lt;li&gt;\r\n		HSDPA/UMTS/EDGE/GPRS/GSM radio&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Tri-band UMTS &amp;mdash; 850MHz, 1900MHz, 2100MHz&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Quad-band GSM &amp;mdash; 850/900/1800/1900&lt;/li&gt;\r\n	&lt;li&gt;\r\n		802.11b/g with WPA, WPA2, and 801.1x authentication&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Built-in GPS&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Bluetooth Version: 2.0 + Enhanced Data Rate&lt;/li&gt;\r\n	&lt;li&gt;\r\n		256MB storage (100MB user available), 128MB RAM&lt;/li&gt;\r\n	&lt;li&gt;\r\n		2.0 megapixel camera, up to 8x digital zoom and video capture&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Removable, rechargeable 1500mAh lithium-ion battery&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Up to 5.0 hours talk time and up to 250 hours standby&lt;/li&gt;\r\n	&lt;li&gt;\r\n		MicroSDHC card expansion (up to 32GB supported)&lt;/li&gt;\r\n	&lt;li&gt;\r\n		MicroUSB 2.0 for synchronization and charging&lt;/li&gt;\r\n	&lt;li&gt;\r\n		3.5mm stereo headset jack&lt;/li&gt;\r\n	&lt;li&gt;\r\n		60mm (W) x 114mm (L) x 13.5mm (D) / 133g&lt;/li&gt;\r\n&lt;/ul&gt;\r\n', '', 'Palm Treo Pro', '', ''),
-(36, 1, 'iPod Nano', '&lt;div&gt;\r\n	&lt;p&gt;\r\n		&lt;strong&gt;Video in your pocket.&lt;/strong&gt;&lt;/p&gt;\r\n	&lt;p&gt;\r\n		Its the small iPod with one very big idea: video. The worlds most popular music player now lets you enjoy movies, TV shows, and more on a two-inch display thats 65% brighter than before.&lt;/p&gt;\r\n	&lt;p&gt;\r\n		&lt;strong&gt;Cover Flow.&lt;/strong&gt;&lt;/p&gt;\r\n	&lt;p&gt;\r\n		Browse through your music collection by flipping through album art. Select an album to turn it over and see the track list.&lt;strong&gt;&amp;nbsp;&lt;/strong&gt;&lt;/p&gt;\r\n	&lt;p&gt;\r\n		&lt;strong&gt;Enhanced interface.&lt;/strong&gt;&lt;/p&gt;\r\n	&lt;p&gt;\r\n		Experience a whole new way to browse and view your music and video.&lt;/p&gt;\r\n	&lt;p&gt;\r\n		&lt;strong&gt;Sleek and colorful.&lt;/strong&gt;&lt;/p&gt;\r\n	&lt;p&gt;\r\n		With an anodized aluminum and polished stainless steel enclosure and a choice of five colors, iPod nano is dressed to impress.&lt;/p&gt;\r\n	&lt;p&gt;\r\n		&lt;strong&gt;iTunes.&lt;/strong&gt;&lt;/p&gt;\r\n	&lt;p&gt;\r\n		Available as a free download, iTunes makes it easy to browse and buy millions of songs, movies, TV shows, audiobooks, and games and download free podcasts all at the iTunes Store. And you can import your own music, manage your whole media library, and sync your iPod or iPhone with ease.&lt;/p&gt;\r\n&lt;/div&gt;\r\n', '', 'iPod Nano', '', ''),
-(46, 1, 'Sony VAIO', '&lt;div&gt;\r\n	Unprecedented power. The next generation of processing technology has arrived. Built into the newest VAIO notebooks lies Intel&amp;#39;s latest, most powerful innovation yet: Intel&amp;reg; Centrino&amp;reg; 2 processor technology. Boasting incredible speed, expanded wireless connectivity, enhanced multimedia support and greater energy efficiency, all the high-performance essentials are seamlessly combined into a single chip.&lt;/div&gt;\r\n', '', 'Sony VAIO', '', ''),
-(47, 1, 'HP LP3065', '&lt;p&gt;\r\n	Stop your co-workers in their tracks with the stunning new 30-inch diagonal HP LP3065 Flat Panel Monitor. This flagship monitor features best-in-class performance and presentation features on a huge wide-aspect screen while letting you work as comfortably as possible - you might even forget you&amp;#39;re at the office&lt;/p&gt;\r\n', '', 'HP LP3065', '', ''),
-(32, 1, 'iPod Touch', '&lt;p&gt;\r\n	&lt;strong&gt;Revolutionary multi-touch interface.&lt;/strong&gt;&lt;br /&gt;\r\n	iPod touch features the same multi-touch screen technology as iPhone. Pinch to zoom in on a photo. Scroll through your songs and videos with a flick. Flip through your library by album artwork with Cover Flow.&lt;/p&gt;\r\n&lt;p&gt;\r\n	&lt;strong&gt;Gorgeous 3.5-inch widescreen display.&lt;/strong&gt;&lt;br /&gt;\r\n	Watch your movies, TV shows, and photos come alive with bright, vivid color on the 320-by-480-pixel display.&lt;/p&gt;\r\n&lt;p&gt;\r\n	&lt;strong&gt;Music downloads straight from iTunes.&lt;/strong&gt;&lt;br /&gt;\r\n	Shop the iTunes Wi-Fi Music Store from anywhere with Wi-Fi.1 Browse or search to find the music youre looking for, preview it, and buy it with just a tap.&lt;/p&gt;\r\n&lt;p&gt;\r\n	&lt;strong&gt;Surf the web with Wi-Fi.&lt;/strong&gt;&lt;br /&gt;\r\n	Browse the web using Safari and watch YouTube videos on the first iPod with Wi-Fi built in&lt;br /&gt;\r\n	&amp;nbsp;&lt;/p&gt;\r\n', '', '	 iPod Touch', '', ''),
-(41, 1, 'iMac', '&lt;div&gt;\r\n	Just when you thought iMac had everything, now there&acute;s even more. More powerful Intel Core 2 Duo processors. And more memory standard. Combine this with Mac OS X Leopard and iLife &acute;08, and it&acute;s more all-in-one than ever. iMac packs amazing performance into a stunningly slim space.&lt;/div&gt;\r\n', '', 'iMac', '', ''),
-(33, 1, 'Samsung SyncMaster 941BW', '&lt;div&gt;\r\n	Imagine the advantages of going big without slowing down. The big 19&amp;quot; 941BW monitor combines wide aspect ratio with fast pixel response time, for bigger images, more room to work and crisp motion. In addition, the exclusive MagicBright 2, MagicColor and MagicTune technologies help deliver the ideal image in every situation, while sleek, narrow bezels and adjustable stands deliver style just the way you want it. With the Samsung 941BW widescreen analog/digital LCD monitor, it&amp;#39;s not hard to imagine.&lt;/div&gt;\r\n', '', 'Samsung SyncMaster 941BW', '', ''),
-(34, 1, 'iPod Shuffle', '&lt;div&gt;\r\n	&lt;strong&gt;Born to be worn.&lt;/strong&gt;\r\n	&lt;p&gt;\r\n		Clip on the worlds most wearable music player and take up to 240 songs with you anywhere. Choose from five colors including four new hues to make your musical fashion statement.&lt;/p&gt;\r\n	&lt;p&gt;\r\n		&lt;strong&gt;Random meets rhythm.&lt;/strong&gt;&lt;/p&gt;\r\n	&lt;p&gt;\r\n		With iTunes autofill, iPod shuffle can deliver a new musical experience every time you sync. For more randomness, you can shuffle songs during playback with the slide of a switch.&lt;/p&gt;\r\n	&lt;strong&gt;Everything is easy.&lt;/strong&gt;\r\n	&lt;p&gt;\r\n		Charge and sync with the included USB dock. Operate the iPod shuffle controls with one hand. Enjoy up to 12 hours straight of skip-free music playback.&lt;/p&gt;\r\n&lt;/div&gt;\r\n', '', 'iPod Shuffle', '', ''),
-(43, 1, 'MacBook', '&lt;div&gt;\r\n	&lt;p&gt;\r\n		&lt;b&gt;Intel Core 2 Duo processor&lt;/b&gt;&lt;/p&gt;\r\n	&lt;p&gt;\r\n		Powered by an Intel Core 2 Duo processor at speeds up to 2.16GHz, the new MacBook is the fastest ever.&lt;/p&gt;\r\n	&lt;p&gt;\r\n		&lt;b&gt;1GB memory, larger hard drives&lt;/b&gt;&lt;/p&gt;\r\n	&lt;p&gt;\r\n		The new MacBook now comes with 1GB of memory standard and larger hard drives for the entire line perfect for running more of your favorite applications and storing growing media collections.&lt;/p&gt;\r\n	&lt;p&gt;\r\n		&lt;b&gt;Sleek, 1.08-inch-thin design&lt;/b&gt;&lt;/p&gt;\r\n	&lt;p&gt;\r\n		MacBook makes it easy to hit the road thanks to its tough polycarbonate case, built-in wireless technologies, and innovative MagSafe Power Adapter that releases automatically if someone accidentally trips on the cord.&lt;/p&gt;\r\n	&lt;p&gt;\r\n		&lt;b&gt;Built-in iSight camera&lt;/b&gt;&lt;/p&gt;\r\n	&lt;p&gt;\r\n		Right out of the box, you can have a video chat with friends or family,2 record a video at your desk, or take fun pictures with Photo Booth&lt;/p&gt;\r\n&lt;/div&gt;\r\n', '', 'MacBook', '', ''),
-(31, 1, 'Nikon D300', '&lt;div class=&quot;cpt_product_description &quot;&gt;\r\n	&lt;div&gt;\r\n		Engineered with pro-level features and performance, the 12.3-effective-megapixel D300 combines brand new technologies with advanced features inherited from Nikon&amp;#39;s newly announced D3 professional digital SLR camera to offer serious photographers remarkable performance combined with agility.&lt;br /&gt;\r\n		&lt;br /&gt;\r\n		Similar to the D3, the D300 features Nikon&amp;#39;s exclusive EXPEED Image Processing System that is central to driving the speed and processing power needed for many of the camera&amp;#39;s new features. The D300 features a new 51-point autofocus system with Nikon&amp;#39;s 3D Focus Tracking feature and two new LiveView shooting modes that allow users to frame a photograph using the camera&amp;#39;s high-resolution LCD monitor. The D300 shares a similar Scene Recognition System as is found in the D3; it promises to greatly enhance the accuracy of autofocus, autoexposure, and auto white balance by recognizing the subject or scene being photographed and applying this information to the calculations for the three functions.&lt;br /&gt;\r\n		&lt;br /&gt;\r\n		The D300 reacts with lightning speed, powering up in a mere 0.13 seconds and shooting with an imperceptible 45-millisecond shutter release lag time. The D300 is capable of shooting at a rapid six frames per second and can go as fast as eight frames per second when using the optional MB-D10 multi-power battery pack. In continuous bursts, the D300 can shoot up to 100 shots at full 12.3-megapixel resolution. (NORMAL-LARGE image setting, using a SanDisk Extreme IV 1GB CompactFlash card.)&lt;br /&gt;\r\n		&lt;br /&gt;\r\n		The D300 incorporates a range of innovative technologies and features that will significantly improve the accuracy, control, and performance photographers can get from their equipment. Its new Scene Recognition System advances the use of Nikon&amp;#39;s acclaimed 1,005-segment sensor to recognize colors and light patterns that help the camera determine the subject and the type of scene being photographed before a picture is taken. This information is used to improve the accuracy of autofocus, autoexposure, and auto white balance functions in the D300. For example, the camera can track moving subjects better and by identifying them, it can also automatically select focus points faster and with greater accuracy. It can also analyze highlights and more accurately determine exposure, as well as infer light sources to deliver more accurate white balance detection.&lt;/div&gt;\r\n&lt;/div&gt;\r\n&lt;!-- cpt_container_end --&gt;', '', 'Nikon D300', '', ''),
-(49, 1, 'Samsung Galaxy Tab 10.1', '&lt;p&gt;\r\n	Samsung Galaxy Tab 10.1, is the world&amp;rsquo;s thinnest tablet, measuring 8.6 mm thickness, running with Android 3.0 Honeycomb OS on a 1GHz dual-core Tegra 2 processor, similar to its younger brother Samsung Galaxy Tab 8.9.&lt;/p&gt;\r\n&lt;p&gt;\r\n	Samsung Galaxy Tab 10.1 gives pure Android 3.0 experience, adding its new TouchWiz UX or TouchWiz 4.0 &amp;ndash; includes a live panel, which lets you to customize with different content, such as your pictures, bookmarks, and social feeds, sporting a 10.1 inches WXGA capacitive touch screen with 1280 x 800 pixels of resolution, equipped with 3 megapixel rear camera with LED flash and a 2 megapixel front camera, HSPA+ connectivity up to 21Mbps, 720p HD video recording capability, 1080p HD playback, DLNA support, Bluetooth 2.1, USB 2.0, gyroscope, Wi-Fi 802.11 a/b/g/n, micro-SD slot, 3.5mm headphone jack, and SIM slot, including the Samsung Stick &amp;ndash; a Bluetooth microphone that can be carried in a pocket like a pen and sound dock with powered subwoofer.&lt;/p&gt;\r\n&lt;p&gt;\r\n	Samsung Galaxy Tab 10.1 will come in 16GB / 32GB / 64GB verities and pre-loaded with Social Hub, Reader&amp;rsquo;s Hub, Music Hub and Samsung Mini Apps Tray &amp;ndash; which gives you access to more commonly used apps to help ease multitasking and it is capable of Adobe Flash Player 10.2, powered by 6860mAh battery that gives you 10hours of video-playback time.&amp;nbsp;&amp;auml;&amp;ouml;&lt;/p&gt;\r\n', '', 'Samsung Galaxy Tab 10.1', '', ''),
-(42, 1, 'Apple Cinema 30&quot;', '&lt;p&gt;\r\n	&lt;font face=&quot;helvetica,geneva,arial&quot; size=&quot;2&quot;&gt;&lt;font face=&quot;Helvetica&quot; size=&quot;2&quot;&gt;The 30-inch Apple Cinema HD Display delivers an amazing 2560 x 1600 pixel resolution. Designed specifically for the creative professional, this display provides more space for easier access to all the tools and palettes needed to edit, format and composite your work. Combine this display with a Mac Pro, MacBook Pro, or PowerMac G5 and there\'s no limit to what you can achieve. &lt;br&gt;\r\n	&lt;br&gt;\r\n	&lt;/font&gt;&lt;font face=&quot;Helvetica&quot; size=&quot;2&quot;&gt;The Cinema HD features an active-matrix liquid crystal display that produces flicker-free images that deliver twice the brightness, twice the sharpness and twice the contrast ratio of a typical CRT display. Unlike other flat panels, it\'s designed with a pure digital interface to deliver distortion-free images that never need adjusting. With over 4 million digital pixels, the display is uniquely suited for scientific and technical applications such as visualizing molecular structures or analyzing geological data. &lt;br&gt;\r\n	&lt;br&gt;\r\n	&lt;/font&gt;&lt;font face=&quot;Helvetica&quot; size=&quot;2&quot;&gt;Offering accurate, brilliant color performance, the Cinema HD delivers up to 16.7 million colors across a wide gamut allowing you to see subtle nuances between colors from soft pastels to rich jewel tones. A wide viewing angle ensures uniform color from edge to edge. Apple\'s ColorSync technology allows you to create custom profiles to maintain consistent color onscreen and in print. The result: You can confidently use this display in all your color-critical applications. &lt;br&gt;\r\n	&lt;br&gt;\r\n	&lt;/font&gt;&lt;font face=&quot;Helvetica&quot; size=&quot;2&quot;&gt;Housed in a new aluminum design, the display has a very thin bezel that enhances visual accuracy. Each display features two FireWire 400 ports and two USB 2.0 ports, making attachment of desktop peripherals, such as iSight, iPod, digital and still cameras, hard drives, printers and scanners, even more accessible and convenient. Taking advantage of the much thinner and lighter footprint of an LCD, the new displays support the VESA (Video Electronics Standards Association) mounting interface standard. Customers with the optional Cinema Display VESA Mount Adapter kit gain the flexibility to mount their display in locations most appropriate for their work environment. &lt;br&gt;\r\n	&lt;br&gt;\r\n	&lt;/font&gt;&lt;font face=&quot;Helvetica&quot; size=&quot;2&quot;&gt;The Cinema HD features a single cable design with elegant breakout for the USB 2.0, FireWire 400 and a pure digital connection using the industry standard Digital Video Interface (DVI) interface. The DVI connection allows for a direct pure-digital connection.&lt;br&gt;\r\n	&lt;/font&gt;&lt;/font&gt;&lt;/p&gt;\r\n&lt;h3&gt;\r\n	Features:&lt;/h3&gt;\r\n&lt;p&gt;\r\n	Unrivaled display performance&lt;/p&gt;\r\n&lt;ul&gt;\r\n	&lt;li&gt;\r\n		30-inch (viewable) active-matrix liquid crystal display provides breathtaking image quality and vivid, richly saturated color.&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Support for 2560-by-1600 pixel resolution for display of high definition still and video imagery.&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Wide-format design for simultaneous display of two full pages of text and graphics.&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Industry standard DVI connector for direct attachment to Mac- and Windows-based desktops and notebooks&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Incredibly wide (170 degree) horizontal and vertical viewing angle for maximum visibility and color performance.&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Lightning-fast pixel response for full-motion digital video playback.&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Support for 16.7 million saturated colors, for use in all graphics-intensive applications.&lt;/li&gt;\r\n&lt;/ul&gt;\r\n&lt;p&gt;\r\n	Simple setup and operation&lt;/p&gt;\r\n&lt;ul&gt;\r\n	&lt;li&gt;\r\n		Single cable with elegant breakout for connection to DVI, USB and FireWire ports&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Built-in two-port USB 2.0 hub for easy connection of desktop peripheral devices.&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Two FireWire 400 ports to support iSight and other desktop peripherals&lt;/li&gt;\r\n&lt;/ul&gt;\r\n&lt;p&gt;\r\n	Sleek, elegant design&lt;/p&gt;\r\n&lt;ul&gt;\r\n	&lt;li&gt;\r\n		Huge virtual workspace, very small footprint.&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Narrow Bezel design to minimize visual impact of using dual displays&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Unique hinge design for effortless adjustment&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Support for VESA mounting solutions (Apple Cinema Display VESA Mount Adapter sold separately)&lt;/li&gt;\r\n&lt;/ul&gt;\r\n&lt;h3&gt;\r\n	Technical specifications&lt;/h3&gt;\r\n&lt;p&gt;\r\n	&lt;b&gt;Screen size (diagonal viewable image size)&lt;/b&gt;&lt;/p&gt;\r\n&lt;ul&gt;\r\n	&lt;li&gt;\r\n		Apple Cinema HD Display: 30 inches (29.7-inch viewable)&lt;/li&gt;\r\n&lt;/ul&gt;\r\n&lt;p&gt;\r\n	&lt;b&gt;Screen type&lt;/b&gt;&lt;/p&gt;\r\n&lt;ul&gt;\r\n	&lt;li&gt;\r\n		Thin film transistor (TFT) active-matrix liquid crystal display (AMLCD)&lt;/li&gt;\r\n&lt;/ul&gt;\r\n&lt;p&gt;\r\n	&lt;b&gt;Resolutions&lt;/b&gt;&lt;/p&gt;\r\n&lt;ul&gt;\r\n	&lt;li&gt;\r\n		2560 x 1600 pixels (optimum resolution)&lt;/li&gt;\r\n	&lt;li&gt;\r\n		2048 x 1280&lt;/li&gt;\r\n	&lt;li&gt;\r\n		1920 x 1200&lt;/li&gt;\r\n	&lt;li&gt;\r\n		1280 x 800&lt;/li&gt;\r\n	&lt;li&gt;\r\n		1024 x 640&lt;/li&gt;\r\n&lt;/ul&gt;\r\n&lt;p&gt;\r\n	&lt;b&gt;Display colors (maximum)&lt;/b&gt;&lt;/p&gt;\r\n&lt;ul&gt;\r\n	&lt;li&gt;\r\n		16.7 million&lt;/li&gt;\r\n&lt;/ul&gt;\r\n&lt;p&gt;\r\n	&lt;b&gt;Viewing angle (typical)&lt;/b&gt;&lt;/p&gt;\r\n&lt;ul&gt;\r\n	&lt;li&gt;\r\n		170° horizontal; 170° vertical&lt;/li&gt;\r\n&lt;/ul&gt;\r\n&lt;p&gt;\r\n	&lt;b&gt;Brightness (typical)&lt;/b&gt;&lt;/p&gt;\r\n&lt;ul&gt;\r\n	&lt;li&gt;\r\n		30-inch Cinema HD Display: 400 cd/m2&lt;/li&gt;\r\n&lt;/ul&gt;\r\n&lt;p&gt;\r\n	&lt;b&gt;Contrast ratio (typical)&lt;/b&gt;&lt;/p&gt;\r\n&lt;ul&gt;\r\n	&lt;li&gt;\r\n		700:1&lt;/li&gt;\r\n&lt;/ul&gt;\r\n&lt;p&gt;\r\n	&lt;b&gt;Response time (typical)&lt;/b&gt;&lt;/p&gt;\r\n&lt;ul&gt;\r\n	&lt;li&gt;\r\n		16 ms&lt;/li&gt;\r\n&lt;/ul&gt;\r\n&lt;p&gt;\r\n	&lt;b&gt;Pixel pitch&lt;/b&gt;&lt;/p&gt;\r\n&lt;ul&gt;\r\n	&lt;li&gt;\r\n		30-inch Cinema HD Display: 0.250 mm&lt;/li&gt;\r\n&lt;/ul&gt;\r\n&lt;p&gt;\r\n	&lt;b&gt;Screen treatment&lt;/b&gt;&lt;/p&gt;\r\n&lt;ul&gt;\r\n	&lt;li&gt;\r\n		Antiglare hardcoat&lt;/li&gt;\r\n&lt;/ul&gt;\r\n&lt;p&gt;\r\n	&lt;b&gt;User controls (hardware and software)&lt;/b&gt;&lt;/p&gt;\r\n&lt;ul&gt;\r\n	&lt;li&gt;\r\n		Display Power,&lt;/li&gt;\r\n	&lt;li&gt;\r\n		System sleep, wake&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Brightness&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Monitor tilt&lt;/li&gt;\r\n&lt;/ul&gt;\r\n&lt;p&gt;\r\n	&lt;b&gt;Connectors and cables&lt;/b&gt;&lt;br&gt;\r\n	Cable&lt;/p&gt;\r\n&lt;ul&gt;\r\n	&lt;li&gt;\r\n		DVI (Digital Visual Interface)&lt;/li&gt;\r\n	&lt;li&gt;\r\n		FireWire 400&lt;/li&gt;\r\n	&lt;li&gt;\r\n		USB 2.0&lt;/li&gt;\r\n	&lt;li&gt;\r\n		DC power (24 V)&lt;/li&gt;\r\n&lt;/ul&gt;\r\n&lt;p&gt;\r\n	Connectors&lt;/p&gt;\r\n&lt;ul&gt;\r\n	&lt;li&gt;\r\n		Two-port, self-powered USB 2.0 hub&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Two FireWire 400 ports&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Kensington security port&lt;/li&gt;\r\n&lt;/ul&gt;\r\n&lt;p&gt;\r\n	&lt;b&gt;VESA mount adapter&lt;/b&gt;&lt;br&gt;\r\n	Requires optional Cinema Display VESA Mount Adapter (M9649G/A)&lt;/p&gt;\r\n&lt;ul&gt;\r\n	&lt;li&gt;\r\n		Compatible with VESA FDMI (MIS-D, 100, C) compliant mounting solutions&lt;/li&gt;\r\n&lt;/ul&gt;\r\n&lt;p&gt;\r\n	&lt;b&gt;Electrical requirements&lt;/b&gt;&lt;/p&gt;\r\n&lt;ul&gt;\r\n	&lt;li&gt;\r\n		Input voltage: 100-240 VAC 50-60Hz&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Maximum power when operating: 150W&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Energy saver mode: 3W or less&lt;/li&gt;\r\n&lt;/ul&gt;\r\n&lt;p&gt;\r\n	&lt;b&gt;Environmental requirements&lt;/b&gt;&lt;/p&gt;\r\n&lt;ul&gt;\r\n	&lt;li&gt;\r\n		Operating temperature: 50° to 95° F (10° to 35° C)&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Storage temperature: -40° to 116° F (-40° to 47° C)&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Operating humidity: 20% to 80% noncondensing&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Maximum operating altitude: 10,000 feet&lt;/li&gt;\r\n&lt;/ul&gt;\r\n&lt;p&gt;\r\n	&lt;b&gt;Agency approvals&lt;/b&gt;&lt;/p&gt;\r\n&lt;ul&gt;\r\n	&lt;li&gt;\r\n		FCC Part 15 Class B&lt;/li&gt;\r\n	&lt;li&gt;\r\n		EN55022 Class B&lt;/li&gt;\r\n	&lt;li&gt;\r\n		EN55024&lt;/li&gt;\r\n	&lt;li&gt;\r\n		VCCI Class B&lt;/li&gt;\r\n	&lt;li&gt;\r\n		AS/NZS 3548 Class B&lt;/li&gt;\r\n	&lt;li&gt;\r\n		CNS 13438 Class B&lt;/li&gt;\r\n	&lt;li&gt;\r\n		ICES-003 Class B&lt;/li&gt;\r\n	&lt;li&gt;\r\n		ISO 13406 part 2&lt;/li&gt;\r\n	&lt;li&gt;\r\n		MPR II&lt;/li&gt;\r\n	&lt;li&gt;\r\n		IEC 60950&lt;/li&gt;\r\n	&lt;li&gt;\r\n		UL 60950&lt;/li&gt;\r\n	&lt;li&gt;\r\n		CSA 60950&lt;/li&gt;\r\n	&lt;li&gt;\r\n		EN60950&lt;/li&gt;\r\n	&lt;li&gt;\r\n		ENERGY STAR&lt;/li&gt;\r\n	&lt;li&gt;\r\n		TCO \'03&lt;/li&gt;\r\n&lt;/ul&gt;\r\n&lt;p&gt;\r\n	&lt;b&gt;Size and weight&lt;/b&gt;&lt;br&gt;\r\n	30-inch Apple Cinema HD Display&lt;/p&gt;\r\n&lt;ul&gt;\r\n	&lt;li&gt;\r\n		Height: 21.3 inches (54.3 cm)&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Width: 27.2 inches (68.8 cm)&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Depth: 8.46 inches (21.5 cm)&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Weight: 27.5 pounds (12.5 kg)&lt;/li&gt;\r\n&lt;/ul&gt;\r\n&lt;p&gt;\r\n	&lt;b&gt;System Requirements&lt;/b&gt;&lt;/p&gt;\r\n&lt;ul&gt;\r\n	&lt;li&gt;\r\n		Mac Pro, all graphic options&lt;/li&gt;\r\n	&lt;li&gt;\r\n		MacBook Pro&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Power Mac G5 (PCI-X) with ATI Radeon 9650 or better or NVIDIA GeForce 6800 GT DDL or better&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Power Mac G5 (PCI Express), all graphics options&lt;/li&gt;\r\n	&lt;li&gt;\r\n		PowerBook G4 with dual-link DVI support&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Windows PC and graphics card that supports DVI ports with dual-link digital bandwidth and VESA DDC standard for plug-and-play setup&lt;/li&gt;\r\n&lt;/ul&gt;\r\n', '', 'Apple Cinema 30', '', ''),
-(30, 1, 'Canon EOS 5D', '&lt;p&gt;\r\n	Canon\'s press material for the EOS 5D states that it \'defines (a) new D-SLR category\', while we\'re not typically too concerned with marketing talk this particular statement is clearly pretty accurate. The EOS 5D is unlike any previous digital SLR in that it combines a full-frame (35 mm sized) high resolution sensor (12.8 megapixels) with a relatively compact body (slightly larger than the EOS 20D, although in your hand it feels noticeably \'chunkier\'). The EOS 5D is aimed to slot in between the EOS 20D and the EOS-1D professional digital SLR\'s, an important difference when compared to the latter is that the EOS 5D doesn\'t have any environmental seals. While Canon don\'t specifically refer to the EOS 5D as a \'professional\' digital SLR it will have obvious appeal to professionals who want a high quality digital SLR in a body lighter than the EOS-1D. It will also no doubt appeal to current EOS 20D owners (although lets hope they\'ve not bought too many EF-S lenses...) äë&lt;/p&gt;\r\n', '', 'sdf', '', '');
+INSERT IGNORE INTO `oc_product_description` (`product_id`, `language_id`, `name`, `description`, `tag`, `meta_title`, `meta_description`, `meta_keyword`) VALUES
+(58, 1, 'Rilakkuma - Lemon Air Freshener', '&lt;p&gt;&lt;span style=&quot;color: rgb(255, 0, 141); font-family: Helvetica, &amp;quot;Helvetica Neue&amp;quot;, Arial, &amp;quot;Lucida Grande&amp;quot;, sans-serif; font-size: 15px;&quot;&gt;【Size】&lt;/span&gt;&lt;br style=&quot;color: rgb(255, 0, 141); font-family: Helvetica, &amp;quot;Helvetica Neue&amp;quot;, Arial, &amp;quot;Lucida Grande&amp;quot;, sans-serif; font-size: 15px;&quot;&gt;&lt;span style=&quot;color: rgb(255, 0, 141); font-family: Helvetica, &amp;quot;Helvetica Neue&amp;quot;, Arial, &amp;quot;Lucida Grande&amp;quot;, sans-serif; font-size: 15px;&quot;&gt;【Material】2 designs. 1 design sold per piece and is chosen at random&lt;/span&gt;&lt;br style=&quot;color: rgb(255, 0, 141); font-family: Helvetica, &amp;quot;Helvetica Neue&amp;quot;, Arial, &amp;quot;Lucida Grande&amp;quot;, sans-serif; font-size: 15px;&quot;&gt;&lt;span style=&quot;color: rgb(255, 0, 141); font-family: Helvetica, &amp;quot;Helvetica Neue&amp;quot;, Arial, &amp;quot;Lucida Grande&amp;quot;, sans-serif; font-size: 15px;&quot;&gt;【Extened information】&lt;/span&gt;&lt;span size=&quot;3&quot; color=&quot;#0000ff&quot; data-open-accessibility-text-original=&quot;16px&quot; style=&quot;font-family: Helvetica, &amp;quot;Helvetica Neue&amp;quot;, Arial, &amp;quot;Lucida Grande&amp;quot;, sans-serif; color: rgb(0, 0, 255); font-size: 16px;&quot;&gt;&lt;span style=&quot;font-weight: 700;&quot;&gt;【About Bulk Orders】A limit order is 24 pieces&lt;/span&gt;&amp;nbsp;&lt;/span&gt;&lt;span size=&quot;3&quot; color=&quot;#FF0000&quot; data-open-accessibility-text-original=&quot;16px&quot; style=&quot;font-family: Helvetica, &amp;quot;Helvetica Neue&amp;quot;, Arial, &amp;quot;Lucida Grande&amp;quot;, sans-serif; color: rgb(255, 0, 0); font-size: 16px;&quot;&gt;&lt;span style=&quot;font-weight: 700;&quot;&gt;【Please note the following】&lt;br&gt;Product images are for illustrative purposes only and may differ from the actual product.&lt;br&gt;For product images showing multiple items, we are only actually selling 1 pieceActual product size may vary from the size of Description&lt;br&gt;Product may vary from image above and assortment products will be chosen at random&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/p&gt;', '', 'Rilakkuma - Lemon Air Freshener', '', ''),
+(58, 2, 'Rilakkuma - Lemon Air Freshener', '', '', 'Rilakkuma - Lemon Air Freshener', '', ''),
+(59, 2, ' Hello Kitty Shower Cap', '&lt;p&gt;&lt;span style=&quot;color: rgb(255, 0, 141); font-family: Helvetica, &amp;quot;Helvetica Neue&amp;quot;, Arial, &amp;quot;Lucida Grande&amp;quot;, sans-serif; font-size: 15px;&quot;&gt;【Size】17x15cm 6.7in.x5.9in.&lt;/span&gt;&lt;br style=&quot;color: rgb(255, 0, 141); font-family: Helvetica, &amp;quot;Helvetica Neue&amp;quot;, Arial, &amp;quot;Lucida Grande&amp;quot;, sans-serif; font-size: 15px;&quot;&gt;&lt;span style=&quot;color: rgb(255, 0, 141); font-family: Helvetica, &amp;quot;Helvetica Neue&amp;quot;, Arial, &amp;quot;Lucida Grande&amp;quot;, sans-serif; font-size: 15px;&quot;&gt;【Material】　Polyethylene vinyl acetate&lt;/span&gt;&lt;br style=&quot;color: rgb(255, 0, 141); font-family: Helvetica, &amp;quot;Helvetica Neue&amp;quot;, Arial, &amp;quot;Lucida Grande&amp;quot;, sans-serif; font-size: 15px;&quot;&gt;&lt;span style=&quot;color: rgb(255, 0, 141); font-family: Helvetica, &amp;quot;Helvetica Neue&amp;quot;, Arial, &amp;quot;Lucida Grande&amp;quot;, sans-serif; font-size: 15px;&quot;&gt;【Extened information】Shower caps&lt;/span&gt;&lt;span size=&quot;3&quot; color=&quot;#0000ff&quot; data-open-accessibility-text-original=&quot;16px&quot; style=&quot;font-family: Helvetica, &amp;quot;Helvetica Neue&amp;quot;, Arial, &amp;quot;Lucida Grande&amp;quot;, sans-serif; color: rgb(0, 0, 255); font-size: 16px;&quot;&gt;&lt;span style=&quot;font-weight: 700;&quot;&gt;【About Bulk Orders】A limit order is 10 pieces&lt;/span&gt;&amp;nbsp;&lt;/span&gt;&lt;span size=&quot;3&quot; color=&quot;#FF0000&quot; data-open-accessibility-text-original=&quot;16px&quot; style=&quot;font-family: Helvetica, &amp;quot;Helvetica Neue&amp;quot;, Arial, &amp;quot;Lucida Grande&amp;quot;, sans-serif; color: rgb(255, 0, 0); font-size: 16px;&quot;&gt;&lt;span style=&quot;font-weight: 700;&quot;&gt;【Please note the following】&lt;br&gt;Product images are for illustrative purposes only and may differ from the actual product.&lt;br&gt;For product images showing multiple items, we are only actually selling 1 pieceActual product size may vary from the size of Description&lt;br&gt;Product may vary from image above and assortment products will be chosen at random&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/p&gt;', '', ' Hello Kitty Shower Cap', '', ''),
+(59, 1, ' Hello Kitty Shower Cap', '&lt;p&gt;&lt;span style=&quot;color: rgb(255, 0, 141); font-family: Helvetica, &amp;quot;Helvetica Neue&amp;quot;, Arial, &amp;quot;Lucida Grande&amp;quot;, sans-serif; font-size: 15px;&quot;&gt;【Size】17x15cm 6.7in.x5.9in.&lt;/span&gt;&lt;br style=&quot;color: rgb(255, 0, 141); font-family: Helvetica, &amp;quot;Helvetica Neue&amp;quot;, Arial, &amp;quot;Lucida Grande&amp;quot;, sans-serif; font-size: 15px;&quot;&gt;&lt;span style=&quot;color: rgb(255, 0, 141); font-family: Helvetica, &amp;quot;Helvetica Neue&amp;quot;, Arial, &amp;quot;Lucida Grande&amp;quot;, sans-serif; font-size: 15px;&quot;&gt;【Material】　Polyethylene vinyl acetate&lt;/span&gt;&lt;br style=&quot;color: rgb(255, 0, 141); font-family: Helvetica, &amp;quot;Helvetica Neue&amp;quot;, Arial, &amp;quot;Lucida Grande&amp;quot;, sans-serif; font-size: 15px;&quot;&gt;&lt;span style=&quot;color: rgb(255, 0, 141); font-family: Helvetica, &amp;quot;Helvetica Neue&amp;quot;, Arial, &amp;quot;Lucida Grande&amp;quot;, sans-serif; font-size: 15px;&quot;&gt;【Extened information】Shower caps&lt;/span&gt;&lt;span size=&quot;3&quot; color=&quot;#0000ff&quot; data-open-accessibility-text-original=&quot;16px&quot; style=&quot;font-family: Helvetica, &amp;quot;Helvetica Neue&amp;quot;, Arial, &amp;quot;Lucida Grande&amp;quot;, sans-serif; color: rgb(0, 0, 255); font-size: 16px;&quot;&gt;&lt;span style=&quot;font-weight: 700;&quot;&gt;【About Bulk Orders】A limit order is 10 pieces&lt;/span&gt;&amp;nbsp;&lt;/span&gt;&lt;span size=&quot;3&quot; color=&quot;#FF0000&quot; data-open-accessibility-text-original=&quot;16px&quot; style=&quot;font-family: Helvetica, &amp;quot;Helvetica Neue&amp;quot;, Arial, &amp;quot;Lucida Grande&amp;quot;, sans-serif; color: rgb(255, 0, 0); font-size: 16px;&quot;&gt;&lt;span style=&quot;font-weight: 700;&quot;&gt;【Please note the following】&lt;br&gt;Product images are for illustrative purposes only and may differ from the actual product.&lt;br&gt;For product images showing multiple items, we are only actually selling 1 pieceActual product size may vary from the size of Description&lt;br&gt;Product may vary from image above and assortment products will be chosen at random&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/p&gt;', '', ' Hello Kitty Shower Cap', '', ''),
+(60, 2, 'Hello Kitty Makeup Brush Cleaner', '&lt;p data-open-accessibility-text-original=&quot;15px&quot; style=&quot;margin-bottom: 15px; color: rgb(255, 0, 141); font-family: Helvetica, &amp;quot;Helvetica Neue&amp;quot;, Arial, &amp;quot;Lucida Grande&amp;quot;, sans-serif; font-size: 15px;&quot;&gt;【Size】10.1cm × 9cm × 1.1cm　3.97638in × 3.54331in × 0.433071in　　none&lt;br&gt;【Material】７０℃　EVA resin 158ｆ&lt;br&gt;【Extened information】Makeup tools; Clean the dirt off the brush　Easy, just rub with water and detergent　&lt;/p&gt;&lt;p data-open-accessibility-text-original=&quot;15px&quot; style=&quot;margin-bottom: 15px; color: rgb(255, 0, 141); font-family: Helvetica, &amp;quot;Helvetica Neue&amp;quot;, Arial, &amp;quot;Lucida Grande&amp;quot;, sans-serif; font-size: 15px;&quot;&gt;&lt;span color=&quot;#0000ff&quot; size=&quot;3&quot; data-mce-style=&quot;color: #0000ff; font-size: medium;&quot; style=&quot;color: rgb(0, 0, 255); font-size: medium;&quot;&gt;&lt;span style=&quot;font-weight: 700;&quot;&gt;【About Bulk Orders】A limit order is 3 pieces&lt;/span&gt;&amp;nbsp;&lt;/span&gt;&lt;/p&gt;&lt;p data-open-accessibility-text-original=&quot;15px&quot; style=&quot;margin-bottom: 15px; color: rgb(255, 0, 141); font-family: Helvetica, &amp;quot;Helvetica Neue&amp;quot;, Arial, &amp;quot;Lucida Grande&amp;quot;, sans-serif; font-size: 15px;&quot;&gt;&lt;span data-mce-style=&quot;color: #000000;&quot; style=&quot;color: rgb(0, 0, 0);&quot;&gt;&lt;span size=&quot;3&quot; color=&quot;#FF0000&quot; data-mce-style=&quot;font-size: medium;&quot; style=&quot;font-size: medium;&quot;&gt;【Please note the following】&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;&lt;p data-open-accessibility-text-original=&quot;15px&quot; style=&quot;margin-bottom: 15px; color: rgb(255, 0, 141); font-family: Helvetica, &amp;quot;Helvetica Neue&amp;quot;, Arial, &amp;quot;Lucida Grande&amp;quot;, sans-serif; font-size: 15px;&quot;&gt;&lt;span data-mce-style=&quot;color: #000000;&quot; style=&quot;color: rgb(0, 0, 0);&quot;&gt;&lt;span size=&quot;3&quot; color=&quot;#FF0000&quot; data-mce-style=&quot;font-size: medium;&quot; style=&quot;font-size: medium;&quot;&gt;&lt;span style=&quot;font-weight: 700;&quot;&gt;&lt;span data-mce-fragment=&quot;1&quot; size=&quot;3&quot; color=&quot;#FF0000&quot; data-mce-style=&quot;color: #000000;&quot;&gt;&lt;span data-mce-fragment=&quot;1&quot; data-mce-style=&quot;color: #ff2a00;&quot; style=&quot;color: rgb(255, 42, 0);&quot;&gt;RESALE OF THIS ITEM IS STRICTLY PROHIBITED&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;Product images are for illustrative purposes only and may differ from the actual product.&lt;br&gt;For product images showing multiple items, we are only actually selling 1 piece&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;&lt;p data-open-accessibility-text-original=&quot;15px&quot; style=&quot;margin-bottom: 15px; color: rgb(255, 0, 141); font-family: Helvetica, &amp;quot;Helvetica Neue&amp;quot;, Arial, &amp;quot;Lucida Grande&amp;quot;, sans-serif; font-size: 15px;&quot;&gt;&lt;span data-mce-style=&quot;color: #000000;&quot; style=&quot;color: rgb(0, 0, 0);&quot;&gt;&lt;span size=&quot;3&quot; color=&quot;#FF0000&quot; data-mce-style=&quot;font-size: medium;&quot; style=&quot;font-size: medium;&quot;&gt;Actual product size may vary from the size of Description&lt;br&gt;Product may vary from image above and assortment products will be chosen at random&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;', '', 'Hello Kitty Makeup Brush Cleaner', '', ''),
+(50, 1, 'Sketchbook', '&lt;dt style=&quot;line-height: 1.42857; color: rgb(255, 0, 141); font-family: Helvetica, &amp;quot;Helvetica Neue&amp;quot;, Arial, &amp;quot;Lucida Grande&amp;quot;, sans-serif; font-size: 15px;&quot;&gt;【Size】29cmx21.4cmx0.6cm 11.4inx8.4inx0.2in&lt;br&gt;&lt;/dt&gt;&lt;dt style=&quot;line-height: 1.42857; color: rgb(255, 0, 141); font-family: Helvetica, &amp;quot;Helvetica Neue&amp;quot;, Arial, &amp;quot;Lucida Grande&amp;quot;, sans-serif; font-size: 15px;&quot;&gt;【Material】紙、スチール　PAPER STEEL&lt;br&gt;&lt;/dt&gt;&lt;dt style=&quot;line-height: 1.42857; color: rgb(255, 0, 141); font-family: Helvetica, &amp;quot;Helvetica Neue&amp;quot;, Arial, &amp;quot;Lucida Grande&amp;quot;, sans-serif; font-size: 15px;&quot;&gt;【Extened information】中国産 スケッチブック　MADE IN CHINA SKETCHBOOK&lt;/dt&gt;&lt;dl style=&quot;color: rgb(255, 0, 141); font-family: Helvetica, &amp;quot;Helvetica Neue&amp;quot;, Arial, &amp;quot;Lucida Grande&amp;quot;, sans-serif; font-size: 15px;&quot;&gt;&lt;font size=&quot;3&quot; color=&quot;#0000ff&quot;&gt;&lt;span style=&quot;font-weight: 700;&quot;&gt;&lt;dt style=&quot;line-height: 1.42857;&quot;&gt;【About Bulk Orders】A limit order is 10 pieces&lt;/dt&gt;&lt;/span&gt;&lt;/font&gt;&lt;/dl&gt;&lt;dl style=&quot;color: rgb(255, 0, 141); font-family: Helvetica, &amp;quot;Helvetica Neue&amp;quot;, Arial, &amp;quot;Lucida Grande&amp;quot;, sans-serif; font-size: 15px;&quot;&gt;&lt;font size=&quot;3&quot; color=&quot;#FF0000&quot;&gt;&lt;span style=&quot;font-weight: 700;&quot;&gt;&lt;dt style=&quot;line-height: 1.42857;&quot;&gt;【Please note the following】&lt;br&gt;Product images are for illustrative purposes only and may differ from the actual product.&lt;br&gt;For product images showing multiple items, we are only actually selling 1 piece&lt;/dt&gt;Actual product size may vary from the size of Description&lt;br&gt;Product may vary from image above and assortment products will be chosen at random&lt;/span&gt;&lt;/font&gt;&lt;/dl&gt;', '', 'Sketchbook', '', ''),
+(54, 1, 'Undermat - Cut Protection', '&lt;p&gt;&lt;span style=&quot;color: rgb(255, 0, 141); font-family: Helvetica, &amp;quot;Helvetica Neue&amp;quot;, Arial, &amp;quot;Lucida Grande&amp;quot;, sans-serif; font-size: 15px;&quot;&gt;【Size】22.5cm×15cm×0.3cm 8.9inch×5.9inch×0.1inch&lt;/span&gt;&lt;br style=&quot;color: rgb(255, 0, 141); font-family: Helvetica, &amp;quot;Helvetica Neue&amp;quot;, Arial, &amp;quot;Lucida Grande&amp;quot;, sans-serif; font-size: 15px;&quot;&gt;&lt;span style=&quot;color: rgb(255, 0, 141); font-family: Helvetica, &amp;quot;Helvetica Neue&amp;quot;, Arial, &amp;quot;Lucida Grande&amp;quot;, sans-serif; font-size: 15px;&quot;&gt;【Material】塩化ビニル樹脂　ＰＶＣ&lt;/span&gt;&lt;br style=&quot;color: rgb(255, 0, 141); font-family: Helvetica, &amp;quot;Helvetica Neue&amp;quot;, Arial, &amp;quot;Lucida Grande&amp;quot;, sans-serif; font-size: 15px;&quot;&gt;&lt;span style=&quot;color: rgb(255, 0, 141); font-family: Helvetica, &amp;quot;Helvetica Neue&amp;quot;, Arial, &amp;quot;Lucida Grande&amp;quot;, sans-serif; font-size: 15px;&quot;&gt;【Extened information】切りやすく机を傷つけない。&lt;/span&gt;&lt;span size=&quot;3&quot; color=&quot;#0000ff&quot; data-open-accessibility-text-original=&quot;16px&quot; style=&quot;font-family: Helvetica, &amp;quot;Helvetica Neue&amp;quot;, Arial, &amp;quot;Lucida Grande&amp;quot;, sans-serif; color: rgb(0, 0, 255); font-size: 16px;&quot;&gt;&lt;span style=&quot;font-weight: 700;&quot;&gt;【About Bulk Orders】A limit order is 12 pieces&lt;/span&gt;&amp;nbsp;&lt;/span&gt;&lt;span size=&quot;3&quot; color=&quot;#FF0000&quot; data-open-accessibility-text-original=&quot;16px&quot; style=&quot;font-family: Helvetica, &amp;quot;Helvetica Neue&amp;quot;, Arial, &amp;quot;Lucida Grande&amp;quot;, sans-serif; color: rgb(255, 0, 0); font-size: 16px;&quot;&gt;&lt;span style=&quot;font-weight: 700;&quot;&gt;【Please note the following】&lt;br&gt;Product images are for illustrative purposes only and may differ from the actual product.&lt;br&gt;For product images showing multiple items, we are only actually selling 1 pieceActual product size may vary from the size of Description&lt;br&gt;Product may vary from image above and assortment products will be chosen at random&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/p&gt;', '', 'Undermat - Cut Protection', '', ''),
+(50, 2, 'Sketchbook', '&lt;dt style=&quot;line-height: 1.42857; color: rgb(255, 0, 141); font-family: Helvetica, &amp;quot;Helvetica Neue&amp;quot;, Arial, &amp;quot;Lucida Grande&amp;quot;, sans-serif; font-size: 15px;&quot;&gt;【Size】29cmx21.4cmx0.6cm 11.4inx8.4inx0.2in&lt;br&gt;&lt;/dt&gt;&lt;dt style=&quot;line-height: 1.42857; color: rgb(255, 0, 141); font-family: Helvetica, &amp;quot;Helvetica Neue&amp;quot;, Arial, &amp;quot;Lucida Grande&amp;quot;, sans-serif; font-size: 15px;&quot;&gt;【Material】紙、スチール　PAPER STEEL&lt;br&gt;&lt;/dt&gt;&lt;dt style=&quot;line-height: 1.42857; color: rgb(255, 0, 141); font-family: Helvetica, &amp;quot;Helvetica Neue&amp;quot;, Arial, &amp;quot;Lucida Grande&amp;quot;, sans-serif; font-size: 15px;&quot;&gt;【Extened information】中国産 スケッチブック　MADE IN CHINA SKETCHBOOK&lt;/dt&gt;&lt;dl style=&quot;color: rgb(255, 0, 141); font-family: Helvetica, &amp;quot;Helvetica Neue&amp;quot;, Arial, &amp;quot;Lucida Grande&amp;quot;, sans-serif; font-size: 15px;&quot;&gt;&lt;font size=&quot;3&quot; color=&quot;#0000ff&quot;&gt;&lt;span style=&quot;font-weight: 700;&quot;&gt;&lt;dt style=&quot;line-height: 1.42857;&quot;&gt;【About Bulk Orders】A limit order is 10 pieces&lt;/dt&gt;&lt;/span&gt;&lt;/font&gt;&lt;/dl&gt;&lt;dl style=&quot;color: rgb(255, 0, 141); font-family: Helvetica, &amp;quot;Helvetica Neue&amp;quot;, Arial, &amp;quot;Lucida Grande&amp;quot;, sans-serif; font-size: 15px;&quot;&gt;&lt;font size=&quot;3&quot; color=&quot;#FF0000&quot;&gt;&lt;span style=&quot;font-weight: 700;&quot;&gt;&lt;dt style=&quot;line-height: 1.42857;&quot;&gt;【Please note the following】&lt;br&gt;Product images are for illustrative purposes only and may differ from the actual product.&lt;br&gt;For product images showing multiple items, we are only actually selling 1 piece&lt;/dt&gt;Actual product size may vary from the size of Description&lt;br&gt;Product may vary from image above and assortment products will be chosen at random&lt;/span&gt;&lt;/font&gt;&lt;/dl&gt;', '', 'Sketchbook', '', ''),
+(52, 1, 'Design OPP Tape with Cutter', '&lt;p data-open-accessibility-text-original=&quot;15px&quot; style=&quot;margin-bottom: 15px; color: rgb(255, 0, 141); font-family: Helvetica, &amp;quot;Helvetica Neue&amp;quot;, Arial, &amp;quot;Lucida Grande&amp;quot;, sans-serif; font-size: 15px;&quot;&gt;【Size】5.5x9x4.7cm 2.2x3.5x1.9inch&lt;br&gt;【Material】テープ：OPP、カッター：PP　TAPE-OPP CUTTER-PP&lt;br&gt;【Extened information】カッター付きデザインOPPテープ　DESIGN OPP TAPE WITH CUTTER&lt;/p&gt;&lt;p data-open-accessibility-text-original=&quot;15px&quot; style=&quot;margin-bottom: 15px; color: rgb(255, 0, 141); font-family: Helvetica, &amp;quot;Helvetica Neue&amp;quot;, Arial, &amp;quot;Lucida Grande&amp;quot;, sans-serif; font-size: 15px;&quot;&gt;&lt;span size=&quot;3&quot; color=&quot;#0000ff&quot; style=&quot;color: rgb(0, 0, 255); font-size: medium;&quot;&gt;&lt;span style=&quot;font-weight: 700;&quot;&gt;【About Bulk Orders】A limit order is 6 pieces&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;&lt;p data-open-accessibility-text-original=&quot;15px&quot; style=&quot;margin-bottom: 15px; color: rgb(255, 0, 141); font-family: Helvetica, &amp;quot;Helvetica Neue&amp;quot;, Arial, &amp;quot;Lucida Grande&amp;quot;, sans-serif; font-size: 15px;&quot;&gt;&lt;span size=&quot;3&quot; color=&quot;#FF0000&quot; style=&quot;color: rgb(255, 0, 0); font-size: medium;&quot;&gt;&lt;span style=&quot;font-weight: 700;&quot;&gt;【Please note the following】&lt;br&gt;Product images are for illustrative purposes only and may differ from the actual product.&lt;br&gt;For product images showing multiple items, we are only actually selling 1 piece&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;&lt;p data-open-accessibility-text-original=&quot;15px&quot; style=&quot;margin-bottom: 15px; color: rgb(255, 0, 141); font-family: Helvetica, &amp;quot;Helvetica Neue&amp;quot;, Arial, &amp;quot;Lucida Grande&amp;quot;, sans-serif; font-size: 15px;&quot;&gt;&lt;span size=&quot;3&quot; color=&quot;#FF0000&quot; style=&quot;color: rgb(255, 0, 0); font-size: medium;&quot;&gt;&lt;span style=&quot;font-weight: 700;&quot;&gt;Actual product size may vary from the size of Description&lt;br&gt;Product may vary from image above and assortment products will be chosen at random&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;', '', 'Design OPP Tape with Cutter', '', ''),
+(53, 1, 'Origami Paper - Case', '&lt;p&gt;&lt;span style=&quot;font-weight: 700; color: rgb(255, 0, 141); font-family: Helvetica, &amp;quot;Helvetica Neue&amp;quot;, Arial, &amp;quot;Lucida Grande&amp;quot;, sans-serif; font-size: 15px;&quot;&gt;【Size】&lt;/span&gt;&lt;span style=&quot;color: rgb(255, 0, 141); font-family: Helvetica, &amp;quot;Helvetica Neue&amp;quot;, Arial, &amp;quot;Lucida Grande&amp;quot;, sans-serif; font-size: 15px;&quot;&gt;16.7×16.5×5.1 65.7×6.49×2inch&lt;/span&gt;&lt;br style=&quot;color: rgb(255, 0, 141); font-family: Helvetica, &amp;quot;Helvetica Neue&amp;quot;, Arial, &amp;quot;Lucida Grande&amp;quot;, sans-serif; font-size: 15px;&quot;&gt;&lt;span style=&quot;font-weight: 700; color: rgb(255, 0, 141); font-family: Helvetica, &amp;quot;Helvetica Neue&amp;quot;, Arial, &amp;quot;Lucida Grande&amp;quot;, sans-serif; font-size: 15px;&quot;&gt;【Material】&lt;/span&gt;&lt;span style=&quot;color: rgb(255, 0, 141); font-family: Helvetica, &amp;quot;Helvetica Neue&amp;quot;, Arial, &amp;quot;Lucida Grande&amp;quot;, sans-serif; font-size: 15px;&quot;&gt;&amp;nbsp;Polypropylene&amp;nbsp;&lt;/span&gt;&lt;br style=&quot;color: rgb(255, 0, 141); font-family: Helvetica, &amp;quot;Helvetica Neue&amp;quot;, Arial, &amp;quot;Lucida Grande&amp;quot;, sans-serif; font-size: 15px;&quot;&gt;&lt;span style=&quot;font-weight: 700; color: rgb(255, 0, 141); font-family: Helvetica, &amp;quot;Helvetica Neue&amp;quot;, Arial, &amp;quot;Lucida Grande&amp;quot;, sans-serif; font-size: 15px;&quot;&gt;【Extened information】&lt;/span&gt;&lt;span style=&quot;color: rgb(255, 0, 141); font-family: Helvetica, &amp;quot;Helvetica Neue&amp;quot;, Arial, &amp;quot;Lucida Grande&amp;quot;, sans-serif; font-size: 15px;&quot;&gt;折り紙が約400枚収納できます　横に溝があり折り紙が取り出しやすい&lt;/span&gt;&lt;span size=&quot;3&quot; color=&quot;#0000ff&quot; data-open-accessibility-text-original=&quot;16px&quot; style=&quot;font-family: Helvetica, &amp;quot;Helvetica Neue&amp;quot;, Arial, &amp;quot;Lucida Grande&amp;quot;, sans-serif; color: rgb(0, 0, 255); font-size: 16px;&quot;&gt;&lt;span style=&quot;color: rgb(0, 0, 0);&quot;&gt;【About Bulk Orders】A limit order is 10 pieces&amp;nbsp;&lt;/span&gt;&lt;/span&gt;&lt;span size=&quot;3&quot; color=&quot;#FF0000&quot; data-open-accessibility-text-original=&quot;16px&quot; style=&quot;font-family: Helvetica, &amp;quot;Helvetica Neue&amp;quot;, Arial, &amp;quot;Lucida Grande&amp;quot;, sans-serif; color: rgb(255, 0, 0); font-size: 16px;&quot;&gt;&lt;span style=&quot;color: rgb(0, 0, 0);&quot;&gt;【Please note the following】&lt;/span&gt;&lt;br&gt;&lt;span style=&quot;color: rgb(0, 0, 0);&quot;&gt;Product images are for illustrative purposes only and may differ from the actual product.&lt;/span&gt;&lt;br&gt;&lt;span style=&quot;color: rgb(0, 0, 0);&quot;&gt;For product images showing multiple items, we are only actually selling 1 piece&lt;/span&gt;&lt;span style=&quot;color: rgb(0, 0, 0);&quot;&gt;Actual product size may vary from the size of Description&lt;/span&gt;&lt;br&gt;&lt;span style=&quot;color: rgb(0, 0, 0);&quot;&gt;Product may vary from image above and assortment products will be chosen at random&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/p&gt;', '', 'Origami Paper - Case', '', ''),
+(51, 1, 'Shrink Plastic Craft Transparent', '&lt;p&gt;&lt;span style=&quot;color: rgb(255, 0, 141); font-family: Helvetica, &amp;quot;Helvetica Neue&amp;quot;, Arial, &amp;quot;Lucida Grande&amp;quot;, sans-serif; font-size: 15px;&quot;&gt;【Size】A5サイズ 縦21cm ×横14.8cm ×厚さ0.02cm B6サイズ 縦18.2cm ×横12.8cm ×厚さ0.03cm A5size approx.8.3x 5.8in.Thickness:approx. 0.008 in. B6size approx.7.2x 5.0in.Thickness:approx. 0.012 in.&lt;/span&gt;&lt;br style=&quot;color: rgb(255, 0, 141); font-family: Helvetica, &amp;quot;Helvetica Neue&amp;quot;, Arial, &amp;quot;Lucida Grande&amp;quot;, sans-serif; font-size: 15px;&quot;&gt;&lt;span style=&quot;color: rgb(255, 0, 141); font-family: Helvetica, &amp;quot;Helvetica Neue&amp;quot;, Arial, &amp;quot;Lucida Grande&amp;quot;, sans-serif; font-size: 15px;&quot;&gt;【Material】 polystyrene&lt;/span&gt;&lt;br style=&quot;color: rgb(255, 0, 141); font-family: Helvetica, &amp;quot;Helvetica Neue&amp;quot;, Arial, &amp;quot;Lucida Grande&amp;quot;, sans-serif; font-size: 15px;&quot;&gt;&lt;span style=&quot;color: rgb(255, 0, 141); font-family: Helvetica, &amp;quot;Helvetica Neue&amp;quot;, Arial, &amp;quot;Lucida Grande&amp;quot;, sans-serif; font-size: 15px;&quot;&gt;【Extened information】　A mascot that gets shrunk by heat A5 plastic sheet 1sheet B6 plastic sheet 2sheets Key Holder 2pcs&lt;/span&gt;&lt;span size=&quot;3&quot; color=&quot;#0000ff&quot; data-open-accessibility-text-original=&quot;16px&quot; style=&quot;font-family: Helvetica, &amp;quot;Helvetica Neue&amp;quot;, Arial, &amp;quot;Lucida Grande&amp;quot;, sans-serif; color: rgb(0, 0, 255); font-size: 16px;&quot;&gt;&lt;span style=&quot;font-weight: 700;&quot;&gt;【About Bulk Orders】A limit order is 24 pieces&lt;/span&gt;&amp;nbsp;&lt;/span&gt;&lt;span size=&quot;3&quot; color=&quot;#FF0000&quot; data-open-accessibility-text-original=&quot;16px&quot; style=&quot;font-family: Helvetica, &amp;quot;Helvetica Neue&amp;quot;, Arial, &amp;quot;Lucida Grande&amp;quot;, sans-serif; color: rgb(255, 0, 0); font-size: 16px;&quot;&gt;&lt;span style=&quot;font-weight: 700;&quot;&gt;【Please note the following】&lt;br&gt;Product images are for illustrative purposes only and may differ from the actual product.&lt;br&gt;For product images showing multiple items, we are only actually selling 1 pieceActual product size may vary from the size of Description&lt;br&gt;Product may vary from image above and assortment products will be chosen at random&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/p&gt;', '', 'Shrink Plastic Craft Transparent', '', ''),
+(51, 2, 'Shrink Plastic Craft Transparent', '&lt;p&gt;&lt;span style=&quot;color: rgb(255, 0, 141); font-family: Helvetica, &amp;quot;Helvetica Neue&amp;quot;, Arial, &amp;quot;Lucida Grande&amp;quot;, sans-serif; font-size: 15px;&quot;&gt;【Size】A5サイズ 縦21cm ×横14.8cm ×厚さ0.02cm B6サイズ 縦18.2cm ×横12.8cm ×厚さ0.03cm A5size approx.8.3x 5.8in.Thickness:approx. 0.008 in. B6size approx.7.2x 5.0in.Thickness:approx. 0.012 in.&lt;/span&gt;&lt;br style=&quot;color: rgb(255, 0, 141); font-family: Helvetica, &amp;quot;Helvetica Neue&amp;quot;, Arial, &amp;quot;Lucida Grande&amp;quot;, sans-serif; font-size: 15px;&quot;&gt;&lt;span style=&quot;color: rgb(255, 0, 141); font-family: Helvetica, &amp;quot;Helvetica Neue&amp;quot;, Arial, &amp;quot;Lucida Grande&amp;quot;, sans-serif; font-size: 15px;&quot;&gt;【Material】 polystyrene&lt;/span&gt;&lt;br style=&quot;color: rgb(255, 0, 141); font-family: Helvetica, &amp;quot;Helvetica Neue&amp;quot;, Arial, &amp;quot;Lucida Grande&amp;quot;, sans-serif; font-size: 15px;&quot;&gt;&lt;span style=&quot;color: rgb(255, 0, 141); font-family: Helvetica, &amp;quot;Helvetica Neue&amp;quot;, Arial, &amp;quot;Lucida Grande&amp;quot;, sans-serif; font-size: 15px;&quot;&gt;【Extened information】　A mascot that gets shrunk by heat A5 plastic sheet 1sheet B6 plastic sheet 2sheets Key Holder 2pcs&lt;/span&gt;&lt;span size=&quot;3&quot; color=&quot;#0000ff&quot; data-open-accessibility-text-original=&quot;16px&quot; style=&quot;font-family: Helvetica, &amp;quot;Helvetica Neue&amp;quot;, Arial, &amp;quot;Lucida Grande&amp;quot;, sans-serif; color: rgb(0, 0, 255); font-size: 16px;&quot;&gt;&lt;span style=&quot;font-weight: 700;&quot;&gt;【About Bulk Orders】A limit order is 24 pieces&lt;/span&gt;&amp;nbsp;&lt;/span&gt;&lt;span size=&quot;3&quot; color=&quot;#FF0000&quot; data-open-accessibility-text-original=&quot;16px&quot; style=&quot;font-family: Helvetica, &amp;quot;Helvetica Neue&amp;quot;, Arial, &amp;quot;Lucida Grande&amp;quot;, sans-serif; color: rgb(255, 0, 0); font-size: 16px;&quot;&gt;&lt;span style=&quot;font-weight: 700;&quot;&gt;【Please note the following】&lt;br&gt;Product images are for illustrative purposes only and may differ from the actual product.&lt;br&gt;For product images showing multiple items, we are only actually selling 1 pieceActual product size may vary from the size of Description&lt;br&gt;Product may vary from image above and assortment products will be chosen at random&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/p&gt;', '', 'Shrink Plastic Craft Transparent', '', ''),
+(55, 1, 'My Melody Soap Dish with Lid', '&lt;p data-open-accessibility-text-original=&quot;15px&quot; style=&quot;margin-bottom: 15px; color: rgb(255, 0, 141); font-family: Helvetica, &amp;quot;Helvetica Neue&amp;quot;, Arial, &amp;quot;Lucida Grande&amp;quot;, sans-serif; font-size: 15px;&quot;&gt;【Size】12.2cm × 8.4cm × 4.6cm　4.8531in × 3.3571in × 1.861in&lt;br&gt;【Material】Body, lid, face parts ：　polypropylene&lt;br&gt;【Extened information】soap dish&lt;/p&gt;&lt;p data-open-accessibility-text-original=&quot;15px&quot; style=&quot;margin-bottom: 15px; color: rgb(255, 0, 141); font-family: Helvetica, &amp;quot;Helvetica Neue&amp;quot;, Arial, &amp;quot;Lucida Grande&amp;quot;, sans-serif; font-size: 15px;&quot;&gt;&lt;span size=&quot;3&quot; color=&quot;#0000ff&quot; style=&quot;color: rgb(0, 0, 255); font-size: medium;&quot;&gt;&lt;span style=&quot;font-weight: 700;&quot;&gt;【About Bulk Orders】A limit order is 3 pieces&lt;/span&gt;&amp;nbsp;&lt;/span&gt;&lt;span size=&quot;3&quot; color=&quot;#FF0000&quot; style=&quot;color: rgb(255, 0, 0); font-size: medium;&quot;&gt;&lt;span size=&quot;3&quot; color=&quot;#FF0000&quot;&gt;&lt;span style=&quot;font-weight: 700;&quot;&gt;【&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;&lt;p data-open-accessibility-text-original=&quot;15px&quot; style=&quot;margin-bottom: 15px; color: rgb(255, 0, 141); font-family: Helvetica, &amp;quot;Helvetica Neue&amp;quot;, Arial, &amp;quot;Lucida Grande&amp;quot;, sans-serif; font-size: 15px;&quot;&gt;&lt;span data-mce-style=&quot;color: #000000;&quot; style=&quot;color: rgb(0, 0, 0);&quot;&gt;&lt;span color=&quot;#FF0000&quot; size=&quot;3&quot; data-mce-style=&quot;font-size: medium;&quot; style=&quot;font-size: medium;&quot;&gt;【Please note the following】&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;&lt;p data-open-accessibility-text-original=&quot;15px&quot; style=&quot;margin-bottom: 15px; color: rgb(255, 0, 141); font-family: Helvetica, &amp;quot;Helvetica Neue&amp;quot;, Arial, &amp;quot;Lucida Grande&amp;quot;, sans-serif; font-size: 15px;&quot;&gt;&lt;span data-mce-style=&quot;color: #000000;&quot; style=&quot;color: rgb(0, 0, 0);&quot;&gt;&lt;span color=&quot;#FF0000&quot; size=&quot;3&quot; data-mce-style=&quot;font-size: medium;&quot; style=&quot;font-size: medium;&quot;&gt;&lt;span style=&quot;font-weight: 700;&quot;&gt;&lt;span color=&quot;#FF0000&quot; size=&quot;3&quot; data-mce-style=&quot;color: #000000;&quot; data-mce-fragment=&quot;1&quot;&gt;&lt;span data-mce-style=&quot;color: #ff2a00;&quot; data-mce-fragment=&quot;1&quot; style=&quot;color: rgb(255, 42, 0);&quot;&gt;RESALE OF THIS ITEM IS STRICTLY PROHIBITED&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;Product images are for illustrative purposes only and may differ from the actual product.&lt;br&gt;For product images showing multiple items, we are only actually selling 1 piece&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;&lt;p data-open-accessibility-text-original=&quot;15px&quot; style=&quot;margin-bottom: 15px; color: rgb(255, 0, 141); font-family: Helvetica, &amp;quot;Helvetica Neue&amp;quot;, Arial, &amp;quot;Lucida Grande&amp;quot;, sans-serif; font-size: 15px;&quot;&gt;&lt;span data-mce-style=&quot;color: #000000;&quot; style=&quot;color: rgb(0, 0, 0);&quot;&gt;&lt;span color=&quot;#FF0000&quot; size=&quot;3&quot; data-mce-style=&quot;font-size: medium;&quot; style=&quot;font-size: medium;&quot;&gt;Actual product size may vary from the size of Description&lt;br&gt;Product may vary from image above and assortment products will be chosen at random&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;', '', 'My Melody Soap Dish with Lid', '', ''),
+(55, 2, 'My Melody Soap Dish with Lid', '&lt;p data-open-accessibility-text-original=&quot;15px&quot; style=&quot;margin-bottom: 15px; color: rgb(255, 0, 141); font-family: Helvetica, &amp;quot;Helvetica Neue&amp;quot;, Arial, &amp;quot;Lucida Grande&amp;quot;, sans-serif; font-size: 15px;&quot;&gt;【Size】12.2cm × 8.4cm × 4.6cm　4.8531in × 3.3571in × 1.861in&lt;br&gt;【Material】Body, lid, face parts ：　polypropylene&lt;br&gt;【Extened information】soap dish&lt;/p&gt;&lt;p data-open-accessibility-text-original=&quot;15px&quot; style=&quot;margin-bottom: 15px; color: rgb(255, 0, 141); font-family: Helvetica, &amp;quot;Helvetica Neue&amp;quot;, Arial, &amp;quot;Lucida Grande&amp;quot;, sans-serif; font-size: 15px;&quot;&gt;&lt;span size=&quot;3&quot; color=&quot;#0000ff&quot; style=&quot;color: rgb(0, 0, 255); font-size: medium;&quot;&gt;&lt;span style=&quot;font-weight: 700;&quot;&gt;【About Bulk Orders】A limit order is 3 pieces&lt;/span&gt;&amp;nbsp;&lt;/span&gt;&lt;span size=&quot;3&quot; color=&quot;#FF0000&quot; style=&quot;color: rgb(255, 0, 0); font-size: medium;&quot;&gt;&lt;span size=&quot;3&quot; color=&quot;#FF0000&quot;&gt;&lt;span style=&quot;font-weight: 700;&quot;&gt;【&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;&lt;p data-open-accessibility-text-original=&quot;15px&quot; style=&quot;margin-bottom: 15px; color: rgb(255, 0, 141); font-family: Helvetica, &amp;quot;Helvetica Neue&amp;quot;, Arial, &amp;quot;Lucida Grande&amp;quot;, sans-serif; font-size: 15px;&quot;&gt;&lt;span data-mce-style=&quot;color: #000000;&quot; style=&quot;color: rgb(0, 0, 0);&quot;&gt;&lt;span color=&quot;#FF0000&quot; size=&quot;3&quot; data-mce-style=&quot;font-size: medium;&quot; style=&quot;font-size: medium;&quot;&gt;【Please note the following】&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;&lt;p data-open-accessibility-text-original=&quot;15px&quot; style=&quot;margin-bottom: 15px; color: rgb(255, 0, 141); font-family: Helvetica, &amp;quot;Helvetica Neue&amp;quot;, Arial, &amp;quot;Lucida Grande&amp;quot;, sans-serif; font-size: 15px;&quot;&gt;&lt;span data-mce-style=&quot;color: #000000;&quot; style=&quot;color: rgb(0, 0, 0);&quot;&gt;&lt;span color=&quot;#FF0000&quot; size=&quot;3&quot; data-mce-style=&quot;font-size: medium;&quot; style=&quot;font-size: medium;&quot;&gt;&lt;span style=&quot;font-weight: 700;&quot;&gt;&lt;span color=&quot;#FF0000&quot; size=&quot;3&quot; data-mce-style=&quot;color: #000000;&quot; data-mce-fragment=&quot;1&quot;&gt;&lt;span data-mce-style=&quot;color: #ff2a00;&quot; data-mce-fragment=&quot;1&quot; style=&quot;color: rgb(255, 42, 0);&quot;&gt;RESALE OF THIS ITEM IS STRICTLY PROHIBITED&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;Product images are for illustrative purposes only and may differ from the actual product.&lt;br&gt;For product images showing multiple items, we are only actually selling 1 piece&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;&lt;p data-open-accessibility-text-original=&quot;15px&quot; style=&quot;margin-bottom: 15px; color: rgb(255, 0, 141); font-family: Helvetica, &amp;quot;Helvetica Neue&amp;quot;, Arial, &amp;quot;Lucida Grande&amp;quot;, sans-serif; font-size: 15px;&quot;&gt;&lt;span data-mce-style=&quot;color: #000000;&quot; style=&quot;color: rgb(0, 0, 0);&quot;&gt;&lt;span color=&quot;#FF0000&quot; size=&quot;3&quot; data-mce-style=&quot;font-size: medium;&quot; style=&quot;font-size: medium;&quot;&gt;Actual product size may vary from the size of Description&lt;br&gt;Product may vary from image above and assortment products will be chosen at random&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;', '', 'My Melody Soap Dish with Lid', '', ''),
+(56, 1, 'Hello Kitty Soap Dish with Lid', '&lt;p&gt;&lt;span style=&quot;color: rgb(255, 0, 141); font-family: Helvetica, &amp;quot;Helvetica Neue&amp;quot;, Arial, &amp;quot;Lucida Grande&amp;quot;, sans-serif; font-size: 15px;&quot;&gt;【Size】11.1cm × 8.8cm × 4.9cm　4.4201in × 3.5146in × 1.9791in&lt;/span&gt;&lt;br style=&quot;color: rgb(255, 0, 141); font-family: Helvetica, &amp;quot;Helvetica Neue&amp;quot;, Arial, &amp;quot;Lucida Grande&amp;quot;, sans-serif; font-size: 15px;&quot;&gt;&lt;span style=&quot;color: rgb(255, 0, 141); font-family: Helvetica, &amp;quot;Helvetica Neue&amp;quot;, Arial, &amp;quot;Lucida Grande&amp;quot;, sans-serif; font-size: 15px;&quot;&gt;【Material】Body, lid, face parts ：　polypropylene&lt;/span&gt;&lt;br style=&quot;color: rgb(255, 0, 141); font-family: Helvetica, &amp;quot;Helvetica Neue&amp;quot;, Arial, &amp;quot;Lucida Grande&amp;quot;, sans-serif; font-size: 15px;&quot;&gt;&lt;span style=&quot;color: rgb(255, 0, 141); font-family: Helvetica, &amp;quot;Helvetica Neue&amp;quot;, Arial, &amp;quot;Lucida Grande&amp;quot;, sans-serif; font-size: 15px;&quot;&gt;【Extened information】Soap trays&lt;/span&gt;&lt;span size=&quot;3&quot; color=&quot;#0000ff&quot; data-open-accessibility-text-original=&quot;16px&quot; style=&quot;font-family: Helvetica, &amp;quot;Helvetica Neue&amp;quot;, Arial, &amp;quot;Lucida Grande&amp;quot;, sans-serif; color: rgb(0, 0, 255); font-size: 16px;&quot;&gt;&lt;span style=&quot;font-weight: 700;&quot;&gt;【About Bulk Orders】A limit order is 3 pieces&lt;/span&gt;&amp;nbsp;&lt;/span&gt;&lt;span size=&quot;3&quot; color=&quot;#FF0000&quot; data-open-accessibility-text-original=&quot;16px&quot; style=&quot;font-family: Helvetica, &amp;quot;Helvetica Neue&amp;quot;, Arial, &amp;quot;Lucida Grande&amp;quot;, sans-serif; color: rgb(255, 0, 0); font-size: 16px;&quot;&gt;&lt;span style=&quot;font-weight: 700;&quot;&gt;【Please note the following】&lt;br&gt;Product images are for illustrative purposes only and may differ from the actual product.&lt;br&gt;For product images showing multiple items, we are only actually selling 1 pieceActual product size may vary from the size of Description&lt;br&gt;Product may vary from image above and assortment products will be chosen at random&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/p&gt;', '', 'Hello Kitty Soap Dish with Lid', '', ''),
+(57, 1, 'Little Twin Stars Shower Cap', '&lt;p&gt;&lt;span style=&quot;color: rgb(255, 0, 141); font-family: Helvetica, &amp;quot;Helvetica Neue&amp;quot;, Arial, &amp;quot;Lucida Grande&amp;quot;, sans-serif; font-size: 15px;&quot;&gt;【Size】10cm × 3cm × 20cm　 3.987in × 1.2311in × 7.924in&lt;/span&gt;&lt;br style=&quot;color: rgb(255, 0, 141); font-family: Helvetica, &amp;quot;Helvetica Neue&amp;quot;, Arial, &amp;quot;Lucida Grande&amp;quot;, sans-serif; font-size: 15px;&quot;&gt;&lt;span style=&quot;color: rgb(255, 0, 141); font-family: Helvetica, &amp;quot;Helvetica Neue&amp;quot;, Arial, &amp;quot;Lucida Grande&amp;quot;, sans-serif; font-size: 15px;&quot;&gt;【Material】ポリエチレン酢酸ビニール　Polyethylene vinyl acetate&lt;/span&gt;&lt;br style=&quot;color: rgb(255, 0, 141); font-family: Helvetica, &amp;quot;Helvetica Neue&amp;quot;, Arial, &amp;quot;Lucida Grande&amp;quot;, sans-serif; font-size: 15px;&quot;&gt;&lt;span style=&quot;color: rgb(255, 0, 141); font-family: Helvetica, &amp;quot;Helvetica Neue&amp;quot;, Arial, &amp;quot;Lucida Grande&amp;quot;, sans-serif; font-size: 15px;&quot;&gt;【Extened information】バスタイム、洗顔、メイクの際に髪をまとめるのに便利です。　フリーサイズなので、ロングヘアーにもショートヘアーにも　使えます。　Bath time washing the face it is useful to summarize the hair at the time of make up 　Because it is one size fits all you can use even in short hair in Long Hair&lt;/span&gt;&lt;span size=&quot;3&quot; color=&quot;#0000ff&quot; data-open-accessibility-text-original=&quot;16px&quot; style=&quot;font-family: Helvetica, &amp;quot;Helvetica Neue&amp;quot;, Arial, &amp;quot;Lucida Grande&amp;quot;, sans-serif; color: rgb(0, 0, 255); font-size: 16px;&quot;&gt;&lt;span style=&quot;font-weight: 700;&quot;&gt;【About Bulk Orders】A limit order is 3 pieces&lt;/span&gt;&lt;/span&gt;&lt;span style=&quot;color: rgb(255, 0, 141); font-family: Helvetica, &amp;quot;Helvetica Neue&amp;quot;, Arial, &amp;quot;Lucida Grande&amp;quot;, sans-serif; font-size: 15px;&quot;&gt;&lt;/span&gt;&lt;/p&gt;&lt;p data-open-accessibility-text-original=&quot;15px&quot; style=&quot;margin-bottom: 15px; color: rgb(255, 0, 141); font-family: Helvetica, &amp;quot;Helvetica Neue&amp;quot;, Arial, &amp;quot;Lucida Grande&amp;quot;, sans-serif; font-size: 15px;&quot;&gt;&lt;span data-mce-style=&quot;color: #000000;&quot; style=&quot;color: rgb(0, 0, 0);&quot;&gt;&lt;span color=&quot;#FF0000&quot; size=&quot;3&quot; data-mce-style=&quot;font-size: medium;&quot; style=&quot;font-size: medium;&quot;&gt;【Please note the following】&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;&lt;p data-open-accessibility-text-original=&quot;15px&quot; style=&quot;margin-bottom: 15px; color: rgb(255, 0, 141); font-family: Helvetica, &amp;quot;Helvetica Neue&amp;quot;, Arial, &amp;quot;Lucida Grande&amp;quot;, sans-serif; font-size: 15px;&quot;&gt;&lt;span data-mce-style=&quot;color: #000000;&quot; style=&quot;color: rgb(0, 0, 0);&quot;&gt;&lt;span color=&quot;#FF0000&quot; size=&quot;3&quot; data-mce-style=&quot;font-size: medium;&quot; style=&quot;font-size: medium;&quot;&gt;&lt;span style=&quot;font-weight: 700;&quot;&gt;&lt;span color=&quot;#FF0000&quot; size=&quot;3&quot; data-mce-style=&quot;color: #000000;&quot; data-mce-fragment=&quot;1&quot;&gt;&lt;span data-mce-style=&quot;color: #ff2a00;&quot; data-mce-fragment=&quot;1&quot; style=&quot;color: rgb(255, 42, 0);&quot;&gt;RESALE OF THIS ITEM IS STRICTLY PROHIBITED&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;Product images are for illustrative purposes only and may differ from the actual product.&lt;br&gt;For product images showing multiple items, we are only actually selling 1 piece&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;&lt;p data-open-accessibility-text-original=&quot;15px&quot; style=&quot;margin-bottom: 15px; color: rgb(255, 0, 141); font-family: Helvetica, &amp;quot;Helvetica Neue&amp;quot;, Arial, &amp;quot;Lucida Grande&amp;quot;, sans-serif; font-size: 15px;&quot;&gt;&lt;span data-mce-style=&quot;color: #000000;&quot; style=&quot;color: rgb(0, 0, 0);&quot;&gt;&lt;span color=&quot;#FF0000&quot; size=&quot;3&quot; data-mce-style=&quot;font-size: medium;&quot; style=&quot;font-size: medium;&quot;&gt;Actual product size may vary from the size of Description&lt;br&gt;Product may vary from image above and assortment products will be chosen at random&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;', '', 'Little Twin Stars Shower Cap', '', ''),
+(57, 2, 'Little Twin Stars Shower Cap', '&lt;p&gt;&lt;span style=&quot;color: rgb(255, 0, 141); font-family: Helvetica, &amp;quot;Helvetica Neue&amp;quot;, Arial, &amp;quot;Lucida Grande&amp;quot;, sans-serif; font-size: 15px;&quot;&gt;【Size】10cm × 3cm × 20cm　 3.987in × 1.2311in × 7.924in&lt;/span&gt;&lt;br style=&quot;color: rgb(255, 0, 141); font-family: Helvetica, &amp;quot;Helvetica Neue&amp;quot;, Arial, &amp;quot;Lucida Grande&amp;quot;, sans-serif; font-size: 15px;&quot;&gt;&lt;span style=&quot;color: rgb(255, 0, 141); font-family: Helvetica, &amp;quot;Helvetica Neue&amp;quot;, Arial, &amp;quot;Lucida Grande&amp;quot;, sans-serif; font-size: 15px;&quot;&gt;【Material】ポリエチレン酢酸ビニール　Polyethylene vinyl acetate&lt;/span&gt;&lt;br style=&quot;color: rgb(255, 0, 141); font-family: Helvetica, &amp;quot;Helvetica Neue&amp;quot;, Arial, &amp;quot;Lucida Grande&amp;quot;, sans-serif; font-size: 15px;&quot;&gt;&lt;span style=&quot;color: rgb(255, 0, 141); font-family: Helvetica, &amp;quot;Helvetica Neue&amp;quot;, Arial, &amp;quot;Lucida Grande&amp;quot;, sans-serif; font-size: 15px;&quot;&gt;【Extened information】バスタイム、洗顔、メイクの際に髪をまとめるのに便利です。　フリーサイズなので、ロングヘアーにもショートヘアーにも　使えます。　Bath time washing the face it is useful to summarize the hair at the time of make up 　Because it is one size fits all you can use even in short hair in Long Hair&lt;/span&gt;&lt;span size=&quot;3&quot; color=&quot;#0000ff&quot; data-open-accessibility-text-original=&quot;16px&quot; style=&quot;font-family: Helvetica, &amp;quot;Helvetica Neue&amp;quot;, Arial, &amp;quot;Lucida Grande&amp;quot;, sans-serif; color: rgb(0, 0, 255); font-size: 16px;&quot;&gt;&lt;span style=&quot;font-weight: 700;&quot;&gt;【About Bulk Orders】A limit order is 3 pieces&lt;/span&gt;&lt;/span&gt;&lt;span style=&quot;color: rgb(255, 0, 141); font-family: Helvetica, &amp;quot;Helvetica Neue&amp;quot;, Arial, &amp;quot;Lucida Grande&amp;quot;, sans-serif; font-size: 15px;&quot;&gt;&lt;/span&gt;&lt;/p&gt;&lt;p data-open-accessibility-text-original=&quot;15px&quot; style=&quot;margin-bottom: 15px; color: rgb(255, 0, 141); font-family: Helvetica, &amp;quot;Helvetica Neue&amp;quot;, Arial, &amp;quot;Lucida Grande&amp;quot;, sans-serif; font-size: 15px;&quot;&gt;&lt;span data-mce-style=&quot;color: #000000;&quot; style=&quot;color: rgb(0, 0, 0);&quot;&gt;&lt;span color=&quot;#FF0000&quot; size=&quot;3&quot; data-mce-style=&quot;font-size: medium;&quot; style=&quot;font-size: medium;&quot;&gt;【Please note the following】&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;&lt;p data-open-accessibility-text-original=&quot;15px&quot; style=&quot;margin-bottom: 15px; color: rgb(255, 0, 141); font-family: Helvetica, &amp;quot;Helvetica Neue&amp;quot;, Arial, &amp;quot;Lucida Grande&amp;quot;, sans-serif; font-size: 15px;&quot;&gt;&lt;span data-mce-style=&quot;color: #000000;&quot; style=&quot;color: rgb(0, 0, 0);&quot;&gt;&lt;span color=&quot;#FF0000&quot; size=&quot;3&quot; data-mce-style=&quot;font-size: medium;&quot; style=&quot;font-size: medium;&quot;&gt;&lt;span style=&quot;font-weight: 700;&quot;&gt;&lt;span color=&quot;#FF0000&quot; size=&quot;3&quot; data-mce-style=&quot;color: #000000;&quot; data-mce-fragment=&quot;1&quot;&gt;&lt;span data-mce-style=&quot;color: #ff2a00;&quot; data-mce-fragment=&quot;1&quot; style=&quot;color: rgb(255, 42, 0);&quot;&gt;RESALE OF THIS ITEM IS STRICTLY PROHIBITED&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;Product images are for illustrative purposes only and may differ from the actual product.&lt;br&gt;For product images showing multiple items, we are only actually selling 1 piece&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;&lt;p data-open-accessibility-text-original=&quot;15px&quot; style=&quot;margin-bottom: 15px; color: rgb(255, 0, 141); font-family: Helvetica, &amp;quot;Helvetica Neue&amp;quot;, Arial, &amp;quot;Lucida Grande&amp;quot;, sans-serif; font-size: 15px;&quot;&gt;&lt;span data-mce-style=&quot;color: #000000;&quot; style=&quot;color: rgb(0, 0, 0);&quot;&gt;&lt;span color=&quot;#FF0000&quot; size=&quot;3&quot; data-mce-style=&quot;font-size: medium;&quot; style=&quot;font-size: medium;&quot;&gt;Actual product size may vary from the size of Description&lt;br&gt;Product may vary from image above and assortment products will be chosen at random&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;', '', 'Little Twin Stars Shower Cap', '', ''),
+(56, 2, 'Hello Kitty Soap Dish with Lid', '&lt;p&gt;&lt;span style=&quot;color: rgb(255, 0, 141); font-family: Helvetica, &amp;quot;Helvetica Neue&amp;quot;, Arial, &amp;quot;Lucida Grande&amp;quot;, sans-serif; font-size: 15px;&quot;&gt;【Size】11.1cm × 8.8cm × 4.9cm　4.4201in × 3.5146in × 1.9791in&lt;/span&gt;&lt;br style=&quot;color: rgb(255, 0, 141); font-family: Helvetica, &amp;quot;Helvetica Neue&amp;quot;, Arial, &amp;quot;Lucida Grande&amp;quot;, sans-serif; font-size: 15px;&quot;&gt;&lt;span style=&quot;color: rgb(255, 0, 141); font-family: Helvetica, &amp;quot;Helvetica Neue&amp;quot;, Arial, &amp;quot;Lucida Grande&amp;quot;, sans-serif; font-size: 15px;&quot;&gt;【Material】Body, lid, face parts ：　polypropylene&lt;/span&gt;&lt;br style=&quot;color: rgb(255, 0, 141); font-family: Helvetica, &amp;quot;Helvetica Neue&amp;quot;, Arial, &amp;quot;Lucida Grande&amp;quot;, sans-serif; font-size: 15px;&quot;&gt;&lt;span style=&quot;color: rgb(255, 0, 141); font-family: Helvetica, &amp;quot;Helvetica Neue&amp;quot;, Arial, &amp;quot;Lucida Grande&amp;quot;, sans-serif; font-size: 15px;&quot;&gt;【Extened information】Soap trays&lt;/span&gt;&lt;span size=&quot;3&quot; color=&quot;#0000ff&quot; data-open-accessibility-text-original=&quot;16px&quot; style=&quot;font-family: Helvetica, &amp;quot;Helvetica Neue&amp;quot;, Arial, &amp;quot;Lucida Grande&amp;quot;, sans-serif; color: rgb(0, 0, 255); font-size: 16px;&quot;&gt;&lt;span style=&quot;font-weight: 700;&quot;&gt;【About Bulk Orders】A limit order is 3 pieces&lt;/span&gt;&amp;nbsp;&lt;/span&gt;&lt;span size=&quot;3&quot; color=&quot;#FF0000&quot; data-open-accessibility-text-original=&quot;16px&quot; style=&quot;font-family: Helvetica, &amp;quot;Helvetica Neue&amp;quot;, Arial, &amp;quot;Lucida Grande&amp;quot;, sans-serif; color: rgb(255, 0, 0); font-size: 16px;&quot;&gt;&lt;span style=&quot;font-weight: 700;&quot;&gt;【Please note the following】&lt;br&gt;Product images are for illustrative purposes only and may differ from the actual product.&lt;br&gt;For product images showing multiple items, we are only actually selling 1 pieceActual product size may vary from the size of Description&lt;br&gt;Product may vary from image above and assortment products will be chosen at random&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/p&gt;', '', 'Hello Kitty Soap Dish with Lid', '', '');
+INSERT IGNORE INTO `oc_product_description` (`product_id`, `language_id`, `name`, `description`, `tag`, `meta_title`, `meta_description`, `meta_keyword`) VALUES
+(52, 2, 'Design OPP Tape with Cutter', '&lt;p data-open-accessibility-text-original=&quot;15px&quot; style=&quot;margin-bottom: 15px; color: rgb(255, 0, 141); font-family: Helvetica, &amp;quot;Helvetica Neue&amp;quot;, Arial, &amp;quot;Lucida Grande&amp;quot;, sans-serif; font-size: 15px;&quot;&gt;【Size】5.5x9x4.7cm 2.2x3.5x1.9inch&lt;br&gt;【Material】テープ：OPP、カッター：PP　TAPE-OPP CUTTER-PP&lt;br&gt;【Extened information】カッター付きデザインOPPテープ　DESIGN OPP TAPE WITH CUTTER&lt;/p&gt;&lt;p data-open-accessibility-text-original=&quot;15px&quot; style=&quot;margin-bottom: 15px; color: rgb(255, 0, 141); font-family: Helvetica, &amp;quot;Helvetica Neue&amp;quot;, Arial, &amp;quot;Lucida Grande&amp;quot;, sans-serif; font-size: 15px;&quot;&gt;&lt;span size=&quot;3&quot; color=&quot;#0000ff&quot; style=&quot;color: rgb(0, 0, 255); font-size: medium;&quot;&gt;&lt;span style=&quot;font-weight: 700;&quot;&gt;【About Bulk Orders】A limit order is 6 pieces&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;&lt;p data-open-accessibility-text-original=&quot;15px&quot; style=&quot;margin-bottom: 15px; color: rgb(255, 0, 141); font-family: Helvetica, &amp;quot;Helvetica Neue&amp;quot;, Arial, &amp;quot;Lucida Grande&amp;quot;, sans-serif; font-size: 15px;&quot;&gt;&lt;span size=&quot;3&quot; color=&quot;#FF0000&quot; style=&quot;color: rgb(255, 0, 0); font-size: medium;&quot;&gt;&lt;span style=&quot;font-weight: 700;&quot;&gt;【Please note the following】&lt;br&gt;Product images are for illustrative purposes only and may differ from the actual product.&lt;br&gt;For product images showing multiple items, we are only actually selling 1 piece&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;&lt;p data-open-accessibility-text-original=&quot;15px&quot; style=&quot;margin-bottom: 15px; color: rgb(255, 0, 141); font-family: Helvetica, &amp;quot;Helvetica Neue&amp;quot;, Arial, &amp;quot;Lucida Grande&amp;quot;, sans-serif; font-size: 15px;&quot;&gt;&lt;span size=&quot;3&quot; color=&quot;#FF0000&quot; style=&quot;color: rgb(255, 0, 0); font-size: medium;&quot;&gt;&lt;span style=&quot;font-weight: 700;&quot;&gt;Actual product size may vary from the size of Description&lt;br&gt;Product may vary from image above and assortment products will be chosen at random&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;', '', 'Design OPP Tape with Cutter', '', ''),
+(53, 2, 'Origami Paper - Case', '&lt;p&gt;&lt;span style=&quot;font-weight: 700; color: rgb(255, 0, 141); font-family: Helvetica, &amp;quot;Helvetica Neue&amp;quot;, Arial, &amp;quot;Lucida Grande&amp;quot;, sans-serif; font-size: 15px;&quot;&gt;【Size】&lt;/span&gt;&lt;span style=&quot;color: rgb(255, 0, 141); font-family: Helvetica, &amp;quot;Helvetica Neue&amp;quot;, Arial, &amp;quot;Lucida Grande&amp;quot;, sans-serif; font-size: 15px;&quot;&gt;16.7×16.5×5.1 65.7×6.49×2inch&lt;/span&gt;&lt;br style=&quot;color: rgb(255, 0, 141); font-family: Helvetica, &amp;quot;Helvetica Neue&amp;quot;, Arial, &amp;quot;Lucida Grande&amp;quot;, sans-serif; font-size: 15px;&quot;&gt;&lt;span style=&quot;font-weight: 700; color: rgb(255, 0, 141); font-family: Helvetica, &amp;quot;Helvetica Neue&amp;quot;, Arial, &amp;quot;Lucida Grande&amp;quot;, sans-serif; font-size: 15px;&quot;&gt;【Material】&lt;/span&gt;&lt;span style=&quot;color: rgb(255, 0, 141); font-family: Helvetica, &amp;quot;Helvetica Neue&amp;quot;, Arial, &amp;quot;Lucida Grande&amp;quot;, sans-serif; font-size: 15px;&quot;&gt;&amp;nbsp;Polypropylene&amp;nbsp;&lt;/span&gt;&lt;br style=&quot;color: rgb(255, 0, 141); font-family: Helvetica, &amp;quot;Helvetica Neue&amp;quot;, Arial, &amp;quot;Lucida Grande&amp;quot;, sans-serif; font-size: 15px;&quot;&gt;&lt;span style=&quot;font-weight: 700; color: rgb(255, 0, 141); font-family: Helvetica, &amp;quot;Helvetica Neue&amp;quot;, Arial, &amp;quot;Lucida Grande&amp;quot;, sans-serif; font-size: 15px;&quot;&gt;【Extened information】&lt;/span&gt;&lt;span style=&quot;color: rgb(255, 0, 141); font-family: Helvetica, &amp;quot;Helvetica Neue&amp;quot;, Arial, &amp;quot;Lucida Grande&amp;quot;, sans-serif; font-size: 15px;&quot;&gt;折り紙が約400枚収納できます　横に溝があり折り紙が取り出しやすい&lt;/span&gt;&lt;span size=&quot;3&quot; color=&quot;#0000ff&quot; data-open-accessibility-text-original=&quot;16px&quot; style=&quot;font-family: Helvetica, &amp;quot;Helvetica Neue&amp;quot;, Arial, &amp;quot;Lucida Grande&amp;quot;, sans-serif; color: rgb(0, 0, 255); font-size: 16px;&quot;&gt;&lt;span style=&quot;color: rgb(0, 0, 0);&quot;&gt;【About Bulk Orders】A limit order is 10 pieces&amp;nbsp;&lt;/span&gt;&lt;/span&gt;&lt;span size=&quot;3&quot; color=&quot;#FF0000&quot; data-open-accessibility-text-original=&quot;16px&quot; style=&quot;font-family: Helvetica, &amp;quot;Helvetica Neue&amp;quot;, Arial, &amp;quot;Lucida Grande&amp;quot;, sans-serif; color: rgb(255, 0, 0); font-size: 16px;&quot;&gt;&lt;span style=&quot;color: rgb(0, 0, 0);&quot;&gt;【Please note the following】&lt;/span&gt;&lt;br&gt;&lt;span style=&quot;color: rgb(0, 0, 0);&quot;&gt;Product images are for illustrative purposes only and may differ from the actual product.&lt;/span&gt;&lt;br&gt;&lt;span style=&quot;color: rgb(0, 0, 0);&quot;&gt;For product images showing multiple items, we are only actually selling 1 piece&lt;/span&gt;&lt;span style=&quot;color: rgb(0, 0, 0);&quot;&gt;Actual product size may vary from the size of Description&lt;/span&gt;&lt;br&gt;&lt;span style=&quot;color: rgb(0, 0, 0);&quot;&gt;Product may vary from image above and assortment products will be chosen at random&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/p&gt;', '', 'Origami Paper - Case', '', ''),
+(54, 2, 'Undermat - Cut Protection', '&lt;p&gt;&lt;span style=&quot;color: rgb(255, 0, 141); font-family: Helvetica, &amp;quot;Helvetica Neue&amp;quot;, Arial, &amp;quot;Lucida Grande&amp;quot;, sans-serif; font-size: 15px;&quot;&gt;【Size】22.5cm×15cm×0.3cm 8.9inch×5.9inch×0.1inch&lt;/span&gt;&lt;br style=&quot;color: rgb(255, 0, 141); font-family: Helvetica, &amp;quot;Helvetica Neue&amp;quot;, Arial, &amp;quot;Lucida Grande&amp;quot;, sans-serif; font-size: 15px;&quot;&gt;&lt;span style=&quot;color: rgb(255, 0, 141); font-family: Helvetica, &amp;quot;Helvetica Neue&amp;quot;, Arial, &amp;quot;Lucida Grande&amp;quot;, sans-serif; font-size: 15px;&quot;&gt;【Material】塩化ビニル樹脂　ＰＶＣ&lt;/span&gt;&lt;br style=&quot;color: rgb(255, 0, 141); font-family: Helvetica, &amp;quot;Helvetica Neue&amp;quot;, Arial, &amp;quot;Lucida Grande&amp;quot;, sans-serif; font-size: 15px;&quot;&gt;&lt;span style=&quot;color: rgb(255, 0, 141); font-family: Helvetica, &amp;quot;Helvetica Neue&amp;quot;, Arial, &amp;quot;Lucida Grande&amp;quot;, sans-serif; font-size: 15px;&quot;&gt;【Extened information】切りやすく机を傷つけない。&lt;/span&gt;&lt;span size=&quot;3&quot; color=&quot;#0000ff&quot; data-open-accessibility-text-original=&quot;16px&quot; style=&quot;font-family: Helvetica, &amp;quot;Helvetica Neue&amp;quot;, Arial, &amp;quot;Lucida Grande&amp;quot;, sans-serif; color: rgb(0, 0, 255); font-size: 16px;&quot;&gt;&lt;span style=&quot;font-weight: 700;&quot;&gt;【About Bulk Orders】A limit order is 12 pieces&lt;/span&gt;&amp;nbsp;&lt;/span&gt;&lt;span size=&quot;3&quot; color=&quot;#FF0000&quot; data-open-accessibility-text-original=&quot;16px&quot; style=&quot;font-family: Helvetica, &amp;quot;Helvetica Neue&amp;quot;, Arial, &amp;quot;Lucida Grande&amp;quot;, sans-serif; color: rgb(255, 0, 0); font-size: 16px;&quot;&gt;&lt;span style=&quot;font-weight: 700;&quot;&gt;【Please note the following】&lt;br&gt;Product images are for illustrative purposes only and may differ from the actual product.&lt;br&gt;For product images showing multiple items, we are only actually selling 1 pieceActual product size may vary from the size of Description&lt;br&gt;Product may vary from image above and assortment products will be chosen at random&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/p&gt;', '', 'Undermat - Cut Protection', '', ''),
+(60, 1, 'Hello Kitty Makeup Brush Cleaner', '&lt;p data-open-accessibility-text-original=&quot;15px&quot; style=&quot;margin-bottom: 15px; color: rgb(255, 0, 141); font-family: Helvetica, &amp;quot;Helvetica Neue&amp;quot;, Arial, &amp;quot;Lucida Grande&amp;quot;, sans-serif; font-size: 15px;&quot;&gt;【Size】10.1cm × 9cm × 1.1cm　3.97638in × 3.54331in × 0.433071in　　none&lt;br&gt;【Material】７０℃　EVA resin 158ｆ&lt;br&gt;【Extened information】Makeup tools; Clean the dirt off the brush　Easy, just rub with water and detergent　&lt;/p&gt;&lt;p data-open-accessibility-text-original=&quot;15px&quot; style=&quot;margin-bottom: 15px; color: rgb(255, 0, 141); font-family: Helvetica, &amp;quot;Helvetica Neue&amp;quot;, Arial, &amp;quot;Lucida Grande&amp;quot;, sans-serif; font-size: 15px;&quot;&gt;&lt;span color=&quot;#0000ff&quot; size=&quot;3&quot; data-mce-style=&quot;color: #0000ff; font-size: medium;&quot; style=&quot;color: rgb(0, 0, 255); font-size: medium;&quot;&gt;&lt;span style=&quot;font-weight: 700;&quot;&gt;【About Bulk Orders】A limit order is 3 pieces&lt;/span&gt;&amp;nbsp;&lt;/span&gt;&lt;/p&gt;&lt;p data-open-accessibility-text-original=&quot;15px&quot; style=&quot;margin-bottom: 15px; color: rgb(255, 0, 141); font-family: Helvetica, &amp;quot;Helvetica Neue&amp;quot;, Arial, &amp;quot;Lucida Grande&amp;quot;, sans-serif; font-size: 15px;&quot;&gt;&lt;span data-mce-style=&quot;color: #000000;&quot; style=&quot;color: rgb(0, 0, 0);&quot;&gt;&lt;span size=&quot;3&quot; color=&quot;#FF0000&quot; data-mce-style=&quot;font-size: medium;&quot; style=&quot;font-size: medium;&quot;&gt;【Please note the following】&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;&lt;p data-open-accessibility-text-original=&quot;15px&quot; style=&quot;margin-bottom: 15px; color: rgb(255, 0, 141); font-family: Helvetica, &amp;quot;Helvetica Neue&amp;quot;, Arial, &amp;quot;Lucida Grande&amp;quot;, sans-serif; font-size: 15px;&quot;&gt;&lt;span data-mce-style=&quot;color: #000000;&quot; style=&quot;color: rgb(0, 0, 0);&quot;&gt;&lt;span size=&quot;3&quot; color=&quot;#FF0000&quot; data-mce-style=&quot;font-size: medium;&quot; style=&quot;font-size: medium;&quot;&gt;&lt;span style=&quot;font-weight: 700;&quot;&gt;&lt;span data-mce-fragment=&quot;1&quot; size=&quot;3&quot; color=&quot;#FF0000&quot; data-mce-style=&quot;color: #000000;&quot;&gt;&lt;span data-mce-fragment=&quot;1&quot; data-mce-style=&quot;color: #ff2a00;&quot; style=&quot;color: rgb(255, 42, 0);&quot;&gt;RESALE OF THIS ITEM IS STRICTLY PROHIBITED&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;Product images are for illustrative purposes only and may differ from the actual product.&lt;br&gt;For product images showing multiple items, we are only actually selling 1 piece&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;&lt;p data-open-accessibility-text-original=&quot;15px&quot; style=&quot;margin-bottom: 15px; color: rgb(255, 0, 141); font-family: Helvetica, &amp;quot;Helvetica Neue&amp;quot;, Arial, &amp;quot;Lucida Grande&amp;quot;, sans-serif; font-size: 15px;&quot;&gt;&lt;span data-mce-style=&quot;color: #000000;&quot; style=&quot;color: rgb(0, 0, 0);&quot;&gt;&lt;span size=&quot;3&quot; color=&quot;#FF0000&quot; data-mce-style=&quot;font-size: medium;&quot; style=&quot;font-size: medium;&quot;&gt;Actual product size may vary from the size of Description&lt;br&gt;Product may vary from image above and assortment products will be chosen at random&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;', '', 'Hello Kitty Makeup Brush Cleaner', '', ''),
+(61, 1, 'Makeup Cotton Puff Squares - 90 Pieces x 2 Boxes', '&lt;p data-open-accessibility-text-original=&quot;15px&quot; style=&quot;margin-bottom: 15px; color: rgb(255, 0, 141); font-family: Helvetica, &amp;quot;Helvetica Neue&amp;quot;, Arial, &amp;quot;Lucida Grande&amp;quot;, sans-serif; font-size: 15px;&quot;&gt;【Size】5x6&amp;nbsp;cm 1.97x2.36 in&lt;br&gt;【Material】100% Cotton&lt;br&gt;【Extended information】　For cosmetic use, 2 Boxes with 90 pieces each (180 pieces total)&lt;/p&gt;&lt;p data-open-accessibility-text-original=&quot;15px&quot; style=&quot;margin-bottom: 15px; color: rgb(255, 0, 141); font-family: Helvetica, &amp;quot;Helvetica Neue&amp;quot;, Arial, &amp;quot;Lucida Grande&amp;quot;, sans-serif; font-size: 15px;&quot;&gt;&lt;span size=&quot;3&quot; color=&quot;#0000ff&quot; style=&quot;color: rgb(0, 0, 255); font-size: medium;&quot;&gt;&lt;span style=&quot;font-weight: 700;&quot;&gt;【About Bulk Orders】A limit order is 60 pieces&lt;/span&gt;&amp;nbsp;&lt;/span&gt;&lt;span size=&quot;3&quot; color=&quot;#FF0000&quot; style=&quot;color: rgb(255, 0, 0); font-size: medium;&quot;&gt;&lt;span style=&quot;font-weight: 700;&quot;&gt;【Please note the following】&lt;br&gt;Product images are for illustrative purposes only and may differ from the actual product.&lt;br&gt;For product images showing multiple items, we are only actually selling 1 pieceActual product size may vary from the size of Description&lt;br&gt;Product may vary from image above and assortment products will be chosen at random&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;', '', 'Makeup Cotton Puff Squares - 90 Pieces x 2 Boxes', '', ''),
+(61, 2, 'Makeup Cotton Puff Squares - 90 Pieces x 2 Boxes', '&lt;p data-open-accessibility-text-original=&quot;15px&quot; style=&quot;margin-bottom: 15px; color: rgb(255, 0, 141); font-family: Helvetica, &amp;quot;Helvetica Neue&amp;quot;, Arial, &amp;quot;Lucida Grande&amp;quot;, sans-serif; font-size: 15px;&quot;&gt;【Size】5x6&amp;nbsp;cm 1.97x2.36 in&lt;br&gt;【Material】100% Cotton&lt;br&gt;【Extended information】　For cosmetic use, 2 Boxes with 90 pieces each (180 pieces total)&lt;/p&gt;&lt;p data-open-accessibility-text-original=&quot;15px&quot; style=&quot;margin-bottom: 15px; color: rgb(255, 0, 141); font-family: Helvetica, &amp;quot;Helvetica Neue&amp;quot;, Arial, &amp;quot;Lucida Grande&amp;quot;, sans-serif; font-size: 15px;&quot;&gt;&lt;span size=&quot;3&quot; color=&quot;#0000ff&quot; style=&quot;color: rgb(0, 0, 255); font-size: medium;&quot;&gt;&lt;span style=&quot;font-weight: 700;&quot;&gt;【About Bulk Orders】A limit order is 60 pieces&lt;/span&gt;&amp;nbsp;&lt;/span&gt;&lt;span size=&quot;3&quot; color=&quot;#FF0000&quot; style=&quot;color: rgb(255, 0, 0); font-size: medium;&quot;&gt;&lt;span style=&quot;font-weight: 700;&quot;&gt;【Please note the following】&lt;br&gt;Product images are for illustrative purposes only and may differ from the actual product.&lt;br&gt;For product images showing multiple items, we are only actually selling 1 pieceActual product size may vary from the size of Description&lt;br&gt;Product may vary from image above and assortment products will be chosen at random&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;', '', 'Makeup Cotton Puff Squares - 90 Pieces x 2 Boxes', '', ''),
+(62, 1, 'Makeup Cotton Puff Rectangles - 150 Pieces', '&lt;p data-open-accessibility-text-original=&quot;15px&quot; style=&quot;margin-bottom: 15px; color: rgb(255, 0, 141); font-family: Helvetica, &amp;quot;Helvetica Neue&amp;quot;, Arial, &amp;quot;Lucida Grande&amp;quot;, sans-serif; font-size: 15px;&quot;&gt;【Size】5cm x 6cm 1.97in x 2.36in&lt;br&gt;【Material】100% Cotton&lt;br&gt;【Extended information】For cosmetic use&lt;/p&gt;&lt;p data-open-accessibility-text-original=&quot;15px&quot; style=&quot;margin-bottom: 15px; color: rgb(255, 0, 141); font-family: Helvetica, &amp;quot;Helvetica Neue&amp;quot;, Arial, &amp;quot;Lucida Grande&amp;quot;, sans-serif; font-size: 15px;&quot;&gt;&lt;span size=&quot;3&quot; color=&quot;#0000ff&quot; style=&quot;color: rgb(0, 0, 255); font-size: medium;&quot;&gt;&lt;span style=&quot;font-weight: 700;&quot;&gt;【About Bulk Orders】A limit order is 20 pieces&lt;/span&gt;&amp;nbsp;&lt;/span&gt;&lt;span size=&quot;3&quot; color=&quot;#FF0000&quot; style=&quot;color: rgb(255, 0, 0); font-size: medium;&quot;&gt;&lt;span style=&quot;font-weight: 700;&quot;&gt;【Please note the following】&lt;br&gt;Product images are for illustrative purposes only and may differ from the actual product.&lt;br&gt;For product images showing multiple items, we are only actually selling 1 pieceActual product size may vary from the size of Description&lt;br&gt;Product may vary from image above and assortment products will be chosen at random&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;', '', 'Makeup Cotton Puff Rectangles - 150 Pieces', '', ''),
+(62, 2, 'Makeup Cotton Puff Rectangles - 150 Pieces', '&lt;p data-open-accessibility-text-original=&quot;15px&quot; style=&quot;margin-bottom: 15px; color: rgb(255, 0, 141); font-family: Helvetica, &amp;quot;Helvetica Neue&amp;quot;, Arial, &amp;quot;Lucida Grande&amp;quot;, sans-serif; font-size: 15px;&quot;&gt;【Size】5cm x 6cm 1.97in x 2.36in&lt;br&gt;【Material】100% Cotton&lt;br&gt;【Extended information】For cosmetic use&lt;/p&gt;&lt;p data-open-accessibility-text-original=&quot;15px&quot; style=&quot;margin-bottom: 15px; color: rgb(255, 0, 141); font-family: Helvetica, &amp;quot;Helvetica Neue&amp;quot;, Arial, &amp;quot;Lucida Grande&amp;quot;, sans-serif; font-size: 15px;&quot;&gt;&lt;span size=&quot;3&quot; color=&quot;#0000ff&quot; style=&quot;color: rgb(0, 0, 255); font-size: medium;&quot;&gt;&lt;span style=&quot;font-weight: 700;&quot;&gt;【About Bulk Orders】A limit order is 20 pieces&lt;/span&gt;&amp;nbsp;&lt;/span&gt;&lt;span size=&quot;3&quot; color=&quot;#FF0000&quot; style=&quot;color: rgb(255, 0, 0); font-size: medium;&quot;&gt;&lt;span style=&quot;font-weight: 700;&quot;&gt;【Please note the following】&lt;br&gt;Product images are for illustrative purposes only and may differ from the actual product.&lt;br&gt;For product images showing multiple items, we are only actually selling 1 pieceActual product size may vary from the size of Description&lt;br&gt;Product may vary from image above and assortment products will be chosen at random&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;', '', 'Makeup Cotton Puff Rectangles - 150 Pieces', '', ''),
+(63, 1, 'Car Seat Hook', '&lt;p data-open-accessibility-text-original=&quot;15px&quot; style=&quot;margin-bottom: 15px; color: rgb(255, 0, 141); font-family: Helvetica, &amp;quot;Helvetica Neue&amp;quot;, Arial, &amp;quot;Lucida Grande&amp;quot;, sans-serif; font-size: 15px;&quot;&gt;【Size】(12.5cm×5.5cm×17.5cm) (4.9in×2.2in×6.9in)&lt;br&gt;【Material】Stainless steel polypropylene hook part polypropylene polyethylene&lt;br&gt;【Extended information】Attach the hook to the pole of the headrest. Hook can hold up to 6kg.&lt;br&gt;&lt;span size=&quot;3&quot; color=&quot;#0000ff&quot; style=&quot;color: rgb(0, 0, 255); font-size: medium;&quot;&gt;&lt;span style=&quot;font-weight: 700;&quot;&gt;【About Bulk Orders】A limit order is 12 pieces&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;&lt;p data-open-accessibility-text-original=&quot;15px&quot; style=&quot;margin-bottom: 15px; color: rgb(255, 0, 141); font-family: Helvetica, &amp;quot;Helvetica Neue&amp;quot;, Arial, &amp;quot;Lucida Grande&amp;quot;, sans-serif; font-size: 15px;&quot;&gt;&lt;span size=&quot;3&quot; color=&quot;#FF0000&quot; style=&quot;color: rgb(255, 0, 0); font-size: medium;&quot;&gt;&lt;span style=&quot;font-weight: 700;&quot;&gt;【Please note the following】&lt;br&gt;Product images are for illustrative purposes only and may differ from the actual product.&lt;br&gt;For product images showing multiple items, we are only actually selling 1 piece&lt;br&gt;Actual product size may vary from the size of Description&lt;br&gt;Product may vary from image above and assortment products will be chosen at random&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;', '', 'Car Seat Hook', '', ''),
+(63, 2, 'Car Seat Hook', '&lt;p data-open-accessibility-text-original=&quot;15px&quot; style=&quot;margin-bottom: 15px; color: rgb(255, 0, 141); font-family: Helvetica, &amp;quot;Helvetica Neue&amp;quot;, Arial, &amp;quot;Lucida Grande&amp;quot;, sans-serif; font-size: 15px;&quot;&gt;【Size】(12.5cm×5.5cm×17.5cm) (4.9in×2.2in×6.9in)&lt;br&gt;【Material】Stainless steel polypropylene hook part polypropylene polyethylene&lt;br&gt;【Extended information】Attach the hook to the pole of the headrest. Hook can hold up to 6kg.&lt;br&gt;&lt;span size=&quot;3&quot; color=&quot;#0000ff&quot; style=&quot;color: rgb(0, 0, 255); font-size: medium;&quot;&gt;&lt;span style=&quot;font-weight: 700;&quot;&gt;【About Bulk Orders】A limit order is 12 pieces&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;&lt;p data-open-accessibility-text-original=&quot;15px&quot; style=&quot;margin-bottom: 15px; color: rgb(255, 0, 141); font-family: Helvetica, &amp;quot;Helvetica Neue&amp;quot;, Arial, &amp;quot;Lucida Grande&amp;quot;, sans-serif; font-size: 15px;&quot;&gt;&lt;span size=&quot;3&quot; color=&quot;#FF0000&quot; style=&quot;color: rgb(255, 0, 0); font-size: medium;&quot;&gt;&lt;span style=&quot;font-weight: 700;&quot;&gt;【Please note the following】&lt;br&gt;Product images are for illustrative purposes only and may differ from the actual product.&lt;br&gt;For product images showing multiple items, we are only actually selling 1 piece&lt;br&gt;Actual product size may vary from the size of Description&lt;br&gt;Product may vary from image above and assortment products will be chosen at random&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;', '', 'Car Seat Hook', '', ''),
+(64, 2, 'Foldable Smartphone Stand', '&lt;p&gt;&lt;span style=&quot;color: rgb(255, 0, 141); font-family: Helvetica, &amp;quot;Helvetica Neue&amp;quot;, Arial, &amp;quot;Lucida Grande&amp;quot;, sans-serif; font-size: 15px;&quot;&gt;【Size】7.6cm × 3cm × 13cm　2.99213in × 1.1811in × 5.11811in　なし　none&lt;/span&gt;&lt;br style=&quot;color: rgb(255, 0, 141); font-family: Helvetica, &amp;quot;Helvetica Neue&amp;quot;, Arial, &amp;quot;Lucida Grande&amp;quot;, sans-serif; font-size: 15px;&quot;&gt;&lt;span style=&quot;color: rgb(255, 0, 141); font-family: Helvetica, &amp;quot;Helvetica Neue&amp;quot;, Arial, &amp;quot;Lucida Grande&amp;quot;, sans-serif; font-size: 15px;&quot;&gt;【Material】Body：ABS resin Non-slip coatin：EVA resin&lt;/span&gt;&lt;br style=&quot;color: rgb(255, 0, 141); font-family: Helvetica, &amp;quot;Helvetica Neue&amp;quot;, Arial, &amp;quot;Lucida Grande&amp;quot;, sans-serif; font-size: 15px;&quot;&gt;&lt;span style=&quot;color: rgb(255, 0, 141); font-family: Helvetica, &amp;quot;Helvetica Neue&amp;quot;, Arial, &amp;quot;Lucida Grande&amp;quot;, sans-serif; font-size: 15px;&quot;&gt;【Extened information】Folding smartphone stand. Easy to fold and easy to carry, with a non-slip bottom.&lt;/span&gt;&lt;span size=&quot;3&quot; color=&quot;#0000ff&quot; data-open-accessibility-text-original=&quot;16px&quot; style=&quot;font-family: Helvetica, &amp;quot;Helvetica Neue&amp;quot;, Arial, &amp;quot;Lucida Grande&amp;quot;, sans-serif; color: rgb(0, 0, 255); font-size: 16px;&quot;&gt;&lt;span style=&quot;font-weight: 700;&quot;&gt;【About Bulk Orders】A limit order is 12 pieces&lt;/span&gt;&amp;nbsp;&lt;/span&gt;&lt;span size=&quot;3&quot; color=&quot;#FF0000&quot; data-open-accessibility-text-original=&quot;16px&quot; style=&quot;font-family: Helvetica, &amp;quot;Helvetica Neue&amp;quot;, Arial, &amp;quot;Lucida Grande&amp;quot;, sans-serif; color: rgb(255, 0, 0); font-size: 16px;&quot;&gt;&lt;span style=&quot;font-weight: 700;&quot;&gt;【Please note the following】&lt;br&gt;Product images are for illustrative purposes only and may differ from the actual product.&lt;br&gt;For product images showing multiple items, we are only actually selling 1 pieceActual product size may vary from the size of Description&lt;br&gt;Product may vary from image above and assortment products will be chosen at random&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/p&gt;', '', 'Foldable Smartphone Stand', '', ''),
+(64, 1, 'Foldable Smartphone Stand', '&lt;p&gt;&lt;span style=&quot;color: rgb(255, 0, 141); font-family: Helvetica, &amp;quot;Helvetica Neue&amp;quot;, Arial, &amp;quot;Lucida Grande&amp;quot;, sans-serif; font-size: 15px;&quot;&gt;【Size】7.6cm × 3cm × 13cm　2.99213in × 1.1811in × 5.11811in　なし　none&lt;/span&gt;&lt;br style=&quot;color: rgb(255, 0, 141); font-family: Helvetica, &amp;quot;Helvetica Neue&amp;quot;, Arial, &amp;quot;Lucida Grande&amp;quot;, sans-serif; font-size: 15px;&quot;&gt;&lt;span style=&quot;color: rgb(255, 0, 141); font-family: Helvetica, &amp;quot;Helvetica Neue&amp;quot;, Arial, &amp;quot;Lucida Grande&amp;quot;, sans-serif; font-size: 15px;&quot;&gt;【Material】Body：ABS resin Non-slip coatin：EVA resin&lt;/span&gt;&lt;br style=&quot;color: rgb(255, 0, 141); font-family: Helvetica, &amp;quot;Helvetica Neue&amp;quot;, Arial, &amp;quot;Lucida Grande&amp;quot;, sans-serif; font-size: 15px;&quot;&gt;&lt;span style=&quot;color: rgb(255, 0, 141); font-family: Helvetica, &amp;quot;Helvetica Neue&amp;quot;, Arial, &amp;quot;Lucida Grande&amp;quot;, sans-serif; font-size: 15px;&quot;&gt;【Extened information】Folding smartphone stand. Easy to fold and easy to carry, with a non-slip bottom.&lt;/span&gt;&lt;span size=&quot;3&quot; color=&quot;#0000ff&quot; data-open-accessibility-text-original=&quot;16px&quot; style=&quot;font-family: Helvetica, &amp;quot;Helvetica Neue&amp;quot;, Arial, &amp;quot;Lucida Grande&amp;quot;, sans-serif; color: rgb(0, 0, 255); font-size: 16px;&quot;&gt;&lt;span style=&quot;font-weight: 700;&quot;&gt;【About Bulk Orders】A limit order is 12 pieces&lt;/span&gt;&amp;nbsp;&lt;/span&gt;&lt;span size=&quot;3&quot; color=&quot;#FF0000&quot; data-open-accessibility-text-original=&quot;16px&quot; style=&quot;font-family: Helvetica, &amp;quot;Helvetica Neue&amp;quot;, Arial, &amp;quot;Lucida Grande&amp;quot;, sans-serif; color: rgb(255, 0, 0); font-size: 16px;&quot;&gt;&lt;span style=&quot;font-weight: 700;&quot;&gt;【Please note the following】&lt;br&gt;Product images are for illustrative purposes only and may differ from the actual product.&lt;br&gt;For product images showing multiple items, we are only actually selling 1 pieceActual product size may vary from the size of Description&lt;br&gt;Product may vary from image above and assortment products will be chosen at random&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/p&gt;', '', 'Foldable Smartphone Stand', '', ''),
+(65, 1, 'Neck Pillow - Black Cat', '&lt;dt style=&quot;color: rgb(255, 0, 141); font-family: Helvetica, &amp;quot;Helvetica Neue&amp;quot;, Arial, &amp;quot;Lucida Grande&amp;quot;, sans-serif; font-size: 15px; font-weight: 400;&quot;&gt;【Size】30cm×30cm×5cm 11.8in×11.8in×2in&lt;br&gt;&lt;/dt&gt;&lt;dt style=&quot;color: rgb(255, 0, 141); font-family: Helvetica, &amp;quot;Helvetica Neue&amp;quot;, Arial, &amp;quot;Lucida Grande&amp;quot;, sans-serif; font-size: 15px; font-weight: 400;&quot;&gt;【Material】ポリエステル１００％　polyester 100pct&lt;br&gt;&lt;/dt&gt;&lt;dt style=&quot;color: rgb(255, 0, 141); font-family: Helvetica, &amp;quot;Helvetica Neue&amp;quot;, Arial, &amp;quot;Lucida Grande&amp;quot;, sans-serif; font-size: 15px; font-weight: 400;&quot;&gt;【Extened information】アニマルネックピロー（黒猫）　Animal Neck Pillow-Black Cat-&lt;/dt&gt;&lt;dl style=&quot;color: rgb(255, 0, 141); font-family: Helvetica, &amp;quot;Helvetica Neue&amp;quot;, Arial, &amp;quot;Lucida Grande&amp;quot;, sans-serif; font-size: 15px;&quot;&gt;&lt;font size=&quot;3&quot; color=&quot;#0000ff&quot;&gt;&lt;span style=&quot;font-weight: 700;&quot;&gt;&lt;dt&gt;【About Bulk Orders】A limit order is 24 pieces&lt;/dt&gt;&lt;/span&gt;&lt;/font&gt;&lt;/dl&gt;&lt;dl style=&quot;color: rgb(255, 0, 141); font-family: Helvetica, &amp;quot;Helvetica Neue&amp;quot;, Arial, &amp;quot;Lucida Grande&amp;quot;, sans-serif; font-size: 15px;&quot;&gt;&lt;font size=&quot;3&quot; color=&quot;#FF0000&quot;&gt;&lt;span style=&quot;font-weight: 700;&quot;&gt;&lt;dt&gt;【Please note the following】&lt;br&gt;Product images are for illustrative purposes only and may differ from the actual product.&lt;br&gt;For product images showing multiple items, we are only actually selling 1 piece&lt;/dt&gt;Actual product size may vary from the size of Description&lt;br&gt;Product may vary from image above and assortment products will be chosen at random&lt;/span&gt;&lt;/font&gt;&lt;/dl&gt;', '', 'Neck Pillow - Black Cat', '', ''),
+(65, 2, 'Neck Pillow - Black Cat', '&lt;dt style=&quot;color: rgb(255, 0, 141); font-family: Helvetica, &amp;quot;Helvetica Neue&amp;quot;, Arial, &amp;quot;Lucida Grande&amp;quot;, sans-serif; font-size: 15px; font-weight: 400;&quot;&gt;【Size】30cm×30cm×5cm 11.8in×11.8in×2in&lt;br&gt;&lt;/dt&gt;&lt;dt style=&quot;color: rgb(255, 0, 141); font-family: Helvetica, &amp;quot;Helvetica Neue&amp;quot;, Arial, &amp;quot;Lucida Grande&amp;quot;, sans-serif; font-size: 15px; font-weight: 400;&quot;&gt;【Material】ポリエステル１００％　polyester 100pct&lt;br&gt;&lt;/dt&gt;&lt;dt style=&quot;color: rgb(255, 0, 141); font-family: Helvetica, &amp;quot;Helvetica Neue&amp;quot;, Arial, &amp;quot;Lucida Grande&amp;quot;, sans-serif; font-size: 15px; font-weight: 400;&quot;&gt;【Extened information】アニマルネックピロー（黒猫）　Animal Neck Pillow-Black Cat-&lt;/dt&gt;&lt;dl style=&quot;color: rgb(255, 0, 141); font-family: Helvetica, &amp;quot;Helvetica Neue&amp;quot;, Arial, &amp;quot;Lucida Grande&amp;quot;, sans-serif; font-size: 15px;&quot;&gt;&lt;font size=&quot;3&quot; color=&quot;#0000ff&quot;&gt;&lt;span style=&quot;font-weight: 700;&quot;&gt;&lt;dt&gt;【About Bulk Orders】A limit order is 24 pieces&lt;/dt&gt;&lt;/span&gt;&lt;/font&gt;&lt;/dl&gt;&lt;dl style=&quot;color: rgb(255, 0, 141); font-family: Helvetica, &amp;quot;Helvetica Neue&amp;quot;, Arial, &amp;quot;Lucida Grande&amp;quot;, sans-serif; font-size: 15px;&quot;&gt;&lt;font size=&quot;3&quot; color=&quot;#FF0000&quot;&gt;&lt;span style=&quot;font-weight: 700;&quot;&gt;&lt;dt&gt;【Please note the following】&lt;br&gt;Product images are for illustrative purposes only and may differ from the actual product.&lt;br&gt;For product images showing multiple items, we are only actually selling 1 piece&lt;/dt&gt;Actual product size may vary from the size of Description&lt;br&gt;Product may vary from image above and assortment products will be chosen at random&lt;/span&gt;&lt;/font&gt;&lt;/dl&gt;', '', 'Neck Pillow - Black Cat', '', ''),
+(66, 1, 'Meow - Towel Hanger for Door', '&lt;p data-open-accessibility-text-original=&quot;15px&quot; style=&quot;margin-bottom: 15px; color: rgb(255, 0, 141); font-family: Helvetica, &amp;quot;Helvetica Neue&amp;quot;, Arial, &amp;quot;Lucida Grande&amp;quot;, sans-serif; font-size: 15px;&quot;&gt;【Size】6.3492in × 2.4122in × 3.5933in&lt;br&gt;【Material】 Iron (powder coating)&lt;br&gt;【Extended information】 Hang on a door to hold a towel.　Supported weight: 500g (1.1lb)　Supported door thickness: Up to 20mm (0.8in)&lt;/p&gt;&lt;p data-open-accessibility-text-original=&quot;15px&quot; style=&quot;margin-bottom: 15px; color: rgb(255, 0, 141); font-family: Helvetica, &amp;quot;Helvetica Neue&amp;quot;, Arial, &amp;quot;Lucida Grande&amp;quot;, sans-serif; font-size: 15px;&quot;&gt;&lt;span size=&quot;3&quot; color=&quot;#0000ff&quot; style=&quot;color: rgb(0, 0, 255); font-size: medium;&quot;&gt;&lt;span style=&quot;font-weight: 700;&quot;&gt;【About Bulk Orders】A limit order is 10 pieces&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;&lt;p data-open-accessibility-text-original=&quot;15px&quot; style=&quot;margin-bottom: 15px; color: rgb(255, 0, 141); font-family: Helvetica, &amp;quot;Helvetica Neue&amp;quot;, Arial, &amp;quot;Lucida Grande&amp;quot;, sans-serif; font-size: 15px;&quot;&gt;&lt;span size=&quot;3&quot; color=&quot;#FF0000&quot; style=&quot;color: rgb(255, 0, 0); font-size: medium;&quot;&gt;&lt;span style=&quot;font-weight: 700;&quot;&gt;【Please note the following】&lt;br&gt;Product images are for illustrative purposes only and may differ from the actual product.&lt;br&gt;For product images showing multiple items, we are only actually selling 1 piece&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;&lt;p data-open-accessibility-text-original=&quot;15px&quot; style=&quot;margin-bottom: 15px; color: rgb(255, 0, 141); font-family: Helvetica, &amp;quot;Helvetica Neue&amp;quot;, Arial, &amp;quot;Lucida Grande&amp;quot;, sans-serif; font-size: 15px;&quot;&gt;&lt;span size=&quot;3&quot; color=&quot;#FF0000&quot; style=&quot;color: rgb(255, 0, 0); font-size: medium;&quot;&gt;&lt;span style=&quot;font-weight: 700;&quot;&gt;Actual product size may vary from the size of Description&lt;br&gt;Product may vary from image above and assortment products will be chosen at random&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;', '', 'Meow - Towel Hanger for Door', '', ''),
+(66, 2, 'Meow - Towel Hanger for Door', '&lt;p data-open-accessibility-text-original=&quot;15px&quot; style=&quot;margin-bottom: 15px; color: rgb(255, 0, 141); font-family: Helvetica, &amp;quot;Helvetica Neue&amp;quot;, Arial, &amp;quot;Lucida Grande&amp;quot;, sans-serif; font-size: 15px;&quot;&gt;【Size】6.3492in × 2.4122in × 3.5933in&lt;br&gt;【Material】 Iron (powder coating)&lt;br&gt;【Extended information】 Hang on a door to hold a towel.　Supported weight: 500g (1.1lb)　Supported door thickness: Up to 20mm (0.8in)&lt;/p&gt;&lt;p data-open-accessibility-text-original=&quot;15px&quot; style=&quot;margin-bottom: 15px; color: rgb(255, 0, 141); font-family: Helvetica, &amp;quot;Helvetica Neue&amp;quot;, Arial, &amp;quot;Lucida Grande&amp;quot;, sans-serif; font-size: 15px;&quot;&gt;&lt;span size=&quot;3&quot; color=&quot;#0000ff&quot; style=&quot;color: rgb(0, 0, 255); font-size: medium;&quot;&gt;&lt;span style=&quot;font-weight: 700;&quot;&gt;【About Bulk Orders】A limit order is 10 pieces&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;&lt;p data-open-accessibility-text-original=&quot;15px&quot; style=&quot;margin-bottom: 15px; color: rgb(255, 0, 141); font-family: Helvetica, &amp;quot;Helvetica Neue&amp;quot;, Arial, &amp;quot;Lucida Grande&amp;quot;, sans-serif; font-size: 15px;&quot;&gt;&lt;span size=&quot;3&quot; color=&quot;#FF0000&quot; style=&quot;color: rgb(255, 0, 0); font-size: medium;&quot;&gt;&lt;span style=&quot;font-weight: 700;&quot;&gt;【Please note the following】&lt;br&gt;Product images are for illustrative purposes only and may differ from the actual product.&lt;br&gt;For product images showing multiple items, we are only actually selling 1 piece&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;&lt;p data-open-accessibility-text-original=&quot;15px&quot; style=&quot;margin-bottom: 15px; color: rgb(255, 0, 141); font-family: Helvetica, &amp;quot;Helvetica Neue&amp;quot;, Arial, &amp;quot;Lucida Grande&amp;quot;, sans-serif; font-size: 15px;&quot;&gt;&lt;span size=&quot;3&quot; color=&quot;#FF0000&quot; style=&quot;color: rgb(255, 0, 0); font-size: medium;&quot;&gt;&lt;span style=&quot;font-weight: 700;&quot;&gt;Actual product size may vary from the size of Description&lt;br&gt;Product may vary from image above and assortment products will be chosen at random&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;', '', 'Meow - Towel Hanger for Door', '', ''),
+(67, 2, 'Hello Kitty - Mini Drain Filter', '&lt;p data-open-accessibility-text-original=&quot;15px&quot; style=&quot;margin-bottom: 15px; color: rgb(255, 0, 141); font-family: Helvetica, &amp;quot;Helvetica Neue&amp;quot;, Arial, &amp;quot;Lucida Grande&amp;quot;, sans-serif; font-size: 15px;&quot;&gt;&lt;span style=&quot;color: rgb(0, 0, 0);&quot;&gt;【Size】18cm × 1.2cm × 18cm　 7.1366in × 0.5224in × 7.1366in&lt;/span&gt;&lt;br&gt;&lt;span style=&quot;color: rgb(0, 0, 0);&quot;&gt;【Material】　　　Body：　Polypropylene&lt;/span&gt;&lt;br&gt;&lt;span style=&quot;color: rgb(0, 0, 0);&quot;&gt;【Extened information】drain filter&lt;/span&gt;&lt;/p&gt;&lt;p data-open-accessibility-text-original=&quot;15px&quot; style=&quot;margin-bottom: 15px; color: rgb(255, 0, 141); font-family: Helvetica, &amp;quot;Helvetica Neue&amp;quot;, Arial, &amp;quot;Lucida Grande&amp;quot;, sans-serif; font-size: 15px;&quot;&gt;&lt;span size=&quot;3&quot; color=&quot;#0000ff&quot; style=&quot;color: rgb(0, 0, 0); font-size: medium;&quot;&gt;&lt;span style=&quot;font-weight: 700;&quot;&gt;【About Bulk Orders】A limit order is 3 pieces&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;&lt;p data-open-accessibility-text-original=&quot;15px&quot; style=&quot;margin-bottom: 15px; color: rgb(255, 0, 141); font-family: Helvetica, &amp;quot;Helvetica Neue&amp;quot;, Arial, &amp;quot;Lucida Grande&amp;quot;, sans-serif; font-size: 15px;&quot;&gt;&lt;span size=&quot;3&quot; color=&quot;#FF0000&quot; style=&quot;color: rgb(0, 0, 0); font-size: medium;&quot;&gt;&lt;span style=&quot;font-weight: 700;&quot;&gt;【Please note the following】&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;&lt;p data-open-accessibility-text-original=&quot;15px&quot; style=&quot;margin-bottom: 15px; color: rgb(255, 0, 141); font-family: Helvetica, &amp;quot;Helvetica Neue&amp;quot;, Arial, &amp;quot;Lucida Grande&amp;quot;, sans-serif; font-size: 15px;&quot;&gt;&lt;span size=&quot;3&quot; color=&quot;#FF0000&quot; style=&quot;color: rgb(0, 0, 0); font-size: medium;&quot;&gt;&lt;span style=&quot;font-weight: 700;&quot;&gt;&lt;span data-mce-fragment=&quot;1&quot; data-mce-style=&quot;color: #ff2a00;&quot; style=&quot;color: rgb(255, 42, 0);&quot;&gt;RESALE OF THIS ITEM IS STRICTLY PROHIBITED&lt;/span&gt;&lt;br&gt;Product images are for illustrative purposes only and may differ from the actual product.&lt;br&gt;For product images showing multiple items, we are only actually selling 1 pieceActual product size may vary from the size of Description&lt;br&gt;Product may vary from image above and assortment products will be chosen at random&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;', '', 'Hello Kitty - Mini Drain Filter', '', ''),
+(67, 1, 'Hello Kitty - Mini Drain Filter', '&lt;p data-open-accessibility-text-original=&quot;15px&quot; style=&quot;margin-bottom: 15px; color: rgb(255, 0, 141); font-family: Helvetica, &amp;quot;Helvetica Neue&amp;quot;, Arial, &amp;quot;Lucida Grande&amp;quot;, sans-serif; font-size: 15px;&quot;&gt;&lt;span style=&quot;color: rgb(0, 0, 0);&quot;&gt;【Size】18cm × 1.2cm × 18cm　 7.1366in × 0.5224in × 7.1366in&lt;/span&gt;&lt;br&gt;&lt;span style=&quot;color: rgb(0, 0, 0);&quot;&gt;【Material】　　　Body：　Polypropylene&lt;/span&gt;&lt;br&gt;&lt;span style=&quot;color: rgb(0, 0, 0);&quot;&gt;【Extened information】drain filter&lt;/span&gt;&lt;/p&gt;&lt;p data-open-accessibility-text-original=&quot;15px&quot; style=&quot;margin-bottom: 15px; color: rgb(255, 0, 141); font-family: Helvetica, &amp;quot;Helvetica Neue&amp;quot;, Arial, &amp;quot;Lucida Grande&amp;quot;, sans-serif; font-size: 15px;&quot;&gt;&lt;span size=&quot;3&quot; color=&quot;#0000ff&quot; style=&quot;color: rgb(0, 0, 0); font-size: medium;&quot;&gt;&lt;span style=&quot;font-weight: 700;&quot;&gt;【About Bulk Orders】A limit order is 3 pieces&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;&lt;p data-open-accessibility-text-original=&quot;15px&quot; style=&quot;margin-bottom: 15px; color: rgb(255, 0, 141); font-family: Helvetica, &amp;quot;Helvetica Neue&amp;quot;, Arial, &amp;quot;Lucida Grande&amp;quot;, sans-serif; font-size: 15px;&quot;&gt;&lt;span size=&quot;3&quot; color=&quot;#FF0000&quot; style=&quot;color: rgb(0, 0, 0); font-size: medium;&quot;&gt;&lt;span style=&quot;font-weight: 700;&quot;&gt;【Please note the following】&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;&lt;p data-open-accessibility-text-original=&quot;15px&quot; style=&quot;margin-bottom: 15px; color: rgb(255, 0, 141); font-family: Helvetica, &amp;quot;Helvetica Neue&amp;quot;, Arial, &amp;quot;Lucida Grande&amp;quot;, sans-serif; font-size: 15px;&quot;&gt;&lt;span size=&quot;3&quot; color=&quot;#FF0000&quot; style=&quot;color: rgb(0, 0, 0); font-size: medium;&quot;&gt;&lt;span style=&quot;font-weight: 700;&quot;&gt;&lt;span data-mce-fragment=&quot;1&quot; data-mce-style=&quot;color: #ff2a00;&quot; style=&quot;color: rgb(255, 42, 0);&quot;&gt;RESALE OF THIS ITEM IS STRICTLY PROHIBITED&lt;/span&gt;&lt;br&gt;Product images are for illustrative purposes only and may differ from the actual product.&lt;br&gt;For product images showing multiple items, we are only actually selling 1 pieceActual product size may vary from the size of Description&lt;br&gt;Product may vary from image above and assortment products will be chosen at random&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;', '', 'Hello Kitty - Mini Drain Filter', '', ''),
+(68, 1, 'Little Twin Stars - Kiki Lala - Cable protector for iPhone', '&lt;p data-open-accessibility-text-original=&quot;15px&quot; style=&quot;margin-bottom: 15px; color: rgb(255, 0, 141); font-family: Helvetica, &amp;quot;Helvetica Neue&amp;quot;, Arial, &amp;quot;Lucida Grande&amp;quot;, sans-serif; font-size: 15px;&quot;&gt;【Size】1.1811in × 0.433071in × 1.96851in&lt;br&gt;【Material】 Body: Thermoplastic elastomer　Cover: ABS resin&lt;br&gt;【Extended information】 Protect the root of the lightning cable for iPhone.&lt;/p&gt;&lt;p data-open-accessibility-text-original=&quot;15px&quot; style=&quot;margin-bottom: 15px; color: rgb(255, 0, 141); font-family: Helvetica, &amp;quot;Helvetica Neue&amp;quot;, Arial, &amp;quot;Lucida Grande&amp;quot;, sans-serif; font-size: 15px;&quot;&gt;&lt;span color=&quot;#0000ff&quot; size=&quot;3&quot; style=&quot;color: rgb(0, 0, 255); font-size: medium;&quot;&gt;&lt;span style=&quot;font-weight: 700;&quot;&gt;【About Bulk Orders】 A limit order is 8 pieces&lt;/span&gt;&lt;br&gt;&lt;/span&gt;&lt;/p&gt;&lt;p data-open-accessibility-text-original=&quot;15px&quot; style=&quot;margin-bottom: 15px; color: rgb(255, 0, 141); font-family: Helvetica, &amp;quot;Helvetica Neue&amp;quot;, Arial, &amp;quot;Lucida Grande&amp;quot;, sans-serif; font-size: 15px;&quot;&gt;&lt;span data-mce-style=&quot;color: #000000;&quot; style=&quot;color: rgb(0, 0, 0);&quot;&gt;&lt;span color=&quot;#FF0000&quot; size=&quot;3&quot; data-mce-style=&quot;font-size: medium;&quot; style=&quot;font-size: medium;&quot;&gt;【Please note the following】&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;&lt;p data-open-accessibility-text-original=&quot;15px&quot; style=&quot;margin-bottom: 15px; color: rgb(255, 0, 141); font-family: Helvetica, &amp;quot;Helvetica Neue&amp;quot;, Arial, &amp;quot;Lucida Grande&amp;quot;, sans-serif; font-size: 15px;&quot;&gt;&lt;span data-mce-style=&quot;color: #000000;&quot; style=&quot;color: rgb(0, 0, 0);&quot;&gt;&lt;span color=&quot;#FF0000&quot; size=&quot;3&quot; data-mce-style=&quot;font-size: medium;&quot; style=&quot;font-size: medium;&quot;&gt;&lt;span style=&quot;font-weight: 700;&quot;&gt;&lt;span color=&quot;#FF0000&quot; size=&quot;3&quot; data-mce-style=&quot;color: #000000;&quot; data-mce-fragment=&quot;1&quot;&gt;&lt;span data-mce-style=&quot;color: #ff2a00;&quot; data-mce-fragment=&quot;1&quot; style=&quot;color: rgb(255, 42, 0);&quot;&gt;RESALE OF THIS ITEM IS STRICTLY PROHIBITED&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;Product images are for illustrative purposes only and may differ from the actual product.&lt;br&gt;For product images showing multiple items, we are only actually selling 1 piece&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;&lt;p data-open-accessibility-text-original=&quot;15px&quot; style=&quot;margin-bottom: 15px; color: rgb(255, 0, 141); font-family: Helvetica, &amp;quot;Helvetica Neue&amp;quot;, Arial, &amp;quot;Lucida Grande&amp;quot;, sans-serif; font-size: 15px;&quot;&gt;&lt;span data-mce-style=&quot;color: #000000;&quot; style=&quot;color: rgb(0, 0, 0);&quot;&gt;&lt;span color=&quot;#FF0000&quot; size=&quot;3&quot; data-mce-style=&quot;font-size: medium;&quot; style=&quot;font-size: medium;&quot;&gt;Actual product size may vary from the size of Description&lt;br&gt;Product may vary from image above and assortment products will be chosen at random&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;', '', 'Little Twin Stars - Kiki Lala - Cable protector for iPhone', '', ''),
+(68, 2, 'Little Twin Stars - Kiki Lala - Cable protector for iPhone', '&lt;p data-open-accessibility-text-original=&quot;15px&quot; style=&quot;margin-bottom: 15px; color: rgb(255, 0, 141); font-family: Helvetica, &amp;quot;Helvetica Neue&amp;quot;, Arial, &amp;quot;Lucida Grande&amp;quot;, sans-serif; font-size: 15px;&quot;&gt;【Size】1.1811in × 0.433071in × 1.96851in&lt;br&gt;【Material】 Body: Thermoplastic elastomer　Cover: ABS resin&lt;br&gt;【Extended information】 Protect the root of the lightning cable for iPhone.&lt;/p&gt;&lt;p data-open-accessibility-text-original=&quot;15px&quot; style=&quot;margin-bottom: 15px; color: rgb(255, 0, 141); font-family: Helvetica, &amp;quot;Helvetica Neue&amp;quot;, Arial, &amp;quot;Lucida Grande&amp;quot;, sans-serif; font-size: 15px;&quot;&gt;&lt;span color=&quot;#0000ff&quot; size=&quot;3&quot; style=&quot;color: rgb(0, 0, 255); font-size: medium;&quot;&gt;&lt;span style=&quot;font-weight: 700;&quot;&gt;【About Bulk Orders】 A limit order is 8 pieces&lt;/span&gt;&lt;br&gt;&lt;/span&gt;&lt;/p&gt;&lt;p data-open-accessibility-text-original=&quot;15px&quot; style=&quot;margin-bottom: 15px; color: rgb(255, 0, 141); font-family: Helvetica, &amp;quot;Helvetica Neue&amp;quot;, Arial, &amp;quot;Lucida Grande&amp;quot;, sans-serif; font-size: 15px;&quot;&gt;&lt;span data-mce-style=&quot;color: #000000;&quot; style=&quot;color: rgb(0, 0, 0);&quot;&gt;&lt;span color=&quot;#FF0000&quot; size=&quot;3&quot; data-mce-style=&quot;font-size: medium;&quot; style=&quot;font-size: medium;&quot;&gt;【Please note the following】&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;&lt;p data-open-accessibility-text-original=&quot;15px&quot; style=&quot;margin-bottom: 15px; color: rgb(255, 0, 141); font-family: Helvetica, &amp;quot;Helvetica Neue&amp;quot;, Arial, &amp;quot;Lucida Grande&amp;quot;, sans-serif; font-size: 15px;&quot;&gt;&lt;span data-mce-style=&quot;color: #000000;&quot; style=&quot;color: rgb(0, 0, 0);&quot;&gt;&lt;span color=&quot;#FF0000&quot; size=&quot;3&quot; data-mce-style=&quot;font-size: medium;&quot; style=&quot;font-size: medium;&quot;&gt;&lt;span style=&quot;font-weight: 700;&quot;&gt;&lt;span color=&quot;#FF0000&quot; size=&quot;3&quot; data-mce-style=&quot;color: #000000;&quot; data-mce-fragment=&quot;1&quot;&gt;&lt;span data-mce-style=&quot;color: #ff2a00;&quot; data-mce-fragment=&quot;1&quot; style=&quot;color: rgb(255, 42, 0);&quot;&gt;RESALE OF THIS ITEM IS STRICTLY PROHIBITED&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;Product images are for illustrative purposes only and may differ from the actual product.&lt;br&gt;For product images showing multiple items, we are only actually selling 1 piece&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;&lt;p data-open-accessibility-text-original=&quot;15px&quot; style=&quot;margin-bottom: 15px; color: rgb(255, 0, 141); font-family: Helvetica, &amp;quot;Helvetica Neue&amp;quot;, Arial, &amp;quot;Lucida Grande&amp;quot;, sans-serif; font-size: 15px;&quot;&gt;&lt;span data-mce-style=&quot;color: #000000;&quot; style=&quot;color: rgb(0, 0, 0);&quot;&gt;&lt;span color=&quot;#FF0000&quot; size=&quot;3&quot; data-mce-style=&quot;font-size: medium;&quot; style=&quot;font-size: medium;&quot;&gt;Actual product size may vary from the size of Description&lt;br&gt;Product may vary from image above and assortment products will be chosen at random&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;', '', 'Little Twin Stars - Kiki Lala - Cable protector for iPhone', '', ''),
+(69, 2, 'Cable Tie - Paw', '&lt;p&gt;&lt;span style=&quot;color: rgb(255, 0, 141); font-family: Helvetica, &amp;quot;Helvetica Neue&amp;quot;, Arial, &amp;quot;Lucida Grande&amp;quot;, sans-serif; font-size: 15px;&quot;&gt;【Size】1.5cm × 15cm × 0.2cm　0.6406in × 5.9555in × 0.1287in&lt;/span&gt;&lt;br style=&quot;color: rgb(255, 0, 141); font-family: Helvetica, &amp;quot;Helvetica Neue&amp;quot;, Arial, &amp;quot;Lucida Grande&amp;quot;, sans-serif; font-size: 15px;&quot;&gt;&lt;span style=&quot;color: rgb(255, 0, 141); font-family: Helvetica, &amp;quot;Helvetica Neue&amp;quot;, Arial, &amp;quot;Lucida Grande&amp;quot;, sans-serif; font-size: 15px;&quot;&gt;【Material】Nylon&lt;/span&gt;&lt;br style=&quot;color: rgb(255, 0, 141); font-family: Helvetica, &amp;quot;Helvetica Neue&amp;quot;, Arial, &amp;quot;Lucida Grande&amp;quot;, sans-serif; font-size: 15px;&quot;&gt;&lt;span style=&quot;color: rgb(255, 0, 141); font-family: Helvetica, &amp;quot;Helvetica Neue&amp;quot;, Arial, &amp;quot;Lucida Grande&amp;quot;, sans-serif; font-size: 15px;&quot;&gt;【Extened information】For organizing and marking cords&lt;/span&gt;&lt;span size=&quot;3&quot; color=&quot;#0000ff&quot; data-open-accessibility-text-original=&quot;16px&quot; style=&quot;font-family: Helvetica, &amp;quot;Helvetica Neue&amp;quot;, Arial, &amp;quot;Lucida Grande&amp;quot;, sans-serif; color: rgb(0, 0, 255); font-size: 16px;&quot;&gt;&lt;span style=&quot;font-weight: 700;&quot;&gt;【About Bulk Orders】A limit order is 6 pieces&lt;/span&gt;&amp;nbsp;&lt;/span&gt;&lt;span size=&quot;3&quot; color=&quot;#FF0000&quot; data-open-accessibility-text-original=&quot;16px&quot; style=&quot;font-family: Helvetica, &amp;quot;Helvetica Neue&amp;quot;, Arial, &amp;quot;Lucida Grande&amp;quot;, sans-serif; color: rgb(255, 0, 0); font-size: 16px;&quot;&gt;&lt;span style=&quot;font-weight: 700;&quot;&gt;【Please note the following】&lt;br&gt;Product images are for illustrative purposes only and may differ from the actual product.&lt;br&gt;For product images showing multiple items, we are only actually selling 1 pieceActual product size may vary from the size of Description&lt;br&gt;Product may vary from image above and assortment products will be chosen at random&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/p&gt;', '', 'Cable Tie - Paw', '', '');
+INSERT IGNORE INTO `oc_product_description` (`product_id`, `language_id`, `name`, `description`, `tag`, `meta_title`, `meta_description`, `meta_keyword`) VALUES
+(69, 1, 'Cable Tie - Paw', '&lt;p&gt;&lt;span style=&quot;color: rgb(255, 0, 141); font-family: Helvetica, &amp;quot;Helvetica Neue&amp;quot;, Arial, &amp;quot;Lucida Grande&amp;quot;, sans-serif; font-size: 15px;&quot;&gt;【Size】1.5cm × 15cm × 0.2cm　0.6406in × 5.9555in × 0.1287in&lt;/span&gt;&lt;br style=&quot;color: rgb(255, 0, 141); font-family: Helvetica, &amp;quot;Helvetica Neue&amp;quot;, Arial, &amp;quot;Lucida Grande&amp;quot;, sans-serif; font-size: 15px;&quot;&gt;&lt;span style=&quot;color: rgb(255, 0, 141); font-family: Helvetica, &amp;quot;Helvetica Neue&amp;quot;, Arial, &amp;quot;Lucida Grande&amp;quot;, sans-serif; font-size: 15px;&quot;&gt;【Material】Nylon&lt;/span&gt;&lt;br style=&quot;color: rgb(255, 0, 141); font-family: Helvetica, &amp;quot;Helvetica Neue&amp;quot;, Arial, &amp;quot;Lucida Grande&amp;quot;, sans-serif; font-size: 15px;&quot;&gt;&lt;span style=&quot;color: rgb(255, 0, 141); font-family: Helvetica, &amp;quot;Helvetica Neue&amp;quot;, Arial, &amp;quot;Lucida Grande&amp;quot;, sans-serif; font-size: 15px;&quot;&gt;【Extened information】For organizing and marking cords&lt;/span&gt;&lt;span size=&quot;3&quot; color=&quot;#0000ff&quot; data-open-accessibility-text-original=&quot;16px&quot; style=&quot;font-family: Helvetica, &amp;quot;Helvetica Neue&amp;quot;, Arial, &amp;quot;Lucida Grande&amp;quot;, sans-serif; color: rgb(0, 0, 255); font-size: 16px;&quot;&gt;&lt;span style=&quot;font-weight: 700;&quot;&gt;【About Bulk Orders】A limit order is 6 pieces&lt;/span&gt;&amp;nbsp;&lt;/span&gt;&lt;span size=&quot;3&quot; color=&quot;#FF0000&quot; data-open-accessibility-text-original=&quot;16px&quot; style=&quot;font-family: Helvetica, &amp;quot;Helvetica Neue&amp;quot;, Arial, &amp;quot;Lucida Grande&amp;quot;, sans-serif; color: rgb(255, 0, 0); font-size: 16px;&quot;&gt;&lt;span style=&quot;font-weight: 700;&quot;&gt;【Please note the following】&lt;br&gt;Product images are for illustrative purposes only and may differ from the actual product.&lt;br&gt;For product images showing multiple items, we are only actually selling 1 pieceActual product size may vary from the size of Description&lt;br&gt;Product may vary from image above and assortment products will be chosen at random&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/p&gt;', '', 'Cable Tie - Paw', '', ''),
+(70, 1, 'Cable Protector Cinnamon', '&lt;p&gt;&lt;span style=&quot;color: rgb(255, 0, 141); font-family: Helvetica, &amp;quot;Helvetica Neue&amp;quot;, Arial, &amp;quot;Lucida Grande&amp;quot;, sans-serif; font-size: 15px;&quot;&gt;【Size】3cm × 1.1cm × 5cm　1.1811in × 0.433071in × 1.96851in　なし　none&lt;/span&gt;&lt;br style=&quot;color: rgb(255, 0, 141); font-family: Helvetica, &amp;quot;Helvetica Neue&amp;quot;, Arial, &amp;quot;Lucida Grande&amp;quot;, sans-serif; font-size: 15px;&quot;&gt;&lt;span style=&quot;color: rgb(255, 0, 141); font-family: Helvetica, &amp;quot;Helvetica Neue&amp;quot;, Arial, &amp;quot;Lucida Grande&amp;quot;, sans-serif; font-size: 15px;&quot;&gt;【Material】　Body Thermoplastic Elastomers Cover ABS resin&lt;/span&gt;&lt;br style=&quot;color: rgb(255, 0, 141); font-family: Helvetica, &amp;quot;Helvetica Neue&amp;quot;, Arial, &amp;quot;Lucida Grande&amp;quot;, sans-serif; font-size: 15px;&quot;&gt;&lt;span style=&quot;color: rgb(255, 0, 141); font-family: Helvetica, &amp;quot;Helvetica Neue&amp;quot;, Arial, &amp;quot;Lucida Grande&amp;quot;, sans-serif; font-size: 15px;&quot;&gt;【Extened information】iphoneA protector cinnamon that protects the root of the lightning cable for iphone　Suppresses disconnect　Protect the root of the lightning cable for iPhone　Cute cinnamon designs&lt;/span&gt;&lt;span size=&quot;3&quot; color=&quot;#0000ff&quot; data-open-accessibility-text-original=&quot;16px&quot; style=&quot;font-family: Helvetica, &amp;quot;Helvetica Neue&amp;quot;, Arial, &amp;quot;Lucida Grande&amp;quot;, sans-serif; color: rgb(0, 0, 255); font-size: 16px;&quot;&gt;&lt;span style=&quot;font-weight: 700;&quot;&gt;【About Bulk Orders】A limit order is 8 pieces&lt;/span&gt;&amp;nbsp;&lt;/span&gt;&lt;span size=&quot;3&quot; color=&quot;#FF0000&quot; data-open-accessibility-text-original=&quot;16px&quot; style=&quot;font-family: Helvetica, &amp;quot;Helvetica Neue&amp;quot;, Arial, &amp;quot;Lucida Grande&amp;quot;, sans-serif; color: rgb(255, 0, 0); font-size: 16px;&quot;&gt;&lt;span style=&quot;font-weight: 700;&quot;&gt;【Please note the following】&lt;br&gt;Product images are for illustrative purposes only and may differ from the actual product.&lt;br&gt;For product images showing multiple items, we are only actually selling 1 pieceActual product size may vary from the size of Description&lt;br&gt;Product may vary from image above and assortment products will be chosen at random&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/p&gt;', '', 'Cable Protector Cinnamon', '', ''),
+(70, 2, 'Cable Protector Cinnamon', '&lt;p&gt;&lt;span style=&quot;color: rgb(255, 0, 141); font-family: Helvetica, &amp;quot;Helvetica Neue&amp;quot;, Arial, &amp;quot;Lucida Grande&amp;quot;, sans-serif; font-size: 15px;&quot;&gt;【Size】3cm × 1.1cm × 5cm　1.1811in × 0.433071in × 1.96851in　なし　none&lt;/span&gt;&lt;br style=&quot;color: rgb(255, 0, 141); font-family: Helvetica, &amp;quot;Helvetica Neue&amp;quot;, Arial, &amp;quot;Lucida Grande&amp;quot;, sans-serif; font-size: 15px;&quot;&gt;&lt;span style=&quot;color: rgb(255, 0, 141); font-family: Helvetica, &amp;quot;Helvetica Neue&amp;quot;, Arial, &amp;quot;Lucida Grande&amp;quot;, sans-serif; font-size: 15px;&quot;&gt;【Material】　Body Thermoplastic Elastomers Cover ABS resin&lt;/span&gt;&lt;br style=&quot;color: rgb(255, 0, 141); font-family: Helvetica, &amp;quot;Helvetica Neue&amp;quot;, Arial, &amp;quot;Lucida Grande&amp;quot;, sans-serif; font-size: 15px;&quot;&gt;&lt;span style=&quot;color: rgb(255, 0, 141); font-family: Helvetica, &amp;quot;Helvetica Neue&amp;quot;, Arial, &amp;quot;Lucida Grande&amp;quot;, sans-serif; font-size: 15px;&quot;&gt;【Extened information】iphoneA protector cinnamon that protects the root of the lightning cable for iphone　Suppresses disconnect　Protect the root of the lightning cable for iPhone　Cute cinnamon designs&lt;/span&gt;&lt;span size=&quot;3&quot; color=&quot;#0000ff&quot; data-open-accessibility-text-original=&quot;16px&quot; style=&quot;font-family: Helvetica, &amp;quot;Helvetica Neue&amp;quot;, Arial, &amp;quot;Lucida Grande&amp;quot;, sans-serif; color: rgb(0, 0, 255); font-size: 16px;&quot;&gt;&lt;span style=&quot;font-weight: 700;&quot;&gt;【About Bulk Orders】A limit order is 8 pieces&lt;/span&gt;&amp;nbsp;&lt;/span&gt;&lt;span size=&quot;3&quot; color=&quot;#FF0000&quot; data-open-accessibility-text-original=&quot;16px&quot; style=&quot;font-family: Helvetica, &amp;quot;Helvetica Neue&amp;quot;, Arial, &amp;quot;Lucida Grande&amp;quot;, sans-serif; color: rgb(255, 0, 0); font-size: 16px;&quot;&gt;&lt;span style=&quot;font-weight: 700;&quot;&gt;【Please note the following】&lt;br&gt;Product images are for illustrative purposes only and may differ from the actual product.&lt;br&gt;For product images showing multiple items, we are only actually selling 1 pieceActual product size may vary from the size of Description&lt;br&gt;Product may vary from image above and assortment products will be chosen at random&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/p&gt;', '', 'Cable Protector Cinnamon', '', ''),
+(71, 1, 'Mobile Device Stand', '&lt;p data-open-accessibility-text-original=&quot;15px&quot; style=&quot;margin-bottom: 15px; color: rgb(255, 0, 141); font-family: Helvetica, &amp;quot;Helvetica Neue&amp;quot;, Arial, &amp;quot;Lucida Grande&amp;quot;, sans-serif; font-size: 15px;&quot;&gt;【Size】6.3cm × 8.4cm × 7cm　2.48032in × 3.30709in × 2.75591in　&lt;br&gt;【Material】ABS resin/ Silicone resin&lt;br&gt;【Extened information】A smartphone stand with a non-slip on the bottom and where you place your smartphone.　Smartphone stand　Some models cannot be used. Please confirm.&lt;/p&gt;&lt;p data-open-accessibility-text-original=&quot;15px&quot; style=&quot;margin-bottom: 15px; color: rgb(255, 0, 141); font-family: Helvetica, &amp;quot;Helvetica Neue&amp;quot;, Arial, &amp;quot;Lucida Grande&amp;quot;, sans-serif; font-size: 15px;&quot;&gt;&lt;span style=&quot;font-weight: 700;&quot;&gt;【About Bulk Orders】&lt;/span&gt;A limit order is 12 pieces&lt;/p&gt;&lt;p data-open-accessibility-text-original=&quot;15px&quot; style=&quot;margin-bottom: 15px; color: rgb(255, 0, 141); font-family: Helvetica, &amp;quot;Helvetica Neue&amp;quot;, Arial, &amp;quot;Lucida Grande&amp;quot;, sans-serif; font-size: 15px;&quot;&gt;&lt;span style=&quot;font-weight: 700;&quot;&gt;【Please note the following】&lt;/span&gt;&lt;/p&gt;&lt;p data-open-accessibility-text-original=&quot;15px&quot; style=&quot;margin-bottom: 15px; color: rgb(255, 0, 141); font-family: Helvetica, &amp;quot;Helvetica Neue&amp;quot;, Arial, &amp;quot;Lucida Grande&amp;quot;, sans-serif; font-size: 15px;&quot;&gt;Product images are for illustrative purposes only and may differ from the actual product.&lt;/p&gt;&lt;p data-open-accessibility-text-original=&quot;15px&quot; style=&quot;margin-bottom: 15px; color: rgb(255, 0, 141); font-family: Helvetica, &amp;quot;Helvetica Neue&amp;quot;, Arial, &amp;quot;Lucida Grande&amp;quot;, sans-serif; font-size: 15px;&quot;&gt;For product images showing multiple items, we are only actually selling 1 piece&lt;/p&gt;&lt;p data-open-accessibility-text-original=&quot;15px&quot; style=&quot;margin-bottom: 15px; color: rgb(255, 0, 141); font-family: Helvetica, &amp;quot;Helvetica Neue&amp;quot;, Arial, &amp;quot;Lucida Grande&amp;quot;, sans-serif; font-size: 15px;&quot;&gt;Actual product size may vary from the size of Description&lt;/p&gt;&lt;p data-open-accessibility-text-original=&quot;15px&quot; style=&quot;margin-bottom: 15px; color: rgb(255, 0, 141); font-family: Helvetica, &amp;quot;Helvetica Neue&amp;quot;, Arial, &amp;quot;Lucida Grande&amp;quot;, sans-serif; font-size: 15px;&quot;&gt;Product may vary from image above and assortment products will be chosen at random&lt;/p&gt;', '', 'Mobile Device Stand', '', ''),
+(71, 2, 'Mobile Device Stand', '&lt;p data-open-accessibility-text-original=&quot;15px&quot; style=&quot;margin-bottom: 15px; color: rgb(255, 0, 141); font-family: Helvetica, &amp;quot;Helvetica Neue&amp;quot;, Arial, &amp;quot;Lucida Grande&amp;quot;, sans-serif; font-size: 15px;&quot;&gt;【Size】6.3cm × 8.4cm × 7cm　2.48032in × 3.30709in × 2.75591in　&lt;br&gt;【Material】ABS resin/ Silicone resin&lt;br&gt;【Extened information】A smartphone stand with a non-slip on the bottom and where you place your smartphone.　Smartphone stand　Some models cannot be used. Please confirm.&lt;/p&gt;&lt;p data-open-accessibility-text-original=&quot;15px&quot; style=&quot;margin-bottom: 15px; color: rgb(255, 0, 141); font-family: Helvetica, &amp;quot;Helvetica Neue&amp;quot;, Arial, &amp;quot;Lucida Grande&amp;quot;, sans-serif; font-size: 15px;&quot;&gt;&lt;span style=&quot;font-weight: 700;&quot;&gt;【About Bulk Orders】&lt;/span&gt;A limit order is 12 pieces&lt;/p&gt;&lt;p data-open-accessibility-text-original=&quot;15px&quot; style=&quot;margin-bottom: 15px; color: rgb(255, 0, 141); font-family: Helvetica, &amp;quot;Helvetica Neue&amp;quot;, Arial, &amp;quot;Lucida Grande&amp;quot;, sans-serif; font-size: 15px;&quot;&gt;&lt;span style=&quot;font-weight: 700;&quot;&gt;【Please note the following】&lt;/span&gt;&lt;/p&gt;&lt;p data-open-accessibility-text-original=&quot;15px&quot; style=&quot;margin-bottom: 15px; color: rgb(255, 0, 141); font-family: Helvetica, &amp;quot;Helvetica Neue&amp;quot;, Arial, &amp;quot;Lucida Grande&amp;quot;, sans-serif; font-size: 15px;&quot;&gt;Product images are for illustrative purposes only and may differ from the actual product.&lt;/p&gt;&lt;p data-open-accessibility-text-original=&quot;15px&quot; style=&quot;margin-bottom: 15px; color: rgb(255, 0, 141); font-family: Helvetica, &amp;quot;Helvetica Neue&amp;quot;, Arial, &amp;quot;Lucida Grande&amp;quot;, sans-serif; font-size: 15px;&quot;&gt;For product images showing multiple items, we are only actually selling 1 piece&lt;/p&gt;&lt;p data-open-accessibility-text-original=&quot;15px&quot; style=&quot;margin-bottom: 15px; color: rgb(255, 0, 141); font-family: Helvetica, &amp;quot;Helvetica Neue&amp;quot;, Arial, &amp;quot;Lucida Grande&amp;quot;, sans-serif; font-size: 15px;&quot;&gt;Actual product size may vary from the size of Description&lt;/p&gt;&lt;p data-open-accessibility-text-original=&quot;15px&quot; style=&quot;margin-bottom: 15px; color: rgb(255, 0, 141); font-family: Helvetica, &amp;quot;Helvetica Neue&amp;quot;, Arial, &amp;quot;Lucida Grande&amp;quot;, sans-serif; font-size: 15px;&quot;&gt;Product may vary from image above and assortment products will be chosen at random&lt;/p&gt;', '', 'Mobile Device Stand', '', ''),
+(72, 1, 'Silicone Brush', '&lt;dt style=&quot;color: rgb(255, 0, 141); font-family: Helvetica, &amp;quot;Helvetica Neue&amp;quot;, Arial, &amp;quot;Lucida Grande&amp;quot;, sans-serif; font-size: 15px; font-weight: 400;&quot;&gt;【Size】22cm × 4.5cm × 1.8cm 8.7114in×1.8217in×0.7587in&lt;br&gt;&lt;/dt&gt;&lt;dt style=&quot;color: rgb(255, 0, 141); font-family: Helvetica, &amp;quot;Helvetica Neue&amp;quot;, Arial, &amp;quot;Lucida Grande&amp;quot;, sans-serif; font-size: 15px; font-weight: 400;&quot;&gt;【Material】本体：　シリコーンゴム －30℃ー230℃　ハンドル：　ポリスチレン －20℃ー70℃　　Body：　Silicone rubber -22F to 446F　 Handle：　Polystyrene -4F to 158F&lt;br&gt;&lt;/dt&gt;&lt;dt style=&quot;color: rgb(255, 0, 141); font-family: Helvetica, &amp;quot;Helvetica Neue&amp;quot;, Arial, &amp;quot;Lucida Grande&amp;quot;, sans-serif; font-size: 15px; font-weight: 400;&quot;&gt;【Extened information】・　・　・　・　・　・　・　・　・　-　-　-　-　-　-　-　-　-&lt;/dt&gt;&lt;dl style=&quot;color: rgb(255, 0, 141); font-family: Helvetica, &amp;quot;Helvetica Neue&amp;quot;, Arial, &amp;quot;Lucida Grande&amp;quot;, sans-serif; font-size: 15px;&quot;&gt;&lt;font size=&quot;3&quot; color=&quot;#0000ff&quot;&gt;&lt;span style=&quot;font-weight: 700;&quot;&gt;&lt;dt&gt;【About Bulk Orders】A limit order is 8 pieces&lt;/dt&gt;&lt;/span&gt;&lt;/font&gt;&lt;/dl&gt;&lt;dl style=&quot;color: rgb(255, 0, 141); font-family: Helvetica, &amp;quot;Helvetica Neue&amp;quot;, Arial, &amp;quot;Lucida Grande&amp;quot;, sans-serif; font-size: 15px;&quot;&gt;&lt;font size=&quot;3&quot; color=&quot;#FF0000&quot;&gt;&lt;span style=&quot;font-weight: 700;&quot;&gt;&lt;dt&gt;【Please note the following】&lt;br&gt;Product images are for illustrative purposes only and may differ from the actual product.&lt;br&gt;For product images showing multiple items, we are only actually selling 1 piece&lt;/dt&gt;Actual product size may vary from the size of Description&lt;br&gt;Product may vary from image above and assortment products will be chosen at random&lt;/span&gt;&lt;/font&gt;&lt;/dl&gt;', '', 'Silicone Brush', '', ''),
+(72, 2, 'Silicone Brush', '&lt;dt style=&quot;color: rgb(255, 0, 141); font-family: Helvetica, &amp;quot;Helvetica Neue&amp;quot;, Arial, &amp;quot;Lucida Grande&amp;quot;, sans-serif; font-size: 15px; font-weight: 400;&quot;&gt;【Size】22cm × 4.5cm × 1.8cm 8.7114in×1.8217in×0.7587in&lt;br&gt;&lt;/dt&gt;&lt;dt style=&quot;color: rgb(255, 0, 141); font-family: Helvetica, &amp;quot;Helvetica Neue&amp;quot;, Arial, &amp;quot;Lucida Grande&amp;quot;, sans-serif; font-size: 15px; font-weight: 400;&quot;&gt;【Material】本体：　シリコーンゴム －30℃ー230℃　ハンドル：　ポリスチレン －20℃ー70℃　　Body：　Silicone rubber -22F to 446F　 Handle：　Polystyrene -4F to 158F&lt;br&gt;&lt;/dt&gt;&lt;dt style=&quot;color: rgb(255, 0, 141); font-family: Helvetica, &amp;quot;Helvetica Neue&amp;quot;, Arial, &amp;quot;Lucida Grande&amp;quot;, sans-serif; font-size: 15px; font-weight: 400;&quot;&gt;【Extened information】・　・　・　・　・　・　・　・　・　-　-　-　-　-　-　-　-　-&lt;/dt&gt;&lt;dl style=&quot;color: rgb(255, 0, 141); font-family: Helvetica, &amp;quot;Helvetica Neue&amp;quot;, Arial, &amp;quot;Lucida Grande&amp;quot;, sans-serif; font-size: 15px;&quot;&gt;&lt;font size=&quot;3&quot; color=&quot;#0000ff&quot;&gt;&lt;span style=&quot;font-weight: 700;&quot;&gt;&lt;dt&gt;【About Bulk Orders】A limit order is 8 pieces&lt;/dt&gt;&lt;/span&gt;&lt;/font&gt;&lt;/dl&gt;&lt;dl style=&quot;color: rgb(255, 0, 141); font-family: Helvetica, &amp;quot;Helvetica Neue&amp;quot;, Arial, &amp;quot;Lucida Grande&amp;quot;, sans-serif; font-size: 15px;&quot;&gt;&lt;font size=&quot;3&quot; color=&quot;#FF0000&quot;&gt;&lt;span style=&quot;font-weight: 700;&quot;&gt;&lt;dt&gt;【Please note the following】&lt;br&gt;Product images are for illustrative purposes only and may differ from the actual product.&lt;br&gt;For product images showing multiple items, we are only actually selling 1 piece&lt;/dt&gt;Actual product size may vary from the size of Description&lt;br&gt;Product may vary from image above and assortment products will be chosen at random&lt;/span&gt;&lt;/font&gt;&lt;/dl&gt;', '', 'Silicone Brush', '', ''),
+(73, 1, 'Bamboo Pot Mat (Round)', '&lt;p data-open-accessibility-text-original=&quot;15px&quot; style=&quot;margin-bottom: 15px; color: rgb(255, 0, 141); font-family: Helvetica, &amp;quot;Helvetica Neue&amp;quot;, Arial, &amp;quot;Lucida Grande&amp;quot;, sans-serif; font-size: 15px;&quot;&gt;【Size】 Diameter: 18cm (7.08in)&lt;br&gt;【Material】 Bamboo&lt;br&gt;【Extended information】 Trivet. Simple, Natural, and easy to use!&amp;nbsp; Add warmth to your kitchen!&lt;span size=&quot;3&quot; color=&quot;#0000ff&quot; style=&quot;color: rgb(0, 0, 255); font-size: medium;&quot;&gt;&lt;span style=&quot;font-weight: 700;&quot;&gt;&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;&lt;p data-open-accessibility-text-original=&quot;15px&quot; style=&quot;margin-bottom: 15px; color: rgb(255, 0, 141); font-family: Helvetica, &amp;quot;Helvetica Neue&amp;quot;, Arial, &amp;quot;Lucida Grande&amp;quot;, sans-serif; font-size: 15px;&quot;&gt;&lt;span style=&quot;font-weight: 700;&quot;&gt;【About Bulk Orders】&lt;/span&gt;A limit order is 16 pieces&lt;/p&gt;&lt;p data-open-accessibility-text-original=&quot;15px&quot; style=&quot;margin-bottom: 15px; color: rgb(255, 0, 141); font-family: Helvetica, &amp;quot;Helvetica Neue&amp;quot;, Arial, &amp;quot;Lucida Grande&amp;quot;, sans-serif; font-size: 15px;&quot;&gt;&lt;span style=&quot;font-weight: 700;&quot;&gt;【Please note the following】&lt;/span&gt;&lt;/p&gt;&lt;p data-open-accessibility-text-original=&quot;15px&quot; style=&quot;margin-bottom: 15px; color: rgb(255, 0, 141); font-family: Helvetica, &amp;quot;Helvetica Neue&amp;quot;, Arial, &amp;quot;Lucida Grande&amp;quot;, sans-serif; font-size: 15px;&quot;&gt;Product images are for illustrative purposes only and may differ from the actual product.&lt;/p&gt;&lt;p data-open-accessibility-text-original=&quot;15px&quot; style=&quot;margin-bottom: 15px; color: rgb(255, 0, 141); font-family: Helvetica, &amp;quot;Helvetica Neue&amp;quot;, Arial, &amp;quot;Lucida Grande&amp;quot;, sans-serif; font-size: 15px;&quot;&gt;For product images showing multiple items, we are only actually selling 1 piece&lt;/p&gt;&lt;p data-open-accessibility-text-original=&quot;15px&quot; style=&quot;margin-bottom: 15px; color: rgb(255, 0, 141); font-family: Helvetica, &amp;quot;Helvetica Neue&amp;quot;, Arial, &amp;quot;Lucida Grande&amp;quot;, sans-serif; font-size: 15px;&quot;&gt;Actual product size may vary from the size of description&lt;/p&gt;&lt;p data-open-accessibility-text-original=&quot;15px&quot; style=&quot;margin-bottom: 15px; color: rgb(255, 0, 141); font-family: Helvetica, &amp;quot;Helvetica Neue&amp;quot;, Arial, &amp;quot;Lucida Grande&amp;quot;, sans-serif; font-size: 15px;&quot;&gt;Product may vary from image above and assortment products will be chosen at random&lt;/p&gt;', '', 'Bamboo Pot Mat (Round)', '', ''),
+(73, 2, 'Bamboo Pot Mat (Round)', '&lt;p data-open-accessibility-text-original=&quot;15px&quot; style=&quot;margin-bottom: 15px; color: rgb(255, 0, 141); font-family: Helvetica, &amp;quot;Helvetica Neue&amp;quot;, Arial, &amp;quot;Lucida Grande&amp;quot;, sans-serif; font-size: 15px;&quot;&gt;【Size】 Diameter: 18cm (7.08in)&lt;br&gt;【Material】 Bamboo&lt;br&gt;【Extended information】 Trivet. Simple, Natural, and easy to use!&amp;nbsp; Add warmth to your kitchen!&lt;span size=&quot;3&quot; color=&quot;#0000ff&quot; style=&quot;color: rgb(0, 0, 255); font-size: medium;&quot;&gt;&lt;span style=&quot;font-weight: 700;&quot;&gt;&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;&lt;p data-open-accessibility-text-original=&quot;15px&quot; style=&quot;margin-bottom: 15px; color: rgb(255, 0, 141); font-family: Helvetica, &amp;quot;Helvetica Neue&amp;quot;, Arial, &amp;quot;Lucida Grande&amp;quot;, sans-serif; font-size: 15px;&quot;&gt;&lt;span style=&quot;font-weight: 700;&quot;&gt;【About Bulk Orders】&lt;/span&gt;A limit order is 16 pieces&lt;/p&gt;&lt;p data-open-accessibility-text-original=&quot;15px&quot; style=&quot;margin-bottom: 15px; color: rgb(255, 0, 141); font-family: Helvetica, &amp;quot;Helvetica Neue&amp;quot;, Arial, &amp;quot;Lucida Grande&amp;quot;, sans-serif; font-size: 15px;&quot;&gt;&lt;span style=&quot;font-weight: 700;&quot;&gt;【Please note the following】&lt;/span&gt;&lt;/p&gt;&lt;p data-open-accessibility-text-original=&quot;15px&quot; style=&quot;margin-bottom: 15px; color: rgb(255, 0, 141); font-family: Helvetica, &amp;quot;Helvetica Neue&amp;quot;, Arial, &amp;quot;Lucida Grande&amp;quot;, sans-serif; font-size: 15px;&quot;&gt;Product images are for illustrative purposes only and may differ from the actual product.&lt;/p&gt;&lt;p data-open-accessibility-text-original=&quot;15px&quot; style=&quot;margin-bottom: 15px; color: rgb(255, 0, 141); font-family: Helvetica, &amp;quot;Helvetica Neue&amp;quot;, Arial, &amp;quot;Lucida Grande&amp;quot;, sans-serif; font-size: 15px;&quot;&gt;For product images showing multiple items, we are only actually selling 1 piece&lt;/p&gt;&lt;p data-open-accessibility-text-original=&quot;15px&quot; style=&quot;margin-bottom: 15px; color: rgb(255, 0, 141); font-family: Helvetica, &amp;quot;Helvetica Neue&amp;quot;, Arial, &amp;quot;Lucida Grande&amp;quot;, sans-serif; font-size: 15px;&quot;&gt;Actual product size may vary from the size of description&lt;/p&gt;&lt;p data-open-accessibility-text-original=&quot;15px&quot; style=&quot;margin-bottom: 15px; color: rgb(255, 0, 141); font-family: Helvetica, &amp;quot;Helvetica Neue&amp;quot;, Arial, &amp;quot;Lucida Grande&amp;quot;, sans-serif; font-size: 15px;&quot;&gt;Product may vary from image above and assortment products will be chosen at random&lt;/p&gt;', '', 'Bamboo Pot Mat (Round)', '', ''),
+(74, 1, 'Cotton Swab Case My Melody', '&lt;p data-open-accessibility-text-original=&quot;15px&quot; style=&quot;margin-bottom: 15px; color: rgb(255, 0, 141); font-family: Helvetica, &amp;quot;Helvetica Neue&amp;quot;, Arial, &amp;quot;Lucida Grande&amp;quot;, sans-serif; font-size: 15px;&quot;&gt;【Size】4.7cm × 2.2cm × 11.6cm　1.9004in × 0.9161in × 4.6169in&lt;br&gt;【Material】ケース：　ポリプロピレン　フタ：　ＡＢＳ樹脂　Case：　polypropylene　lid：　ABS resin&lt;br&gt;【Extened information】綿棒や絆創膏が入るよ！　持ち運びに便利　・　・　・　・　・　・　-　-　-　-　-　-　-　-　-&lt;/p&gt;&lt;p data-open-accessibility-text-original=&quot;15px&quot; style=&quot;margin-bottom: 15px; color: rgb(255, 0, 141); font-family: Helvetica, &amp;quot;Helvetica Neue&amp;quot;, Arial, &amp;quot;Lucida Grande&amp;quot;, sans-serif; font-size: 15px;&quot;&gt;&lt;span size=&quot;3&quot; color=&quot;#0000ff&quot; style=&quot;color: rgb(0, 0, 255); font-size: medium;&quot;&gt;&lt;span style=&quot;font-weight: 700;&quot;&gt;【About Bulk Orders】A limit order is 3 pieces&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;&lt;p data-mce-fragment=&quot;1&quot; data-open-accessibility-text-original=&quot;15px&quot; style=&quot;margin-bottom: 15px; color: rgb(255, 0, 141); font-family: Helvetica, &amp;quot;Helvetica Neue&amp;quot;, Arial, &amp;quot;Lucida Grande&amp;quot;, sans-serif; font-size: 15px;&quot;&gt;&lt;span data-mce-fragment=&quot;1&quot; data-mce-style=&quot;color: #000000;&quot; style=&quot;color: rgb(0, 0, 0);&quot;&gt;&lt;span size=&quot;3&quot; color=&quot;#FF0000&quot; data-mce-fragment=&quot;1&quot; data-mce-style=&quot;font-size: medium;&quot; style=&quot;font-size: medium;&quot;&gt;【Please note the following】&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;&lt;p data-mce-fragment=&quot;1&quot; data-open-accessibility-text-original=&quot;15px&quot; style=&quot;margin-bottom: 15px; color: rgb(255, 0, 141); font-family: Helvetica, &amp;quot;Helvetica Neue&amp;quot;, Arial, &amp;quot;Lucida Grande&amp;quot;, sans-serif; font-size: 15px;&quot;&gt;&lt;span data-mce-fragment=&quot;1&quot; data-mce-style=&quot;color: #000000;&quot; style=&quot;color: rgb(0, 0, 0);&quot;&gt;&lt;span size=&quot;3&quot; color=&quot;#FF0000&quot; data-mce-fragment=&quot;1&quot; data-mce-style=&quot;font-size: medium;&quot; style=&quot;font-size: medium;&quot;&gt;&lt;span data-mce-fragment=&quot;1&quot; style=&quot;font-weight: 700;&quot;&gt;&lt;span size=&quot;3&quot; color=&quot;#FF0000&quot; data-mce-fragment=&quot;1&quot; data-mce-style=&quot;color: #000000;&quot;&gt;&lt;span data-mce-fragment=&quot;1&quot; data-mce-style=&quot;color: #ff2a00;&quot; style=&quot;color: rgb(255, 42, 0);&quot;&gt;RESALE OF THIS ITEM IS STRICTLY PROHIBITED&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;br data-mce-fragment=&quot;1&quot;&gt;Product images are for illustrative purposes only and may differ from the actual product.&lt;br data-mce-fragment=&quot;1&quot;&gt;For product images showing multiple items, we are only actually selling 1 piece&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;&lt;p data-mce-fragment=&quot;1&quot; data-open-accessibility-text-original=&quot;15px&quot; style=&quot;margin-bottom: 15px; color: rgb(255, 0, 141); font-family: Helvetica, &amp;quot;Helvetica Neue&amp;quot;, Arial, &amp;quot;Lucida Grande&amp;quot;, sans-serif; font-size: 15px;&quot;&gt;&lt;span data-mce-fragment=&quot;1&quot; data-mce-style=&quot;color: #000000;&quot; style=&quot;color: rgb(0, 0, 0);&quot;&gt;&lt;span size=&quot;3&quot; color=&quot;#FF0000&quot; data-mce-fragment=&quot;1&quot; data-mce-style=&quot;font-size: medium;&quot; style=&quot;font-size: medium;&quot;&gt;Actual product size may vary from the size of Description&lt;br data-mce-fragment=&quot;1&quot;&gt;Product may vary from image above and assortment products will be chosen at random&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;&lt;div&gt;&lt;span data-mce-fragment=&quot;1&quot; data-mce-style=&quot;color: #000000;&quot; style=&quot;color: rgb(0, 0, 0);&quot;&gt;&lt;span size=&quot;3&quot; color=&quot;#FF0000&quot; data-mce-fragment=&quot;1&quot; data-mce-style=&quot;font-size: medium;&quot; style=&quot;font-size: medium;&quot;&gt;&lt;br&gt;&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;', '', 'Cotton Swab Case My Melody', '', ''),
+(74, 2, 'Cotton Swab Case My Melody', '&lt;p data-open-accessibility-text-original=&quot;15px&quot; style=&quot;margin-bottom: 15px; color: rgb(255, 0, 141); font-family: Helvetica, &amp;quot;Helvetica Neue&amp;quot;, Arial, &amp;quot;Lucida Grande&amp;quot;, sans-serif; font-size: 15px;&quot;&gt;【Size】4.7cm × 2.2cm × 11.6cm　1.9004in × 0.9161in × 4.6169in&lt;br&gt;【Material】ケース：　ポリプロピレン　フタ：　ＡＢＳ樹脂　Case：　polypropylene　lid：　ABS resin&lt;br&gt;【Extened information】綿棒や絆創膏が入るよ！　持ち運びに便利　・　・　・　・　・　・　-　-　-　-　-　-　-　-　-&lt;/p&gt;&lt;p data-open-accessibility-text-original=&quot;15px&quot; style=&quot;margin-bottom: 15px; color: rgb(255, 0, 141); font-family: Helvetica, &amp;quot;Helvetica Neue&amp;quot;, Arial, &amp;quot;Lucida Grande&amp;quot;, sans-serif; font-size: 15px;&quot;&gt;&lt;span size=&quot;3&quot; color=&quot;#0000ff&quot; style=&quot;color: rgb(0, 0, 255); font-size: medium;&quot;&gt;&lt;span style=&quot;font-weight: 700;&quot;&gt;【About Bulk Orders】A limit order is 3 pieces&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;&lt;p data-mce-fragment=&quot;1&quot; data-open-accessibility-text-original=&quot;15px&quot; style=&quot;margin-bottom: 15px; color: rgb(255, 0, 141); font-family: Helvetica, &amp;quot;Helvetica Neue&amp;quot;, Arial, &amp;quot;Lucida Grande&amp;quot;, sans-serif; font-size: 15px;&quot;&gt;&lt;span data-mce-fragment=&quot;1&quot; data-mce-style=&quot;color: #000000;&quot; style=&quot;color: rgb(0, 0, 0);&quot;&gt;&lt;span size=&quot;3&quot; color=&quot;#FF0000&quot; data-mce-fragment=&quot;1&quot; data-mce-style=&quot;font-size: medium;&quot; style=&quot;font-size: medium;&quot;&gt;【Please note the following】&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;&lt;p data-mce-fragment=&quot;1&quot; data-open-accessibility-text-original=&quot;15px&quot; style=&quot;margin-bottom: 15px; color: rgb(255, 0, 141); font-family: Helvetica, &amp;quot;Helvetica Neue&amp;quot;, Arial, &amp;quot;Lucida Grande&amp;quot;, sans-serif; font-size: 15px;&quot;&gt;&lt;span data-mce-fragment=&quot;1&quot; data-mce-style=&quot;color: #000000;&quot; style=&quot;color: rgb(0, 0, 0);&quot;&gt;&lt;span size=&quot;3&quot; color=&quot;#FF0000&quot; data-mce-fragment=&quot;1&quot; data-mce-style=&quot;font-size: medium;&quot; style=&quot;font-size: medium;&quot;&gt;&lt;span data-mce-fragment=&quot;1&quot; style=&quot;font-weight: 700;&quot;&gt;&lt;span size=&quot;3&quot; color=&quot;#FF0000&quot; data-mce-fragment=&quot;1&quot; data-mce-style=&quot;color: #000000;&quot;&gt;&lt;span data-mce-fragment=&quot;1&quot; data-mce-style=&quot;color: #ff2a00;&quot; style=&quot;color: rgb(255, 42, 0);&quot;&gt;RESALE OF THIS ITEM IS STRICTLY PROHIBITED&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;br data-mce-fragment=&quot;1&quot;&gt;Product images are for illustrative purposes only and may differ from the actual product.&lt;br data-mce-fragment=&quot;1&quot;&gt;For product images showing multiple items, we are only actually selling 1 piece&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;&lt;p data-mce-fragment=&quot;1&quot; data-open-accessibility-text-original=&quot;15px&quot; style=&quot;margin-bottom: 15px; color: rgb(255, 0, 141); font-family: Helvetica, &amp;quot;Helvetica Neue&amp;quot;, Arial, &amp;quot;Lucida Grande&amp;quot;, sans-serif; font-size: 15px;&quot;&gt;&lt;span data-mce-fragment=&quot;1&quot; data-mce-style=&quot;color: #000000;&quot; style=&quot;color: rgb(0, 0, 0);&quot;&gt;&lt;span size=&quot;3&quot; color=&quot;#FF0000&quot; data-mce-fragment=&quot;1&quot; data-mce-style=&quot;font-size: medium;&quot; style=&quot;font-size: medium;&quot;&gt;Actual product size may vary from the size of Description&lt;br data-mce-fragment=&quot;1&quot;&gt;Product may vary from image above and assortment products will be chosen at random&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;&lt;div&gt;&lt;span data-mce-fragment=&quot;1&quot; data-mce-style=&quot;color: #000000;&quot; style=&quot;color: rgb(0, 0, 0);&quot;&gt;&lt;span size=&quot;3&quot; color=&quot;#FF0000&quot; data-mce-fragment=&quot;1&quot; data-mce-style=&quot;font-size: medium;&quot; style=&quot;font-size: medium;&quot;&gt;&lt;br&gt;&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;', '', 'Cotton Swab Case My Melody', '', ''),
+(75, 1, 'My Melody Toothbrush Case', '&lt;p data-open-accessibility-text-original=&quot;15px&quot; style=&quot;margin-bottom: 15px; color: rgb(255, 0, 141); font-family: Helvetica, &amp;quot;Helvetica Neue&amp;quot;, Arial, &amp;quot;Lucida Grande&amp;quot;, sans-serif; font-size: 15px;&quot;&gt;【Size】3cm × 2cm × 20cm　1.1811in × 0.7874in × 7.8740in　なし　none&lt;br&gt;【Material】 Resin　158°F&lt;br&gt;【Extended information】 Sanrio/ My Melody pattern toothbrush case.　&lt;/p&gt;&lt;p data-open-accessibility-text-original=&quot;15px&quot; style=&quot;margin-bottom: 15px; color: rgb(255, 0, 141); font-family: Helvetica, &amp;quot;Helvetica Neue&amp;quot;, Arial, &amp;quot;Lucida Grande&amp;quot;, sans-serif; font-size: 15px;&quot;&gt;&lt;span color=&quot;#0000ff&quot; size=&quot;3&quot; style=&quot;color: rgb(0, 0, 255); font-size: medium;&quot;&gt;&lt;span style=&quot;font-weight: 700;&quot;&gt;【About Bulk Orders】 A limit order is 8 pieces&lt;/span&gt;&amp;nbsp;&lt;/span&gt;&lt;/p&gt;&lt;p data-open-accessibility-text-original=&quot;15px&quot; style=&quot;margin-bottom: 15px; color: rgb(255, 0, 141); font-family: Helvetica, &amp;quot;Helvetica Neue&amp;quot;, Arial, &amp;quot;Lucida Grande&amp;quot;, sans-serif; font-size: 15px;&quot;&gt;&lt;span data-mce-style=&quot;color: #000000;&quot; style=&quot;color: rgb(0, 0, 0);&quot;&gt;&lt;span color=&quot;#FF0000&quot; size=&quot;3&quot; data-mce-style=&quot;font-size: medium;&quot; style=&quot;font-size: medium;&quot;&gt;【Please note the following】&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;&lt;p data-open-accessibility-text-original=&quot;15px&quot; style=&quot;margin-bottom: 15px; color: rgb(255, 0, 141); font-family: Helvetica, &amp;quot;Helvetica Neue&amp;quot;, Arial, &amp;quot;Lucida Grande&amp;quot;, sans-serif; font-size: 15px;&quot;&gt;&lt;span data-mce-style=&quot;color: #000000;&quot; style=&quot;color: rgb(0, 0, 0);&quot;&gt;&lt;span color=&quot;#FF0000&quot; size=&quot;3&quot; data-mce-style=&quot;font-size: medium;&quot; style=&quot;font-size: medium;&quot;&gt;&lt;span style=&quot;font-weight: 700;&quot;&gt;&lt;span color=&quot;#FF0000&quot; size=&quot;3&quot; data-mce-style=&quot;color: #000000;&quot; data-mce-fragment=&quot;1&quot;&gt;&lt;span data-mce-style=&quot;color: #ff2a00;&quot; data-mce-fragment=&quot;1&quot; style=&quot;color: rgb(255, 42, 0);&quot;&gt;RESALE OF THIS ITEM IS STRICTLY PROHIBITED&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;Product images are for illustrative purposes only and may differ from the actual product.&lt;br&gt;For product images showing multiple items, we are only actually selling 1 piece&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;&lt;p data-open-accessibility-text-original=&quot;15px&quot; style=&quot;margin-bottom: 15px; color: rgb(255, 0, 141); font-family: Helvetica, &amp;quot;Helvetica Neue&amp;quot;, Arial, &amp;quot;Lucida Grande&amp;quot;, sans-serif; font-size: 15px;&quot;&gt;&lt;span data-mce-style=&quot;color: #000000;&quot; style=&quot;color: rgb(0, 0, 0);&quot;&gt;&lt;span color=&quot;#FF0000&quot; size=&quot;3&quot; data-mce-style=&quot;font-size: medium;&quot; style=&quot;font-size: medium;&quot;&gt;Actual product size may vary from the size of Description&lt;br&gt;Product may vary from image above and assortment products will be chosen at random&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;', '', 'My Melody Toothbrush Case', '', ''),
+(75, 2, 'My Melody Toothbrush Case', '&lt;p data-open-accessibility-text-original=&quot;15px&quot; style=&quot;margin-bottom: 15px; color: rgb(255, 0, 141); font-family: Helvetica, &amp;quot;Helvetica Neue&amp;quot;, Arial, &amp;quot;Lucida Grande&amp;quot;, sans-serif; font-size: 15px;&quot;&gt;【Size】3cm × 2cm × 20cm　1.1811in × 0.7874in × 7.8740in　なし　none&lt;br&gt;【Material】 Resin　158°F&lt;br&gt;【Extended information】 Sanrio/ My Melody pattern toothbrush case.　&lt;/p&gt;&lt;p data-open-accessibility-text-original=&quot;15px&quot; style=&quot;margin-bottom: 15px; color: rgb(255, 0, 141); font-family: Helvetica, &amp;quot;Helvetica Neue&amp;quot;, Arial, &amp;quot;Lucida Grande&amp;quot;, sans-serif; font-size: 15px;&quot;&gt;&lt;span color=&quot;#0000ff&quot; size=&quot;3&quot; style=&quot;color: rgb(0, 0, 255); font-size: medium;&quot;&gt;&lt;span style=&quot;font-weight: 700;&quot;&gt;【About Bulk Orders】 A limit order is 8 pieces&lt;/span&gt;&amp;nbsp;&lt;/span&gt;&lt;/p&gt;&lt;p data-open-accessibility-text-original=&quot;15px&quot; style=&quot;margin-bottom: 15px; color: rgb(255, 0, 141); font-family: Helvetica, &amp;quot;Helvetica Neue&amp;quot;, Arial, &amp;quot;Lucida Grande&amp;quot;, sans-serif; font-size: 15px;&quot;&gt;&lt;span data-mce-style=&quot;color: #000000;&quot; style=&quot;color: rgb(0, 0, 0);&quot;&gt;&lt;span color=&quot;#FF0000&quot; size=&quot;3&quot; data-mce-style=&quot;font-size: medium;&quot; style=&quot;font-size: medium;&quot;&gt;【Please note the following】&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;&lt;p data-open-accessibility-text-original=&quot;15px&quot; style=&quot;margin-bottom: 15px; color: rgb(255, 0, 141); font-family: Helvetica, &amp;quot;Helvetica Neue&amp;quot;, Arial, &amp;quot;Lucida Grande&amp;quot;, sans-serif; font-size: 15px;&quot;&gt;&lt;span data-mce-style=&quot;color: #000000;&quot; style=&quot;color: rgb(0, 0, 0);&quot;&gt;&lt;span color=&quot;#FF0000&quot; size=&quot;3&quot; data-mce-style=&quot;font-size: medium;&quot; style=&quot;font-size: medium;&quot;&gt;&lt;span style=&quot;font-weight: 700;&quot;&gt;&lt;span color=&quot;#FF0000&quot; size=&quot;3&quot; data-mce-style=&quot;color: #000000;&quot; data-mce-fragment=&quot;1&quot;&gt;&lt;span data-mce-style=&quot;color: #ff2a00;&quot; data-mce-fragment=&quot;1&quot; style=&quot;color: rgb(255, 42, 0);&quot;&gt;RESALE OF THIS ITEM IS STRICTLY PROHIBITED&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;Product images are for illustrative purposes only and may differ from the actual product.&lt;br&gt;For product images showing multiple items, we are only actually selling 1 piece&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;&lt;p data-open-accessibility-text-original=&quot;15px&quot; style=&quot;margin-bottom: 15px; color: rgb(255, 0, 141); font-family: Helvetica, &amp;quot;Helvetica Neue&amp;quot;, Arial, &amp;quot;Lucida Grande&amp;quot;, sans-serif; font-size: 15px;&quot;&gt;&lt;span data-mce-style=&quot;color: #000000;&quot; style=&quot;color: rgb(0, 0, 0);&quot;&gt;&lt;span color=&quot;#FF0000&quot; size=&quot;3&quot; data-mce-style=&quot;font-size: medium;&quot; style=&quot;font-size: medium;&quot;&gt;Actual product size may vary from the size of Description&lt;br&gt;Product may vary from image above and assortment products will be chosen at random&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;', '', 'My Melody Toothbrush Case', '', ''),
+(76, 1, 'Black Cat Bookend', '&lt;p data-open-accessibility-text-original=&quot;15px&quot; style=&quot;margin-bottom: 15px; color: rgb(255, 0, 141); font-family: Helvetica, &amp;quot;Helvetica Neue&amp;quot;, Arial, &amp;quot;Lucida Grande&amp;quot;, sans-serif; font-size: 15px;&quot;&gt;【Size】(6cm x 10cm x 11.3cm) (2.36in x 3.94in x 1.45in)&lt;br&gt;【Material】Iron&lt;br&gt;【Extended information】&lt;/p&gt;&lt;p data-open-accessibility-text-original=&quot;15px&quot; style=&quot;margin-bottom: 15px; color: rgb(255, 0, 141); font-family: Helvetica, &amp;quot;Helvetica Neue&amp;quot;, Arial, &amp;quot;Lucida Grande&amp;quot;, sans-serif; font-size: 15px;&quot;&gt;&lt;span size=&quot;3&quot; color=&quot;#0000ff&quot; style=&quot;color: rgb(0, 0, 255); font-size: medium;&quot;&gt;&lt;span style=&quot;font-weight: 700;&quot;&gt;【About Bulk Orders】A limit order is 10 pieces&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;&lt;p data-open-accessibility-text-original=&quot;15px&quot; style=&quot;margin-bottom: 15px; color: rgb(255, 0, 141); font-family: Helvetica, &amp;quot;Helvetica Neue&amp;quot;, Arial, &amp;quot;Lucida Grande&amp;quot;, sans-serif; font-size: 15px;&quot;&gt;&lt;span size=&quot;3&quot; color=&quot;#FF0000&quot; style=&quot;color: rgb(255, 0, 0); font-size: medium;&quot;&gt;&lt;span style=&quot;font-weight: 700;&quot;&gt;【Please note the following】&lt;br&gt;Product images are for illustrative purposes only and may differ from the actual product.&lt;br&gt;For product images showing multiple items, we are only actually selling 1 piece&lt;br&gt;Actual product size may vary from the size of Description&lt;br&gt;Product may vary from image above and assortment products will be chosen at random&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;', '', 'Black Cat Bookend', '', ''),
+(76, 2, 'Black Cat Bookend', '&lt;p data-open-accessibility-text-original=&quot;15px&quot; style=&quot;margin-bottom: 15px; color: rgb(255, 0, 141); font-family: Helvetica, &amp;quot;Helvetica Neue&amp;quot;, Arial, &amp;quot;Lucida Grande&amp;quot;, sans-serif; font-size: 15px;&quot;&gt;【Size】(6cm x 10cm x 11.3cm) (2.36in x 3.94in x 1.45in)&lt;br&gt;【Material】Iron&lt;br&gt;【Extended information】&lt;/p&gt;&lt;p data-open-accessibility-text-original=&quot;15px&quot; style=&quot;margin-bottom: 15px; color: rgb(255, 0, 141); font-family: Helvetica, &amp;quot;Helvetica Neue&amp;quot;, Arial, &amp;quot;Lucida Grande&amp;quot;, sans-serif; font-size: 15px;&quot;&gt;&lt;span size=&quot;3&quot; color=&quot;#0000ff&quot; style=&quot;color: rgb(0, 0, 255); font-size: medium;&quot;&gt;&lt;span style=&quot;font-weight: 700;&quot;&gt;【About Bulk Orders】A limit order is 10 pieces&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;&lt;p data-open-accessibility-text-original=&quot;15px&quot; style=&quot;margin-bottom: 15px; color: rgb(255, 0, 141); font-family: Helvetica, &amp;quot;Helvetica Neue&amp;quot;, Arial, &amp;quot;Lucida Grande&amp;quot;, sans-serif; font-size: 15px;&quot;&gt;&lt;span size=&quot;3&quot; color=&quot;#FF0000&quot; style=&quot;color: rgb(255, 0, 0); font-size: medium;&quot;&gt;&lt;span style=&quot;font-weight: 700;&quot;&gt;【Please note the following】&lt;br&gt;Product images are for illustrative purposes only and may differ from the actual product.&lt;br&gt;For product images showing multiple items, we are only actually selling 1 piece&lt;br&gt;Actual product size may vary from the size of Description&lt;br&gt;Product may vary from image above and assortment products will be chosen at random&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;', '', 'Black Cat Bookend', '', ''),
+(77, 1, 'Hello Kitty Insole', '&lt;p data-open-accessibility-text-original=&quot;15px&quot; style=&quot;margin-bottom: 15px; color: rgb(255, 0, 141); font-family: Helvetica, &amp;quot;Helvetica Neue&amp;quot;, Arial, &amp;quot;Lucida Grande&amp;quot;, sans-serif; font-size: 15px;&quot;&gt;【Size】4.5cm × 0.7cm × 4.5cm　 1.8217in × 0.3256in × 1.8217in&lt;br&gt;【Material】Polyester.Polyethylene.Ethylene-vinyl acetate copolymer.&lt;br&gt;【Extened information】Suitable size 13.0-17.0cm&lt;/p&gt;&lt;p data-open-accessibility-text-original=&quot;15px&quot; style=&quot;margin-bottom: 15px; color: rgb(255, 0, 141); font-family: Helvetica, &amp;quot;Helvetica Neue&amp;quot;, Arial, &amp;quot;Lucida Grande&amp;quot;, sans-serif; font-size: 15px;&quot;&gt;&lt;span size=&quot;3&quot; color=&quot;#0000ff&quot; style=&quot;color: rgb(0, 0, 255); font-size: medium;&quot;&gt;&lt;span style=&quot;font-weight: 700;&quot;&gt;【About Bulk Orders】A limit order is 3 pieces&lt;/span&gt;&amp;nbsp;&lt;/span&gt;&lt;span size=&quot;3&quot; color=&quot;#FF0000&quot; style=&quot;color: rgb(255, 0, 0); font-size: medium;&quot;&gt;&lt;span style=&quot;font-weight: 700;&quot;&gt;【Please note the following】&lt;br&gt;Product images are for illustrative purposes only and may differ from the actual product.&lt;br&gt;For product images showing multiple items, we are only actually selling 1 pieceActual product size may vary from the size of Description&lt;br&gt;Product may vary from image above and assortment products will be chosen at random&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;', '', 'Hello Kitty Insole', '', ''),
+(77, 2, 'Hello Kitty Insole', '&lt;p data-open-accessibility-text-original=&quot;15px&quot; style=&quot;margin-bottom: 15px; color: rgb(255, 0, 141); font-family: Helvetica, &amp;quot;Helvetica Neue&amp;quot;, Arial, &amp;quot;Lucida Grande&amp;quot;, sans-serif; font-size: 15px;&quot;&gt;【Size】4.5cm × 0.7cm × 4.5cm　 1.8217in × 0.3256in × 1.8217in&lt;br&gt;【Material】Polyester.Polyethylene.Ethylene-vinyl acetate copolymer.&lt;br&gt;【Extened information】Suitable size 13.0-17.0cm&lt;/p&gt;&lt;p data-open-accessibility-text-original=&quot;15px&quot; style=&quot;margin-bottom: 15px; color: rgb(255, 0, 141); font-family: Helvetica, &amp;quot;Helvetica Neue&amp;quot;, Arial, &amp;quot;Lucida Grande&amp;quot;, sans-serif; font-size: 15px;&quot;&gt;&lt;span size=&quot;3&quot; color=&quot;#0000ff&quot; style=&quot;color: rgb(0, 0, 255); font-size: medium;&quot;&gt;&lt;span style=&quot;font-weight: 700;&quot;&gt;【About Bulk Orders】A limit order is 3 pieces&lt;/span&gt;&amp;nbsp;&lt;/span&gt;&lt;span size=&quot;3&quot; color=&quot;#FF0000&quot; style=&quot;color: rgb(255, 0, 0); font-size: medium;&quot;&gt;&lt;span style=&quot;font-weight: 700;&quot;&gt;【Please note the following】&lt;br&gt;Product images are for illustrative purposes only and may differ from the actual product.&lt;br&gt;For product images showing multiple items, we are only actually selling 1 pieceActual product size may vary from the size of Description&lt;br&gt;Product may vary from image above and assortment products will be chosen at random&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;', '', 'Hello Kitty Insole', '', ''),
+(78, 1, 'Ankle Tabi Socks For Women Wide Sole', '&lt;span style=&quot;color: rgb(255, 0, 141); font-family: Helvetica, &amp;quot;Helvetica Neue&amp;quot;, Arial, &amp;quot;Lucida Grande&amp;quot;, sans-serif; font-size: 15px;&quot;&gt;【Size】9cm × 22cm × 1cm　3.5933in × 8.7114in × 0.4437in　23-25CM&lt;/span&gt;&lt;br style=&quot;color: rgb(255, 0, 141); font-family: Helvetica, &amp;quot;Helvetica Neue&amp;quot;, Arial, &amp;quot;Lucida Grande&amp;quot;, sans-serif; font-size: 15px;&quot;&gt;&lt;span style=&quot;color: rgb(255, 0, 141); font-family: Helvetica, &amp;quot;Helvetica Neue&amp;quot;, Arial, &amp;quot;Lucida Grande&amp;quot;, sans-serif; font-size: 15px;&quot;&gt;【Material】・ポリエステル98％　・ポリウレタン2％　98pct Polyester　2pct Elastane&lt;/span&gt;&lt;br style=&quot;color: rgb(255, 0, 141); font-family: Helvetica, &amp;quot;Helvetica Neue&amp;quot;, Arial, &amp;quot;Lucida Grande&amp;quot;, sans-serif; font-size: 15px;&quot;&gt;&lt;span style=&quot;color: rgb(255, 0, 141); font-family: Helvetica, &amp;quot;Helvetica Neue&amp;quot;, Arial, &amp;quot;Lucida Grande&amp;quot;, sans-serif; font-size: 15px;&quot;&gt;【Extened information】・　・　・　・　・　・　・23cmー25cm　・　・　US:6-8　EU:36-40&lt;/span&gt;&lt;span size=&quot;3&quot; color=&quot;#0000ff&quot; data-open-accessibility-text-original=&quot;16px&quot; style=&quot;font-family: Helvetica, &amp;quot;Helvetica Neue&amp;quot;, Arial, &amp;quot;Lucida Grande&amp;quot;, sans-serif; color: rgb(0, 0, 255); font-size: 16px;&quot;&gt;&lt;span style=&quot;font-weight: 700;&quot;&gt;【About Bulk Orders】A limit order is 10 pieces&lt;/span&gt;&amp;nbsp;&lt;/span&gt;&lt;span size=&quot;3&quot; color=&quot;#FF0000&quot; data-open-accessibility-text-original=&quot;16px&quot; style=&quot;font-family: Helvetica, &amp;quot;Helvetica Neue&amp;quot;, Arial, &amp;quot;Lucida Grande&amp;quot;, sans-serif; color: rgb(255, 0, 0); font-size: 16px;&quot;&gt;&lt;span style=&quot;font-weight: 700;&quot;&gt;【Please note the following】&lt;br&gt;Product images are for illustrative purposes only and may differ from the actual product.&lt;br&gt;For product images showing multiple items, we are only actually selling 1 pieceActual product size may vary from the size of Description&lt;br&gt;Product may vary from image above and assortment products will be chosen at random&lt;/span&gt;&lt;/span&gt;', '', 'Ankle Tabi Socks For Women Wide Sole', '', ''),
+(78, 2, 'Ankle Tabi Socks For Women Wide Sole', '&lt;span style=&quot;color: rgb(255, 0, 141); font-family: Helvetica, &amp;quot;Helvetica Neue&amp;quot;, Arial, &amp;quot;Lucida Grande&amp;quot;, sans-serif; font-size: 15px;&quot;&gt;【Size】9cm × 22cm × 1cm　3.5933in × 8.7114in × 0.4437in　23-25CM&lt;/span&gt;&lt;br style=&quot;color: rgb(255, 0, 141); font-family: Helvetica, &amp;quot;Helvetica Neue&amp;quot;, Arial, &amp;quot;Lucida Grande&amp;quot;, sans-serif; font-size: 15px;&quot;&gt;&lt;span style=&quot;color: rgb(255, 0, 141); font-family: Helvetica, &amp;quot;Helvetica Neue&amp;quot;, Arial, &amp;quot;Lucida Grande&amp;quot;, sans-serif; font-size: 15px;&quot;&gt;【Material】・ポリエステル98％　・ポリウレタン2％　98pct Polyester　2pct Elastane&lt;/span&gt;&lt;br style=&quot;color: rgb(255, 0, 141); font-family: Helvetica, &amp;quot;Helvetica Neue&amp;quot;, Arial, &amp;quot;Lucida Grande&amp;quot;, sans-serif; font-size: 15px;&quot;&gt;&lt;span style=&quot;color: rgb(255, 0, 141); font-family: Helvetica, &amp;quot;Helvetica Neue&amp;quot;, Arial, &amp;quot;Lucida Grande&amp;quot;, sans-serif; font-size: 15px;&quot;&gt;【Extened information】・　・　・　・　・　・　・23cmー25cm　・　・　US:6-8　EU:36-40&lt;/span&gt;&lt;span size=&quot;3&quot; color=&quot;#0000ff&quot; data-open-accessibility-text-original=&quot;16px&quot; style=&quot;font-family: Helvetica, &amp;quot;Helvetica Neue&amp;quot;, Arial, &amp;quot;Lucida Grande&amp;quot;, sans-serif; color: rgb(0, 0, 255); font-size: 16px;&quot;&gt;&lt;span style=&quot;font-weight: 700;&quot;&gt;【About Bulk Orders】A limit order is 10 pieces&lt;/span&gt;&amp;nbsp;&lt;/span&gt;&lt;span size=&quot;3&quot; color=&quot;#FF0000&quot; data-open-accessibility-text-original=&quot;16px&quot; style=&quot;font-family: Helvetica, &amp;quot;Helvetica Neue&amp;quot;, Arial, &amp;quot;Lucida Grande&amp;quot;, sans-serif; color: rgb(255, 0, 0); font-size: 16px;&quot;&gt;&lt;span style=&quot;font-weight: 700;&quot;&gt;【Please note the following】&lt;br&gt;Product images are for illustrative purposes only and may differ from the actual product.&lt;br&gt;For product images showing multiple items, we are only actually selling 1 pieceActual product size may vary from the size of Description&lt;br&gt;Product may vary from image above and assortment products will be chosen at random&lt;/span&gt;&lt;/span&gt;', '', 'Ankle Tabi Socks For Women Wide Sole', '', '');
 
 -- --------------------------------------------------------
 
@@ -2996,17 +2945,13 @@ CREATE TABLE IF NOT EXISTS `oc_product_discount` (
   `date_end` date NOT NULL DEFAULT '0000-00-00',
   PRIMARY KEY (`product_discount_id`),
   KEY `product_id` (`product_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=441 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=454 DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `oc_product_discount`
+-- Truncate table before insert `oc_product_discount`
 --
 
-INSERT INTO `oc_product_discount` (`product_discount_id`, `product_id`, `customer_group_id`, `quantity`, `priority`, `price`, `date_start`, `date_end`) VALUES
-(440, 42, 1, 30, 1, '66.0000', '0000-00-00', '0000-00-00'),
-(439, 42, 1, 20, 1, '77.0000', '0000-00-00', '0000-00-00'),
-(438, 42, 1, 10, 1, '88.0000', '0000-00-00', '0000-00-00');
-
+TRUNCATE TABLE `oc_product_discount`;
 -- --------------------------------------------------------
 
 --
@@ -3019,6 +2964,11 @@ CREATE TABLE IF NOT EXISTS `oc_product_filter` (
   PRIMARY KEY (`product_id`,`filter_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
+--
+-- Truncate table before insert `oc_product_filter`
+--
+
+TRUNCATE TABLE `oc_product_filter`;
 -- --------------------------------------------------------
 
 --
@@ -3032,75 +2982,13 @@ CREATE TABLE IF NOT EXISTS `oc_product_image` (
   `sort_order` int(3) NOT NULL DEFAULT 0,
   PRIMARY KEY (`product_image_id`),
   KEY `product_id` (`product_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=2352 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=2373 DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `oc_product_image`
+-- Truncate table before insert `oc_product_image`
 --
 
-INSERT INTO `oc_product_image` (`product_image_id`, `product_id`, `image`, `sort_order`) VALUES
-(2345, 30, 'catalog/demo/canon_eos_5d_2.jpg', 0),
-(2321, 47, 'catalog/demo/hp_3.jpg', 0),
-(2035, 28, 'catalog/demo/htc_touch_hd_2.jpg', 0),
-(2351, 41, 'catalog/demo/imac_3.jpg', 0),
-(1982, 40, 'catalog/demo/iphone_6.jpg', 0),
-(2001, 36, 'catalog/demo/ipod_nano_5.jpg', 0),
-(2000, 36, 'catalog/demo/ipod_nano_4.jpg', 0),
-(2005, 34, 'catalog/demo/ipod_shuffle_5.jpg', 0),
-(2004, 34, 'catalog/demo/ipod_shuffle_4.jpg', 0),
-(2011, 32, 'catalog/demo/ipod_touch_7.jpg', 0),
-(2010, 32, 'catalog/demo/ipod_touch_6.jpg', 0),
-(2009, 32, 'catalog/demo/ipod_touch_5.jpg', 0),
-(1971, 43, 'catalog/demo/macbook_5.jpg', 0),
-(1970, 43, 'catalog/demo/macbook_4.jpg', 0),
-(1974, 44, 'catalog/demo/macbook_air_4.jpg', 0),
-(1973, 44, 'catalog/demo/macbook_air_2.jpg', 0),
-(1977, 45, 'catalog/demo/macbook_pro_2.jpg', 0),
-(1976, 45, 'catalog/demo/macbook_pro_3.jpg', 0),
-(1986, 31, 'catalog/demo/nikon_d300_3.jpg', 0),
-(1985, 31, 'catalog/demo/nikon_d300_2.jpg', 0),
-(1988, 29, 'catalog/demo/palm_treo_pro_3.jpg', 0),
-(1995, 46, 'catalog/demo/sony_vaio_5.jpg', 0),
-(1994, 46, 'catalog/demo/sony_vaio_4.jpg', 0),
-(1991, 48, 'catalog/demo/ipod_classic_4.jpg', 0),
-(1990, 48, 'catalog/demo/ipod_classic_3.jpg', 0),
-(1981, 40, 'catalog/demo/iphone_2.jpg', 0),
-(1980, 40, 'catalog/demo/iphone_5.jpg', 0),
-(2344, 30, 'catalog/demo/canon_eos_5d_3.jpg', 0),
-(2320, 47, 'catalog/demo/hp_2.jpg', 0),
-(2034, 28, 'catalog/demo/htc_touch_hd_3.jpg', 0),
-(2350, 41, 'catalog/demo/imac_2.jpg', 0),
-(1979, 40, 'catalog/demo/iphone_3.jpg', 0),
-(1978, 40, 'catalog/demo/iphone_4.jpg', 0),
-(1989, 48, 'catalog/demo/ipod_classic_2.jpg', 0),
-(1999, 36, 'catalog/demo/ipod_nano_2.jpg', 0),
-(1998, 36, 'catalog/demo/ipod_nano_3.jpg', 0),
-(2003, 34, 'catalog/demo/ipod_shuffle_2.jpg', 0),
-(2002, 34, 'catalog/demo/ipod_shuffle_3.jpg', 0),
-(2008, 32, 'catalog/demo/ipod_touch_2.jpg', 0),
-(2007, 32, 'catalog/demo/ipod_touch_3.jpg', 0),
-(2006, 32, 'catalog/demo/ipod_touch_4.jpg', 0),
-(1969, 43, 'catalog/demo/macbook_2.jpg', 0),
-(1968, 43, 'catalog/demo/macbook_3.jpg', 0),
-(1972, 44, 'catalog/demo/macbook_air_3.jpg', 0),
-(1975, 45, 'catalog/demo/macbook_pro_4.jpg', 0),
-(1984, 31, 'catalog/demo/nikon_d300_4.jpg', 0),
-(1983, 31, 'catalog/demo/nikon_d300_5.jpg', 0),
-(1987, 29, 'catalog/demo/palm_treo_pro_2.jpg', 0),
-(1993, 46, 'catalog/demo/sony_vaio_2.jpg', 0),
-(1992, 46, 'catalog/demo/sony_vaio_3.jpg', 0),
-(2327, 49, 'catalog/demo/samsung_tab_7.jpg', 0),
-(2326, 49, 'catalog/demo/samsung_tab_6.jpg', 0),
-(2325, 49, 'catalog/demo/samsung_tab_5.jpg', 0),
-(2324, 49, 'catalog/demo/samsung_tab_4.jpg', 0),
-(2323, 49, 'catalog/demo/samsung_tab_3.jpg', 0),
-(2322, 49, 'catalog/demo/samsung_tab_2.jpg', 0),
-(2317, 42, 'catalog/demo/canon_logo.jpg', 0),
-(2316, 42, 'catalog/demo/hp_1.jpg', 0),
-(2315, 42, 'catalog/demo/compaq_presario.jpg', 0),
-(2314, 42, 'catalog/demo/canon_eos_5d_1.jpg', 0),
-(2313, 42, 'catalog/demo/canon_eos_5d_2.jpg', 0);
-
+TRUNCATE TABLE `oc_product_image`;
 -- --------------------------------------------------------
 
 --
@@ -3114,26 +3002,13 @@ CREATE TABLE IF NOT EXISTS `oc_product_option` (
   `value` text NOT NULL,
   `required` tinyint(1) NOT NULL,
   PRIMARY KEY (`product_option_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=227 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=228 DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `oc_product_option`
+-- Truncate table before insert `oc_product_option`
 --
 
-INSERT INTO `oc_product_option` (`product_option_id`, `product_id`, `option_id`, `value`, `required`) VALUES
-(224, 35, 11, '', 1),
-(225, 47, 12, '2011-04-22', 1),
-(223, 42, 2, '', 1),
-(217, 42, 5, '', 1),
-(209, 42, 6, '', 1),
-(218, 42, 1, '', 1),
-(208, 42, 4, 'test', 1),
-(219, 42, 8, '2011-02-20', 1),
-(222, 42, 7, '', 1),
-(221, 42, 9, '22:25', 1),
-(220, 42, 10, '2011-02-20 22:25', 1),
-(226, 30, 5, '', 1);
-
+TRUNCATE TABLE `oc_product_option`;
 -- --------------------------------------------------------
 
 --
@@ -3155,30 +3030,13 @@ CREATE TABLE IF NOT EXISTS `oc_product_option_value` (
   `weight` decimal(15,8) NOT NULL,
   `weight_prefix` varchar(1) NOT NULL,
   PRIMARY KEY (`product_option_value_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=17 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=19 DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `oc_product_option_value`
+-- Truncate table before insert `oc_product_option_value`
 --
 
-INSERT INTO `oc_product_option_value` (`product_option_value_id`, `product_option_id`, `product_id`, `option_id`, `option_value_id`, `quantity`, `subtract`, `price`, `price_prefix`, `points`, `points_prefix`, `weight`, `weight_prefix`) VALUES
-(1, 217, 42, 5, 41, 100, 0, '1.0000', '+', 0, '+', '1.00000000', '+'),
-(6, 218, 42, 1, 31, 146, 1, '20.0000', '+', 2, '-', '20.00000000', '+'),
-(7, 218, 42, 1, 43, 300, 1, '30.0000', '+', 3, '+', '30.00000000', '+'),
-(5, 218, 42, 1, 32, 96, 1, '10.0000', '+', 1, '+', '10.00000000', '+'),
-(4, 217, 42, 5, 39, 92, 1, '4.0000', '+', 0, '+', '4.00000000', '+'),
-(2, 217, 42, 5, 42, 200, 1, '2.0000', '+', 0, '+', '2.00000000', '+'),
-(3, 217, 42, 5, 40, 300, 0, '3.0000', '+', 0, '+', '3.00000000', '+'),
-(8, 223, 42, 2, 23, 48, 1, '10.0000', '+', 0, '+', '10.00000000', '+'),
-(10, 223, 42, 2, 44, 2696, 1, '30.0000', '+', 0, '+', '30.00000000', '+'),
-(9, 223, 42, 2, 24, 194, 1, '20.0000', '+', 0, '+', '20.00000000', '+'),
-(11, 223, 42, 2, 45, 3998, 1, '40.0000', '+', 0, '+', '40.00000000', '+'),
-(12, 224, 35, 11, 46, 0, 1, '5.0000', '+', 0, '+', '0.00000000', '+'),
-(13, 224, 35, 11, 47, 10, 1, '10.0000', '+', 0, '+', '0.00000000', '+'),
-(14, 224, 35, 11, 48, 15, 1, '15.0000', '+', 0, '+', '0.00000000', '+'),
-(16, 226, 30, 5, 40, 5, 1, '0.0000', '+', 0, '+', '0.00000000', '+'),
-(15, 226, 30, 5, 39, 2, 1, '0.0000', '+', 0, '+', '0.00000000', '+');
-
+TRUNCATE TABLE `oc_product_option_value`;
 -- --------------------------------------------------------
 
 --
@@ -3192,6 +3050,11 @@ CREATE TABLE IF NOT EXISTS `oc_product_recurring` (
   PRIMARY KEY (`product_id`,`recurring_id`,`customer_group_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
+--
+-- Truncate table before insert `oc_product_recurring`
+--
+
+TRUNCATE TABLE `oc_product_recurring`;
 -- --------------------------------------------------------
 
 --
@@ -3205,15 +3068,10 @@ CREATE TABLE IF NOT EXISTS `oc_product_related` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `oc_product_related`
+-- Truncate table before insert `oc_product_related`
 --
 
-INSERT INTO `oc_product_related` (`product_id`, `related_id`) VALUES
-(40, 42),
-(41, 42),
-(42, 40),
-(42, 41);
-
+TRUNCATE TABLE `oc_product_related`;
 -- --------------------------------------------------------
 
 --
@@ -3226,33 +3084,13 @@ CREATE TABLE IF NOT EXISTS `oc_product_reward` (
   `customer_group_id` int(11) NOT NULL DEFAULT 0,
   `points` int(8) NOT NULL DEFAULT 0,
   PRIMARY KEY (`product_reward_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=546 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=551 DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `oc_product_reward`
+-- Truncate table before insert `oc_product_reward`
 --
 
-INSERT INTO `oc_product_reward` (`product_reward_id`, `product_id`, `customer_group_id`, `points`) VALUES
-(515, 42, 1, 100),
-(519, 47, 1, 300),
-(379, 28, 1, 400),
-(329, 43, 1, 600),
-(339, 29, 1, 0),
-(343, 48, 1, 0),
-(335, 40, 1, 0),
-(539, 30, 1, 200),
-(331, 44, 1, 700),
-(333, 45, 1, 800),
-(337, 31, 1, 0),
-(425, 35, 1, 0),
-(345, 33, 1, 0),
-(347, 46, 1, 0),
-(545, 41, 1, 0),
-(351, 36, 1, 0),
-(353, 34, 1, 0),
-(355, 32, 1, 0),
-(521, 49, 1, 1000);
-
+TRUNCATE TABLE `oc_product_reward`;
 -- --------------------------------------------------------
 
 --
@@ -3269,17 +3107,13 @@ CREATE TABLE IF NOT EXISTS `oc_product_special` (
   `date_end` date NOT NULL DEFAULT '0000-00-00',
   PRIMARY KEY (`product_special_id`),
   KEY `product_id` (`product_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=440 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=443 DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `oc_product_special`
+-- Truncate table before insert `oc_product_special`
 --
 
-INSERT INTO `oc_product_special` (`product_special_id`, `product_id`, `customer_group_id`, `priority`, `price`, `date_start`, `date_end`) VALUES
-(419, 42, 1, 1, '90.0000', '0000-00-00', '0000-00-00'),
-(439, 30, 1, 2, '90.0000', '0000-00-00', '0000-00-00'),
-(438, 30, 1, 1, '80.0000', '0000-00-00', '0000-00-00');
-
+TRUNCATE TABLE `oc_product_special`;
 -- --------------------------------------------------------
 
 --
@@ -3294,40 +3128,56 @@ CREATE TABLE IF NOT EXISTS `oc_product_to_category` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
+-- Truncate table before insert `oc_product_to_category`
+--
+
+TRUNCATE TABLE `oc_product_to_category`;
+--
 -- Dumping data for table `oc_product_to_category`
 --
 
-INSERT INTO `oc_product_to_category` (`product_id`, `category_id`) VALUES
-(28, 20),
-(28, 24),
-(29, 20),
-(29, 24),
-(30, 20),
-(30, 33),
-(31, 33),
-(32, 34),
-(33, 20),
-(33, 28),
-(34, 34),
-(35, 20),
-(36, 34),
-(40, 20),
-(40, 24),
-(41, 27),
-(42, 20),
-(42, 28),
-(43, 18),
-(43, 20),
-(44, 18),
-(44, 20),
-(45, 18),
-(46, 18),
-(46, 20),
-(47, 18),
-(47, 20),
-(48, 20),
-(48, 34),
-(49, 57);
+INSERT IGNORE INTO `oc_product_to_category` (`product_id`, `category_id`) VALUES
+(50, 59),
+(50, 69),
+(51, 59),
+(52, 59),
+(53, 59),
+(53, 69),
+(54, 59),
+(55, 60),
+(55, 67),
+(56, 60),
+(56, 67),
+(57, 60),
+(58, 60),
+(59, 60),
+(59, 67),
+(60, 61),
+(60, 67),
+(61, 61),
+(62, 61),
+(63, 62),
+(64, 62),
+(64, 65),
+(65, 62),
+(66, 64),
+(67, 64),
+(67, 67),
+(68, 65),
+(69, 65),
+(69, 69),
+(70, 65),
+(71, 65),
+(72, 66),
+(73, 66),
+(74, 67),
+(74, 68),
+(75, 67),
+(75, 68),
+(76, 69),
+(77, 63),
+(77, 67),
+(78, 63);
 
 -- --------------------------------------------------------
 
@@ -3341,6 +3191,11 @@ CREATE TABLE IF NOT EXISTS `oc_product_to_download` (
   PRIMARY KEY (`product_id`,`download_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
+--
+-- Truncate table before insert `oc_product_to_download`
+--
+
+TRUNCATE TABLE `oc_product_to_download`;
 -- --------------------------------------------------------
 
 --
@@ -3353,6 +3208,46 @@ CREATE TABLE IF NOT EXISTS `oc_product_to_layout` (
   `layout_id` int(11) NOT NULL,
   PRIMARY KEY (`product_id`,`store_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+--
+-- Truncate table before insert `oc_product_to_layout`
+--
+
+TRUNCATE TABLE `oc_product_to_layout`;
+--
+-- Dumping data for table `oc_product_to_layout`
+--
+
+INSERT IGNORE INTO `oc_product_to_layout` (`product_id`, `store_id`, `layout_id`) VALUES
+(52, 0, 0),
+(51, 0, 0),
+(50, 0, 0),
+(53, 0, 0),
+(54, 0, 0),
+(55, 0, 0),
+(56, 0, 0),
+(57, 0, 0),
+(58, 0, 0),
+(59, 0, 0),
+(60, 0, 0),
+(61, 0, 0),
+(62, 0, 0),
+(63, 0, 0),
+(64, 0, 0),
+(65, 0, 0),
+(66, 0, 0),
+(67, 0, 0),
+(68, 0, 0),
+(69, 0, 0),
+(70, 0, 0),
+(71, 0, 0),
+(72, 0, 0),
+(73, 0, 0),
+(74, 0, 0),
+(75, 0, 0),
+(76, 0, 0),
+(77, 0, 0),
+(78, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -3367,29 +3262,44 @@ CREATE TABLE IF NOT EXISTS `oc_product_to_store` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
+-- Truncate table before insert `oc_product_to_store`
+--
+
+TRUNCATE TABLE `oc_product_to_store`;
+--
 -- Dumping data for table `oc_product_to_store`
 --
 
-INSERT INTO `oc_product_to_store` (`product_id`, `store_id`) VALUES
-(28, 0),
-(29, 0),
-(30, 0),
-(31, 0),
-(32, 0),
-(33, 0),
-(34, 0),
-(35, 0),
-(36, 0),
-(40, 0),
-(41, 0),
-(42, 0),
-(43, 0),
-(44, 0),
-(45, 0),
-(46, 0),
-(47, 0),
-(48, 0),
-(49, 0);
+INSERT IGNORE INTO `oc_product_to_store` (`product_id`, `store_id`) VALUES
+(50, 0),
+(51, 0),
+(52, 0),
+(53, 0),
+(54, 0),
+(55, 0),
+(56, 0),
+(57, 0),
+(58, 0),
+(59, 0),
+(60, 0),
+(61, 0),
+(62, 0),
+(63, 0),
+(64, 0),
+(65, 0),
+(66, 0),
+(67, 0),
+(68, 0),
+(69, 0),
+(70, 0),
+(71, 0),
+(72, 0),
+(73, 0),
+(74, 0),
+(75, 0),
+(76, 0),
+(77, 0),
+(78, 0);
 
 -- --------------------------------------------------------
 
@@ -3413,6 +3323,11 @@ CREATE TABLE IF NOT EXISTS `oc_recurring` (
   PRIMARY KEY (`recurring_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
+--
+-- Truncate table before insert `oc_recurring`
+--
+
+TRUNCATE TABLE `oc_recurring`;
 -- --------------------------------------------------------
 
 --
@@ -3426,6 +3341,11 @@ CREATE TABLE IF NOT EXISTS `oc_recurring_description` (
   PRIMARY KEY (`recurring_id`,`language_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
+--
+-- Truncate table before insert `oc_recurring_description`
+--
+
+TRUNCATE TABLE `oc_recurring_description`;
 -- --------------------------------------------------------
 
 --
@@ -3455,6 +3375,11 @@ CREATE TABLE IF NOT EXISTS `oc_return` (
   PRIMARY KEY (`return_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
+--
+-- Truncate table before insert `oc_return`
+--
+
+TRUNCATE TABLE `oc_return`;
 -- --------------------------------------------------------
 
 --
@@ -3469,13 +3394,21 @@ CREATE TABLE IF NOT EXISTS `oc_return_action` (
 ) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
 --
+-- Truncate table before insert `oc_return_action`
+--
+
+TRUNCATE TABLE `oc_return_action`;
+--
 -- Dumping data for table `oc_return_action`
 --
 
-INSERT INTO `oc_return_action` (`return_action_id`, `language_id`, `name`) VALUES
+INSERT IGNORE INTO `oc_return_action` (`return_action_id`, `language_id`, `name`) VALUES
 (1, 1, 'Refunded'),
 (2, 1, 'Credit Issued'),
-(3, 1, 'Replacement Sent');
+(3, 1, 'Replacement Sent'),
+(1, 2, 'Refunded'),
+(2, 2, 'Credit Issued'),
+(3, 2, 'Replacement Sent');
 
 -- --------------------------------------------------------
 
@@ -3493,6 +3426,11 @@ CREATE TABLE IF NOT EXISTS `oc_return_history` (
   PRIMARY KEY (`return_history_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
+--
+-- Truncate table before insert `oc_return_history`
+--
+
+TRUNCATE TABLE `oc_return_history`;
 -- --------------------------------------------------------
 
 --
@@ -3507,15 +3445,25 @@ CREATE TABLE IF NOT EXISTS `oc_return_reason` (
 ) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 
 --
+-- Truncate table before insert `oc_return_reason`
+--
+
+TRUNCATE TABLE `oc_return_reason`;
+--
 -- Dumping data for table `oc_return_reason`
 --
 
-INSERT INTO `oc_return_reason` (`return_reason_id`, `language_id`, `name`) VALUES
+INSERT IGNORE INTO `oc_return_reason` (`return_reason_id`, `language_id`, `name`) VALUES
 (1, 1, 'Dead On Arrival'),
 (2, 1, 'Received Wrong Item'),
 (3, 1, 'Order Error'),
 (4, 1, 'Faulty, please supply details'),
-(5, 1, 'Other, please supply details');
+(5, 1, 'Other, please supply details'),
+(1, 2, 'Dead On Arrival'),
+(2, 2, 'Received Wrong Item'),
+(3, 2, 'Order Error'),
+(4, 2, 'Faulty, please supply details'),
+(5, 2, 'Other, please supply details');
 
 -- --------------------------------------------------------
 
@@ -3531,13 +3479,21 @@ CREATE TABLE IF NOT EXISTS `oc_return_status` (
 ) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
 --
+-- Truncate table before insert `oc_return_status`
+--
+
+TRUNCATE TABLE `oc_return_status`;
+--
 -- Dumping data for table `oc_return_status`
 --
 
-INSERT INTO `oc_return_status` (`return_status_id`, `language_id`, `name`) VALUES
+INSERT IGNORE INTO `oc_return_status` (`return_status_id`, `language_id`, `name`) VALUES
 (1, 1, 'Pending'),
 (3, 1, 'Complete'),
-(2, 1, 'Awaiting Products');
+(2, 1, 'Awaiting Products'),
+(1, 2, 'Pending'),
+(3, 2, 'Complete'),
+(2, 2, 'Awaiting Products');
 
 -- --------------------------------------------------------
 
@@ -3559,6 +3515,11 @@ CREATE TABLE IF NOT EXISTS `oc_review` (
   KEY `product_id` (`product_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
+--
+-- Truncate table before insert `oc_review`
+--
+
+TRUNCATE TABLE `oc_review`;
 -- --------------------------------------------------------
 
 --
@@ -3574,77 +3535,40 @@ CREATE TABLE IF NOT EXISTS `oc_seo_url` (
   PRIMARY KEY (`seo_url_id`),
   KEY `query` (`query`),
   KEY `keyword` (`keyword`)
-) ENGINE=MyISAM AUTO_INCREMENT=844 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=896 DEFAULT CHARSET=utf8;
 
+--
+-- Truncate table before insert `oc_seo_url`
+--
+
+TRUNCATE TABLE `oc_seo_url`;
 --
 -- Dumping data for table `oc_seo_url`
 --
 
-INSERT INTO `oc_seo_url` (`seo_url_id`, `store_id`, `language_id`, `query`, `keyword`) VALUES
-(824, 0, 1, 'product_id=48', 'ipod-classic'),
-(836, 0, 1, 'category_id=20', 'desktops'),
-(834, 0, 1, 'category_id=26', 'pc'),
-(835, 0, 1, 'category_id=27', 'mac'),
-(730, 0, 1, 'manufacturer_id=8', 'apple'),
+INSERT IGNORE INTO `oc_seo_url` (`seo_url_id`, `store_id`, `language_id`, `query`, `keyword`) VALUES
 (772, 0, 1, 'information_id=4', 'about_us'),
-(768, 0, 1, 'product_id=42', 'test'),
-(789, 0, 1, 'category_id=34', 'mp3-players'),
-(781, 0, 1, 'category_id=36', 'test2'),
-(774, 0, 1, 'category_id=18', 'laptop-notebook'),
-(775, 0, 1, 'category_id=46', 'macs'),
-(776, 0, 1, 'category_id=45', 'windows'),
-(777, 0, 1, 'category_id=25', 'component'),
-(778, 0, 1, 'category_id=29', 'mouse'),
-(779, 0, 1, 'category_id=28', 'monitor'),
-(780, 0, 1, 'category_id=35', 'test1'),
-(782, 0, 1, 'category_id=30', 'printer'),
-(783, 0, 1, 'category_id=31', 'scanner'),
-(784, 0, 1, 'category_id=32', 'web-camera'),
-(785, 0, 1, 'category_id=57', 'tablet'),
-(786, 0, 1, 'category_id=17', 'software'),
-(787, 0, 1, 'category_id=24', 'smartphone'),
-(788, 0, 1, 'category_id=33', 'camera'),
-(790, 0, 1, 'category_id=43', 'test11'),
-(791, 0, 1, 'category_id=44', 'test12'),
-(792, 0, 1, 'category_id=47', 'test15'),
-(793, 0, 1, 'category_id=48', 'test16'),
-(794, 0, 1, 'category_id=49', 'test17'),
-(795, 0, 1, 'category_id=50', 'test18'),
-(796, 0, 1, 'category_id=51', 'test19'),
-(797, 0, 1, 'category_id=52', 'test20'),
-(798, 0, 1, 'category_id=58', 'test25'),
-(799, 0, 1, 'category_id=53', 'test21'),
-(800, 0, 1, 'category_id=54', 'test22'),
-(801, 0, 1, 'category_id=55', 'test23'),
-(802, 0, 1, 'category_id=56', 'test24'),
-(803, 0, 1, 'category_id=38', 'test4'),
-(804, 0, 1, 'category_id=37', 'test5'),
-(805, 0, 1, 'category_id=39', 'test6'),
-(806, 0, 1, 'category_id=40', 'test7'),
-(807, 0, 1, 'category_id=41', 'test8'),
-(808, 0, 1, 'category_id=42', 'test9'),
-(809, 0, 1, 'product_id=30', 'canon-eos-5d'),
-(840, 0, 1, 'product_id=47', 'hp-lp3065'),
-(811, 0, 1, 'product_id=28', 'htc-touch-hd'),
-(812, 0, 1, 'product_id=43', 'macbook'),
-(813, 0, 1, 'product_id=44', 'macbook-air'),
-(814, 0, 1, 'product_id=45', 'macbook-pro'),
-(816, 0, 1, 'product_id=31', 'nikon-d300'),
-(817, 0, 1, 'product_id=29', 'palm-treo-pro'),
-(818, 0, 1, 'product_id=35', 'product-8'),
-(819, 0, 1, 'product_id=49', 'samsung-galaxy-tab-10-1'),
-(820, 0, 1, 'product_id=33', 'samsung-syncmaster-941bw'),
-(821, 0, 1, 'product_id=46', 'sony-vaio'),
-(837, 0, 1, 'product_id=41', 'imac'),
-(823, 0, 1, 'product_id=40', 'iphone'),
-(825, 0, 1, 'product_id=36', 'ipod-nano'),
-(826, 0, 1, 'product_id=34', 'ipod-shuffle'),
-(827, 0, 1, 'product_id=32', 'ipod-touch'),
-(828, 0, 1, 'manufacturer_id=9', 'canon'),
-(829, 0, 1, 'manufacturer_id=5', 'htc'),
-(830, 0, 1, 'manufacturer_id=7', 'hewlett-packard'),
-(831, 0, 1, 'manufacturer_id=6', 'palm'),
-(832, 0, 1, 'manufacturer_id=10', 'sony'),
+(887, 0, 2, 'category_id=64', 'kebersihan'),
+(895, 0, 1, 'category_id=67', 'Sanrio'),
+(891, 0, 1, 'category_id=68', 'personal-care'),
+(892, 0, 2, 'category_id=68', 'perawatan-diri'),
+(893, 0, 1, 'category_id=69', 'stationery'),
+(894, 0, 2, 'category_id=69', 'alat-tulis'),
+(883, 0, 2, 'category_id=61', 'kecantikan'),
+(882, 0, 1, 'category_id=61', 'beauty'),
+(885, 0, 2, 'category_id=62', 'aksesoris-mobil'),
+(884, 0, 1, 'category_id=62', 'car'),
+(868, 0, 1, 'category_id=63', 'clothing'),
+(869, 0, 2, 'category_id=63', 'pakaian'),
+(877, 0, 2, 'category_id=66', 'Dapur'),
+(876, 0, 1, 'category_id=66', 'Kitchen'),
+(886, 0, 1, 'category_id=64', 'cleaning'),
+(872, 0, 1, 'category_id=65', 'Electronics'),
+(873, 0, 2, 'category_id=65', 'Elektronik'),
+(881, 0, 2, 'category_id=60', 'kamar-mandi'),
+(879, 0, 2, 'category_id=59', 'kerajinan'),
+(880, 0, 1, 'category_id=60', 'bath'),
+(878, 0, 1, 'category_id=59', 'arts-crafts'),
 (841, 0, 1, 'information_id=6', 'delivery'),
 (842, 0, 1, 'information_id=3', 'privacy'),
 (843, 0, 1, 'information_id=5', 'terms');
@@ -3663,13 +3587,20 @@ CREATE TABLE IF NOT EXISTS `oc_session` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
+-- Truncate table before insert `oc_session`
+--
+
+TRUNCATE TABLE `oc_session`;
+--
 -- Dumping data for table `oc_session`
 --
 
-INSERT INTO `oc_session` (`session_id`, `data`, `expire`) VALUES
-('08de6192c8e3f0a420befdd9b6', '{\"language\":\"en-gb\",\"currency\":\"USD\",\"user_id\":\"1\",\"user_token\":\"SjQK4uFtBkKOsLclr2qkqzFZpdBWIJAt\",\"install\":\"V6M2R2CQtn\"}', '2022-05-16 09:35:53'),
-('17d746ea1834219378d2584b15', '{\"user_id\":\"1\",\"user_token\":\"cTYCWNwIuBqWpwfhY13Cbp9fkqzQrPMX\",\"install\":\"pIC1UL2MzT\",\"language\":\"en-gb\",\"currency\":\"USD\"}', '2022-05-16 08:08:53'),
-('275c242043118b917d740e6f95', '{\"language\":\"en-gb\",\"currency\":\"USD\",\"user_id\":\"1\",\"user_token\":\"59SxY9HaNWzv9abQ1r0R6C4P6qSEV5Oj\"}', '2022-05-17 03:48:45');
+INSERT IGNORE INTO `oc_session` (`session_id`, `data`, `expire`) VALUES
+('17d746ea1834219378d2584b15', '{\"language\":\"en-gb\",\"currency\":\"USD\",\"user_id\":\"1\",\"user_token\":\"7L554DtdifduA5SZxw1wp8OThdTD1MQF\"}', '2022-05-16 09:33:37'),
+('4c0392b188f01d1150d28d3620', '{\"api_id\":\"1\"}', '2022-05-28 05:12:18'),
+('8a13ef390f0db6d329b58360c8', '{\"api_id\":\"1\"}', '2022-06-02 05:34:45'),
+('a5e5e0e574d1f0a575ab68976c', '{\"language\":\"en-gb\",\"currency\":\"IDR\",\"user_id\":\"1\",\"user_token\":\"eud4iD7oqLTB458NCWa9YPHQK0CqosXG\",\"vouchers\":[]}', '2022-06-05 11:25:32'),
+('bffd190d0e94c8937f00110bdb', '{\"language\":\"en-gb\",\"currency\":\"USD\",\"user_id\":\"1\",\"user_token\":\"4CVostUfhBayaGbAQhZ0IKg0q7Fybluv\",\"compare\":[\"43\"],\"customer_id\":\"1\",\"vouchers\":[]}', '2022-05-28 07:42:29');
 
 -- --------------------------------------------------------
 
@@ -3685,106 +3616,86 @@ CREATE TABLE IF NOT EXISTS `oc_setting` (
   `value` text NOT NULL,
   `serialized` tinyint(1) NOT NULL,
   PRIMARY KEY (`setting_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=253 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=1041 DEFAULT CHARSET=utf8;
 
+--
+-- Truncate table before insert `oc_setting`
+--
+
+TRUNCATE TABLE `oc_setting`;
 --
 -- Dumping data for table `oc_setting`
 --
 
-INSERT INTO `oc_setting` (`setting_id`, `store_id`, `code`, `key`, `value`, `serialized`) VALUES
-(1, 0, 'config', 'config_robots', 'abot\r\ndbot\r\nebot\r\nhbot\r\nkbot\r\nlbot\r\nmbot\r\nnbot\r\nobot\r\npbot\r\nrbot\r\nsbot\r\ntbot\r\nvbot\r\nybot\r\nzbot\r\nbot.\r\nbot/\r\n_bot\r\n.bot\r\n/bot\r\n-bot\r\n:bot\r\n(bot\r\ncrawl\r\nslurp\r\nspider\r\nseek\r\naccoona\r\nacoon\r\nadressendeutschland\r\nah-ha.com\r\nahoy\r\naltavista\r\nananzi\r\nanthill\r\nappie\r\narachnophilia\r\narale\r\naraneo\r\naranha\r\narchitext\r\naretha\r\narks\r\nasterias\r\natlocal\r\natn\r\natomz\r\naugurfind\r\nbackrub\r\nbannana_bot\r\nbaypup\r\nbdfetch\r\nbig brother\r\nbiglotron\r\nbjaaland\r\nblackwidow\r\nblaiz\r\nblog\r\nblo.\r\nbloodhound\r\nboitho\r\nbooch\r\nbradley\r\nbutterfly\r\ncalif\r\ncassandra\r\nccubee\r\ncfetch\r\ncharlotte\r\nchurl\r\ncienciaficcion\r\ncmc\r\ncollective\r\ncomagent\r\ncombine\r\ncomputingsite\r\ncsci\r\ncurl\r\ncusco\r\ndaumoa\r\ndeepindex\r\ndelorie\r\ndepspid\r\ndeweb\r\ndie blinde kuh\r\ndigger\r\nditto\r\ndmoz\r\ndocomo\r\ndownload express\r\ndtaagent\r\ndwcp\r\nebiness\r\nebingbong\r\ne-collector\r\nejupiter\r\nemacs-w3 search engine\r\nesther\r\nevliya celebi\r\nezresult\r\nfalcon\r\nfelix ide\r\nferret\r\nfetchrover\r\nfido\r\nfindlinks\r\nfireball\r\nfish search\r\nfouineur\r\nfunnelweb\r\ngazz\r\ngcreep\r\ngenieknows\r\ngetterroboplus\r\ngeturl\r\nglx\r\ngoforit\r\ngolem\r\ngrabber\r\ngrapnel\r\ngralon\r\ngriffon\r\ngromit\r\ngrub\r\ngulliver\r\nhamahakki\r\nharvest\r\nhavindex\r\nhelix\r\nheritrix\r\nhku www octopus\r\nhomerweb\r\nhtdig\r\nhtml index\r\nhtml_analyzer\r\nhtmlgobble\r\nhubater\r\nhyper-decontextualizer\r\nia_archiver\r\nibm_planetwide\r\nichiro\r\niconsurf\r\niltrovatore\r\nimage.kapsi.net\r\nimagelock\r\nincywincy\r\nindexer\r\ninfobee\r\ninformant\r\ningrid\r\ninktomisearch.com\r\ninspector web\r\nintelliagent\r\ninternet shinchakubin\r\nip3000\r\niron33\r\nisraeli-search\r\nivia\r\njack\r\njakarta\r\njavabee\r\njetbot\r\njumpstation\r\nkatipo\r\nkdd-explorer\r\nkilroy\r\nknowledge\r\nkototoi\r\nkretrieve\r\nlabelgrabber\r\nlachesis\r\nlarbin\r\nlegs\r\nlibwww\r\nlinkalarm\r\nlink validator\r\nlinkscan\r\nlockon\r\nlwp\r\nlycos\r\nmagpie\r\nmantraagent\r\nmapoftheinternet\r\nmarvin/\r\nmattie\r\nmediafox\r\nmediapartners\r\nmercator\r\nmerzscope\r\nmicrosoft url control\r\nminirank\r\nmiva\r\nmj12\r\nmnogosearch\r\nmoget\r\nmonster\r\nmoose\r\nmotor\r\nmultitext\r\nmuncher\r\nmuscatferret\r\nmwd.search\r\nmyweb\r\nnajdi\r\nnameprotect\r\nnationaldirectory\r\nnazilla\r\nncsa beta\r\nnec-meshexplorer\r\nnederland.zoek\r\nnetcarta webmap engine\r\nnetmechanic\r\nnetresearchserver\r\nnetscoop\r\nnewscan-online\r\nnhse\r\nnokia6682/\r\nnomad\r\nnoyona\r\nnutch\r\nnzexplorer\r\nobjectssearch\r\noccam\r\nomni\r\nopen text\r\nopenfind\r\nopenintelligencedata\r\norb search\r\nosis-project\r\npack rat\r\npageboy\r\npagebull\r\npage_verifier\r\npanscient\r\nparasite\r\npartnersite\r\npatric\r\npear.\r\npegasus\r\nperegrinator\r\npgp key agent\r\nphantom\r\nphpdig\r\npicosearch\r\npiltdownman\r\npimptrain\r\npinpoint\r\npioneer\r\npiranha\r\nplumtreewebaccessor\r\npogodak\r\npoirot\r\npompos\r\npoppelsdorf\r\npoppi\r\npopular iconoclast\r\npsycheclone\r\npublisher\r\npython\r\nrambler\r\nraven search\r\nroach\r\nroad runner\r\nroadhouse\r\nrobbie\r\nrobofox\r\nrobozilla\r\nrules\r\nsalty\r\nsbider\r\nscooter\r\nscoutjet\r\nscrubby\r\nsearch.\r\nsearchprocess\r\nsemanticdiscovery\r\nsenrigan\r\nsg-scout\r\nshai\'hulud\r\nshark\r\nshopwiki\r\nsidewinder\r\nsift\r\nsilk\r\nsimmany\r\nsite searcher\r\nsite valet\r\nsitetech-rover\r\nskymob.com\r\nsleek\r\nsmartwit\r\nsna-\r\nsnappy\r\nsnooper\r\nsohu\r\nspeedfind\r\nsphere\r\nsphider\r\nspinner\r\nspyder\r\nsteeler/\r\nsuke\r\nsuntek\r\nsupersnooper\r\nsurfnomore\r\nsven\r\nsygol\r\nszukacz\r\ntach black widow\r\ntarantula\r\ntempleton\r\n/teoma\r\nt-h-u-n-d-e-r-s-t-o-n-e\r\ntheophrastus\r\ntitan\r\ntitin\r\ntkwww\r\ntoutatis\r\nt-rex\r\ntutorgig\r\ntwiceler\r\ntwisted\r\nucsd\r\nudmsearch\r\nurl check\r\nupdated\r\nvagabondo\r\nvalkyrie\r\nverticrawl\r\nvictoria\r\nvision-search\r\nvolcano\r\nvoyager/\r\nvoyager-hc\r\nw3c_validator\r\nw3m2\r\nw3mir\r\nwalker\r\nwallpaper\r\nwanderer\r\nwauuu\r\nwavefire\r\nweb core\r\nweb hopper\r\nweb wombat\r\nwebbandit\r\nwebcatcher\r\nwebcopy\r\nwebfoot\r\nweblayers\r\nweblinker\r\nweblog monitor\r\nwebmirror\r\nwebmonkey\r\nwebquest\r\nwebreaper\r\nwebsitepulse\r\nwebsnarf\r\nwebstolperer\r\nwebvac\r\nwebwalk\r\nwebwatch\r\nwebwombat\r\nwebzinger\r\nwhizbang\r\nwhowhere\r\nwild ferret\r\nworldlight\r\nwwwc\r\nwwwster\r\nxenu\r\nxget\r\nxift\r\nxirq\r\nyandex\r\nyanga\r\nyeti\r\nyodao\r\nzao\r\nzippp\r\nzyborg', 0),
-(2, 0, 'config', 'config_shared', '0', 0),
-(3, 0, 'config', 'config_secure', '0', 0),
-(4, 0, 'config', 'config_fraud_detection', '0', 0),
-(5, 0, 'config', 'config_ftp_status', '0', 0),
-(6, 0, 'config', 'config_ftp_root', '', 0),
-(7, 0, 'config', 'config_ftp_password', '', 0),
-(8, 0, 'config', 'config_ftp_username', '', 0),
-(9, 0, 'config', 'config_ftp_port', '21', 0),
-(10, 0, 'config', 'config_ftp_hostname', '', 0),
-(11, 0, 'config', 'config_meta_title', 'Your Store', 0),
-(12, 0, 'config', 'config_meta_description', 'My Store', 0),
-(13, 0, 'config', 'config_meta_keyword', '', 0),
-(14, 0, 'config', 'config_theme', 'default', 0),
-(15, 0, 'config', 'config_layout_id', '4', 0),
-(16, 0, 'config', 'config_country_id', '222', 0),
-(17, 0, 'config', 'config_zone_id', '3563', 0),
-(18, 0, 'config', 'config_timezone', 'UTC', 0),
-(19, 0, 'config', 'config_language', 'en-gb', 0),
-(20, 0, 'config', 'config_admin_language', 'en-gb', 0),
-(21, 0, 'config', 'config_currency', 'USD', 0),
-(22, 0, 'config', 'config_currency_auto', '1', 0),
-(23, 0, 'config', 'config_length_class_id', '1', 0),
-(24, 0, 'config', 'config_weight_class_id', '1', 0),
-(25, 0, 'config', 'config_product_count', '1', 0),
-(26, 0, 'config', 'config_limit_admin', '20', 0),
-(27, 0, 'config', 'config_review_status', '1', 0),
-(28, 0, 'config', 'config_review_guest', '1', 0),
-(29, 0, 'config', 'config_voucher_min', '1', 0),
-(30, 0, 'config', 'config_voucher_max', '1000', 0),
-(31, 0, 'config', 'config_tax', '1', 0),
-(32, 0, 'config', 'config_tax_default', 'shipping', 0),
-(33, 0, 'config', 'config_tax_customer', 'shipping', 0),
-(34, 0, 'config', 'config_customer_online', '0', 0),
-(35, 0, 'config', 'config_customer_activity', '0', 0),
-(36, 0, 'config', 'config_customer_search', '0', 0),
-(37, 0, 'config', 'config_customer_group_id', '1', 0),
-(38, 0, 'config', 'config_customer_group_display', '[\"1\"]', 1),
-(39, 0, 'config', 'config_customer_price', '0', 0),
-(40, 0, 'config', 'config_account_id', '3', 0),
-(41, 0, 'config', 'config_invoice_prefix', 'INV-2022-00', 0),
-(204, 0, 'config', 'config_api_id', '1', 0),
-(43, 0, 'config', 'config_cart_weight', '1', 0),
-(44, 0, 'config', 'config_checkout_guest', '1', 0),
-(45, 0, 'config', 'config_checkout_id', '5', 0),
-(46, 0, 'config', 'config_order_status_id', '1', 0),
-(47, 0, 'config', 'config_processing_status', '[\"5\",\"1\",\"2\",\"12\",\"3\"]', 1),
-(48, 0, 'config', 'config_complete_status', '[\"5\",\"3\"]', 1),
-(49, 0, 'config', 'config_stock_display', '0', 0),
-(50, 0, 'config', 'config_stock_warning', '0', 0),
-(51, 0, 'config', 'config_stock_checkout', '0', 0),
-(52, 0, 'config', 'config_affiliate_approval', '0', 0),
-(53, 0, 'config', 'config_affiliate_auto', '0', 0),
-(54, 0, 'config', 'config_affiliate_commission', '5', 0),
-(55, 0, 'config', 'config_affiliate_id', '4', 0),
-(56, 0, 'config', 'config_return_id', '0', 0),
-(57, 0, 'config', 'config_return_status_id', '2', 0),
-(58, 0, 'config', 'config_logo', 'catalog/opencart-logo.png', 0),
-(59, 0, 'config', 'config_icon', 'catalog/cart.png', 0),
-(60, 0, 'config', 'config_comment', '', 0),
-(61, 0, 'config', 'config_open', '', 0),
-(62, 0, 'config', 'config_image', '', 0),
-(63, 0, 'config', 'config_fax', '', 0),
-(64, 0, 'config', 'config_telephone', '123456789', 0),
-(202, 0, 'config', 'config_email', 's31190050@student.ubm.ac.id', 0),
-(66, 0, 'config', 'config_geocode', '', 0),
-(67, 0, 'config', 'config_owner', 'Your Name', 0),
-(68, 0, 'config', 'config_address', 'Address 1', 0),
-(69, 0, 'config', 'config_name', 'Your Store', 0),
-(70, 0, 'config', 'config_seo_url', '0', 0),
-(71, 0, 'config', 'config_file_max_size', '300000', 0),
-(72, 0, 'config', 'config_file_ext_allowed', 'zip\r\ntxt\r\npng\r\njpe\r\njpeg\r\njpg\r\ngif\r\nbmp\r\nico\r\ntiff\r\ntif\r\nsvg\r\nsvgz\r\nzip\r\nrar\r\nmsi\r\ncab\r\nmp3\r\nqt\r\nmov\r\npdf\r\npsd\r\nai\r\neps\r\nps\r\ndoc', 0),
-(73, 0, 'config', 'config_file_mime_allowed', 'text/plain\r\nimage/png\r\nimage/jpeg\r\nimage/gif\r\nimage/bmp\r\nimage/tiff\r\nimage/svg+xml\r\napplication/zip\r\n&quot;application/zip&quot;\r\napplication/x-zip\r\n&quot;application/x-zip&quot;\r\napplication/x-zip-compressed\r\n&quot;application/x-zip-compressed&quot;\r\napplication/rar\r\n&quot;application/rar&quot;\r\napplication/x-rar\r\n&quot;application/x-rar&quot;\r\napplication/x-rar-compressed\r\n&quot;application/x-rar-compressed&quot;\r\napplication/octet-stream\r\n&quot;application/octet-stream&quot;\r\naudio/mpeg\r\nvideo/quicktime\r\napplication/pdf', 0),
-(74, 0, 'config', 'config_maintenance', '0', 0),
-(75, 0, 'config', 'config_password', '1', 0),
-(203, 0, 'config', 'config_encryption', 'EURVip4RSOOxlb7HtkSWOVy5MVNMEuY5lPdzOfcC3fILaKfmZNVfEmh6ZZZjXCiufjV10iEPulhWB3mfwFIv9x6k5papm6rxV03FDKOCGrIwjmJW2cSw9FkupmBT7If05uJigQB5ek2iUPjDkd5pn8a2Wyo6FMQpA6xACklcZ4KiysVh3WxCgnGnEZAIbYxS8UaJ4Bi9UlA2Rkm9okJxqNUn28gKJmcOIeM448sMoJa9r4cOhBPjmYYlJgxmfsjXeZg6e0RkEjGiLfgCOeBKPw3jKuB5j3o3K4m7S9vnoop6jmOTPCLZJITQjf3wzevcVyvJ0yMtnkF3u0CVFsPsrcfRxwDpzOeGL5CoxbYlsclRBeqHlz0VPvQeeZpwrmgo9o64JPZ01xuKqh9AcOQhqRAqIqeOv5X0gGRBipa0PnVaeqY0Kl6yoJW25c0uGFEc6htutVNPpdM63DvaDsPQgDFNwe6MJ5HFF1GqwWINk05N7NnI7OC0DtCmSzPBSy5eKskBY97JftObFTYKBr7kWsgdg1yCKlGWg3ATjc8KzRAfo0UNGo3xXhiOxj21drJvqYOMMIIZ68OpXFJSUPQ6MEIRp5mgGXcuxiBVTGpSsgpSufPNMgpmmWJQTBW9WuEnNP7eBM0bDMBi0U0eQ9uMyQeJt7MvwY44QayPoN0KZyfizROBWyxOpAvHmJo1bPuz7Mi9KG88SyvTF8bk5gtwBnjBRCmmZBt0dLBaCZUKuWFDDDIcazCYKIrXhXMsGGZxy1IVb58pdJ42ElH09QU8gLxrHHOkcMYEqBaL4MXPu6mhk5gs2KKZpwNdgH3DIjHHe5taWiRabvtmIHxOG9yyo4LAJbLmPtT8k3fZBLiSskSE751CywGAfCvU06nlWWWfiKaQhzjY35f8ZOn0JlYb7TM9gtxCn5IPuXZ667iNX8aihh7UOE7Tin7uLMVTARdLoL5Oh4j0eX1jGj0LUGMCUtpnlXc3jtHvfCgUnO3o4PygTzHkmFZiigSnE88J50OX', 0),
-(77, 0, 'config', 'config_compression', '0', 0),
-(78, 0, 'config', 'config_error_display', '1', 0),
-(79, 0, 'config', 'config_error_log', '1', 0),
-(80, 0, 'config', 'config_error_filename', 'error.log', 0),
-(81, 0, 'config', 'config_google_analytics', '', 0),
-(82, 0, 'config', 'config_mail_engine', 'mail', 0),
-(83, 0, 'config', 'config_mail_parameter', '', 0),
-(84, 0, 'config', 'config_mail_smtp_hostname', '', 0),
-(85, 0, 'config', 'config_mail_smtp_username', '', 0),
-(86, 0, 'config', 'config_mail_smtp_password', '', 0),
-(87, 0, 'config', 'config_mail_smtp_port', '25', 0),
-(88, 0, 'config', 'config_mail_smtp_timeout', '5', 0),
-(89, 0, 'config', 'config_mail_alert_email', '', 0),
-(90, 0, 'config', 'config_mail_alert', '[\"order\"]', 1),
-(91, 0, 'config', 'config_captcha', 'basic', 0),
-(92, 0, 'config', 'config_captcha_page', '[\"review\",\"return\",\"contact\"]', 1),
-(93, 0, 'config', 'config_login_attempts', '5', 0),
+INSERT IGNORE INTO `oc_setting` (`setting_id`, `store_id`, `code`, `key`, `value`, `serialized`) VALUES
+(1038, 0, 'config', 'config_error_display', '1', 0),
+(1039, 0, 'config', 'config_error_log', '1', 0),
+(1040, 0, 'config', 'config_error_filename', 'error.log', 0),
+(1000, 0, 'config', 'config_processing_status', '[\"5\",\"1\",\"2\",\"12\",\"3\"]', 1),
+(1001, 0, 'config', 'config_complete_status', '[\"5\",\"3\"]', 1),
+(1002, 0, 'config', 'config_fraud_status_id', '7', 0),
+(1003, 0, 'config', 'config_api_id', '1', 0),
+(1004, 0, 'config', 'config_stock_display', '0', 0),
+(1005, 0, 'config', 'config_stock_warning', '0', 0),
+(1006, 0, 'config', 'config_stock_checkout', '0', 0),
+(1007, 0, 'config', 'config_affiliate_group_id', '1', 0),
+(1008, 0, 'config', 'config_affiliate_approval', '0', 0),
+(1009, 0, 'config', 'config_affiliate_auto', '0', 0),
+(1010, 0, 'config', 'config_affiliate_commission', '5', 0),
+(1011, 0, 'config', 'config_affiliate_id', '4', 0),
+(1012, 0, 'config', 'config_return_id', '0', 0),
+(1013, 0, 'config', 'config_return_status_id', '2', 0),
+(1014, 0, 'config', 'config_captcha', '', 0),
+(1015, 0, 'config', 'config_captcha_page', '[\"review\",\"return\",\"contact\"]', 1),
+(1016, 0, 'config', 'config_logo', 'catalog/daiso_sq.png', 0),
+(1017, 0, 'config', 'config_icon', 'catalog/daiso_chev_sq.png', 0),
+(1018, 0, 'config', 'config_mail_engine', 'mail', 0),
+(1019, 0, 'config', 'config_mail_parameter', '', 0),
+(1020, 0, 'config', 'config_mail_smtp_hostname', '', 0),
+(1021, 0, 'config', 'config_mail_smtp_username', '', 0),
+(1022, 0, 'config', 'config_mail_smtp_password', '', 0),
+(1023, 0, 'config', 'config_mail_smtp_port', '25', 0),
+(1024, 0, 'config', 'config_mail_smtp_timeout', '5', 0),
+(1025, 0, 'config', 'config_mail_alert', '[\"order\"]', 1),
+(1026, 0, 'config', 'config_mail_alert_email', '', 0),
+(1027, 0, 'config', 'config_maintenance', '0', 0),
+(1028, 0, 'config', 'config_seo_url', '0', 0),
+(1029, 0, 'config', 'config_robots', 'abot\r\ndbot\r\nebot\r\nhbot\r\nkbot\r\nlbot\r\nmbot\r\nnbot\r\nobot\r\npbot\r\nrbot\r\nsbot\r\ntbot\r\nvbot\r\nybot\r\nzbot\r\nbot.\r\nbot/\r\n_bot\r\n.bot\r\n/bot\r\n-bot\r\n:bot\r\n(bot\r\ncrawl\r\nslurp\r\nspider\r\nseek\r\naccoona\r\nacoon\r\nadressendeutschland\r\nah-ha.com\r\nahoy\r\naltavista\r\nananzi\r\nanthill\r\nappie\r\narachnophilia\r\narale\r\naraneo\r\naranha\r\narchitext\r\naretha\r\narks\r\nasterias\r\natlocal\r\natn\r\natomz\r\naugurfind\r\nbackrub\r\nbannana_bot\r\nbaypup\r\nbdfetch\r\nbig brother\r\nbiglotron\r\nbjaaland\r\nblackwidow\r\nblaiz\r\nblog\r\nblo.\r\nbloodhound\r\nboitho\r\nbooch\r\nbradley\r\nbutterfly\r\ncalif\r\ncassandra\r\nccubee\r\ncfetch\r\ncharlotte\r\nchurl\r\ncienciaficcion\r\ncmc\r\ncollective\r\ncomagent\r\ncombine\r\ncomputingsite\r\ncsci\r\ncurl\r\ncusco\r\ndaumoa\r\ndeepindex\r\ndelorie\r\ndepspid\r\ndeweb\r\ndie blinde kuh\r\ndigger\r\nditto\r\ndmoz\r\ndocomo\r\ndownload express\r\ndtaagent\r\ndwcp\r\nebiness\r\nebingbong\r\ne-collector\r\nejupiter\r\nemacs-w3 search engine\r\nesther\r\nevliya celebi\r\nezresult\r\nfalcon\r\nfelix ide\r\nferret\r\nfetchrover\r\nfido\r\nfindlinks\r\nfireball\r\nfish search\r\nfouineur\r\nfunnelweb\r\ngazz\r\ngcreep\r\ngenieknows\r\ngetterroboplus\r\ngeturl\r\nglx\r\ngoforit\r\ngolem\r\ngrabber\r\ngrapnel\r\ngralon\r\ngriffon\r\ngromit\r\ngrub\r\ngulliver\r\nhamahakki\r\nharvest\r\nhavindex\r\nhelix\r\nheritrix\r\nhku www octopus\r\nhomerweb\r\nhtdig\r\nhtml index\r\nhtml_analyzer\r\nhtmlgobble\r\nhubater\r\nhyper-decontextualizer\r\nia_archiver\r\nibm_planetwide\r\nichiro\r\niconsurf\r\niltrovatore\r\nimage.kapsi.net\r\nimagelock\r\nincywincy\r\nindexer\r\ninfobee\r\ninformant\r\ningrid\r\ninktomisearch.com\r\ninspector web\r\nintelliagent\r\ninternet shinchakubin\r\nip3000\r\niron33\r\nisraeli-search\r\nivia\r\njack\r\njakarta\r\njavabee\r\njetbot\r\njumpstation\r\nkatipo\r\nkdd-explorer\r\nkilroy\r\nknowledge\r\nkototoi\r\nkretrieve\r\nlabelgrabber\r\nlachesis\r\nlarbin\r\nlegs\r\nlibwww\r\nlinkalarm\r\nlink validator\r\nlinkscan\r\nlockon\r\nlwp\r\nlycos\r\nmagpie\r\nmantraagent\r\nmapoftheinternet\r\nmarvin/\r\nmattie\r\nmediafox\r\nmediapartners\r\nmercator\r\nmerzscope\r\nmicrosoft url control\r\nminirank\r\nmiva\r\nmj12\r\nmnogosearch\r\nmoget\r\nmonster\r\nmoose\r\nmotor\r\nmultitext\r\nmuncher\r\nmuscatferret\r\nmwd.search\r\nmyweb\r\nnajdi\r\nnameprotect\r\nnationaldirectory\r\nnazilla\r\nncsa beta\r\nnec-meshexplorer\r\nnederland.zoek\r\nnetcarta webmap engine\r\nnetmechanic\r\nnetresearchserver\r\nnetscoop\r\nnewscan-online\r\nnhse\r\nnokia6682/\r\nnomad\r\nnoyona\r\nnutch\r\nnzexplorer\r\nobjectssearch\r\noccam\r\nomni\r\nopen text\r\nopenfind\r\nopenintelligencedata\r\norb search\r\nosis-project\r\npack rat\r\npageboy\r\npagebull\r\npage_verifier\r\npanscient\r\nparasite\r\npartnersite\r\npatric\r\npear.\r\npegasus\r\nperegrinator\r\npgp key agent\r\nphantom\r\nphpdig\r\npicosearch\r\npiltdownman\r\npimptrain\r\npinpoint\r\npioneer\r\npiranha\r\nplumtreewebaccessor\r\npogodak\r\npoirot\r\npompos\r\npoppelsdorf\r\npoppi\r\npopular iconoclast\r\npsycheclone\r\npublisher\r\npython\r\nrambler\r\nraven search\r\nroach\r\nroad runner\r\nroadhouse\r\nrobbie\r\nrobofox\r\nrobozilla\r\nrules\r\nsalty\r\nsbider\r\nscooter\r\nscoutjet\r\nscrubby\r\nsearch.\r\nsearchprocess\r\nsemanticdiscovery\r\nsenrigan\r\nsg-scout\r\nshai\'hulud\r\nshark\r\nshopwiki\r\nsidewinder\r\nsift\r\nsilk\r\nsimmany\r\nsite searcher\r\nsite valet\r\nsitetech-rover\r\nskymob.com\r\nsleek\r\nsmartwit\r\nsna-\r\nsnappy\r\nsnooper\r\nsohu\r\nspeedfind\r\nsphere\r\nsphider\r\nspinner\r\nspyder\r\nsteeler/\r\nsuke\r\nsuntek\r\nsupersnooper\r\nsurfnomore\r\nsven\r\nsygol\r\nszukacz\r\ntach black widow\r\ntarantula\r\ntempleton\r\n/teoma\r\nt-h-u-n-d-e-r-s-t-o-n-e\r\ntheophrastus\r\ntitan\r\ntitin\r\ntkwww\r\ntoutatis\r\nt-rex\r\ntutorgig\r\ntwiceler\r\ntwisted\r\nucsd\r\nudmsearch\r\nurl check\r\nupdated\r\nvagabondo\r\nvalkyrie\r\nverticrawl\r\nvictoria\r\nvision-search\r\nvolcano\r\nvoyager/\r\nvoyager-hc\r\nw3c_validator\r\nw3m2\r\nw3mir\r\nwalker\r\nwallpaper\r\nwanderer\r\nwauuu\r\nwavefire\r\nweb core\r\nweb hopper\r\nweb wombat\r\nwebbandit\r\nwebcatcher\r\nwebcopy\r\nwebfoot\r\nweblayers\r\nweblinker\r\nweblog monitor\r\nwebmirror\r\nwebmonkey\r\nwebquest\r\nwebreaper\r\nwebsitepulse\r\nwebsnarf\r\nwebstolperer\r\nwebvac\r\nwebwalk\r\nwebwatch\r\nwebwombat\r\nwebzinger\r\nwhizbang\r\nwhowhere\r\nwild ferret\r\nworldlight\r\nwwwc\r\nwwwster\r\nxenu\r\nxget\r\nxift\r\nxirq\r\nyandex\r\nyanga\r\nyeti\r\nyodao\r\nzao\r\nzippp\r\nzyborg', 0),
+(1033, 0, 'config', 'config_shared', '0', 0),
+(1034, 0, 'config', 'config_encryption', 'EURVip4RSOOxlb7HtkSWOVy5MVNMEuY5lPdzOfcC3fILaKfmZNVfEmh6ZZZjXCiufjV10iEPulhWB3mfwFIv9x6k5papm6rxV03FDKOCGrIwjmJW2cSw9FkupmBT7If05uJigQB5ek2iUPjDkd5pn8a2Wyo6FMQpA6xACklcZ4KiysVh3WxCgnGnEZAIbYxS8UaJ4Bi9UlA2Rkm9okJxqNUn28gKJmcOIeM448sMoJa9r4cOhBPjmYYlJgxmfsjXeZg6e0RkEjGiLfgCOeBKPw3jKuB5j3o3K4m7S9vnoop6jmOTPCLZJITQjf3wzevcVyvJ0yMtnkF3u0CVFsPsrcfRxwDpzOeGL5CoxbYlsclRBeqHlz0VPvQeeZpwrmgo9o64JPZ01xuKqh9AcOQhqRAqIqeOv5X0gGRBipa0PnVaeqY0Kl6yoJW25c0uGFEc6htutVNPpdM63DvaDsPQgDFNwe6MJ5HFF1GqwWINk05N7NnI7OC0DtCmSzPBSy5eKskBY97JftObFTYKBr7kWsgdg1yCKlGWg3ATjc8KzRAfo0UNGo3xXhiOxj21drJvqYOMMIIZ68OpXFJSUPQ6MEIRp5mgGXcuxiBVTGpSsgpSufPNMgpmmWJQTBW9WuEnNP7eBM0bDMBi0U0eQ9uMyQeJt7MvwY44QayPoN0KZyfizROBWyxOpAvHmJo1bPuz7Mi9KG88SyvTF8bk5gtwBnjBRCmmZBt0dLBaCZUKuWFDDDIcazCYKIrXhXMsGGZxy1IVb58pdJ42ElH09QU8gLxrHHOkcMYEqBaL4MXPu6mhk5gs2KKZpwNdgH3DIjHHe5taWiRabvtmIHxOG9yyo4LAJbLmPtT8k3fZBLiSskSE751CywGAfCvU06nlWWWfiKaQhzjY35f8ZOn0JlYb7TM9gtxCn5IPuXZ667iNX8aihh7UOE7Tin7uLMVTARdLoL5Oh4j0eX1jGj0LUGMCUtpnlXc3jtHvfCgUnO3o4PygTzHkmFZiigSnE88J50OX', 0),
+(1035, 0, 'config', 'config_file_max_size', '600000', 0),
+(1036, 0, 'config', 'config_file_ext_allowed', 'zip\r\ntxt\r\npng\r\njpe\r\njpeg\r\njpg\r\ngif\r\nbmp\r\nico\r\ntiff\r\ntif\r\nsvg\r\nsvgz\r\nzip\r\nrar\r\nmsi\r\ncab\r\nmp3\r\nqt\r\nmov\r\npdf\r\npsd\r\nai\r\neps\r\nps\r\ndoc', 0),
+(1037, 0, 'config', 'config_file_mime_allowed', 'text/plain\r\nimage/png\r\nimage/jpeg\r\nimage/gif\r\nimage/bmp\r\nimage/tiff\r\nimage/svg+xml\r\napplication/zip\r\n&quot;application/zip&quot;\r\napplication/x-zip\r\n&quot;application/x-zip&quot;\r\napplication/x-zip-compressed\r\n&quot;application/x-zip-compressed&quot;\r\napplication/rar\r\n&quot;application/rar&quot;\r\napplication/x-rar\r\n&quot;application/x-rar&quot;\r\napplication/x-rar-compressed\r\n&quot;application/x-rar-compressed&quot;\r\napplication/octet-stream\r\n&quot;application/octet-stream&quot;\r\naudio/mpeg\r\nvideo/quicktime\r\napplication/pdf', 0),
+(692, 0, 'module_category_grid', 'module_category_grid_status', '1', 0),
+(999, 0, 'config', 'config_order_status_id', '1', 0),
+(998, 0, 'config', 'config_checkout_id', '5', 0),
+(997, 0, 'config', 'config_checkout_guest', '1', 0),
+(996, 0, 'config', 'config_cart_weight', '1', 0),
+(995, 0, 'config', 'config_invoice_prefix', 'INV-2022-00', 0),
+(994, 0, 'config', 'config_account_id', '3', 0),
+(993, 0, 'config', 'config_login_attempts', '5', 0),
+(992, 0, 'config', 'config_customer_price', '0', 0),
+(991, 0, 'config', 'config_customer_group_display', '[\"1\"]', 1),
+(990, 0, 'config', 'config_customer_group_id', '1', 0),
+(989, 0, 'config', 'config_customer_search', '0', 0),
+(988, 0, 'config', 'config_customer_activity', '0', 0),
+(987, 0, 'config', 'config_customer_online', '0', 0),
+(986, 0, 'config', 'config_tax_customer', 'shipping', 0),
+(984, 0, 'config', 'config_tax', '1', 0),
+(985, 0, 'config', 'config_tax_default', 'shipping', 0),
+(983, 0, 'config', 'config_voucher_max', '1000', 0),
+(982, 0, 'config', 'config_voucher_min', '1', 0),
+(981, 0, 'config', 'config_review_guest', '1', 0),
+(980, 0, 'config', 'config_review_status', '1', 0),
+(979, 0, 'config', 'config_limit_admin', '20', 0),
+(978, 0, 'config', 'config_product_count', '1', 0),
+(977, 0, 'config', 'config_weight_class_id', '1', 0),
+(976, 0, 'config', 'config_length_class_id', '1', 0),
+(975, 0, 'config', 'config_currency_auto', '1', 0),
+(974, 0, 'config', 'config_currency', 'IDR', 0),
+(973, 0, 'config', 'config_admin_language', 'en-gb', 0),
+(972, 0, 'config', 'config_language', 'en-gb', 0),
+(971, 0, 'config', 'config_timezone', 'UTC', 0),
 (94, 0, 'payment_free_checkout', 'payment_free_checkout_status', '1', 0),
 (95, 0, 'payment_free_checkout', 'payment_free_checkout_order_status_id', '1', 0),
 (96, 0, 'payment_free_checkout', 'payment_free_checkout_sort_order', '1', 0),
@@ -3815,7 +3726,7 @@ INSERT INTO `oc_setting` (`setting_id`, `store_id`, `code`, `key`, `value`, `ser
 (121, 0, 'total_coupon', 'total_coupon_status', '1', 0),
 (122, 0, 'total_voucher', 'total_voucher_sort_order', '8', 0),
 (123, 0, 'total_voucher', 'total_voucher_status', '1', 0),
-(124, 0, 'module_category', 'module_category_status', '1', 0),
+(689, 0, 'module_category', 'module_category_status', '1', 0),
 (125, 0, 'module_account', 'module_account_status', '1', 0),
 (250, 0, 'theme_default', 'theme_default_image_cart_height', '60', 0),
 (251, 0, 'theme_default', 'theme_default_image_location_width', '268', 0),
@@ -3888,11 +3799,31 @@ INSERT INTO `oc_setting` (`setting_id`, `store_id`, `code`, `key`, `value`, `ser
 (199, 0, 'report_marketing', 'report_marketing_sort_order', '12', 0),
 (200, 0, 'developer', 'developer_theme', '1', 0),
 (201, 0, 'developer', 'developer_sass', '1', 0),
+(1030, 0, 'config', 'config_compression', '0', 0),
+(1031, 0, 'config', 'config_secure', '0', 0),
+(1032, 0, 'config', 'config_password', '1', 0),
 (232, 0, 'theme_default', 'theme_default_product_description_length', '100', 0),
 (231, 0, 'theme_default', 'theme_default_product_limit', '15', 0),
 (230, 0, 'theme_default', 'theme_default_status', '1', 0),
 (229, 0, 'theme_default', 'theme_default_directory', 'simplica', 0),
-(252, 0, 'theme_default', 'theme_default_image_location_height', '50', 0);
+(252, 0, 'theme_default', 'theme_default_image_location_height', '50', 0),
+(970, 0, 'config', 'config_zone_id', '1509', 0),
+(969, 0, 'config', 'config_country_id', '100', 0),
+(968, 0, 'config', 'config_comment', '', 0),
+(967, 0, 'config', 'config_open', '', 0),
+(966, 0, 'config', 'config_image', 'catalog/daiso_chev_sq.png', 0),
+(964, 0, 'config', 'config_telephone', '081234567890', 0),
+(965, 0, 'config', 'config_fax', '', 0),
+(961, 0, 'config', 'config_address', 'Address 1', 0),
+(962, 0, 'config', 'config_geocode', '', 0),
+(963, 0, 'config', 'config_email', 'daiso-project@notreal.com', 0),
+(960, 0, 'config', 'config_owner', 'Kelompok 6', 0),
+(959, 0, 'config', 'config_name', 'Daiso Project', 0),
+(958, 0, 'config', 'config_layout_id', '4', 0),
+(957, 0, 'config', 'config_theme', 'default', 0),
+(956, 0, 'config', 'config_meta_keyword', '', 0),
+(955, 0, 'config', 'config_meta_description', 'My Store', 0),
+(954, 0, 'config', 'config_meta_title', 'Daiso', 0);
 
 -- --------------------------------------------------------
 
@@ -3908,10 +3839,15 @@ CREATE TABLE IF NOT EXISTS `oc_shipping_courier` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
+-- Truncate table before insert `oc_shipping_courier`
+--
+
+TRUNCATE TABLE `oc_shipping_courier`;
+--
 -- Dumping data for table `oc_shipping_courier`
 --
 
-INSERT INTO `oc_shipping_courier` (`shipping_courier_id`, `shipping_courier_code`, `shipping_courier_name`) VALUES
+INSERT IGNORE INTO `oc_shipping_courier` (`shipping_courier_id`, `shipping_courier_code`, `shipping_courier_name`) VALUES
 (1, 'dhl', 'DHL'),
 (2, 'fedex', 'Fedex'),
 (3, 'ups', 'UPS'),
@@ -3933,10 +3869,15 @@ CREATE TABLE IF NOT EXISTS `oc_statistics` (
 ) ENGINE=MyISAM AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
 
 --
+-- Truncate table before insert `oc_statistics`
+--
+
+TRUNCATE TABLE `oc_statistics`;
+--
 -- Dumping data for table `oc_statistics`
 --
 
-INSERT INTO `oc_statistics` (`statistics_id`, `code`, `value`) VALUES
+INSERT IGNORE INTO `oc_statistics` (`statistics_id`, `code`, `value`) VALUES
 (1, 'order_sale', '0.0000'),
 (2, 'order_processing', '0.0000'),
 (3, 'order_complete', '0.0000'),
@@ -3959,14 +3900,23 @@ CREATE TABLE IF NOT EXISTS `oc_stock_status` (
 ) ENGINE=MyISAM AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
 
 --
+-- Truncate table before insert `oc_stock_status`
+--
+
+TRUNCATE TABLE `oc_stock_status`;
+--
 -- Dumping data for table `oc_stock_status`
 --
 
-INSERT INTO `oc_stock_status` (`stock_status_id`, `language_id`, `name`) VALUES
+INSERT IGNORE INTO `oc_stock_status` (`stock_status_id`, `language_id`, `name`) VALUES
 (7, 1, 'In Stock'),
 (8, 1, 'Pre-Order'),
 (5, 1, 'Out Of Stock'),
-(6, 1, '2-3 Days');
+(6, 1, '2-3 Days'),
+(7, 2, 'In Stock'),
+(8, 2, 'Pre-Order'),
+(5, 2, 'Out Of Stock'),
+(6, 2, '2-3 Days');
 
 -- --------------------------------------------------------
 
@@ -3982,6 +3932,11 @@ CREATE TABLE IF NOT EXISTS `oc_store` (
   PRIMARY KEY (`store_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
+--
+-- Truncate table before insert `oc_store`
+--
+
+TRUNCATE TABLE `oc_store`;
 -- --------------------------------------------------------
 
 --
@@ -3998,11 +3953,16 @@ CREATE TABLE IF NOT EXISTS `oc_tax_class` (
 ) ENGINE=MyISAM AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
 
 --
+-- Truncate table before insert `oc_tax_class`
+--
+
+TRUNCATE TABLE `oc_tax_class`;
+--
 -- Dumping data for table `oc_tax_class`
 --
 
-INSERT INTO `oc_tax_class` (`tax_class_id`, `title`, `description`, `date_added`, `date_modified`) VALUES
-(9, 'Taxable Goods', 'Taxed goods', '2009-01-06 23:21:53', '2011-09-23 14:07:50'),
+INSERT IGNORE INTO `oc_tax_class` (`tax_class_id`, `title`, `description`, `date_added`, `date_modified`) VALUES
+(9, 'PPN', 'PPN', '2009-01-06 23:21:53', '2022-06-05 10:15:17'),
 (10, 'Downloadable Products', 'Downloadable', '2011-09-21 22:19:39', '2011-09-22 10:27:36');
 
 -- --------------------------------------------------------
@@ -4023,11 +3983,16 @@ CREATE TABLE IF NOT EXISTS `oc_tax_rate` (
 ) ENGINE=MyISAM AUTO_INCREMENT=88 DEFAULT CHARSET=utf8;
 
 --
+-- Truncate table before insert `oc_tax_rate`
+--
+
+TRUNCATE TABLE `oc_tax_rate`;
+--
 -- Dumping data for table `oc_tax_rate`
 --
 
-INSERT INTO `oc_tax_rate` (`tax_rate_id`, `geo_zone_id`, `name`, `rate`, `type`, `date_added`, `date_modified`) VALUES
-(86, 3, 'VAT (20%)', '20.0000', 'P', '2011-03-09 21:17:10', '2011-09-22 22:24:29'),
+INSERT IGNORE INTO `oc_tax_rate` (`tax_rate_id`, `geo_zone_id`, `name`, `rate`, `type`, `date_added`, `date_modified`) VALUES
+(86, 5, 'PPN (11%)', '11.0000', 'P', '2011-03-09 21:17:10', '2022-06-05 10:16:32'),
 (87, 3, 'Eco Tax (-2.00)', '2.0000', 'F', '2011-09-21 21:49:23', '2011-09-23 00:40:19');
 
 -- --------------------------------------------------------
@@ -4043,10 +4008,15 @@ CREATE TABLE IF NOT EXISTS `oc_tax_rate_to_customer_group` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
+-- Truncate table before insert `oc_tax_rate_to_customer_group`
+--
+
+TRUNCATE TABLE `oc_tax_rate_to_customer_group`;
+--
 -- Dumping data for table `oc_tax_rate_to_customer_group`
 --
 
-INSERT INTO `oc_tax_rate_to_customer_group` (`tax_rate_id`, `customer_group_id`) VALUES
+INSERT IGNORE INTO `oc_tax_rate_to_customer_group` (`tax_rate_id`, `customer_group_id`) VALUES
 (86, 1),
 (87, 1);
 
@@ -4063,17 +4033,21 @@ CREATE TABLE IF NOT EXISTS `oc_tax_rule` (
   `based` varchar(10) NOT NULL,
   `priority` int(5) NOT NULL DEFAULT 1,
   PRIMARY KEY (`tax_rule_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=129 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=131 DEFAULT CHARSET=utf8;
 
+--
+-- Truncate table before insert `oc_tax_rule`
+--
+
+TRUNCATE TABLE `oc_tax_rule`;
 --
 -- Dumping data for table `oc_tax_rule`
 --
 
-INSERT INTO `oc_tax_rule` (`tax_rule_id`, `tax_class_id`, `tax_rate_id`, `based`, `priority`) VALUES
+INSERT IGNORE INTO `oc_tax_rule` (`tax_rule_id`, `tax_class_id`, `tax_rate_id`, `based`, `priority`) VALUES
 (121, 10, 86, 'payment', 1),
 (120, 10, 87, 'store', 0),
-(128, 9, 86, 'shipping', 1),
-(127, 9, 87, 'shipping', 2);
+(130, 9, 86, 'shipping', 1);
 
 -- --------------------------------------------------------
 
@@ -4091,6 +4065,11 @@ CREATE TABLE IF NOT EXISTS `oc_theme` (
   PRIMARY KEY (`theme_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
+--
+-- Truncate table before insert `oc_theme`
+--
+
+TRUNCATE TABLE `oc_theme`;
 -- --------------------------------------------------------
 
 --
@@ -4108,6 +4087,11 @@ CREATE TABLE IF NOT EXISTS `oc_translation` (
   PRIMARY KEY (`translation_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
+--
+-- Truncate table before insert `oc_translation`
+--
+
+TRUNCATE TABLE `oc_translation`;
 -- --------------------------------------------------------
 
 --
@@ -4121,7 +4105,19 @@ CREATE TABLE IF NOT EXISTS `oc_upload` (
   `code` varchar(255) NOT NULL,
   `date_added` datetime NOT NULL,
   PRIMARY KEY (`upload_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+
+--
+-- Truncate table before insert `oc_upload`
+--
+
+TRUNCATE TABLE `oc_upload`;
+--
+-- Dumping data for table `oc_upload`
+--
+
+INSERT IGNORE INTO `oc_upload` (`upload_id`, `name`, `filename`, `code`, `date_added`) VALUES
+(1, '1.jpg', '1.jpg.Fjtf0wvIpQkDNObFpE4PVj4p942RWr66', 'bbdd848837eb39fbe68ed76d18711e588ffafe67', '2022-05-28 04:50:08');
 
 -- --------------------------------------------------------
 
@@ -4147,10 +4143,15 @@ CREATE TABLE IF NOT EXISTS `oc_user` (
 ) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
 --
+-- Truncate table before insert `oc_user`
+--
+
+TRUNCATE TABLE `oc_user`;
+--
 -- Dumping data for table `oc_user`
 --
 
-INSERT INTO `oc_user` (`user_id`, `user_group_id`, `username`, `password`, `salt`, `firstname`, `lastname`, `email`, `image`, `code`, `ip`, `status`, `date_added`) VALUES
+INSERT IGNORE INTO `oc_user` (`user_id`, `user_group_id`, `username`, `password`, `salt`, `firstname`, `lastname`, `email`, `image`, `code`, `ip`, `status`, `date_added`) VALUES
 (1, 1, 'admin', 'dc138a41284d239ac6bebfb36b856d2822aaaa9b', 'OUsJBWpm7', 'John', 'Doe', 's31190050@student.ubm.ac.id', '', '', '::1', 1, '2022-05-16 14:19:53');
 
 -- --------------------------------------------------------
@@ -4167,11 +4168,16 @@ CREATE TABLE IF NOT EXISTS `oc_user_group` (
 ) ENGINE=MyISAM AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
 
 --
+-- Truncate table before insert `oc_user_group`
+--
+
+TRUNCATE TABLE `oc_user_group`;
+--
 -- Dumping data for table `oc_user_group`
 --
 
-INSERT INTO `oc_user_group` (`user_group_id`, `name`, `permission`) VALUES
-(1, 'Administrator', '{\"access\":[\"catalog\\/attribute\",\"catalog\\/attribute_group\",\"catalog\\/category\",\"catalog\\/download\",\"catalog\\/filter\",\"catalog\\/information\",\"catalog\\/manufacturer\",\"catalog\\/option\",\"catalog\\/product\",\"catalog\\/recurring\",\"catalog\\/review\",\"common\\/column_left\",\"common\\/developer\",\"common\\/filemanager\",\"common\\/profile\",\"common\\/security\",\"customer\\/custom_field\",\"customer\\/customer\",\"customer\\/customer_approval\",\"customer\\/customer_group\",\"design\\/banner\",\"design\\/layout\",\"design\\/theme\",\"design\\/translation\",\"design\\/seo_url\",\"event\\/statistics\",\"event\\/theme\",\"extension\\/advertise\\/google\",\"extension\\/analytics\\/google\",\"extension\\/captcha\\/basic\",\"extension\\/captcha\\/google\",\"extension\\/dashboard\\/activity\",\"extension\\/dashboard\\/chart\",\"extension\\/dashboard\\/customer\",\"extension\\/dashboard\\/map\",\"extension\\/dashboard\\/online\",\"extension\\/dashboard\\/order\",\"extension\\/dashboard\\/recent\",\"extension\\/dashboard\\/sale\",\"extension\\/extension\\/advertise\",\"extension\\/extension\\/analytics\",\"extension\\/extension\\/captcha\",\"extension\\/extension\\/dashboard\",\"extension\\/extension\\/feed\",\"extension\\/extension\\/fraud\",\"extension\\/extension\\/menu\",\"extension\\/extension\\/module\",\"extension\\/extension\\/payment\",\"extension\\/extension\\/report\",\"extension\\/extension\\/shipping\",\"extension\\/extension\\/theme\",\"extension\\/extension\\/total\",\"extension\\/feed\\/google_base\",\"extension\\/feed\\/google_sitemap\",\"extension\\/fraud\\/fraudlabspro\",\"extension\\/fraud\\/ip\",\"extension\\/fraud\\/maxmind\",\"extension\\/marketing\\/remarketing\",\"extension\\/module\\/account\",\"extension\\/module\\/amazon_login\",\"extension\\/module\\/amazon_pay\",\"extension\\/module\\/banner\",\"extension\\/module\\/bestseller\",\"extension\\/module\\/carousel\",\"extension\\/module\\/category\",\"extension\\/module\\/divido_calculator\",\"extension\\/module\\/ebay_listing\",\"extension\\/module\\/featured\",\"extension\\/module\\/filter\",\"extension\\/module\\/google_hangouts\",\"extension\\/module\\/html\",\"extension\\/module\\/information\",\"extension\\/module\\/klarna_checkout_module\",\"extension\\/module\\/latest\",\"extension\\/module\\/laybuy_layout\",\"extension\\/module\\/pilibaba_button\",\"extension\\/module\\/sagepay_direct_cards\",\"extension\\/module\\/sagepay_server_cards\",\"extension\\/module\\/slideshow\",\"extension\\/module\\/special\",\"extension\\/module\\/store\",\"extension\\/payment\\/amazon_login_pay\",\"extension\\/payment\\/authorizenet_aim\",\"extension\\/payment\\/authorizenet_sim\",\"extension\\/payment\\/bank_transfer\",\"extension\\/payment\\/bluepay_hosted\",\"extension\\/payment\\/bluepay_redirect\",\"extension\\/payment\\/cardconnect\",\"extension\\/payment\\/cardinity\",\"extension\\/payment\\/cheque\",\"extension\\/payment\\/cod\",\"extension\\/payment\\/divido\",\"extension\\/payment\\/eway\",\"extension\\/payment\\/firstdata\",\"extension\\/payment\\/firstdata_remote\",\"extension\\/payment\\/free_checkout\",\"extension\\/payment\\/g2apay\",\"extension\\/payment\\/globalpay\",\"extension\\/payment\\/globalpay_remote\",\"extension\\/payment\\/klarna_account\",\"extension\\/payment\\/klarna_checkout\",\"extension\\/payment\\/klarna_invoice\",\"extension\\/payment\\/laybuy\",\"extension\\/payment\\/liqpay\",\"extension\\/payment\\/nochex\",\"extension\\/payment\\/paymate\",\"extension\\/payment\\/paypoint\",\"extension\\/payment\\/payza\",\"extension\\/payment\\/perpetual_payments\",\"extension\\/payment\\/pilibaba\",\"extension\\/payment\\/realex\",\"extension\\/payment\\/realex_remote\",\"extension\\/payment\\/sagepay_direct\",\"extension\\/payment\\/sagepay_server\",\"extension\\/payment\\/sagepay_us\",\"extension\\/payment\\/securetrading_pp\",\"extension\\/payment\\/securetrading_ws\",\"extension\\/payment\\/skrill\",\"extension\\/payment\\/twocheckout\",\"extension\\/payment\\/web_payment_software\",\"extension\\/payment\\/worldpay\",\"extension\\/module\\/pp_braintree_button\",\"extension\\/payment\\/pp_braintree\",\"extension\\/report\\/customer_activity\",\"extension\\/report\\/customer_order\",\"extension\\/report\\/customer_reward\",\"extension\\/report\\/customer_search\",\"extension\\/report\\/customer_transaction\",\"extension\\/report\\/marketing\",\"extension\\/report\\/product_purchased\",\"extension\\/report\\/product_viewed\",\"extension\\/report\\/sale_coupon\",\"extension\\/report\\/sale_order\",\"extension\\/report\\/sale_return\",\"extension\\/report\\/sale_shipping\",\"extension\\/report\\/sale_tax\",\"extension\\/shipping\\/auspost\",\"extension\\/shipping\\/ec_ship\",\"extension\\/shipping\\/fedex\",\"extension\\/shipping\\/flat\",\"extension\\/shipping\\/free\",\"extension\\/shipping\\/item\",\"extension\\/shipping\\/parcelforce_48\",\"extension\\/shipping\\/pickup\",\"extension\\/shipping\\/royal_mail\",\"extension\\/shipping\\/ups\",\"extension\\/shipping\\/usps\",\"extension\\/shipping\\/weight\",\"extension\\/theme\\/default\",\"extension\\/total\\/coupon\",\"extension\\/total\\/credit\",\"extension\\/total\\/handling\",\"extension\\/total\\/klarna_fee\",\"extension\\/total\\/low_order_fee\",\"extension\\/total\\/reward\",\"extension\\/total\\/shipping\",\"extension\\/total\\/sub_total\",\"extension\\/total\\/tax\",\"extension\\/total\\/total\",\"extension\\/total\\/voucher\",\"localisation\\/country\",\"localisation\\/currency\",\"localisation\\/geo_zone\",\"localisation\\/language\",\"localisation\\/length_class\",\"localisation\\/location\",\"localisation\\/order_status\",\"localisation\\/return_action\",\"localisation\\/return_reason\",\"localisation\\/return_status\",\"localisation\\/stock_status\",\"localisation\\/tax_class\",\"localisation\\/tax_rate\",\"localisation\\/weight_class\",\"localisation\\/zone\",\"mail\\/affiliate\",\"mail\\/customer\",\"mail\\/forgotten\",\"mail\\/return\",\"mail\\/reward\",\"mail\\/transaction\",\"marketing\\/contact\",\"marketing\\/coupon\",\"marketing\\/marketing\",\"marketplace\\/api\",\"marketplace\\/event\",\"marketplace\\/extension\",\"marketplace\\/install\",\"marketplace\\/installer\",\"marketplace\\/marketplace\",\"marketplace\\/modification\",\"report\\/online\",\"report\\/report\",\"report\\/statistics\",\"sale\\/order\",\"sale\\/recurring\",\"sale\\/return\",\"sale\\/voucher\",\"sale\\/voucher_theme\",\"setting\\/setting\",\"setting\\/store\",\"startup\\/error\",\"startup\\/event\",\"startup\\/login\",\"startup\\/permission\",\"startup\\/router\",\"startup\\/sass\",\"startup\\/startup\",\"tool\\/backup\",\"tool\\/log\",\"tool\\/upload\",\"user\\/api\",\"user\\/user\",\"user\\/user_permission\"],\"modify\":[\"catalog\\/attribute\",\"catalog\\/attribute_group\",\"catalog\\/category\",\"catalog\\/download\",\"catalog\\/filter\",\"catalog\\/information\",\"catalog\\/manufacturer\",\"catalog\\/option\",\"catalog\\/product\",\"catalog\\/recurring\",\"catalog\\/review\",\"common\\/column_left\",\"common\\/developer\",\"common\\/filemanager\",\"common\\/profile\",\"common\\/security\",\"customer\\/custom_field\",\"customer\\/customer\",\"customer\\/customer_approval\",\"customer\\/customer_group\",\"design\\/banner\",\"design\\/layout\",\"design\\/theme\",\"design\\/translation\",\"design\\/seo_url\",\"event\\/statistics\",\"event\\/theme\",\"extension\\/advertise\\/google\",\"extension\\/analytics\\/google\",\"extension\\/captcha\\/basic\",\"extension\\/captcha\\/google\",\"extension\\/dashboard\\/activity\",\"extension\\/dashboard\\/chart\",\"extension\\/dashboard\\/customer\",\"extension\\/dashboard\\/map\",\"extension\\/dashboard\\/online\",\"extension\\/dashboard\\/order\",\"extension\\/dashboard\\/recent\",\"extension\\/dashboard\\/sale\",\"extension\\/extension\\/advertise\",\"extension\\/extension\\/analytics\",\"extension\\/extension\\/captcha\",\"extension\\/extension\\/dashboard\",\"extension\\/extension\\/feed\",\"extension\\/extension\\/fraud\",\"extension\\/extension\\/menu\",\"extension\\/extension\\/module\",\"extension\\/extension\\/payment\",\"extension\\/extension\\/report\",\"extension\\/extension\\/shipping\",\"extension\\/extension\\/theme\",\"extension\\/extension\\/total\",\"extension\\/feed\\/google_base\",\"extension\\/feed\\/google_sitemap\",\"extension\\/fraud\\/fraudlabspro\",\"extension\\/fraud\\/ip\",\"extension\\/fraud\\/maxmind\",\"extension\\/marketing\\/remarketing\",\"extension\\/module\\/account\",\"extension\\/module\\/amazon_login\",\"extension\\/module\\/amazon_pay\",\"extension\\/module\\/banner\",\"extension\\/module\\/bestseller\",\"extension\\/module\\/carousel\",\"extension\\/module\\/category\",\"extension\\/module\\/divido_calculator\",\"extension\\/module\\/ebay_listing\",\"extension\\/module\\/featured\",\"extension\\/module\\/filter\",\"extension\\/module\\/google_hangouts\",\"extension\\/module\\/html\",\"extension\\/module\\/information\",\"extension\\/module\\/klarna_checkout_module\",\"extension\\/module\\/latest\",\"extension\\/module\\/laybuy_layout\",\"extension\\/module\\/pilibaba_button\",\"extension\\/module\\/sagepay_direct_cards\",\"extension\\/module\\/sagepay_server_cards\",\"extension\\/module\\/slideshow\",\"extension\\/module\\/special\",\"extension\\/module\\/store\",\"extension\\/payment\\/amazon_login_pay\",\"extension\\/payment\\/authorizenet_aim\",\"extension\\/payment\\/authorizenet_sim\",\"extension\\/payment\\/bank_transfer\",\"extension\\/payment\\/bluepay_hosted\",\"extension\\/payment\\/bluepay_redirect\",\"extension\\/payment\\/cardconnect\",\"extension\\/payment\\/cardinity\",\"extension\\/payment\\/cheque\",\"extension\\/payment\\/cod\",\"extension\\/payment\\/divido\",\"extension\\/payment\\/eway\",\"extension\\/payment\\/firstdata\",\"extension\\/payment\\/firstdata_remote\",\"extension\\/payment\\/free_checkout\",\"extension\\/payment\\/g2apay\",\"extension\\/payment\\/globalpay\",\"extension\\/payment\\/globalpay_remote\",\"extension\\/payment\\/klarna_account\",\"extension\\/payment\\/klarna_checkout\",\"extension\\/payment\\/klarna_invoice\",\"extension\\/payment\\/laybuy\",\"extension\\/payment\\/liqpay\",\"extension\\/payment\\/nochex\",\"extension\\/payment\\/paymate\",\"extension\\/payment\\/paypoint\",\"extension\\/payment\\/payza\",\"extension\\/payment\\/perpetual_payments\",\"extension\\/payment\\/pilibaba\",\"extension\\/payment\\/realex\",\"extension\\/payment\\/realex_remote\",\"extension\\/payment\\/sagepay_direct\",\"extension\\/payment\\/sagepay_server\",\"extension\\/payment\\/sagepay_us\",\"extension\\/payment\\/securetrading_pp\",\"extension\\/payment\\/securetrading_ws\",\"extension\\/payment\\/skrill\",\"extension\\/payment\\/twocheckout\",\"extension\\/payment\\/web_payment_software\",\"extension\\/payment\\/worldpay\",\"extension\\/module\\/pp_braintree_button\",\"extension\\/payment\\/pp_braintree\",\"extension\\/report\\/customer_activity\",\"extension\\/report\\/customer_order\",\"extension\\/report\\/customer_reward\",\"extension\\/report\\/customer_search\",\"extension\\/report\\/customer_transaction\",\"extension\\/report\\/marketing\",\"extension\\/report\\/product_purchased\",\"extension\\/report\\/product_viewed\",\"extension\\/report\\/sale_coupon\",\"extension\\/report\\/sale_order\",\"extension\\/report\\/sale_return\",\"extension\\/report\\/sale_shipping\",\"extension\\/report\\/sale_tax\",\"extension\\/shipping\\/auspost\",\"extension\\/shipping\\/ec_ship\",\"extension\\/shipping\\/fedex\",\"extension\\/shipping\\/flat\",\"extension\\/shipping\\/free\",\"extension\\/shipping\\/item\",\"extension\\/shipping\\/parcelforce_48\",\"extension\\/shipping\\/pickup\",\"extension\\/shipping\\/royal_mail\",\"extension\\/shipping\\/ups\",\"extension\\/shipping\\/usps\",\"extension\\/shipping\\/weight\",\"extension\\/theme\\/default\",\"extension\\/total\\/coupon\",\"extension\\/total\\/credit\",\"extension\\/total\\/handling\",\"extension\\/total\\/klarna_fee\",\"extension\\/total\\/low_order_fee\",\"extension\\/total\\/reward\",\"extension\\/total\\/shipping\",\"extension\\/total\\/sub_total\",\"extension\\/total\\/tax\",\"extension\\/total\\/total\",\"extension\\/total\\/voucher\",\"localisation\\/country\",\"localisation\\/currency\",\"localisation\\/geo_zone\",\"localisation\\/language\",\"localisation\\/length_class\",\"localisation\\/location\",\"localisation\\/order_status\",\"localisation\\/return_action\",\"localisation\\/return_reason\",\"localisation\\/return_status\",\"localisation\\/stock_status\",\"localisation\\/tax_class\",\"localisation\\/tax_rate\",\"localisation\\/weight_class\",\"localisation\\/zone\",\"mail\\/affiliate\",\"mail\\/customer\",\"mail\\/forgotten\",\"mail\\/return\",\"mail\\/reward\",\"mail\\/transaction\",\"marketing\\/contact\",\"marketing\\/coupon\",\"marketing\\/marketing\",\"marketplace\\/event\",\"marketplace\\/api\",\"marketplace\\/extension\",\"marketplace\\/install\",\"marketplace\\/installer\",\"marketplace\\/marketplace\",\"marketplace\\/modification\",\"report\\/online\",\"report\\/report\",\"report\\/statistics\",\"sale\\/order\",\"sale\\/recurring\",\"sale\\/return\",\"sale\\/voucher\",\"sale\\/voucher_theme\",\"setting\\/setting\",\"setting\\/store\",\"startup\\/error\",\"startup\\/event\",\"startup\\/login\",\"startup\\/permission\",\"startup\\/router\",\"startup\\/sass\",\"startup\\/startup\",\"tool\\/backup\",\"tool\\/log\",\"tool\\/upload\",\"user\\/api\",\"user\\/user\",\"user\\/user_permission\"]}'),
+INSERT IGNORE INTO `oc_user_group` (`user_group_id`, `name`, `permission`) VALUES
+(1, 'Administrator', '{\"access\":[\"catalog\\/attribute\",\"catalog\\/attribute_group\",\"catalog\\/category\",\"catalog\\/download\",\"catalog\\/filter\",\"catalog\\/information\",\"catalog\\/manufacturer\",\"catalog\\/option\",\"catalog\\/product\",\"catalog\\/recurring\",\"catalog\\/review\",\"common\\/column_left\",\"common\\/developer\",\"common\\/filemanager\",\"common\\/profile\",\"common\\/security\",\"customer\\/custom_field\",\"customer\\/customer\",\"customer\\/customer_approval\",\"customer\\/customer_group\",\"design\\/banner\",\"design\\/layout\",\"design\\/theme\",\"design\\/translation\",\"design\\/seo_url\",\"event\\/statistics\",\"event\\/theme\",\"extension\\/advertise\\/google\",\"extension\\/analytics\\/google\",\"extension\\/captcha\\/basic\",\"extension\\/captcha\\/google\",\"extension\\/dashboard\\/activity\",\"extension\\/dashboard\\/chart\",\"extension\\/dashboard\\/customer\",\"extension\\/dashboard\\/map\",\"extension\\/dashboard\\/online\",\"extension\\/dashboard\\/order\",\"extension\\/dashboard\\/recent\",\"extension\\/dashboard\\/sale\",\"extension\\/extension\\/advertise\",\"extension\\/extension\\/analytics\",\"extension\\/extension\\/captcha\",\"extension\\/extension\\/dashboard\",\"extension\\/extension\\/feed\",\"extension\\/extension\\/fraud\",\"extension\\/extension\\/menu\",\"extension\\/extension\\/module\",\"extension\\/extension\\/payment\",\"extension\\/extension\\/report\",\"extension\\/extension\\/shipping\",\"extension\\/extension\\/theme\",\"extension\\/extension\\/total\",\"extension\\/feed\\/google_base\",\"extension\\/feed\\/google_sitemap\",\"extension\\/fraud\\/fraudlabspro\",\"extension\\/fraud\\/ip\",\"extension\\/fraud\\/maxmind\",\"extension\\/marketing\\/remarketing\",\"extension\\/module\\/account\",\"extension\\/module\\/amazon_login\",\"extension\\/module\\/amazon_pay\",\"extension\\/module\\/banner\",\"extension\\/module\\/bestseller\",\"extension\\/module\\/carousel\",\"extension\\/module\\/category\",\"extension\\/module\\/divido_calculator\",\"extension\\/module\\/ebay_listing\",\"extension\\/module\\/featured\",\"extension\\/module\\/filter\",\"extension\\/module\\/google_hangouts\",\"extension\\/module\\/html\",\"extension\\/module\\/information\",\"extension\\/module\\/klarna_checkout_module\",\"extension\\/module\\/latest\",\"extension\\/module\\/laybuy_layout\",\"extension\\/module\\/pilibaba_button\",\"extension\\/module\\/sagepay_direct_cards\",\"extension\\/module\\/sagepay_server_cards\",\"extension\\/module\\/slideshow\",\"extension\\/module\\/special\",\"extension\\/module\\/store\",\"extension\\/payment\\/amazon_login_pay\",\"extension\\/payment\\/authorizenet_aim\",\"extension\\/payment\\/authorizenet_sim\",\"extension\\/payment\\/bank_transfer\",\"extension\\/payment\\/bluepay_hosted\",\"extension\\/payment\\/bluepay_redirect\",\"extension\\/payment\\/cardconnect\",\"extension\\/payment\\/cardinity\",\"extension\\/payment\\/cheque\",\"extension\\/payment\\/cod\",\"extension\\/payment\\/divido\",\"extension\\/payment\\/eway\",\"extension\\/payment\\/firstdata\",\"extension\\/payment\\/firstdata_remote\",\"extension\\/payment\\/free_checkout\",\"extension\\/payment\\/g2apay\",\"extension\\/payment\\/globalpay\",\"extension\\/payment\\/globalpay_remote\",\"extension\\/payment\\/klarna_account\",\"extension\\/payment\\/klarna_checkout\",\"extension\\/payment\\/klarna_invoice\",\"extension\\/payment\\/laybuy\",\"extension\\/payment\\/liqpay\",\"extension\\/payment\\/nochex\",\"extension\\/payment\\/paymate\",\"extension\\/payment\\/paypoint\",\"extension\\/payment\\/payza\",\"extension\\/payment\\/perpetual_payments\",\"extension\\/payment\\/pilibaba\",\"extension\\/payment\\/realex\",\"extension\\/payment\\/realex_remote\",\"extension\\/payment\\/sagepay_direct\",\"extension\\/payment\\/sagepay_server\",\"extension\\/payment\\/sagepay_us\",\"extension\\/payment\\/securetrading_pp\",\"extension\\/payment\\/securetrading_ws\",\"extension\\/payment\\/skrill\",\"extension\\/payment\\/twocheckout\",\"extension\\/payment\\/web_payment_software\",\"extension\\/payment\\/worldpay\",\"extension\\/module\\/pp_braintree_button\",\"extension\\/payment\\/pp_braintree\",\"extension\\/report\\/customer_activity\",\"extension\\/report\\/customer_order\",\"extension\\/report\\/customer_reward\",\"extension\\/report\\/customer_search\",\"extension\\/report\\/customer_transaction\",\"extension\\/report\\/marketing\",\"extension\\/report\\/product_purchased\",\"extension\\/report\\/product_viewed\",\"extension\\/report\\/sale_coupon\",\"extension\\/report\\/sale_order\",\"extension\\/report\\/sale_return\",\"extension\\/report\\/sale_shipping\",\"extension\\/report\\/sale_tax\",\"extension\\/shipping\\/auspost\",\"extension\\/shipping\\/ec_ship\",\"extension\\/shipping\\/fedex\",\"extension\\/shipping\\/flat\",\"extension\\/shipping\\/free\",\"extension\\/shipping\\/item\",\"extension\\/shipping\\/parcelforce_48\",\"extension\\/shipping\\/pickup\",\"extension\\/shipping\\/royal_mail\",\"extension\\/shipping\\/ups\",\"extension\\/shipping\\/usps\",\"extension\\/shipping\\/weight\",\"extension\\/theme\\/default\",\"extension\\/total\\/coupon\",\"extension\\/total\\/credit\",\"extension\\/total\\/handling\",\"extension\\/total\\/klarna_fee\",\"extension\\/total\\/low_order_fee\",\"extension\\/total\\/reward\",\"extension\\/total\\/shipping\",\"extension\\/total\\/sub_total\",\"extension\\/total\\/tax\",\"extension\\/total\\/total\",\"extension\\/total\\/voucher\",\"localisation\\/country\",\"localisation\\/currency\",\"localisation\\/geo_zone\",\"localisation\\/language\",\"localisation\\/length_class\",\"localisation\\/location\",\"localisation\\/order_status\",\"localisation\\/return_action\",\"localisation\\/return_reason\",\"localisation\\/return_status\",\"localisation\\/stock_status\",\"localisation\\/tax_class\",\"localisation\\/tax_rate\",\"localisation\\/weight_class\",\"localisation\\/zone\",\"mail\\/affiliate\",\"mail\\/customer\",\"mail\\/forgotten\",\"mail\\/return\",\"mail\\/reward\",\"mail\\/transaction\",\"marketing\\/contact\",\"marketing\\/coupon\",\"marketing\\/marketing\",\"marketplace\\/api\",\"marketplace\\/event\",\"marketplace\\/extension\",\"marketplace\\/install\",\"marketplace\\/installer\",\"marketplace\\/marketplace\",\"marketplace\\/modification\",\"report\\/online\",\"report\\/report\",\"report\\/statistics\",\"sale\\/order\",\"sale\\/recurring\",\"sale\\/return\",\"sale\\/voucher\",\"sale\\/voucher_theme\",\"setting\\/setting\",\"setting\\/store\",\"startup\\/error\",\"startup\\/event\",\"startup\\/login\",\"startup\\/permission\",\"startup\\/router\",\"startup\\/sass\",\"startup\\/startup\",\"tool\\/backup\",\"tool\\/log\",\"tool\\/upload\",\"user\\/api\",\"user\\/user\",\"user\\/user_permission\",\"extension\\/module\\/information\",\"extension\\/module\\/divido_calculator\",\"extension\\/module\\/category_grid\",\"extension\\/module\\/store\",\"extension\\/module\\/category_grid\",\"extension\\/module\\/category_grid\",\"extension\\/module\\/category_grid\",\"extension\\/module\\/category_grid\"],\"modify\":[\"catalog\\/attribute\",\"catalog\\/attribute_group\",\"catalog\\/category\",\"catalog\\/download\",\"catalog\\/filter\",\"catalog\\/information\",\"catalog\\/manufacturer\",\"catalog\\/option\",\"catalog\\/product\",\"catalog\\/recurring\",\"catalog\\/review\",\"common\\/column_left\",\"common\\/developer\",\"common\\/filemanager\",\"common\\/profile\",\"common\\/security\",\"customer\\/custom_field\",\"customer\\/customer\",\"customer\\/customer_approval\",\"customer\\/customer_group\",\"design\\/banner\",\"design\\/layout\",\"design\\/theme\",\"design\\/translation\",\"design\\/seo_url\",\"event\\/statistics\",\"event\\/theme\",\"extension\\/advertise\\/google\",\"extension\\/analytics\\/google\",\"extension\\/captcha\\/basic\",\"extension\\/captcha\\/google\",\"extension\\/dashboard\\/activity\",\"extension\\/dashboard\\/chart\",\"extension\\/dashboard\\/customer\",\"extension\\/dashboard\\/map\",\"extension\\/dashboard\\/online\",\"extension\\/dashboard\\/order\",\"extension\\/dashboard\\/recent\",\"extension\\/dashboard\\/sale\",\"extension\\/extension\\/advertise\",\"extension\\/extension\\/analytics\",\"extension\\/extension\\/captcha\",\"extension\\/extension\\/dashboard\",\"extension\\/extension\\/feed\",\"extension\\/extension\\/fraud\",\"extension\\/extension\\/menu\",\"extension\\/extension\\/module\",\"extension\\/extension\\/payment\",\"extension\\/extension\\/report\",\"extension\\/extension\\/shipping\",\"extension\\/extension\\/theme\",\"extension\\/extension\\/total\",\"extension\\/feed\\/google_base\",\"extension\\/feed\\/google_sitemap\",\"extension\\/fraud\\/fraudlabspro\",\"extension\\/fraud\\/ip\",\"extension\\/fraud\\/maxmind\",\"extension\\/marketing\\/remarketing\",\"extension\\/module\\/account\",\"extension\\/module\\/amazon_login\",\"extension\\/module\\/amazon_pay\",\"extension\\/module\\/banner\",\"extension\\/module\\/bestseller\",\"extension\\/module\\/carousel\",\"extension\\/module\\/category\",\"extension\\/module\\/divido_calculator\",\"extension\\/module\\/ebay_listing\",\"extension\\/module\\/featured\",\"extension\\/module\\/filter\",\"extension\\/module\\/google_hangouts\",\"extension\\/module\\/html\",\"extension\\/module\\/information\",\"extension\\/module\\/klarna_checkout_module\",\"extension\\/module\\/latest\",\"extension\\/module\\/laybuy_layout\",\"extension\\/module\\/pilibaba_button\",\"extension\\/module\\/sagepay_direct_cards\",\"extension\\/module\\/sagepay_server_cards\",\"extension\\/module\\/slideshow\",\"extension\\/module\\/special\",\"extension\\/module\\/store\",\"extension\\/payment\\/amazon_login_pay\",\"extension\\/payment\\/authorizenet_aim\",\"extension\\/payment\\/authorizenet_sim\",\"extension\\/payment\\/bank_transfer\",\"extension\\/payment\\/bluepay_hosted\",\"extension\\/payment\\/bluepay_redirect\",\"extension\\/payment\\/cardconnect\",\"extension\\/payment\\/cardinity\",\"extension\\/payment\\/cheque\",\"extension\\/payment\\/cod\",\"extension\\/payment\\/divido\",\"extension\\/payment\\/eway\",\"extension\\/payment\\/firstdata\",\"extension\\/payment\\/firstdata_remote\",\"extension\\/payment\\/free_checkout\",\"extension\\/payment\\/g2apay\",\"extension\\/payment\\/globalpay\",\"extension\\/payment\\/globalpay_remote\",\"extension\\/payment\\/klarna_account\",\"extension\\/payment\\/klarna_checkout\",\"extension\\/payment\\/klarna_invoice\",\"extension\\/payment\\/laybuy\",\"extension\\/payment\\/liqpay\",\"extension\\/payment\\/nochex\",\"extension\\/payment\\/paymate\",\"extension\\/payment\\/paypoint\",\"extension\\/payment\\/payza\",\"extension\\/payment\\/perpetual_payments\",\"extension\\/payment\\/pilibaba\",\"extension\\/payment\\/realex\",\"extension\\/payment\\/realex_remote\",\"extension\\/payment\\/sagepay_direct\",\"extension\\/payment\\/sagepay_server\",\"extension\\/payment\\/sagepay_us\",\"extension\\/payment\\/securetrading_pp\",\"extension\\/payment\\/securetrading_ws\",\"extension\\/payment\\/skrill\",\"extension\\/payment\\/twocheckout\",\"extension\\/payment\\/web_payment_software\",\"extension\\/payment\\/worldpay\",\"extension\\/module\\/pp_braintree_button\",\"extension\\/payment\\/pp_braintree\",\"extension\\/report\\/customer_activity\",\"extension\\/report\\/customer_order\",\"extension\\/report\\/customer_reward\",\"extension\\/report\\/customer_search\",\"extension\\/report\\/customer_transaction\",\"extension\\/report\\/marketing\",\"extension\\/report\\/product_purchased\",\"extension\\/report\\/product_viewed\",\"extension\\/report\\/sale_coupon\",\"extension\\/report\\/sale_order\",\"extension\\/report\\/sale_return\",\"extension\\/report\\/sale_shipping\",\"extension\\/report\\/sale_tax\",\"extension\\/shipping\\/auspost\",\"extension\\/shipping\\/ec_ship\",\"extension\\/shipping\\/fedex\",\"extension\\/shipping\\/flat\",\"extension\\/shipping\\/free\",\"extension\\/shipping\\/item\",\"extension\\/shipping\\/parcelforce_48\",\"extension\\/shipping\\/pickup\",\"extension\\/shipping\\/royal_mail\",\"extension\\/shipping\\/ups\",\"extension\\/shipping\\/usps\",\"extension\\/shipping\\/weight\",\"extension\\/theme\\/default\",\"extension\\/total\\/coupon\",\"extension\\/total\\/credit\",\"extension\\/total\\/handling\",\"extension\\/total\\/klarna_fee\",\"extension\\/total\\/low_order_fee\",\"extension\\/total\\/reward\",\"extension\\/total\\/shipping\",\"extension\\/total\\/sub_total\",\"extension\\/total\\/tax\",\"extension\\/total\\/total\",\"extension\\/total\\/voucher\",\"localisation\\/country\",\"localisation\\/currency\",\"localisation\\/geo_zone\",\"localisation\\/language\",\"localisation\\/length_class\",\"localisation\\/location\",\"localisation\\/order_status\",\"localisation\\/return_action\",\"localisation\\/return_reason\",\"localisation\\/return_status\",\"localisation\\/stock_status\",\"localisation\\/tax_class\",\"localisation\\/tax_rate\",\"localisation\\/weight_class\",\"localisation\\/zone\",\"mail\\/affiliate\",\"mail\\/customer\",\"mail\\/forgotten\",\"mail\\/return\",\"mail\\/reward\",\"mail\\/transaction\",\"marketing\\/contact\",\"marketing\\/coupon\",\"marketing\\/marketing\",\"marketplace\\/event\",\"marketplace\\/api\",\"marketplace\\/extension\",\"marketplace\\/install\",\"marketplace\\/installer\",\"marketplace\\/marketplace\",\"marketplace\\/modification\",\"report\\/online\",\"report\\/report\",\"report\\/statistics\",\"sale\\/order\",\"sale\\/recurring\",\"sale\\/return\",\"sale\\/voucher\",\"sale\\/voucher_theme\",\"setting\\/setting\",\"setting\\/store\",\"startup\\/error\",\"startup\\/event\",\"startup\\/login\",\"startup\\/permission\",\"startup\\/router\",\"startup\\/sass\",\"startup\\/startup\",\"tool\\/backup\",\"tool\\/log\",\"tool\\/upload\",\"user\\/api\",\"user\\/user\",\"user\\/user_permission\",\"extension\\/module\\/information\",\"extension\\/module\\/divido_calculator\",\"extension\\/module\\/category_grid\",\"extension\\/module\\/store\",\"extension\\/module\\/category_grid\",\"extension\\/module\\/category_grid\",\"extension\\/module\\/category_grid\",\"extension\\/module\\/category_grid\"]}'),
 (10, 'Demonstration', '');
 
 -- --------------------------------------------------------
@@ -4196,6 +4202,11 @@ CREATE TABLE IF NOT EXISTS `oc_voucher` (
   PRIMARY KEY (`voucher_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
+--
+-- Truncate table before insert `oc_voucher`
+--
+
+TRUNCATE TABLE `oc_voucher`;
 -- --------------------------------------------------------
 
 --
@@ -4211,6 +4222,11 @@ CREATE TABLE IF NOT EXISTS `oc_voucher_history` (
   PRIMARY KEY (`voucher_history_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
+--
+-- Truncate table before insert `oc_voucher_history`
+--
+
+TRUNCATE TABLE `oc_voucher_history`;
 -- --------------------------------------------------------
 
 --
@@ -4224,10 +4240,15 @@ CREATE TABLE IF NOT EXISTS `oc_voucher_theme` (
 ) ENGINE=MyISAM AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
 
 --
+-- Truncate table before insert `oc_voucher_theme`
+--
+
+TRUNCATE TABLE `oc_voucher_theme`;
+--
 -- Dumping data for table `oc_voucher_theme`
 --
 
-INSERT INTO `oc_voucher_theme` (`voucher_theme_id`, `image`) VALUES
+INSERT IGNORE INTO `oc_voucher_theme` (`voucher_theme_id`, `image`) VALUES
 (8, 'catalog/demo/canon_eos_5d_2.jpg'),
 (7, 'catalog/demo/gift-voucher-birthday.jpg'),
 (6, 'catalog/demo/apple_logo.jpg');
@@ -4246,13 +4267,21 @@ CREATE TABLE IF NOT EXISTS `oc_voucher_theme_description` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
+-- Truncate table before insert `oc_voucher_theme_description`
+--
+
+TRUNCATE TABLE `oc_voucher_theme_description`;
+--
 -- Dumping data for table `oc_voucher_theme_description`
 --
 
-INSERT INTO `oc_voucher_theme_description` (`voucher_theme_id`, `language_id`, `name`) VALUES
+INSERT IGNORE INTO `oc_voucher_theme_description` (`voucher_theme_id`, `language_id`, `name`) VALUES
 (6, 1, 'Christmas'),
 (7, 1, 'Birthday'),
-(8, 1, 'General');
+(8, 1, 'General'),
+(6, 2, 'Christmas'),
+(7, 2, 'Birthday'),
+(8, 2, 'General');
 
 -- --------------------------------------------------------
 
@@ -4267,10 +4296,15 @@ CREATE TABLE IF NOT EXISTS `oc_weight_class` (
 ) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 
 --
+-- Truncate table before insert `oc_weight_class`
+--
+
+TRUNCATE TABLE `oc_weight_class`;
+--
 -- Dumping data for table `oc_weight_class`
 --
 
-INSERT INTO `oc_weight_class` (`weight_class_id`, `value`) VALUES
+INSERT IGNORE INTO `oc_weight_class` (`weight_class_id`, `value`) VALUES
 (1, '1.00000000'),
 (2, '1000.00000000'),
 (5, '2.20460000'),
@@ -4291,14 +4325,23 @@ CREATE TABLE IF NOT EXISTS `oc_weight_class_description` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
+-- Truncate table before insert `oc_weight_class_description`
+--
+
+TRUNCATE TABLE `oc_weight_class_description`;
+--
 -- Dumping data for table `oc_weight_class_description`
 --
 
-INSERT INTO `oc_weight_class_description` (`weight_class_id`, `language_id`, `title`, `unit`) VALUES
+INSERT IGNORE INTO `oc_weight_class_description` (`weight_class_id`, `language_id`, `title`, `unit`) VALUES
 (1, 1, 'Kilogram', 'kg'),
 (2, 1, 'Gram', 'g'),
 (5, 1, 'Pound ', 'lb'),
-(6, 1, 'Ounce', 'oz');
+(6, 1, 'Ounce', 'oz'),
+(1, 2, 'Kilogram', 'kg'),
+(2, 2, 'Gram', 'g'),
+(5, 2, 'Pound ', 'lb'),
+(6, 2, 'Ounce', 'oz');
 
 -- --------------------------------------------------------
 
@@ -4313,13 +4356,18 @@ CREATE TABLE IF NOT EXISTS `oc_zone` (
   `code` varchar(32) NOT NULL,
   `status` tinyint(1) NOT NULL DEFAULT 1,
   PRIMARY KEY (`zone_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=4239 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=4240 DEFAULT CHARSET=utf8;
 
+--
+-- Truncate table before insert `oc_zone`
+--
+
+TRUNCATE TABLE `oc_zone`;
 --
 -- Dumping data for table `oc_zone`
 --
 
-INSERT INTO `oc_zone` (`zone_id`, `country_id`, `name`, `code`, `status`) VALUES
+INSERT IGNORE INTO `oc_zone` (`zone_id`, `country_id`, `name`, `code`, `status`) VALUES
 (1, 1, 'Badakhshan', 'BDS', 1),
 (2, 1, 'Badghis', 'BDG', 1),
 (3, 1, 'Baghlan', 'BGL', 1),
@@ -5855,7 +5903,7 @@ INSERT INTO `oc_zone` (`zone_id`, `country_id`, `name`, `code`, `status`) VALUES
 (1595, 103, 'Kilkenny', 'KL', 1),
 (1596, 103, 'Laois', 'LA', 1),
 (1597, 103, 'Leitrim', 'LE', 1);
-INSERT INTO `oc_zone` (`zone_id`, `country_id`, `name`, `code`, `status`) VALUES
+INSERT IGNORE INTO `oc_zone` (`zone_id`, `country_id`, `name`, `code`, `status`) VALUES
 (1598, 103, 'Limerick', 'LI', 1),
 (1599, 103, 'Longford', 'LO', 1),
 (1600, 103, 'Louth', 'LU', 1),
@@ -7359,7 +7407,7 @@ INSERT INTO `oc_zone` (`zone_id`, `country_id`, `name`, `code`, `status`) VALUES
 (3134, 205, 'Tartus', 'TA', 1),
 (3135, 206, 'Chang-hua', 'CH', 1),
 (3136, 206, 'Chia-i', 'CI', 1);
-INSERT INTO `oc_zone` (`zone_id`, `country_id`, `name`, `code`, `status`) VALUES
+INSERT IGNORE INTO `oc_zone` (`zone_id`, `country_id`, `name`, `code`, `status`) VALUES
 (3137, 206, 'Hsin-chu', 'HS', 1),
 (3138, 206, 'Hua-lien', 'HL', 1),
 (3139, 206, 'I-lan', 'IL', 1),
@@ -8445,13 +8493,18 @@ CREATE TABLE IF NOT EXISTS `oc_zone_to_geo_zone` (
   `date_added` datetime NOT NULL,
   `date_modified` datetime NOT NULL,
   PRIMARY KEY (`zone_to_geo_zone_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=110 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=111 DEFAULT CHARSET=utf8;
 
+--
+-- Truncate table before insert `oc_zone_to_geo_zone`
+--
+
+TRUNCATE TABLE `oc_zone_to_geo_zone`;
 --
 -- Dumping data for table `oc_zone_to_geo_zone`
 --
 
-INSERT INTO `oc_zone_to_geo_zone` (`zone_to_geo_zone_id`, `country_id`, `zone_id`, `geo_zone_id`, `date_added`, `date_modified`) VALUES
+INSERT IGNORE INTO `oc_zone_to_geo_zone` (`zone_to_geo_zone_id`, `country_id`, `zone_id`, `geo_zone_id`, `date_added`, `date_modified`) VALUES
 (1, 222, 0, 4, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
 (2, 222, 3513, 3, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
 (3, 222, 3514, 3, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
@@ -8560,7 +8613,8 @@ INSERT INTO `oc_zone_to_geo_zone` (`zone_to_geo_zone_id`, `country_id`, `zone_id
 (106, 222, 3953, 3, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
 (107, 222, 3954, 3, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
 (108, 222, 3955, 3, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(109, 222, 3972, 3, '0000-00-00 00:00:00', '0000-00-00 00:00:00');
+(109, 222, 3972, 3, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(110, 100, 0, 5, '2022-06-05 10:08:15', '0000-00-00 00:00:00');
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
