@@ -1,6 +1,7 @@
 <h3>{{ heading_title }}</h3>
 <div class="category-grid row">
   {% for category in categories %}
+  {% if category.top == 1%}
     {# {% if category.category_id == category_id %} 
     <a href="{{ category.href }}" class="list-group-item active">{{ category.name }}</a> 
       {% if category.children %}
@@ -20,13 +21,13 @@
     
   <div class="category-card">
     <a href="{{ category.href }}">
-      <div class="card rounded-0">
+      <div class="card rounded-0 row">
         <img src="{{category.img}}" alt="" class="card-img rounded-0">
-        <h4 class="card-title mb-0">{{ category.name }}</h4>
+        <h4 class="card-title mb-0 col-sm-12">{{ category.name }}</h4>
       </div>
     </a>
   </div>
-    
+    {% endif %}
   {% endfor %}
 </div>
 
@@ -65,7 +66,10 @@
   }
 
   .category-card .card-title {
-    color: black;
+    color: #412c2a;
+    font-weight: bold;
+    font-size: 16px;
+    text-shadow : -3px -1px 4px white, 3px 6px 7px white, 4px 2px 5px white, 4px -3px 5px white;
   }
 
   .category-card {
@@ -74,7 +78,7 @@
   }
 
   .category-card:hover {
-    transform: scale(0.98);
+    transform: scale(0.99);
     transition: 0.2s;
   }
 

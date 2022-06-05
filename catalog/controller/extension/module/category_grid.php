@@ -64,7 +64,8 @@ class ControllerExtensionModuleCategoryGrid extends Controller
 				'name'        => $category['name'],
 				'children'    => $children_data,
 				'href'        => $this->url->link('product/category', 'path=' . $category['category_id']),
-				'img'		  => $image
+				'img'		  => $image,
+				'top'	      => $category['top']
 			);
 		}
 
