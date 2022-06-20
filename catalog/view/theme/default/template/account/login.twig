@@ -21,17 +21,9 @@
     {% endif %}
     <div id="content" class="{{ class }}">{{ content_top }}
       <div class="row">
-        <div class="col-sm-6">
-          <div class="well">
-            <h2>{{ text_new_customer }}</h2>
-            <p><strong>{{ text_register }}</strong></p>
-            <p>{{ text_register_account }}</p>
-            <a href="{{ register }}" class="btn btn-primary">{{ button_continue }}</a></div>
-        </div>
-        <div class="col-sm-6">
-          <div class="well">
-            <h2>{{ text_returning_customer }}</h2>
-            <p><strong>{{ text_i_am_returning_customer }}</strong></p>
+        <div class="col-sm-6 center-block" style="float:none">
+          <div>
+            <h2 style="text-transform:uppercase" class="text-center">{{ text_login }}</h2>
             <form action="{{ action }}" method="post" enctype="multipart/form-data">
               <div class="form-group">
                 <label class="control-label" for="input-email">{{ entry_email }}</label>
@@ -40,8 +32,14 @@
               <div class="form-group">
                 <label class="control-label" for="input-password">{{ entry_password }}</label>
                 <input type="password" name="password" value="{{ password }}" placeholder="{{ entry_password }}" id="input-password" class="form-control" />
-                <a href="{{ forgotten }}">{{ text_forgotten }}</a></div>
-              <input type="submit" value="{{ button_login }}" class="btn btn-primary" />
+              </div>
+              <input type="submit" value="{{ button_login }}" class="btn btn-primary col-sm-12" style="margin-top: 1em;"/>
+              <div style="margin-top: 6em;">
+                <a href="{{ forgotten }}">{{ text_forgotten }}</a>
+              </div>
+              <div> 
+                <a href="{{ register }}">{{ text_register }}</a>
+              </div>   
               {% if redirect %}
               <input type="hidden" name="redirect" value="{{ redirect }}" />
               {% endif %}
